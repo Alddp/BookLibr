@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,64 +13,82 @@ namespace BookDAL
         //用于验证登录
         public static int CountByNamePwd(string name, string pwd)
         {
+            string tableName = TabManager.AdminTable.tableName;
+            string usernameColumn = TabManager.AdminTable.Username;
+            string passwordColumn = TabManager.AdminTable.Pwd;
 
-            string sql = "select count(*) from Users where username ='" + name + "' and password = '" + pwd + "'";
-            return DBHelper.ExScalar(sql);
-
-            //SqlCommand c = new SqlCommand();
-            //c.CommandText="select count(*) from Users where username ='"+name+"' and password = '"+pwd+"'";
-            //c.Connection = DBHelper.Connection;
-            //int i =(int)c.ExecuteScalar();
-            //return i;
-
+            string sql = $"SELECT COUNT(*) FROM {tableName} WHERE {usernameColumn} = @name AND {passwordColumn} = @pwd";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@name", name),
+                new SqlParameter("@pwd", pwd)
+            };
+            return DBHelper.ExScalar(sql, parameters);
         }
 
         //用于统计用于表数量
         public static int CountUserNum()
         {
-
-            string sql = "select count(*) from Users";
+            string tableName = TabManager.UserTable.tableName;
+            // 建议添加表名合法性校验
+            string sql = $"SELECT COUNT(*) FROM {tableName}";
             return DBHelper.ExScalar(sql);
-
-            //SqlCommand c = new SqlCommand();
-            //c.CommandText = "select count(*) from Users ";
-            //c.Connection = DBHelper.Connection;
-            //int num= (int)c.ExecuteScalar(); // ExecuteScalar返回第一行第一列的值
-            //return num;
         }
 
-        //用于注册用户
+        //用于注册管理员用户
         public static int UsersInsert(string name, string pwd, string usertype, string phone)
         {
-            SqlCommand c = new SqlCommand();
-            c.CommandText = @"
-                        INSERT INTO Users (userName, password, userType, telephone)
-                        VALUES (@Name, @Password, @UserType, @Phone)";
+            string tableName = TabManager.AdminTable.tableName;
+            string usernameColumn = TabManager.AdminTable.Username;
+            string passwordColumn = TabManager.AdminTable.Pwd;
+            string usertypeColumn = TabManager.AdminTable.Type;
+            string teleColumn = TabManager.AdminTable.Phone;
 
-            // 添加参数
-            c.Parameters.AddWithValue("@Name", name);
-            c.Parameters.AddWithValue("@Password", pwd);
-            c.Parameters.AddWithValue("@UserType", usertype);
-            c.Parameters.AddWithValue("@Phone", phone);
-
-            c.Connection = DBHelper.Connection;
-            int i = (int)c.ExecuteNonQuery();
-            return i;
-        }
-
-        public static int UsersInsert1(string name, string pwd, string usertype, string phone)
-        {
-            SqlParameter[] para = new SqlParameter[4]
+            string sql = $"INSERT INTO {tableName} ({usernameColumn}, {passwordColumn}, {usertypeColumn}, {teleColumn}) VALUES (@name, @pwd, @usertype, @phone)";
+            SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@name",name),
-                new SqlParameter("@pwd",pwd),
-                new SqlParameter("@usertype",usertype),
-                new SqlParameter("@phone",phone)
-             };
-            string sql = @"INSERT INTO Users (userName, password, userType,telephone)
-                          VALUES (@name, @pwd, @usertype, @phone)";
-            return DBHelper.ExNonQuery(sql, para);
-
+                new SqlParameter("@name", name),
+                new SqlParameter("@pwd", pwd),
+                new SqlParameter("@usertype", usertype),
+                new SqlParameter("@phone", phone)
+            };
+            return DBHelper.ExNonQuery(sql, parameters);
         }
+
+
+        /// <summary>
+        /// 注册普通用户
+        /// </summary>
+        /// <param name="icdev">卡号</param>
+        /// <param name="name">姓名</param>
+        /// <param name="stuid">学号</param>
+        /// <param name="class">班级</param>
+        /// <param name="photo">照片路径</param>
+        /// <param name="phone">手机号</param>
+        /// <returns></returns>        
+        public static int UsersInsert(string icdev, string name, string stuid, string Class, string photo, string phone)
+        {
+            string tableName = TabManager.UserTable.tableName;
+            string cardNumColumn = TabManager.UserTable.CardNum;
+            string usernameColumn = TabManager.UserTable.UserName;
+            string stuidColumn = TabManager.UserTable.StudentID;
+            string photoColumn = TabManager.UserTable.Photo;
+            string classColumn = TabManager.UserTable.Class;
+            string teleColumn = TabManager.UserTable.Phone;
+
+            string sql = $"INSERT INTO {tableName} ({cardNumColumn}, {usernameColumn}, {stuidColumn}, {classColumn}, {teleColumn}, {photoColumn}) VALUES (@icdev, @name, @stuid, @class, @phone, @photo)";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                 new SqlParameter("@icdev", icdev),
+                 new SqlParameter("@name", name),
+                 new SqlParameter("@stuid", stuid),
+                 new SqlParameter("@class", Class),
+                 new SqlParameter("@phone", phone),
+                 new SqlParameter("@photo", photo)
+            };
+
+            return DBHelper.ExNonQuery(sql, parameters);
+        }
+
     }
 }

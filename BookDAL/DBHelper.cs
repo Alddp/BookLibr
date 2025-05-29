@@ -16,7 +16,8 @@ namespace BookDAL
         {
             get
             {
-                string constring = "Data Source=.\\SQLEXPRESS; Initial Catalog=Parking; Integrated Security=true";
+                const string database = "Library";
+                string constring = $"Data Source=.\\SQLEXPRESS; Initial Catalog={database}; Integrated Security=true";
 
                 if (connection == null)
                 {
@@ -39,24 +40,34 @@ namespace BookDAL
             }
         }
 
-        //改写ExecuteScalar方法 用于多次调用
+        // 执行标量查询方法，用于多次调用
+        // 适用于需要获取单个值的查询，如聚合查询或获取某个特定字段的值
         public static int ExScalar(string sql)
         {
-
-            SqlCommand c = new SqlCommand();
-            c.CommandText = sql;
-            c.Connection = DBHelper.Connection;
+            SqlCommand c = new SqlCommand(sql, DBHelper.Connection);
             int i = (int)c.ExecuteScalar();
             return i;
         }
 
-        //改写ExecuteNonQuery方法 用于多次调用 增 删 改
+        // 执行标量查询方法，用于多次调用
+        // 适用于需要获取单个值的查询，如聚合查询或获取某个特定字段的值
+        public static int ExScalar(string sql, params SqlParameter[] parameters)
+        {
+            SqlCommand c = new SqlCommand(sql, DBHelper.Connection);
+            if (parameters != null)
+                c.Parameters.AddRange(parameters);
+            return (int)c.ExecuteScalar();
+        }
 
+        // 改写 ExecuteNonQuery 方法，用于多次调用（增删改操作）
+        // 适用于不需要返回任何结果集的命令，如 INSERT、UPDATE、DELETE 等
         public static int ExNonQuery(string sql)
         {
             SqlCommand c = new SqlCommand(sql, Connection);
             return c.ExecuteNonQuery();
         }
+
+        // 带参数的 ExecuteNonQuery 方法
         public static int ExNonQuery(string sql, params SqlParameter[] para)
         {
             SqlCommand c = new SqlCommand(sql, Connection);
@@ -64,10 +75,30 @@ namespace BookDAL
             return c.ExecuteNonQuery();
         }
 
+        // 执行查询方法，用于多次调用（查询操作）
+        // 适用于需要返回结果集的命令，如 SELECT 等
         public static SqlDataReader ExecuteReader(string sql)
         {
             SqlCommand c = new SqlCommand(sql, Connection);
             return c.ExecuteReader();
+        }
+
+        // 带参数的 ExecuteReader 方法
+        public static SqlDataReader ExecuteReader(string sql, params SqlParameter[] parameters)
+        {
+            var cmd = new SqlCommand(sql, Connection);
+            if (parameters != null)
+                cmd.Parameters.AddRange(parameters);
+            try
+            {
+                return cmd.ExecuteReader(CommandBehavior.CloseConnection);
+            }
+            catch (Exception ex)
+            {
+                // Log exception
+                Console.WriteLine($"Error in ExecuteReader: {ex.Message}");
+                throw;
+            }
         }
     }
 }
