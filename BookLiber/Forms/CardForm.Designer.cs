@@ -49,6 +49,7 @@
             this.picture_button = new System.Windows.Forms.Button();
             this.submit_button = new System.Windows.Forms.Button();
             this.close_button = new System.Windows.Forms.Button();
+            this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -92,6 +93,7 @@
             // 
             resources.ApplyResources(this.carnumtxt, "carnumtxt");
             this.carnumtxt.Name = "carnumtxt";
+            this.carnumtxt.ReadOnly = true;
             // 
             // usernametxt
             // 
@@ -146,18 +148,24 @@
             resources.ApplyResources(this.picture_button, "picture_button");
             this.picture_button.Name = "picture_button";
             this.picture_button.UseVisualStyleBackColor = true;
+            this.picture_button.Click += new System.EventHandler(this.picture_button_Click);
             // 
             // submit_button
             // 
             resources.ApplyResources(this.submit_button, "submit_button");
             this.submit_button.Name = "submit_button";
             this.submit_button.UseVisualStyleBackColor = true;
+            this.submit_button.Click += new System.EventHandler(this.submit_button_Click);
             // 
             // close_button
             // 
             resources.ApplyResources(this.close_button, "close_button");
             this.close_button.Name = "close_button";
             this.close_button.UseVisualStyleBackColor = true;
+            // 
+            // openFile
+            // 
+            this.openFile.FileName = "openFileDialog1";
             // 
             // CardForm
             // 
@@ -183,6 +191,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "CardForm";
+            this.Load += new System.EventHandler(this.CardForm_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -212,5 +221,6 @@
         private System.Windows.Forms.Button picture_button;
         private System.Windows.Forms.Button submit_button;
         private System.Windows.Forms.Button close_button;
+        private System.Windows.Forms.OpenFileDialog openFile;
     }
 }

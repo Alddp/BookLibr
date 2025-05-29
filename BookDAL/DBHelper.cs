@@ -16,7 +16,7 @@ namespace BookDAL
         {
             get
             {
-                const string database = "Library";
+                const string database = "LibrBook";
                 string constring = $"Data Source=.\\SQLEXPRESS; Initial Catalog={database}; Integrated Security=true";
 
                 if (connection == null)
@@ -86,19 +86,10 @@ namespace BookDAL
         // 带参数的 ExecuteReader 方法
         public static SqlDataReader ExecuteReader(string sql, params SqlParameter[] parameters)
         {
-            var cmd = new SqlCommand(sql, Connection);
+            SqlCommand c = new SqlCommand(sql, Connection);
             if (parameters != null)
-                cmd.Parameters.AddRange(parameters);
-            try
-            {
-                return cmd.ExecuteReader(CommandBehavior.CloseConnection);
-            }
-            catch (Exception ex)
-            {
-                // Log exception
-                Console.WriteLine($"Error in ExecuteReader: {ex.Message}");
-                throw;
-            }
+                c.Parameters.AddRange(parameters);
+            return c.ExecuteReader(CommandBehavior.CloseConnection);
         }
     }
 }

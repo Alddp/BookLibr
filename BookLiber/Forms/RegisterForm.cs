@@ -37,12 +37,26 @@ namespace BookLiber.Forms
             else type = "admin";
 
             int state = UserManager.UsersInsert(name, pwd, type, phone);
-            if (1 == state)
+            switch (state)
             {
-                MessageBox.Show("注册成功", "提示");
-                returnName = UserName_tb.Text.Trim();
-                returnPwd = Pwd_tb.Text.Trim();
-                Close();
+                case 1:
+                    MessageBox.Show("注册成功", "提示");
+                    returnName = UserName_tb.Text.Trim();
+                    returnPwd = Pwd_tb.Text.Trim();
+                    Close();
+                    break;
+                case -1:
+                    MessageBox.Show("数据库异常，请稍后再试", "错误");
+                    return;
+                case -2:
+                    MessageBox.Show("用户名已存在，请更换用户名", "错误");
+                    return;
+                case -3:
+                    MessageBox.Show("用户名、密码、用户类型和电话不能为空", "错误");
+                    return;
+                case 0:
+                    MessageBox.Show("注册失败，请稍后再试", "错误");
+                    return;
             }
         }
     }

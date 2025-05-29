@@ -34,7 +34,7 @@ namespace BookLiber
             }
             else
             {
-                MessageBox.Show("error", "error");
+                MessageBox.Show("账号或密码错误");
             }
         }
 

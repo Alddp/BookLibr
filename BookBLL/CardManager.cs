@@ -28,7 +28,6 @@ namespace BookBLL
         /// <returns></returns>
         public static bool CheckCard(ref int icdev, out string errorMessage)
         {
-            errorMessage = null;
             icdev = DCHelper.dc_init(100, 115200); // 初始化读卡器，参数根据实际情况调整
             if (icdev <= 0)
             {
