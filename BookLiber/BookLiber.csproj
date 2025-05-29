@@ -46,6 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\AddBookForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AddBookForm.Designer.cs">
+      <DependentUpon>AddBookForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BorrowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BorrowForm.Designer.cs">
+      <DependentUpon>BorrowForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CardForm.Designer.cs">
+      <DependentUpon>CardForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +84,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Forms\ReturnForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReturnForm.Designer.cs">
+      <DependentUpon>ReturnForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Forms\AddBookForm.resx">
+      <DependentUpon>AddBookForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BorrowForm.resx">
+      <DependentUpon>BorrowForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CardForm.resx">
+      <DependentUpon>CardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CardForm.zu-ZA.resx">
+      <DependentUpon>CardForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,6 +120,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\ReturnForm.resx">
+      <DependentUpon>ReturnForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
