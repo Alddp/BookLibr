@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace BookLiber.Forms
 {
+
     public partial class MainForm : Form
     {
         public MainForm()
@@ -18,18 +19,31 @@ namespace BookLiber.Forms
             this.IsMdiContainer = true; // 必须添加：启用MDI容器
         }
 
+        // 通用方法：关闭所有其他MDI子窗体
+        private void CloseOtherMdiChildren(Form currentForm)
+        {
+            foreach (Form childForm in this.MdiChildren)
+            {
+                if (childForm != currentForm && !childForm.IsDisposed)
+                {
+                    childForm.Close(); // 关闭其他窗体
+                }
+            }
+        }
+
         // 开卡菜单
         private void 开卡ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // 检查是否已存在CardForm
             var existingForm = this.MdiChildren.FirstOrDefault(f => f is CardForm);
             if (existingForm != null)
             {
-                existingForm.Activate(); // 如果存在则激活
+                existingForm.Activate();
                 return;
             }
 
-            // 不存在则创建新窗体
+            // 创建新窗体前关闭其他窗体
+            CloseOtherMdiChildren(null);
+
             CardForm cardForm = new CardForm();
             cardForm.MdiParent = this;
             cardForm.Show();
@@ -44,6 +58,8 @@ namespace BookLiber.Forms
                 existingForm.Activate();
                 return;
             }
+
+            CloseOtherMdiChildren(null);
 
             AddBookForm addBookForm = new AddBookForm();
             addBookForm.MdiParent = this;
@@ -60,6 +76,8 @@ namespace BookLiber.Forms
                 return;
             }
 
+            CloseOtherMdiChildren(null);
+
             ReturnForm returnForm = new ReturnForm();
             returnForm.MdiParent = this;
             returnForm.Show();
@@ -74,6 +92,8 @@ namespace BookLiber.Forms
                 existingForm.Activate();
                 return;
             }
+
+            CloseOtherMdiChildren(null);
 
             BorrowForm borrowForm = new BorrowForm();
             borrowForm.MdiParent = this;
