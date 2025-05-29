@@ -30,10 +30,10 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.userName_tb = new System.Windows.Forms.TextBox();
-            this.pwd_tb = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.UserName_tb = new System.Windows.Forms.TextBox();
+            this.Pwd_tb = new System.Windows.Forms.TextBox();
+            this.Register_bt = new System.Windows.Forms.Button();
+            this.Login_bt = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -54,50 +54,50 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "密码";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(155, 275);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "登录";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // userName_tb
             // 
-            this.userName_tb.Location = new System.Drawing.Point(177, 96);
-            this.userName_tb.Name = "userName_tb";
-            this.userName_tb.Size = new System.Drawing.Size(100, 21);
-            this.userName_tb.TabIndex = 3;
+            this.UserName_tb.Location = new System.Drawing.Point(177, 96);
+            this.UserName_tb.Name = "userName_tb";
+            this.UserName_tb.Size = new System.Drawing.Size(100, 21);
+            this.UserName_tb.TabIndex = 3;
             // 
             // pwd_tb
             // 
-            this.pwd_tb.BackColor = System.Drawing.SystemColors.Window;
-            this.pwd_tb.Location = new System.Drawing.Point(177, 155);
-            this.pwd_tb.Name = "pwd_tb";
-            this.pwd_tb.Size = new System.Drawing.Size(100, 21);
-            this.pwd_tb.TabIndex = 4;
+            this.Pwd_tb.BackColor = System.Drawing.SystemColors.Window;
+            this.Pwd_tb.Location = new System.Drawing.Point(177, 155);
+            this.Pwd_tb.Name = "pwd_tb";
+            this.Pwd_tb.Size = new System.Drawing.Size(100, 21);
+            this.Pwd_tb.TabIndex = 4;
             // 
-            // button2
+            // Register_bt
             // 
-            this.button2.Location = new System.Drawing.Point(155, 246);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "注册";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.Register_bt.Location = new System.Drawing.Point(155, 246);
+            this.Register_bt.Name = "Register_bt";
+            this.Register_bt.Size = new System.Drawing.Size(75, 23);
+            this.Register_bt.TabIndex = 5;
+            this.Register_bt.Text = "注册";
+            this.Register_bt.UseVisualStyleBackColor = true;
+            this.Register_bt.Click += new System.EventHandler(this.Register_bt_Click);
+            // 
+            // Login_bt
+            // 
+            this.Login_bt.Location = new System.Drawing.Point(155, 304);
+            this.Login_bt.Name = "Login_bt";
+            this.Login_bt.Size = new System.Drawing.Size(75, 23);
+            this.Login_bt.TabIndex = 6;
+            this.Login_bt.Text = "登录";
+            this.Login_bt.UseVisualStyleBackColor = true;
+            this.Login_bt.Click += new System.EventHandler(this.Login_bt_Click);
             // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(408, 417);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.pwd_tb);
-            this.Controls.Add(this.userName_tb);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Login_bt);
+            this.Controls.Add(this.Register_bt);
+            this.Controls.Add(this.Pwd_tb);
+            this.Controls.Add(this.UserName_tb);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "LoginForm";
@@ -111,9 +111,9 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox userName_tb;
-        private System.Windows.Forms.TextBox pwd_tb;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox UserName_tb;
+        private System.Windows.Forms.TextBox Pwd_tb;
+        private System.Windows.Forms.Button Register_bt;
+        private System.Windows.Forms.Button Login_bt;
     }
 }
