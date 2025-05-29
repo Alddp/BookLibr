@@ -23,10 +23,5 @@ namespace BookBLL
         {
             return UserService.UsersInsert(name, pwd, usertype, phone);
         }
-
-        public static int UsersInsert1(string name, string pwd, string usertype, string phone)
-        {
-            return UserService.UsersInsert1(name, pwd, usertype, phone);
-        }
     }
 }
