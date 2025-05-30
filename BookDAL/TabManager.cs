@@ -1,10 +1,12 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace BookDAL
 {
@@ -12,7 +14,7 @@ namespace BookDAL
     {
         public static class UserTable
         {
-            public const string tableName = "User";
+            public const string tableName = "UserTable";
 
             public const string UserId = "UserId";
             public const string CardNum = "CardNum";
@@ -51,6 +53,8 @@ namespace BookDAL
 
         public static class BorrowTable
         {
+            public const string tableName = "BorrowTable";
+
             public const string BorrowId = "BorrowId";
             public const string UserId = "UserId";
             public const string BookId = "BookId";
@@ -58,6 +62,15 @@ namespace BookDAL
             public const string ReturnAdminId = "ReturnAdminId";
             public const string BorrowDate = "BorrowDate";
             public const string ReturnDate = "ReturnDate";
+        }
+
+        public static class BookshelfTable
+        {
+            public const string tableName = "Bookshelf";
+
+            public const string ShelfId = "ShelfId";
+            public const string SelfCode = "ShelfCode";
+            public const string Location = "Location";
         }
     }
 }
