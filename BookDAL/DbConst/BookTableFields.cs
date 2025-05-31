@@ -11,5 +11,6 @@
         public const string ISBN = "ISBN";
         public const string Picture = "Picture";
         public const string Price = "Price";
+        public const string ShelfId = "ShelfId";
     }
 }
