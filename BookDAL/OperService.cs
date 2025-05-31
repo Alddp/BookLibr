@@ -2,20 +2,64 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using static BookDAL.TabManager;
 
 namespace BookDAL
 {
     public class OperService
     {
-        // TODO: 借书
-        public static int BorrowBook(string userId, string bookId, string borrowAdminId, DateTime borrowDate)
+        // 还书 书库数量增加1
+        public static int IncreaseInventory(string bookId)
         {
-            string sql = $"";
+
+            string tableName = BookTable.tableName;
+            string bookINventoryColumn = BookTable.Inventory;
+            string bookIdColumn = BookTable.BookId;
+            string sql = $@" UPDATE {tableName} SET {bookINventoryColumn } = {bookIdColumn} + 1 WHERE {bookIdColumn} = @BookId";
             SqlParameter[] parameters = new SqlParameter[]
                {
+                   new SqlParameter("@BookId", bookId)
                };
+            return DBHelper.ExNonQuery(sql, parameters);
+        }
+
+        // 借出书本 书库数量减少1
+        public static int DecreaseInventory(string bookId)
+        {
+            string tableName = BookTable.tableName;
+            string bookINventoryColumn = BookTable.Inventory;
+            string bookIdColumn = BookTable.BookId;
+            string sql = $@" UPDATE {tableName} SET {bookINventoryColumn} = {bookIdColumn} + 1 WHERE {bookIdColumn} = @BookId";
+            SqlParameter[] parameters = new SqlParameter[]
+               {
+                   new SqlParameter("@BookId", bookId)
+               };
+
+            return DBHelper.ExNonQuery(sql, parameters);
+        }
+
+        //借书操作  添加到借书表
+        public static int Borrowbook(string userId, string bookId, string borrowAdminId, DateTime borrowDate)
+        {
+            string tableName = BorrowTable.tableName;
+            string userIdColumn = BorrowTable.UserId;
+            string bookIdColumn = BorrowTable.BookId;
+            string borrowAdminIdColumn = BorrowTable.BorrowAdminId;
+            string borrowDateColumn = BorrowTable.BorrowDate;   
+
+            string sql = $@" INSERT INTO {tableName} ({userIdColumn}, {bookIdColumn}, {borrowAdminIdColumn}, {borrowDateColumn}
+                         VALUES (@UserId, @BookId, @BorrowAdminId, @BorrowDate)";
+            SqlParameter[] parameters = new SqlParameter[]
+               {
+                   new SqlParameter("@UserId", userId),
+                   new SqlParameter("@BookId", bookId),
+                   new SqlParameter("@BorrowAdminId", borrowAdminId),
+                   new SqlParameter("@BorrowDate", borrowDate)
+               };
+
             return DBHelper.ExNonQuery(sql, parameters);
         }
 
@@ -29,22 +73,41 @@ namespace BookDAL
             return DBHelper.ExNonQuery(sql, parameters);
         }
 
-        // TODO: 还书
-        public static int ReturnBook(string userId, string bookId, string returnAdminId, DateTime returnDate)
+
+
+        //还书  添加到还书表
+        public static int Returnbook(string userId, string bookId, string returnAdminId, DateTime returnDate)
         {
-            string sql = $"";
+
+            string tableName = BorrowTable.tableName;
+            string userIdColumn = BorrowTable.UserId;
+            string bookIdColumn = BorrowTable.BookId;
+            string returnAdminIdColumn = BorrowTable.ReturnAdminId;
+            string returnDateColumn = BorrowTable.ReturnDate;
+            string sql = $@"UPDATE {tableName} SET {returnAdminIdColumn} = @ReturnAdminId, {returnDateColumn} = @ReturnDate
+                            WHERE {userIdColumn} = @UserId AND {bookIdColumn} = @BookId  AND {returnDateColumn} IS NULL";  // 只更新未归还的记录
+
             SqlParameter[] parameters = new SqlParameter[]
                {
+                    new SqlParameter("@ReturnAdminId", returnAdminId),
+                    new SqlParameter("@ReturnDate", returnDate),
+                    new SqlParameter("@UserId", userId),
+                    new SqlParameter("@BookId", bookId)
                };
             return DBHelper.ExNonQuery(sql, parameters);
         }
 
-        // TODO: 查询借书记录
+
+        // 查询借书记录
         public static SqlDataReader QueryBorrowRecord(string userId)
         {
-            string sql = $"";
+            string tableName = BorrowTable.tableName;
+            string userIdColumn = BorrowTable.UserId;
+
+            string sql = $@" SELECT * FROM {tableName} WHERE {userIdColumn} = @UserId";
             SqlParameter[] parameters = new SqlParameter[]
                {
+                   new SqlParameter("@UserId", userId)  
                };
             return DBHelper.ExecuteReader(sql, parameters);
         }

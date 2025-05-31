@@ -49,6 +49,8 @@ namespace BookDAL
             public const string Picture = "Picture";
             public const string ISBN = "ISBN";
             public const string Price = "Price";
+            public const string ShelfId = "ShelfId"; // 书架ID
+
         }
 
         public static class BorrowTable
