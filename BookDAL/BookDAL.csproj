@@ -54,5 +54,11 @@
     <Compile Include="StuInfService.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookModels\BookModels.csproj">
+      <Project>{db0512b5-2b5d-4a8c-90eb-cfb4073e456d}</Project>
+      <Name>BookModels</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

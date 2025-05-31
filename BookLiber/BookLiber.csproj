@@ -141,6 +141,10 @@
       <Project>{765f41a1-3268-45d3-b739-780797230cf4}</Project>
       <Name>BookBLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BookModels\BookModels.csproj">
+      <Project>{db0512b5-2b5d-4a8c-90eb-cfb4073e456d}</Project>
+      <Name>BookModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
