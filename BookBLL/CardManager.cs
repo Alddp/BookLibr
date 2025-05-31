@@ -13,20 +13,13 @@ namespace BookBLL
     {
         static readonly int data_mem = 29; // 存储卡号区块
 
-        //int icdev = 0;
-        //string error;
-        //if (!CardService.CheckCard(ref icdev, out error))
-        //{
-        //    MessageBox.Show(error);
-        //}
-
         /// <summary>
         /// 检测卡片是否正确放置，并验证密码
         /// </summary>
         /// <param name="icdev"></param>
         /// <param name="errorMessage">返回的错误消息</param>
-        /// <returns></returns>
-        public static bool CheckCard(ref int icdev, out string errorMessage)
+        /// <returns>ref int icdev</returns>
+        static bool CheckCard(ref int icdev, out string errorMessage)
         {
             icdev = DCHelper.dc_init(100, 115200); // 初始化读卡器，参数根据实际情况调整
             if (icdev <= 0)
@@ -53,7 +46,7 @@ namespace BookBLL
         /// <param name="icdev"></param>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public static bool CheckKey(int icdev, out string errorMessage)
+        static bool CheckKey(int icdev, out string errorMessage)
         {
             errorMessage = null;
 
@@ -64,7 +57,6 @@ namespace BookBLL
                 errorMessage = "加载密钥失败";
                 return false;
             }
-
             int authkey = DCHelper.dc_authentication(icdev, 0, 7); // 验证
             if (authkey != 0)
             {
@@ -74,6 +66,13 @@ namespace BookBLL
             return true;
         }
 
+        static int SuccessBeep(int icdev, int beepTime, int sleepTime)
+        {
+            DCHelper.dc_beep(icdev, beepTime);
+            Thread.Sleep(sleepTime);
+            return DCHelper.dc_beep(icdev, beepTime);
+        }
+
         /// <summary>
         /// 读卡成功提示音
         /// </summary>
@@ -81,10 +80,7 @@ namespace BookBLL
         /// <returns></returns>
         public static int ReadSuccessBeep(int icdev)
         {
-            DCHelper.dc_beep(icdev, 50);
-            Thread.Sleep(100);
-            int res = DCHelper.dc_beep(icdev, 50);
-            return res;
+            return SuccessBeep(icdev, 50, 100);
         }
 
         /// <summary>
@@ -94,27 +90,54 @@ namespace BookBLL
         /// <returns></returns>
         public static int WriteSuccessBeep(int icdev)
         {
-            DCHelper.dc_beep(icdev, 100);
-            Thread.Sleep(50);
-            int res = DCHelper.dc_beep(icdev, 100);
-            return res;
+            return SuccessBeep(icdev, 100, 50);
         }
 
         /// <summary>
         /// 开卡写入卡号到区块中
         /// </summary>
-        /// <param name="icdev"></param>
-        /// <param name="datas"></param>
-        /// <returns></returns>
-        public static int WriteCardNum(int icdev, string datas, out string errorMessage)
+        /// <param name="cardNum"></param>
+        /// <param name="errorMessage"></param>
+        /// <returns>成功返回0</returns>
+        public static int WriteCardNum(string cardNum, out string errorMessage)
         {
-            if (CheckCard(ref icdev, out errorMessage))
-            {
+            int icdev = 0; // 初始化读卡器设备ID
+            if (!CheckCard(ref icdev, out errorMessage))
+                return -1;
+
+            cardNum = cardNum.ToString().TrimEnd('\0'); // 去除末尾的空字符
+            int res = DCHelper.dc_write(icdev, data_mem, cardNum);
+
+            if (0 == res)
                 WriteSuccessBeep(icdev);
-                return DCHelper.dc_write(icdev, data_mem, datas);
+            return res; // 成功写入
+        }
+
+        /// <summary>
+        /// 读取区块存储的卡号
+        /// </summary>
+        /// <param name="cardNum"></param>
+        /// <param name="errorMessage"></param>
+        /// <returns>成功返回0</returns>
+        public static bool ReadCardNum(out string cardNum, out string errorMessage)
+        {
+            cardNum = string.Empty; // 初始化cardNum
+            int icdev = 0; // 初始化读卡器设备ID
+            if (!CheckCard(ref icdev, out errorMessage))
+                return false; // 卡片检查失败
+
+            int res = DCHelper.dc_read(icdev, data_mem, cardNum);
+            if (res == 0)
+            {
+                cardNum = cardNum.TrimEnd('\0'); // 去除末尾的空字符
+                ReadSuccessBeep(icdev);
+                return true; // 成功读取
             }
             else
-                return 0;
+            {
+                errorMessage = "读取卡号失败";
+                return false; // 读取失败
+            }
         }
     }
 }

@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
+using static BookDAL.TabManager;
+
 namespace BookDAL
 {
     public class StuInfService
@@ -14,14 +16,14 @@ namespace BookDAL
         public static int InsertStuInfo(string cardNum, string userName, string studentId, string phone, string className, string photo, DateTime startTime, DateTime endTime)
         {
             string sql = $"INSERT INTO [{TabManager.UserTable.tableName}] (" +
-                $"[{TabManager.UserTable.CardNum}], " +
-                $"[{TabManager.UserTable.UserName}], " +
-                $"[{TabManager.UserTable.StudentID}], " +
-                $"[{TabManager.UserTable.Phone}], " +
-                $"[{TabManager.UserTable.Class}], " +
-                $"[{TabManager.UserTable.Photo}], " +
-                $"[{TabManager.UserTable.Start_Time}], " +
-                $"[{TabManager.UserTable.Ending_Time}]) " +
+                $"[{UserTable.CardNum}], " +
+                $"[{UserTable.UserName}], " +
+                $"[{UserTable.StudentID}], " +
+                $"[{UserTable.Phone}], " +
+                $"[{UserTable.Class}], " +
+                $"[{UserTable.Photo}], " +
+                $"[{UserTable.Start_Time}], " +
+                $"[{UserTable.Ending_Time}]) " +
                 $"VALUES (@cardNum, @userName, @studentId, @phone, @className, @photo, @startTime, @endTime)";
 
             SqlParameter[] parameters = new SqlParameter[]
@@ -38,6 +40,18 @@ namespace BookDAL
             return DBHelper.ExNonQuery(sql, parameters);
         }
 
-
+        /// <summary>
+        /// 读卡后获取学生信息
+        /// </summary>
+        /// <param name="cardNum">卡号</param>
+        /// <returns>SqlDataReader</returns>
+        public static SqlDataReader GetStuInfo(string cardNum)
+        {
+            string sql = $"SELECT * FROM [{TabManager.UserTable.tableName}] WHERE [{TabManager.UserTable.CardNum}] = @cardNum";
+            SqlParameter[] parameters = new SqlParameter[] {
+                new SqlParameter("@cardNum", cardNum),
+            };
+            return DBHelper.ExecuteReader(sql, parameters);
+        }
     }
 }

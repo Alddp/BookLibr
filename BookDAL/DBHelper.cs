@@ -40,8 +40,11 @@ namespace BookDAL
             }
         }
 
-        // 执行标量查询方法，用于多次调用
-        // 适用于需要获取单个值的查询，如聚合查询或获取某个特定字段的值
+        /// <summary>
+        /// 用于需要获取单个值的查询，如聚合查询或获取某个特定字段的值
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
         public static int ExScalar(string sql)
         {
             SqlCommand c = new SqlCommand(sql, DBHelper.Connection);
@@ -49,25 +52,38 @@ namespace BookDAL
             return i;
         }
 
-        // 执行标量查询方法，用于多次调用
-        // 适用于需要获取单个值的查询，如聚合查询或获取某个特定字段的值
-        public static int ExScalar(string sql, params SqlParameter[] parameters)
+        /// <summary>
+        /// 执行标量查询方法，用于多次调用
+        /// 用于需要获取单个值的查询，如聚合查询或获取某个特定字段的值
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="para"></param>
+        /// <returns></returns>
+        public static int ExScalar(string sql, params SqlParameter[] para)
         {
             SqlCommand c = new SqlCommand(sql, DBHelper.Connection);
-            if (parameters != null)
-                c.Parameters.AddRange(parameters);
+            if (para != null)
+                c.Parameters.AddRange(para);
             return (int)c.ExecuteScalar();
         }
 
-        // 改写 ExecuteNonQuery 方法，用于多次调用（增删改操作）
-        // 适用于不需要返回任何结果集的命令，如 INSERT、UPDATE、DELETE 等
+        /// <summary>
+        /// 用于不需要返回任何结果集的命令，如 INSERT、UPDATE、DELETE 等
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
         public static int ExNonQuery(string sql)
         {
             SqlCommand c = new SqlCommand(sql, Connection);
             return c.ExecuteNonQuery();
         }
 
-        // 带参数的 ExecuteNonQuery 方法
+        /// <summary>
+        /// 用于不需要返回任何结果集的命令，如 INSERT、UPDATE、DELETE 等
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="para"></param>
+        /// <returns></returns>
         public static int ExNonQuery(string sql, params SqlParameter[] para)
         {
             SqlCommand c = new SqlCommand(sql, Connection);
@@ -75,20 +91,28 @@ namespace BookDAL
             return c.ExecuteNonQuery();
         }
 
-        // 执行查询方法，用于多次调用（查询操作）
-        // 适用于需要返回结果集的命令，如 SELECT 等
+        /// <summary>
+        /// 用于需要返回结果集的命令，如 SELECT 等
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
         public static SqlDataReader ExecuteReader(string sql)
         {
             SqlCommand c = new SqlCommand(sql, Connection);
             return c.ExecuteReader();
         }
 
-        // 带参数的 ExecuteReader 方法
-        public static SqlDataReader ExecuteReader(string sql, params SqlParameter[] parameters)
+        /// <summary>
+        /// 用于需要返回结果集的命令，如 SELECT 等
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <param name="para"></param>
+        /// <returns></returns>
+        public static SqlDataReader ExecuteReader(string sql, params SqlParameter[] para)
         {
             SqlCommand c = new SqlCommand(sql, Connection);
-            if (parameters != null)
-                c.Parameters.AddRange(parameters);
+            if (para != null)
+                c.Parameters.AddRange(para);
             return c.ExecuteReader(CommandBehavior.CloseConnection);
         }
     }

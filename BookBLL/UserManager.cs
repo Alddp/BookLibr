@@ -18,6 +18,7 @@ namespace BookBLL
             }
             catch (SqlException ex)
             {
+                Console.WriteLine(ex.ToString());
                 return -1; // 数据库异常
             }
         }
