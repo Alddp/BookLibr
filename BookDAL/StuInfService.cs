@@ -6,8 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-using static BookDAL.TabManager;
-
 namespace BookDAL
 {
     public class StuInfService
@@ -15,15 +13,15 @@ namespace BookDAL
         // 发卡, 插入学生信息到数据库
         public static int InsertStuInfo(string cardNum, string userName, string studentId, string phone, string className, string photo, DateTime startTime, DateTime endTime)
         {
-            string sql = $"INSERT INTO [{TabManager.UserTable.tableName}] (" +
-                $"[{UserTable.CardNum}], " +
-                $"[{UserTable.UserName}], " +
-                $"[{UserTable.StudentID}], " +
-                $"[{UserTable.Phone}], " +
-                $"[{UserTable.Class}], " +
-                $"[{UserTable.Photo}], " +
-                $"[{UserTable.Start_Time}], " +
-                $"[{UserTable.Ending_Time}]) " +
+            string sql = $"INSERT INTO [{UserTableFields.TableName}] (" +
+                $"[{UserTableFields.CardNum}], " +
+                $"[{UserTableFields.UserName}], " +
+                $"[{UserTableFields.StudentID}], " +
+                $"[{UserTableFields.Phone}], " +
+                $"[{UserTableFields.Class}], " +
+                $"[{UserTableFields.Photo}], " +
+                $"[{UserTableFields.Start_Time}], " +
+                $"[{UserTableFields.Ending_Time}]) " +
                 $"VALUES (@cardNum, @userName, @studentId, @phone, @className, @photo, @startTime, @endTime)";
 
             SqlParameter[] parameters = new SqlParameter[]
@@ -47,7 +45,7 @@ namespace BookDAL
         /// <returns>SqlDataReader</returns>
         public static SqlDataReader GetStuInfo(string cardNum)
         {
-            string sql = $"SELECT * FROM [{TabManager.UserTable.tableName}] WHERE [{TabManager.UserTable.CardNum}] = @cardNum";
+            string sql = $"SELECT * FROM [{UserTableFields.TableName}] WHERE [{UserTableFields.CardNum}] = @cardNum";
             SqlParameter[] parameters = new SqlParameter[] {
                 new SqlParameter("@cardNum", cardNum),
             };

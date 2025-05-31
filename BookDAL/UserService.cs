@@ -6,7 +6,6 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
-using static BookDAL.TabManager;
 
 namespace BookDAL
 {
@@ -15,9 +14,9 @@ namespace BookDAL
         //用于验证登录
         public static int CountByNamePwd(string name, string pwd)
         {
-            string tableName = AdminTable.tableName;
-            string usernameColumn = AdminTable.Username;
-            string passwordColumn = AdminTable.Pwd;
+            string tableName = AdminTableFields.TableName;
+            string usernameColumn = AdminTableFields.Username;
+            string passwordColumn = AdminTableFields.Pwd;
 
             string sql = $"SELECT COUNT(*) FROM {tableName} WHERE {usernameColumn} = @name AND {passwordColumn} = @pwd";
             SqlParameter[] parameters = new SqlParameter[]
@@ -31,7 +30,7 @@ namespace BookDAL
         //用于统计用于表数量
         public static int CountUserNum()
         {
-            string tableName = UserTable.tableName;
+            string tableName = UserTableFields.TableName;
             // 建议添加表名合法性校验
             string sql = $"SELECT COUNT(*) FROM {tableName}";
             return DBHelper.ExScalar(sql);
@@ -40,11 +39,11 @@ namespace BookDAL
         //用于注册管理员用户
         public static int UsersInsert(string name, string pwd, string usertype, string phone)
         {
-            string tableName = AdminTable.tableName;
-            string usernameColumn = AdminTable.Username;
-            string passwordColumn = AdminTable.Pwd;
-            string usertypeColumn = AdminTable.Type;
-            string teleColumn = AdminTable.Phone;
+            string tableName = AdminTableFields.TableName;
+            string usernameColumn = AdminTableFields.Username;
+            string passwordColumn = AdminTableFields.Pwd;
+            string usertypeColumn = AdminTableFields.Type;
+            string teleColumn = AdminTableFields.Phone;
 
             string sql = $"INSERT INTO {tableName} ({usernameColumn}, {passwordColumn}, {usertypeColumn}, {teleColumn}) VALUES (@name, @pwd, @usertype, @phone)";
             SqlParameter[] parameters = new SqlParameter[]
@@ -56,7 +55,6 @@ namespace BookDAL
             };
             return DBHelper.ExNonQuery(sql, parameters);
         }
-
 
         /// <summary>
         /// 注册普通用户
@@ -70,13 +68,13 @@ namespace BookDAL
         /// <returns></returns>        
         public static int UsersInsert(string icdev, string name, string stuid, string Class, string photo, string phone)
         {
-            string tableName = UserTable.tableName;
-            string cardNumColumn = UserTable.CardNum;
-            string usernameColumn = UserTable.UserName;
-            string stuidColumn = UserTable.StudentID;
-            string photoColumn = UserTable.Photo;
-            string classColumn = UserTable.Class;
-            string teleColumn = UserTable.Phone;
+            string tableName = UserTableFields.TableName;
+            string cardNumColumn = UserTableFields.CardNum;
+            string usernameColumn = UserTableFields.UserName;
+            string stuidColumn = UserTableFields.StudentID;
+            string photoColumn = UserTableFields.Photo;
+            string classColumn = UserTableFields.Class;
+            string teleColumn = UserTableFields.Phone;
 
             string sql = $"INSERT INTO {tableName} ({cardNumColumn}, {usernameColumn}, {stuidColumn}, {classColumn}, {teleColumn}, {photoColumn}) VALUES (@icdev, @name, @stuid, @class, @phone, @photo)";
             SqlParameter[] parameters = new SqlParameter[]
