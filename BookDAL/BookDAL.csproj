@@ -42,11 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookService.cs" />
-    <Compile Include="DbConst\AdminTableFields.cs" />
-    <Compile Include="DbConst\BookshelfTableFields.cs" />
-    <Compile Include="DbConst\BookTableFields.cs" />
-    <Compile Include="DbConst\BorrowTableFields.cs" />
-    <Compile Include="DbConst\UserTableFields.cs" />
     <Compile Include="DBHelper.cs" />
     <Compile Include="DCHelper.cs" />
     <Compile Include="OperService.cs" />

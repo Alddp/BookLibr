@@ -41,6 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants\AdminTableFields.cs" />
+    <Compile Include="Constants\BookshelfTableFields.cs" />
+    <Compile Include="Constants\BookTableFields.cs" />
+    <Compile Include="Constants\BorrowTableFields.cs" />
+    <Compile Include="Constants\UserTableFields.cs" />
     <Compile Include="Entities\Admin.cs" />
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\Bookshelf.cs" />

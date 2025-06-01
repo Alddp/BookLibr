@@ -1,4 +1,4 @@
-﻿namespace BookDAL
+﻿namespace BookModels.Constants
 {
     public static class BookshelfTableFields
     {
