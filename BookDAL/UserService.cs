@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookModels;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -27,7 +28,10 @@ namespace BookDAL
             return DBHelper.ExScalar(sql, parameters);
         }
 
-        //用于统计用于表数量
+        /// <summary>
+        /// 用于统计用于Reader数量
+        /// </summary>
+        /// <returns></returns>
         public static int CountUserNum()
         {
             string tableName = UserTableFields.TableName;
@@ -36,8 +40,12 @@ namespace BookDAL
             return DBHelper.ExScalar(sql);
         }
 
-        //用于注册管理员用户
-        public static int UsersInsert(string name, string pwd, string usertype, string phone)
+        /// <summary>
+        /// 用于注册管理员用户
+        /// </summary>
+        /// <param name="admin"></param>
+        /// <returns></returns>
+        public static int UsersInsert(Admin admin)
         {
             string tableName = AdminTableFields.TableName;
             string usernameColumn = AdminTableFields.Username;
@@ -45,13 +53,15 @@ namespace BookDAL
             string usertypeColumn = AdminTableFields.Type;
             string teleColumn = AdminTableFields.Phone;
 
-            string sql = $"INSERT INTO {tableName} ({usernameColumn}, {passwordColumn}, {usertypeColumn}, {teleColumn}) VALUES (@name, @pwd, @usertype, @phone)";
+            string sql = $"INSERT INTO " +
+                $"{tableName} ({usernameColumn}, {passwordColumn}, {usertypeColumn}, {teleColumn}) " +
+                $"VALUES (@name, @pwd, @usertype, @phone)";
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@name", name),
-                new SqlParameter("@pwd", pwd),
-                new SqlParameter("@usertype", usertype),
-                new SqlParameter("@phone", phone)
+                new SqlParameter("@name", admin.Username),
+                new SqlParameter("@pwd", admin.Pwd),
+                new SqlParameter("@usertype", admin.Type),
+                new SqlParameter("@phone", admin.Phone)
             };
             return DBHelper.ExNonQuery(sql, parameters);
         }
@@ -60,13 +70,9 @@ namespace BookDAL
         /// 注册普通用户
         /// </summary>
         /// <param name="icdev">卡号</param>
-        /// <param name="name">姓名</param>
-        /// <param name="stuid">学号</param>
-        /// <param name="class">班级</param>
-        /// <param name="photo">照片路径</param>
-        /// <param name="phone">手机号</param>
+        /// <param name="user">用户信息</param>
         /// <returns></returns>        
-        public static int UsersInsert(string icdev, string name, string stuid, string Class, string photo, string phone)
+        public static int UsersInsert(string icdev, UserTable user)
         {
             string tableName = UserTableFields.TableName;
             string cardNumColumn = UserTableFields.CardNum;
@@ -76,19 +82,20 @@ namespace BookDAL
             string classColumn = UserTableFields.Class;
             string teleColumn = UserTableFields.Phone;
 
-            string sql = $"INSERT INTO {tableName} ({cardNumColumn}, {usernameColumn}, {stuidColumn}, {classColumn}, {teleColumn}, {photoColumn}) VALUES (@icdev, @name, @stuid, @class, @phone, @photo)";
+            string sql = $"INSERT INTO " +
+                $"{tableName} ({cardNumColumn}, {usernameColumn}, {stuidColumn}, {classColumn}, {teleColumn}, {photoColumn}) " +
+                $"VALUES (@icdev, @name, @stuid, @class, @phone, @photo)";
             SqlParameter[] parameters = new SqlParameter[]
             {
                  new SqlParameter("@icdev", icdev),
-                 new SqlParameter("@name", name),
-                 new SqlParameter("@stuid", stuid),
-                 new SqlParameter("@class", Class),
-                 new SqlParameter("@phone", phone),
-                 new SqlParameter("@photo", photo)
+                 new SqlParameter("@name", user.UserName),
+                 new SqlParameter("@stuid", user.StudentId),
+                 new SqlParameter("@class", user.ClassName),
+                 new SqlParameter("@phone", user.Phone),
+                 new SqlParameter("@photo", user.Photo)
             };
 
             return DBHelper.ExNonQuery(sql, parameters);
         }
-
     }
 }

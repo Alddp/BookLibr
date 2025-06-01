@@ -24,7 +24,7 @@ namespace BookLiber
 
         private void Login_bt_Click(object sender, EventArgs e)
         {
-            int state = UserManager.CountByNamePwd(UserName_tb.Text, Pwd_tb.Text);
+            int state = UserManager.CountByNamePwd(UserName_tb.Text, Pwd_tb.Text, out _);
             if (state == 1)
             {
                 MainForm mainForm = new MainForm();

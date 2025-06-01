@@ -1,4 +1,5 @@
 ﻿using BookBLL;
+using BookModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,37 +28,27 @@ namespace BookLiber.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string name = UserName_tb.Text;
-            string pwd = Pwd_tb.Text;
-            string phone = Phone_tb.Text;
-            string type;
+            Admin admin = new Admin
+            {
+                Username = UserName_tb.Text.Trim(),
+                Pwd = Pwd_tb.Text.Trim(),
+                Phone = Phone_tb.Text.Trim(),
+            };
 
             if (radioButton1.Checked)
-                type = "operator";
-            else type = "admin";
+                admin.Type = "operator";
+            else admin.Type = "admin";
 
-            int state = UserManager.UsersInsert(name, pwd, type, phone);
-            switch (state)
+            int state = UserManager.UsersInsert(admin, out string errorMessage);
+            if (0 > state)
             {
-                case 1:
-                    MessageBox.Show("注册成功", "提示");
-                    returnName = UserName_tb.Text.Trim();
-                    returnPwd = Pwd_tb.Text.Trim();
-                    Close();
-                    break;
-                case -1:
-                    MessageBox.Show("数据库异常，请稍后再试", "错误");
-                    return;
-                case -2:
-                    MessageBox.Show("用户名已存在，请更换用户名", "错误");
-                    return;
-                case -3:
-                    MessageBox.Show("用户名、密码、用户类型和电话不能为空", "错误");
-                    return;
-                case 0:
-                    MessageBox.Show("注册失败，请稍后再试", "错误");
-                    return;
+                MessageBox.Show(errorMessage);
+                return;
             }
+            MessageBox.Show("注册成功", "提示");
+            returnName = UserName_tb.Text.Trim();
+            returnPwd = Pwd_tb.Text.Trim();
+            Close();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookModels;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
@@ -17,14 +18,9 @@ namespace BookDAL
         /// <summary>
         /// 新增图书信息（书名、作者、ISBN、封面等）
         /// </summary>
-        /// <param name="bookName"></param>
-        /// <param name="author"></param>
-        /// <param name="ISBN"></param>
-        /// <param name="picture"></param>
-        /// <param name="price"></param> 
-        ///  <param name="shelfId"></param>
+        /// <param name="book"></param>
         /// <returns></returns>
-        public static int BookInsert(string bookName, string author, string ISBN, string picture, string price, string shelfId)
+        public static int BookInsert(Book book)
         {
             string tableName = BookTableFields.TableName;
             string bookNameColumn = BookTableFields.BookName;
@@ -34,8 +30,6 @@ namespace BookDAL
             string priceColumn = BookTableFields.Price;
             string shelfIdColumn = BookTableFields.ShelfId;
 
-
-
             string sql = $@"INSERT INTO {tableName} 
            ({bookNameColumn}, {authorColumn}, {ISBNColumn}, 
             {pictureColumn}, {priceColumn}, {shelfIdColumn}) 
@@ -43,12 +37,12 @@ namespace BookDAL
 
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@BookName", bookName),
-                new SqlParameter("@Author", author),
-                new SqlParameter("@ISBN", ISBN),
-                new SqlParameter("@Picture", picture),
-                new SqlParameter("@Price", price),
-                new SqlParameter("@ShelfId", shelfId)
+                new SqlParameter("@BookName", book.BookName),
+                new SqlParameter("@Author", book.Author),
+                new SqlParameter("@ISBN", book.ISBN),
+                new SqlParameter("@Picture", book.Picture),
+                new SqlParameter("@Price", book.Price),
+                new SqlParameter("@ShelfId", book.ShelfId)
             };
             return DBHelper.ExNonQuery(sql, parameters);
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookModels;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace BookDAL
         }
 
         //借书操作  添加到借书表
-        public static int Borrowbook(string userId, string bookId, string borrowAdminId, DateTime borrowDate)
+        public static int Borrowbook(Borrow borrow)
         {
             string tableName = BorrowTableFields.TableName;
             string userIdColumn = BorrowTableFields.UserId;
@@ -53,17 +54,17 @@ namespace BookDAL
                          VALUES (@UserId, @BookId, @BorrowAdminId, @BorrowDate)";
             SqlParameter[] parameters = new SqlParameter[]
                {
-                   new SqlParameter("@UserId", userId),
-                   new SqlParameter("@BookId", bookId),
-                   new SqlParameter("@BorrowAdminId", borrowAdminId),
-                   new SqlParameter("@BorrowDate", borrowDate)
+                   new SqlParameter("@UserId", borrow.UserId    ),
+                   new SqlParameter("@BookId", borrow.BookId),
+                   new SqlParameter("@BorrowAdminId", borrow.BorrowAdminId),
+                   new SqlParameter("@BorrowDate", borrow.BorrowDate)
                };
 
             return DBHelper.ExNonQuery(sql, parameters);
         }
 
         // TODO:续借操作
-        public static int RenewBook(string userId, string bookId, string renewAdminId, DateTime renewDate)
+        public static int RenewBook(Borrow borrow)
         {
             string sql = $"";
             SqlParameter[] parameters = new SqlParameter[]
@@ -73,7 +74,7 @@ namespace BookDAL
         }
 
         //还书  添加到还书表
-        public static int Returnbook(string userId, string bookId, string returnAdminId, DateTime returnDate)
+        public static int Returnbook(Borrow borrow)
         {
             string tableName = BorrowTableFields.TableName;
             string userIdColumn = BorrowTableFields.UserId;
@@ -84,12 +85,12 @@ namespace BookDAL
                             WHERE {userIdColumn} = @UserId AND {bookIdColumn} = @BookId  AND {returnDateColumn} IS NULL";  // 只更新未归还的记录
 
             SqlParameter[] parameters = new SqlParameter[]
-               {
-                    new SqlParameter("@ReturnAdminId", returnAdminId),
-                    new SqlParameter("@ReturnDate", returnDate),
-                    new SqlParameter("@UserId", userId),
-                    new SqlParameter("@BookId", bookId)
-               };
+                {
+                    new SqlParameter("@ReturnAdminId", borrow.ReturnAdminId),
+                    new SqlParameter("@ReturnDate", borrow.ReturnDate),
+                    new SqlParameter("@UserId", borrow.UserId),
+                    new SqlParameter("@BookId", borrow.BookId)
+                };
             return DBHelper.ExNonQuery(sql, parameters);
         }
 

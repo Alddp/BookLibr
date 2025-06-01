@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookModels;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace BookDAL
     public class StuInfService
     {
         // 发卡, 插入学生信息到数据库
-        public static int InsertStuInfo(string cardNum, string userName, string studentId, string phone, string className, string photo, DateTime startTime, DateTime endTime)
+        public static int InsertStuInfo(UserTable user)
         {
             string sql = $"INSERT INTO [{UserTableFields.TableName}] (" +
                 $"[{UserTableFields.CardNum}], " +
@@ -26,14 +27,14 @@ namespace BookDAL
 
             SqlParameter[] parameters = new SqlParameter[]
            {
-                new SqlParameter("@cardNum", cardNum),
-                new SqlParameter("@userName", userName),
-                new SqlParameter("@studentId", studentId),
-                new SqlParameter("@phone", phone),
-                new SqlParameter("@className", className),
-                new SqlParameter("@photo", photo),
-                new SqlParameter("@startTime", startTime),
-                new SqlParameter("@endTime", endTime)
+                new SqlParameter("@cardNum", user.CardNum),
+                new SqlParameter("@userName", user.UserName),
+                new SqlParameter("@studentId", user.StudentId),
+                new SqlParameter("@phone", user.Phone),
+                new SqlParameter("@className", user.ClassName),
+                new SqlParameter("@photo", user.Photo),
+                new SqlParameter("@startTime", user.StartTime),
+                new SqlParameter("@endTime", user.EndTime)
            };
             return DBHelper.ExNonQuery(sql, parameters);
         }

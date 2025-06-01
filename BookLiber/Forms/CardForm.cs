@@ -1,4 +1,5 @@
 ﻿using BookBLL;
+using BookModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,34 +27,30 @@ namespace BookLiber
 
         private void submit_button_Click(object sender, EventArgs e)
         {
-            string cardNum = carnumtxt.Text.Trim();
-            string userName = usernametxt.Text.Trim();
-            string studentId = stuIDtxt.Text.Trim();
-            string phone = phonetxt.Text.Trim();
-            string className = classtxt.Text.Trim();
-            // 如果图片不存在则为空字符串, 如果图片存在则为图片路径
-            string photoPath = File.Exists($".\\Images\\{cardNum}.jpg") ? $".\\Images\\{cardNum}.jpg" : "";
-            DateTime startTime = dateTimePicker1.Value;
-            DateTime endTime = dateTimePicker2.Value;
-
-            if (string.IsNullOrEmpty(userName) || string.IsNullOrEmpty(studentId) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(className))
+            UserTable user = new UserTable
             {
-                MessageBox.Show("Username, Student ID, Phone, and Class Name cannot be empty.");
+                CardNum = carnumtxt.ToString().Trim(),
+                UserName = usernametxt.Text.Trim(),
+                StudentId = stuIDtxt.Text.Trim(),
+                Phone = phonetxt.Text.Trim(),
+                ClassName = classtxt.Text.Trim(),
+            };
+            // 如果图片不存在则为空字符串, 如果图片存在则为图片路径
+            user.Photo = File.Exists($".\\Images\\{user.CardNum}.jpg") ? $".\\Images\\{user.CardNum}.jpg" : "";
+            user.StartTime = dateTimePicker1.Value;
+            user.EndTime = dateTimePicker2.Value;
+
+            if (string.IsNullOrEmpty(user.UserName) ||
+                string.IsNullOrEmpty(user.StudentId) ||
+                string.IsNullOrEmpty(user.Phone) ||
+                string.IsNullOrEmpty(user.ClassName))
+            {
+                MessageBox.Show("用户名、学号、电话、班级不能为空");
                 return;
             }
 
-            switch (StuInfoManager.InsertStuInfo(cardNum, userName, studentId, phone, className, photoPath, startTime, endTime))
-            {
-                case 1:
-                    MessageBox.Show("成功");
-                    break;
-                case -1:
-                    MessageBox.Show("数据库出错");
-                    return;
-                case -2:
-                    MessageBox.Show("卡号已存在");
-                    return;
-            }
+            if (0 > StuInfoManager.InsertStuInfo(user, out string errorMessage))
+                MessageBox.Show(errorMessage);
         }
 
         private void picture_button_Click(object sender, EventArgs e)
@@ -70,7 +67,6 @@ namespace BookLiber
 
                 pictureBox1.Image = Image.FromFile(openFile.FileName);
                 File.Copy(openFile.FileName, ".\\Images\\" + carnumtxt.Text + ".jpg", true);
-
             }
             else
                 return;
