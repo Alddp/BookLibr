@@ -39,10 +39,9 @@ namespace BookLiber.Forms
                 admin.Type = "operator";
             else admin.Type = "admin";
 
-            int state = UserManager.UsersInsert(admin, out string errorMessage);
-            if (0 > state)
-            {
-                MessageBox.Show(errorMessage);
+            var res = UserManager.UsersInsert(admin);
+            if (!res.Success) {
+                MessageBox.Show(res.Message);
                 return;
             }
             MessageBox.Show("注册成功", "提示");

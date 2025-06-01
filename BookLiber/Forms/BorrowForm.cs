@@ -25,19 +25,18 @@ namespace BookLiber
             //string cardNum = "2025053118004627";
 
             //获取卡号
-            if (!CardManager.ReadCardNum(out string cardNum, out string errorMessage))
-            {
+            if (!CardManager.ReadCardNum(out string cardNum, out string errorMessage)) {
                 MessageBox.Show(errorMessage);
                 return;
             }
 
             // 根据卡号查询用户信息
-            UserTable stuInfo = StuInfoManager.GetStuInfo(cardNum, out errorMessage);
-            if (stuInfo == null)
-            {
-                MessageBox.Show("未找到用户信息，请检查卡号是否正确或联系管理员。");
-                return;
+            var res = StuInfoManager.GetStuInfo(cardNum);
+
+            if (!res.Success) {
+                MessageBox.Show("查询失败：" + res.Message);
             }
+            var stuInfo = res.Data;
             // 显示用户信息
             cardNumtxt.Text = stuInfo.CardNum;
             nametxt.Text = stuInfo.UserName;

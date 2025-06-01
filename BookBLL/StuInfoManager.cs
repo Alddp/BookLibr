@@ -6,45 +6,39 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookModels.Errors;
 
-namespace BookBLL
-{
-    public class StuInfoManager
-    {
+namespace BookBLL {
+
+    public class StuInfoManager {
+
         /// <summary>
         /// 插入学生信息
         /// </summary>
         /// <param name="user"></param>
-        /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public static int InsertStuInfo(UserTable user, out string errorMessage)
-        {
-            errorMessage = string.Empty;
-            try
-            {
-                return StuInfService.InsertStuInfo(user);
+        public static OperationResult<int, ErrorCode> InsertStuInfo(UserTable user) {
+            if (string.IsNullOrEmpty(user.UserName) ||
+             string.IsNullOrEmpty(user.StudentId) ||
+             string.IsNullOrEmpty(user.Phone) ||
+             string.IsNullOrEmpty(user.ClassName)) {
+                return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, "用户名、学号、电话、班级不能为空");
             }
-            catch (SqlException ex)
-            {
-                // 判断是否唯一约束冲突
-                if (ex.Number == 2627 || ex.Number == 2601)
-                {
-                    // 2627/2601 是唯一约束冲突的错误号
-                    errorMessage = "该卡号已存在";
-                    return -2;
-                }
-                // 其他数据库异常
-                errorMessage = "数据库异常：" + ex.Message;
-                return -1;
+            try {
+                return 1 == StuInfService.InsertStuInfo(user) ?
+                    OperationResult<int, ErrorCode>.Ok() :
+                    OperationResult<int, ErrorCode>.Fail(ErrorCode._error);
             }
-            catch (Exception ex)
-            {
-                // 处理其他异常
-                errorMessage = "其他异常：" + ex.Message;
-                return -1;
+            catch (SqlException ex) {
+                if (ErrorMessages.IsConflictError(ex))   // 判断是否唯一约束冲突
+                    return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, ex.Message); //该卡号已存在
+
+                return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, ex.Message); //其他错误
+            }
+            catch (Exception ex) {
+                return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, ex.Message); //其他错误
             }
         }
-
 
         /// <summary>
         /// 根据卡号查询学生信息
@@ -52,34 +46,27 @@ namespace BookBLL
         /// <param name="cardNum"></param>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
-        public static UserTable GetStuInfo(string cardNum, out string errorMessage)
-        {
-            errorMessage = string.Empty;
-            try
-            {
-                SqlDataReader r = StuInfService.GetStuInfo(cardNum);
-                if (!r.Read())
-                {
-                    errorMessage = "未找到该卡号";
-                    return null;
-                }
+        public static OperationResult<UserTable, ErrorCode> GetStuInfo(string cardNum) {
+            try {
+                using (SqlDataReader r = StuInfService.GetStuInfo(cardNum)) {
+                    if (!r.Read())
+                        return OperationResult<UserTable, ErrorCode>.Fail(ErrorCode._error, "该卡号不存在");
 
-                return new UserTable
-                {
-                    CardNum = r["CardNum"].ToString(),
-                    UserName = r["UserName"].ToString(),
-                    StudentId = r["StudentID"].ToString(),
-                    Phone = r["Phone"].ToString(),
-                    ClassName = r["Class"].ToString(),
-                    Photo = r["Photo"].ToString(),
-                    StartTime = Convert.ToDateTime(r["Start_Time"]),
-                    EndTime = Convert.ToDateTime(r["Ending_Time"])
-                };
+                    return OperationResult<UserTable, ErrorCode>.Ok(
+                        new UserTable {
+                            CardNum = r["CardNum"].ToString(),
+                            UserName = r["UserName"].ToString(),
+                            StudentId = r["StudentID"].ToString(),
+                            Phone = r["Phone"].ToString(),
+                            ClassName = r["Class"].ToString(),
+                            Photo = r["Photo"].ToString(),
+                            StartTime = Convert.ToDateTime(r["Start_Time"]),
+                            EndTime = Convert.ToDateTime(r["Ending_Time"])
+                        });
+                }
             }
-            catch (Exception ex)
-            {
-                errorMessage = "数据库异常：" + ex.Message;
-                return null;
+            catch (Exception ex) {
+                return OperationResult<UserTable, ErrorCode>.Fail(ErrorCode._error, ex.Message);
             }
         }
     }

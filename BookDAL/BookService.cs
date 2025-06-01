@@ -70,26 +70,17 @@ namespace BookDAL
         /// </summary>
         /// <param name="info">关键字（书名、作者、ISBN）</param>
         /// <returns></returns>
-        public static SqlDataReader SearchBook(string info)
-        {
-            string tableName = BookTableFields.TableName;
-            string bookNameColumn = BookTableFields.BookName;
-            string authorColumn = BookTableFields.Author;
-            string ISBNColumn = BookTableFields.ISBN;
-
+        public static SqlDataReader SearchBook(string info) {
             string sql = $@" SELECT * 
-              FROM {tableName} 
-              WHERE {bookNameColumn} LIKE @Keyword 
-              OR {authorColumn} LIKE @Keyword 
-              OR {ISBNColumn} LIKE @Keyword";
+                FROM {BookTableFields.TableName}
+                WHERE {BookTableFields.BookName} LIKE @Keyword
+                OR {BookTableFields.Author} LIKE @Keyword
+                OR {BookTableFields.ISBN} LIKE @Keyword";
 
-            // 添加通配符实现模糊查询
-            string keyword = $"%{info}%";
+            SqlParameter[] parameters = {
+                new SqlParameter("@Keyword", $"%{info}%")
+            };
 
-            SqlParameter[] parameters = new SqlParameter[]
-               {
-                   new SqlParameter("@Keyword", keyword)// 添加参数
-               };
             return DBHelper.ExecuteReader(sql, parameters);
         }
 

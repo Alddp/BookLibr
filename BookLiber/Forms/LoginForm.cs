@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BookBLL;
 using BookLiber.Forms;
+using BookModels.Errors;
 
 namespace BookLiber
 {
@@ -21,22 +22,20 @@ namespace BookLiber
             UserName_tb.Focus();
         }
 
-
         private void Login_bt_Click(object sender, EventArgs e)
         {
-            int state = UserManager.CountByNamePwd(UserName_tb.Text, Pwd_tb.Text, out _);
-            if (state == 1)
+            var result = UserManager.Login(UserName_tb.Text.ToString(), Pwd_tb.Text.ToString());
+            if (!result.Success)
             {
+                MessageBox.Show(result.Message);
+
+                return;
+            }
                 MainForm mainForm = new MainForm();
                 Hide();
                 mainForm.ShowDialog();
                 Show();
             }
-            else
-            {
-                MessageBox.Show("账号或密码错误");
-            }
-        }
 
         private void Register_bt_Click(object sender, EventArgs e)
         {

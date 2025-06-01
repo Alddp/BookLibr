@@ -40,17 +40,10 @@ namespace BookLiber
             user.StartTime = dateTimePicker1.Value;
             user.EndTime = dateTimePicker2.Value;
 
-            if (string.IsNullOrEmpty(user.UserName) ||
-                string.IsNullOrEmpty(user.StudentId) ||
-                string.IsNullOrEmpty(user.Phone) ||
-                string.IsNullOrEmpty(user.ClassName))
-            {
-                MessageBox.Show("用户名、学号、电话、班级不能为空");
-                return;
-            }
+            var res = StuInfoManager.InsertStuInfo(user);
 
-            if (0 > StuInfoManager.InsertStuInfo(user, out string errorMessage))
-                MessageBox.Show(errorMessage);
+            if (!res.Success)
+                MessageBox.Show(res.Message);
         }
 
         private void picture_button_Click(object sender, EventArgs e)

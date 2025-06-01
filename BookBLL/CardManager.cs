@@ -19,6 +19,7 @@ namespace BookBLL
         /// <param name="icdev"></param>
         /// <param name="errorMessage">返回的错误消息</param>
         /// <returns>ref int icdev</returns>
+        // TODO: 重构
         static bool CheckCard(ref int icdev, out string errorMessage)
         {
             icdev = DCHelper.dc_init(100, 115200); // 初始化读卡器，参数根据实际情况调整
@@ -46,6 +47,7 @@ namespace BookBLL
         /// <param name="icdev"></param>
         /// <param name="errorMessage"></param>
         /// <returns></returns>
+        // TODO: 重构
         static bool CheckKey(int icdev, out string errorMessage)
         {
             errorMessage = null;
@@ -78,6 +80,7 @@ namespace BookBLL
         /// </summary>
         /// <param name="icdev"></param>
         /// <returns></returns>
+        // TODO: 重构
         public static int ReadSuccessBeep(int icdev)
         {
             return SuccessBeep(icdev, 50, 100);
@@ -88,6 +91,7 @@ namespace BookBLL
         /// </summary>
         /// <param name="icdev"></param>
         /// <returns></returns>
+        // TODO: 重构
         public static int WriteSuccessBeep(int icdev)
         {
             return SuccessBeep(icdev, 100, 50);
@@ -99,6 +103,7 @@ namespace BookBLL
         /// <param name="cardNum"></param>
         /// <param name="errorMessage"></param>
         /// <returns>成功返回0</returns>
+        // TODO: 重构
         public static int WriteCardNum(string cardNum, out string errorMessage)
         {
             int icdev = 0; // 初始化读卡器设备ID
@@ -119,6 +124,7 @@ namespace BookBLL
         /// <param name="cardNum"></param>
         /// <param name="errorMessage"></param>
         /// <returns>成功返回0</returns>
+        // TODO: 重构
         public static bool ReadCardNum(out string cardNum, out string errorMessage)
         {
             cardNum = string.Empty; // 初始化cardNum

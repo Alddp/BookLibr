@@ -1,56 +1,59 @@
-﻿using System;
+﻿using BookDAL;
+using BookModels;
+using BookModels.Constants;
+using BookModels.Errors;
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 
-namespace BookBLL
-{
-    public class BookManager
-    {
-        public static SqlDataReader SearchBook(string info, out string errorMessage)
-        {
-            // 初始化out参数
-            errorMessage = string.Empty;
+namespace BookBLL {
 
-            try
-            {
-                // 参数验证
-                if (string.IsNullOrWhiteSpace(info))
-                {
-                    errorMessage = "搜索关键字不能为空";
-                    return null;
+    public class BookManager {
+
+        // 借书操作
+        public static OperationResult<int, ErrorCode> BorrowBook(string userId, string bookId) {
+            //TODO: BookService.UpdateBookStock(bookId, -1);
+            return OperationResult<int, ErrorCode>.Ok();
+        }
+
+        //TODO:
+        public static OperationResult<int, ErrorCode> ReturnBook(string userId, string bookId) {
+            return OperationResult<int, ErrorCode>.Ok();
+        }
+
+        //Complete: 优化返回的message
+        //FixMe
+        public static OperationResult<List<Book>, ErrorCode> SearchBook(string info) {
+            if (string.IsNullOrWhiteSpace(info)) {
+                return OperationResult<List<Book>, ErrorCode>.Fail(ErrorCode.InvalidParameter, "关键词不能为空");
+            }
+
+            try {
+                var books = new List<Book>();
+                using (var reader = BookService.SearchBook(info)) {
+                    while (reader.Read()) {
+                        books.Add(new Book {
+                            BookId = (int)reader["BookId"],
+                            BookName = reader["BookName"].ToString(),
+                            Author = reader["Author"].ToString(),
+                            ISBN = reader["ISBN"].ToString(),
+                            Price = (decimal)reader["Price"],
+                            Inventory = (int)reader["Inventory"],
+                            Picture = reader["Picture"].ToString(),
+                            ShelfId = (int)reader["ShelfId"]
+                        });
+                    }
                 }
 
-                // 调用DAL层方法
-                return BookDAL.BookService.SearchBook(info);
+                if (books.Count == 0)
+                    return OperationResult<List<Book>, ErrorCode>.Fail(ErrorCode.Book_BookNotFound, "未找到匹配图书");
+
+                return OperationResult<List<Book>, ErrorCode>.Ok(books);
             }
-            catch (SqlException sqlEx)
-            {
-                // 数据库异常处理
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine("数据库操作失败:");
-                sb.AppendLine($"错误代码: {sqlEx.Number}");
-                sb.AppendLine($"错误信息: {sqlEx.Message}");
-                if (sqlEx.InnerException != null)
-                {
-                    sb.AppendLine($"内部异常: {sqlEx.InnerException.Message}");
-                }
-                errorMessage = sb.ToString();
-                return null;
-            }
-            catch (Exception ex)
-            {
-                // 其他异常处理
-                StringBuilder sb = new StringBuilder();
-                sb.AppendLine("系统发生异常:");
-                sb.AppendLine($"异常类型: {ex.GetType().Name}");
-                sb.AppendLine($"错误信息: {ex.Message}");
-                if (ex.InnerException != null)
-                {
-                    sb.AppendLine($"内部异常: {ex.InnerException.Message}");
-                }
-                sb.AppendLine($"堆栈跟踪: {ex.StackTrace}");
-                errorMessage = sb.ToString();
-                return null;
+            catch (SqlException ex) {
+                return OperationResult<List<Book>, ErrorCode>.Fail(ErrorCode.InvalidParameter, "数据库错误：" + ex.Message);
             }
         }
     }

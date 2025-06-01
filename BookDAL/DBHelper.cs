@@ -8,112 +8,70 @@ using System.Threading.Tasks;
 
 namespace BookDAL
 {
-    public class DBHelper
+    public static class DBHelper
     {
-        private static SqlConnection connection;
+        private const string database = "LibrBook";
+        private static readonly string connectionString =
+            $"Data Source=.\\SQLEXPRESS; Initial Catalog={database}; Integrated Security=true";
 
-        public static SqlConnection Connection
+        // 获取单值（无参数）
+        public static int ExScalar(string sql)
         {
-            get
+            using (var conn = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand(sql, conn))
             {
-                const string database = "LibrBook";
-                string constring = $"Data Source=.\\SQLEXPRESS; Initial Catalog={database}; Integrated Security=true";
-
-                if (connection == null)
-                {
-                    connection = new SqlConnection(constring);
-                    connection.Open();
-                }
-
-                else if (connection.State == ConnectionState.Broken)
-                {
-                    connection.Close();
-                    connection.Open();
-                }
-
-                else if (connection.State == ConnectionState.Closed)
-                {
-                    connection.Open();
-                }
-
-                return connection;
+                conn.Open();
+                return (int)cmd.ExecuteScalar();
             }
         }
 
-        /// <summary>
-        /// 用于需要获取单个值的查询，如聚合查询或获取某个特定字段的值
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <returns></returns>
-        public static int ExScalar(string sql)
-        {
-            SqlCommand c = new SqlCommand(sql, DBHelper.Connection);
-            int i = (int)c.ExecuteScalar();
-            return i;
-        }
-
-        /// <summary>
-        /// 执行标量查询方法，用于多次调用
-        /// 用于需要获取单个值的查询，如聚合查询或获取某个特定字段的值
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="para"></param>
-        /// <returns></returns>
+        // 获取单值（带参数）
         public static int ExScalar(string sql, params SqlParameter[] para)
         {
-            SqlCommand c = new SqlCommand(sql, DBHelper.Connection);
-            if (para != null)
-                c.Parameters.AddRange(para);
-            return (int)c.ExecuteScalar();
+            using (var conn = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                if (para != null)
+                    cmd.Parameters.AddRange(para);
+                conn.Open();
+                return (int)cmd.ExecuteScalar();
+            }
         }
 
-        /// <summary>
-        /// 用于不需要返回任何结果集的命令，如 INSERT、UPDATE、DELETE 等
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <returns></returns>
+        // 执行非查询（无参数）
         public static int ExNonQuery(string sql)
         {
-            SqlCommand c = new SqlCommand(sql, Connection);
-            return c.ExecuteNonQuery();
+            using (var conn = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                conn.Open();
+                return cmd.ExecuteNonQuery();
+            }
         }
 
-        /// <summary>
-        /// 用于不需要返回任何结果集的命令，如 INSERT、UPDATE、DELETE 等
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="para"></param>
-        /// <returns></returns>
+        // 执行非查询（带参数）
         public static int ExNonQuery(string sql, params SqlParameter[] para)
         {
-            SqlCommand c = new SqlCommand(sql, Connection);
-            c.Parameters.AddRange(para);
-            return c.ExecuteNonQuery();
+            using (var conn = new SqlConnection(connectionString))
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                if (para != null)
+                    cmd.Parameters.AddRange(para);
+                conn.Open();
+                return cmd.ExecuteNonQuery();
+            }
         }
 
-        /// <summary>
-        /// 用于需要返回结果集的命令，如 SELECT 等
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <returns></returns>
-        public static SqlDataReader ExecuteReader(string sql)
-        {
-            SqlCommand c = new SqlCommand(sql, Connection);
-            return c.ExecuteReader();
-        }
-
-        /// <summary>
-        /// 用于需要返回结果集的命令，如 SELECT 等
-        /// </summary>
-        /// <param name="sql"></param>
-        /// <param name="para"></param>
-        /// <returns></returns>
+        // 查询结果（返回 DataReader，调用者使用 using 包裹）
         public static SqlDataReader ExecuteReader(string sql, params SqlParameter[] para)
         {
-            SqlCommand c = new SqlCommand(sql, Connection);
+            var conn = new SqlConnection(connectionString);
+            var cmd = new SqlCommand(sql, conn);
             if (para != null)
-                c.Parameters.AddRange(para);
-            return c.ExecuteReader(CommandBehavior.CloseConnection);
+                cmd.Parameters.AddRange(para);
+            conn.Open();
+            // 使用 CommandBehavior.CloseConnection 保证 reader.Close() 时也关闭连接
+            return cmd.ExecuteReader(CommandBehavior.CloseConnection);
         }
     }
 }
