@@ -1,70 +1,43 @@
-﻿using BookDAL;
+﻿using BookBLL.Utils;
+using BookDAL;
 using BookModels;
 using BookModels.Errors;
-using System;
-using System.Data.SqlClient;
+using static BookModels.Errors.ErrorMessages;
 
 namespace BookBLL {
 
     public class UserManager {
 
         // TODO: 将返回类型改为Admin
-        public static OperationResult<int, ErrorCode> Login(string name, string pwd) {
+        public static OperationResult<int> Login(string name, string pwd) {
             if (string.IsNullOrWhiteSpace(name))
-                return OperationResult<int, ErrorCode>.Fail(ErrorCode.Login_Failed, "用户名为空");
+                return OperationResult<int>.Fail(
+                    ErrorCode.InvalidParameter,
+                    GetMessage(ErrorCode.InvalidParameter, "用户名不能为空"));
 
-            try {
-                int res = UserService.CountByNamePwd(name, pwd);
+            var res = ResultWrapper.Wrap(() => UserService.CountByNamePwd(name, pwd));
 
-                return res > 0 ?
-                    OperationResult<int, ErrorCode>.Ok(res) :
-                    OperationResult<int, ErrorCode>.Fail(ErrorCode.Login_Failed, ErrorMessages.GetMessage(ErrorCode.Login_Failed));
-            }
-            catch (SqlException ex) {
-                return OperationResult<int, ErrorCode>.Fail(ErrorCode.DatabaseError, "数据库异常：" + ex.Message);
-            }
-            catch (Exception ex) {
-                return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, "未知异常：" + ex.Message);
-            }
+            return res.Success
+                ? res.Data <= 0 ? OperationResult<int>.Fail(ErrorCode.LoginFailed, GetMessage(ErrorCode.LoginFailed)) : res
+                : res;
         }
 
-        public static OperationResult<int, ErrorCode> CountUserNum() {
-            try {
-                int res = UserService.CountUserNum();
-                return res > 0 ?
-                    OperationResult<int, ErrorCode>.Ok(res) :
-                    OperationResult<int, ErrorCode>.Fail(ErrorCode._error, ErrorMessages.GetMessage(ErrorCode._error));
-            }
-            catch (SqlException ex) {
-                return OperationResult<int, ErrorCode>.Fail(ErrorCode.DatabaseError, "数据库异常：" + ex.Message);
-            }
-            catch (Exception ex) {
-                return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, "未知异常：" + ex.Message);
-            }
+        public static OperationResult<int> CountUserNum() {
+            return ResultWrapper.Wrap(() => UserService.CountUserNum());
         }
 
-        public static OperationResult<int, ErrorCode> UsersInsert(Admin admin) {
+        public static OperationResult<int> UsersInsert(Admin admin) {
             // 参数校验 用户名密码类型和电话不能为空或空字符串
             if (string.IsNullOrEmpty(admin.Username) || string.IsNullOrEmpty(admin.Pwd) || string.IsNullOrEmpty(admin.Type) || string.IsNullOrEmpty(admin.Phone)) {
-                return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, "用户名密码类型和电话不能为空或空字符串");
+                return OperationResult<int>.Fail(
+                    ErrorCode.InvalidParameter,
+                    GetMessage(ErrorCode.InvalidParameter, "用户名密码类型和电话不能为空或空字符串"));
             }
-            try {
-                int res = UserService.UsersInsert(admin);
-                return res > 0 ?
-                    OperationResult<int, ErrorCode>.Ok(res) :
-                    OperationResult<int, ErrorCode>.Fail(ErrorCode._error, ErrorMessages.GetMessage(ErrorCode._error));
-            }
-            catch (SqlException ex) {
-                // 判断是否唯一约束冲突
-                if (ErrorMessages.IsConflictError(ex)) {
-                    return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, "用户名已存在");
-                }
+            var res = ResultWrapper.Wrap(() => UserService.UsersInsert(admin));
 
-                return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, ex.Message);
-            }
-            catch (Exception ex) {
-                return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, ex.Message);
-            }
+            return res.Success
+                ? res
+                : OperationResult<int>.Fail(ErrorCode.UserAlreadyExists);
         }
     }
 }

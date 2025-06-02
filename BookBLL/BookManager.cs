@@ -1,32 +1,30 @@
-﻿using BookDAL;
+﻿using BookBLL.Utils;
+using BookDAL;
 using BookModels;
 using BookModels.Errors;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 
 namespace BookBLL {
 
     public class BookManager {
-
         // 借书操作
-        public static OperationResult<int, ErrorCode> BorrowBook(string userId, string bookId) {
-            //TODO: BookService.UpdateBookStock(bookId, -1);
-            return OperationResult<int, ErrorCode>.Ok();
+        //public static OperationResult<int> BorrowBook(string userId, string bookId) {
+        //    var res = ResultWrapper.Wrap(() => {
+        //        //TODO: return BookService.UpdateBookStock(bookId, -1);
+        //    });
+        //    return res;
+        //}
+
+        public static OperationResult<int> ReturnBook(string userId, string bookId) {
+            return OperationResult<int>.Ok();
         }
 
-        //TODO:
-        public static OperationResult<int, ErrorCode> ReturnBook(string userId, string bookId) {
-            return OperationResult<int, ErrorCode>.Ok();
-        }
-
-        //Complete: 优化返回的message
-        //FixMe
-        public static OperationResult<List<Book>, ErrorCode> SearchBook(string info) {
+        public static OperationResult<List<Book>> SearchBook(string info) {
             if (string.IsNullOrWhiteSpace(info)) {
-                return OperationResult<List<Book>, ErrorCode>.Fail(ErrorCode.InvalidParameter, "关键词不能为空");
+                return OperationResult<List<Book>>.Fail(ErrorCode.InvalidParameter, "关键词不能为空");
             }
 
-            try {
+            var res = ResultWrapper.Wrap(() => {
                 var books = new List<Book>();
                 using (var reader = BookService.SearchBook(info)) {
                     while (reader.Read()) {
@@ -42,15 +40,12 @@ namespace BookBLL {
                         });
                     }
                 }
+                return books;
+            });
 
-                if (books.Count == 0)
-                    return OperationResult<List<Book>, ErrorCode>.Fail(ErrorCode.Book_BookNotFound, "未找到匹配图书");
-
-                return OperationResult<List<Book>, ErrorCode>.Ok(books);
-            }
-            catch (SqlException ex) {
-                return OperationResult<List<Book>, ErrorCode>.Fail(ErrorCode.InvalidParameter, "数据库错误：" + ex.Message);
-            }
+            return res.Success
+                ? res.Data.Count >= 0 ? res : OperationResult<List<Book>>.Fail(ErrorCode.BookNotFound)
+                : res;
         }
     }
 }

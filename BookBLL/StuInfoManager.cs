@@ -1,4 +1,5 @@
-﻿using BookDAL;
+﻿using BookBLL.Utils;
+using BookDAL;
 using BookModels;
 using BookModels.Errors;
 using System;
@@ -8,62 +9,46 @@ namespace BookBLL {
 
     public class StuInfoManager {
 
-        /// <summary>
-        /// 插入学生信息
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        public static OperationResult<int, ErrorCode> InsertStuInfo(UserTable user) {
-            if (string.IsNullOrEmpty(user.UserName) ||
-             string.IsNullOrEmpty(user.StudentId) ||
-             string.IsNullOrEmpty(user.Phone) ||
-             string.IsNullOrEmpty(user.ClassName)) {
-                return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, "用户名、学号、电话、班级不能为空");
+        // 插入学生信息
+        public static OperationResult<int> InsertStuInfo(UserTable user) {
+            // 参数校验
+            if (string.IsNullOrWhiteSpace(user.UserName) ||
+                string.IsNullOrWhiteSpace(user.StudentId) ||
+                string.IsNullOrWhiteSpace(user.Phone) ||
+                string.IsNullOrWhiteSpace(user.ClassName)) {
+                return OperationResult<int>.Fail(ErrorCode.InvalidParameter);
             }
-            try {
-                return 1 == StuInfService.InsertStuInfo(user) ?
-                    OperationResult<int, ErrorCode>.Ok() :
-                    OperationResult<int, ErrorCode>.Fail(ErrorCode._error);
-            }
-            catch (SqlException ex) {
-                if (ErrorMessages.IsConflictError(ex))   // 判断是否唯一约束冲突
-                    return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, ex.Message); //该卡号已存在
 
-                return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, ex.Message); //其他错误
-            }
-            catch (Exception ex) {
-                return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, ex.Message); //其他错误
-            }
+            var res = ResultWrapper.Wrap(() => StuInfService.InsertStuInfo(user));
+
+            return res.Success
+                ? res
+                : OperationResult<int>.Fail(ErrorCode.UserAlreadyExists);
         }
 
-        /// <summary>
-        /// 根据卡号查询学生信息
-        /// </summary>
-        /// <param name="cardNum"></param>
-        /// <param name="errorMessage"></param>
-        /// <returns></returns>
-        public static OperationResult<UserTable, ErrorCode> GetStuInfo(string cardNum) {
-            try {
+        // 根据卡号查询学生信息
+        public static OperationResult<UserTable> GetStuInfo(string cardNum) {
+            var result = ResultWrapper.Wrap(() => {
                 using (SqlDataReader r = StuInfService.GetStuInfo(cardNum)) {
                     if (!r.Read())
-                        return OperationResult<UserTable, ErrorCode>.Fail(ErrorCode._error, "该卡号不存在");
+                        return default;
 
-                    return OperationResult<UserTable, ErrorCode>.Ok(
-                        new UserTable {
-                            CardNum = r["CardNum"].ToString(),
-                            UserName = r["UserName"].ToString(),
-                            StudentId = r["StudentID"].ToString(),
-                            Phone = r["Phone"].ToString(),
-                            ClassName = r["Class"].ToString(),
-                            Photo = r["Photo"].ToString(),
-                            StartTime = Convert.ToDateTime(r["Start_Time"]),
-                            EndTime = Convert.ToDateTime(r["Ending_Time"])
-                        });
+                    return new UserTable {
+                        CardNum = r["CardNum"].ToString(),
+                        UserName = r["UserName"].ToString(),
+                        StudentId = r["StudentID"].ToString(),
+                        Phone = r["Phone"].ToString(),
+                        ClassName = r["Class"].ToString(),
+                        Photo = r["Photo"].ToString(),
+                        StartTime = Convert.ToDateTime(r["Start_Time"]),
+                        EndTime = Convert.ToDateTime(r["Ending_Time"])
+                    };
                 }
-            }
-            catch (Exception ex) {
-                return OperationResult<UserTable, ErrorCode>.Fail(ErrorCode._error, ex.Message);
-            }
+            });
+
+            return result.Data != default
+                ? result
+                : OperationResult<UserTable>.Fail(ErrorCode.InvalidCard);
         }
     }
 }

@@ -1,32 +1,46 @@
 ﻿namespace BookModels.Errors {
 
-    public class OperationResult<TData, TError> {
+    public class OperationResult<TData> {
         public bool Success { get; private set; }
-        public TError ErrorCode { get; private set; }
-        public string Message { get; private set; }
+        public ErrorCode ErrorCode { get; private set; }
+
+        private readonly string _message = default;
+
+        public string Message {
+            get {
+                return _message == default
+                    ? ErrorMessages.GetMessage(ErrorCode)
+                    : _message;
+            }
+            private set { }
+        }
+
         public TData Data { get; private set; }
 
-        private OperationResult(bool success, TData data, TError errorCode, string message) {
+        private OperationResult(bool success, TData data, ErrorCode errorCode, string msg = default) {
             Success = success;
             Data = data;
             ErrorCode = errorCode;
-            Message = message;
+            _message = msg;
         }
 
         // 成功的结果，返回数据
-        public static OperationResult<TData, TError> Ok(TData data) =>
-            new OperationResult<TData, TError>(true, data, default, null);
+        public static OperationResult<TData> Ok(TData data) =>
+            new OperationResult<TData>(true, data, default);
 
         // 成功的结果，没有数据
-        public static OperationResult<TData, TError> Ok() =>
-            new OperationResult<TData, TError>(true, default, default, null);
+        public static OperationResult<TData> Ok() =>
+            new OperationResult<TData>(true, default, default);
 
-        // 失败的结果，带错误代码和信息
-        public static OperationResult<TData, TError> Fail(TError errorCode, string message = null) =>
-            new OperationResult<TData, TError>(false, default, errorCode, message);
+        public static OperationResult<TData> Fail(ErrorCode errorCode) =>
+            new OperationResult<TData>(false, default, errorCode);
 
-        // 失败的结果，没有错误信息
-        public static OperationResult<TData, TError> Fail() =>
-            new OperationResult<TData, TError>(false, default, default, null);
+        // 失败的结果，带错误代码和对应错误信息
+        public static OperationResult<TData> Fail() =>
+            new OperationResult<TData>(false, default, default);
+
+        // 失败的结果，带错误代码和自定义的错误信息
+        public static OperationResult<TData> Fail(ErrorCode errorCode, string msg) =>
+        new OperationResult<TData>(false, default, errorCode, msg);
     }
 }

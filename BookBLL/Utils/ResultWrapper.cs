@@ -2,28 +2,31 @@
 using System;
 using System.Data.SqlClient;
 
+using static BookModels.Errors.ErrorMessages;
+
 namespace BookBLL.Utils {
 
     public static class ResultWrapper {
 
-        /// <summary>
-        /// 封装带返回值的操作（如查询、登录等）
-        /// </summary>
-        /// <typeparam name="TData"></typeparam>
-        /// <param name="func"></param>
-        /// <returns></returns>
-        public static OperationResult<TData, ErrorCode> Wrap<TData>(Func<TData> func) {
+        // 封装带返回值的操作（如查询、登录等）
+        public static OperationResult<TData> Wrap<TData>(Func<TData> func) {
             try {
                 TData result = func();
-                return OperationResult<TData, ErrorCode>.Ok(result);
+                return OperationResult<TData>.Ok(result);
             }
             catch (SqlException ex) {
-                if (ErrorMessages.IsConflictError(ex))
-                    return OperationResult<TData, ErrorCode>.Fail(ErrorCode.DuplicateKey, "数据重复：" + ex.Message);
-                return OperationResult<TData, ErrorCode>.Fail(ErrorCode.DatabaseError, "数据库异常：" + ex.Message);
+                if (IsConflictError(ex))
+                    return OperationResult<TData>.Fail(
+                        ErrorCode.DuplicateKey,
+                        GetMessage(ErrorCode.DuplicateKey, ex.Message));
+                return OperationResult<TData>.Fail(
+                    ErrorCode.DatabaseError,
+                    GetMessage(ErrorCode.DatabaseError, ex.Message));
             }
             catch (Exception ex) {
-                return OperationResult<TData, ErrorCode>.Fail(ErrorCode._error, "未知异常：" + ex.Message);
+                return OperationResult<TData>.Fail(
+                    ErrorCode.UnknownError,
+                    GetMessage(ErrorCode.UnknownError, ex.Message));
             }
         }
     }

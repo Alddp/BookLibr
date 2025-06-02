@@ -1,37 +1,125 @@
-﻿using System.Data.SqlClient;
+﻿using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace BookModels.Errors {
 
     public enum ErrorCode {
-        None,
 
-        _error,
+        // 通用
+        None = 0,
+
+        UnknownError,
+        InvalidParameter,
         DatabaseError,
         DuplicateKey,
+        NotFound,
+        Unauthorized,
+        Forbidden,
+        Timeout,
+        OperationFailed,
 
-        InvalidParameter,
-        NoDataFound,
+        // 用户相关（User）
+        UserNotFound,
 
-        Login_Failed,
+        InvalidCard,
+        LoginFailed,
+        ExpiredAccount,
+        UserAlreadyExists,
+        UserCreationFailed,
 
-        User_UserNotFound,
-        User_InvalidCard,
-        User_LoginFailed,
-        User_ExpiredAccount,
+        // 图书相关（Book）
+        BookNotFound,
 
-        Book_BookNotFound,
-        Book_OutOfStock,
-        Book_InvalidISBN,
-        Book_AlreadyBorrowed,
+        InvalidISBN,
+        OutOfStock,
+        AlreadyBorrowed,
+        BookAlreadyExists,
+        BookCreationFailed,
 
-        Borrow_BookUnavailable,
-        Borrow_UserNotAllowed,
-        Borrow_ExceededLimit,
-        Borrow_BorrowFailed,
-        Borrow_NoDataFound
+        // 借阅相关（Borrow）
+        BookUnavailable,
+
+        UserNotAllowedToBorrow,
+        ExceededBorrowLimit,
+        BorrowFailed,
+        BorrowRecordNotFound,
+        ReturnFailed,
+
+        // 还书/续借相关（Return / Renew）
+        RenewFailed,
+
+        AlreadyReturned,
+        ReturnRecordNotFound,
+
+        // 管理员 / 权限
+        AdminNotFound,
+
+        PermissionDenied,
+        RoleAssignmentFailed,
+
+        // 网络 / 系统
+        NetworkError,
+
+        ServerUnavailable,
+        ServiceUnavailable,
+        ConfigurationError
     }
 
     public static class ErrorMessages {
+
+        private static readonly Dictionary<ErrorCode, string> _messages = new Dictionary<ErrorCode, string>(){
+            // 通用错误
+            { ErrorCode.None, "操作成功" },
+            { ErrorCode.UnknownError, "系统发生未知错误" },
+            { ErrorCode.InvalidParameter, "参数格式无效" },
+            { ErrorCode.DatabaseError, "数据库操作异常" },
+            { ErrorCode.DuplicateKey, "数据重复违反唯一约束" },
+            { ErrorCode.NotFound, "未找到相关数据" },
+            { ErrorCode.Unauthorized, "用户未授权" },
+            { ErrorCode.Forbidden, "禁止访问此资源" },
+            { ErrorCode.Timeout, "操作超时，请重试" },
+            { ErrorCode.OperationFailed, "操作执行失败" },
+
+            // 用户相关
+            { ErrorCode.UserNotFound, "用户不存在" },
+            { ErrorCode.InvalidCard, "卡号无效" },
+            { ErrorCode.LoginFailed, "账号或密码错误" },
+            { ErrorCode.ExpiredAccount, "账户已过期" },
+            { ErrorCode.UserAlreadyExists, "用户已存在" },
+            { ErrorCode.UserCreationFailed, "用户创建失败" },
+
+            // 图书相关
+            { ErrorCode.BookNotFound, "图书不存在" },
+            { ErrorCode.InvalidISBN, "ISBN格式无效" },
+            { ErrorCode.OutOfStock, "图书库存不足" },
+            { ErrorCode.AlreadyBorrowed, "用户已借阅该图书" },
+            { ErrorCode.BookAlreadyExists, "图书已存在" },
+            { ErrorCode.BookCreationFailed, "图书创建失败" },
+
+            // 借阅相关
+            { ErrorCode.BookUnavailable, "图书不可用" },
+            { ErrorCode.UserNotAllowedToBorrow, "用户无借阅权限" },
+            { ErrorCode.ExceededBorrowLimit, "超出借阅数量限制" },
+            { ErrorCode.BorrowFailed, "借阅操作失败" },
+            { ErrorCode.BorrowRecordNotFound, "借阅记录不存在" },
+            { ErrorCode.ReturnFailed, "还书操作失败" },
+
+            // 还书/续借
+            { ErrorCode.RenewFailed, "续借操作失败" },
+            { ErrorCode.AlreadyReturned, "图书已归还" },
+            { ErrorCode.ReturnRecordNotFound, "归还记录不存在" },
+
+            // 管理员/权限
+            { ErrorCode.AdminNotFound, "管理员不存在" },
+            { ErrorCode.PermissionDenied, "权限不足" },
+            { ErrorCode.RoleAssignmentFailed, "角色分配失败" },
+
+            // 系统/网络
+            { ErrorCode.NetworkError, "网络连接异常" },
+            { ErrorCode.ServerUnavailable, "服务器不可用" },
+            { ErrorCode.ServiceUnavailable, "服务不可用" },
+            { ErrorCode.ConfigurationError, "系统配置错误" }
+        };
 
         /// <summary>
         /// 数据库唯一约束冲突错误
@@ -42,60 +130,17 @@ namespace BookModels.Errors {
             return ex.Number == 2627 || ex.Number == 2601;
         }
 
-        public static string GetMessage(ErrorCode code) {
-            switch (code) {
-                // 通用错误 ==============================================
-                case ErrorCode.None:
-                    return "No error";
+        public static string GetMessage(ErrorCode code, string errorMessage = default) {
+            // 判断errorMessage是否为null
+            var res = _messages.TryGetValue(code, out var msg);
 
-                case ErrorCode.InvalidParameter:
-                    return "无效参数";
+            msg = errorMessage != default
+                ? msg + ":\n" + errorMessage
+                : msg;
 
-                case ErrorCode.Login_Failed:
-                    return "用户名或密码错误";
-                // User ==============================================
-                case ErrorCode.User_UserNotFound:
-                    return "用户未找到";
-
-                case ErrorCode.User_InvalidCard:
-                    return "Invalid card";
-
-                case ErrorCode.User_LoginFailed:
-                    return "Login failed";
-
-                case ErrorCode.User_ExpiredAccount:
-                    return "Account expired";
-                // Book
-                case ErrorCode.Book_BookNotFound:
-                    return "没有找到相关书籍";
-
-                case ErrorCode.Book_OutOfStock:
-                    return "";
-
-                case ErrorCode.Book_InvalidISBN:
-                    return "无效的ISBN";
-
-                case ErrorCode.Book_AlreadyBorrowed:
-                    return "Book already borrowed";
-                // Borrow ==============================================
-                case ErrorCode.Borrow_BookUnavailable:
-                    return "Book unavailable";
-
-                case ErrorCode.Borrow_UserNotAllowed:
-                    return "User not allowed to borrow";
-
-                case ErrorCode.Borrow_ExceededLimit:
-                    return "Exceeded borrowing limit";
-
-                case ErrorCode.Borrow_BorrowFailed:
-                    return "Borrowing failed";
-
-                case ErrorCode.Borrow_NoDataFound:
-                    return "No borrow records found";
-                // unknow ==============================================
-                default:
-                    return "Unknown error";
-            }
+            return res
+                ? msg
+                : "未定义的错误";
         }
     }
 }
