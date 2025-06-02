@@ -7,10 +7,10 @@ using System.Data.SqlClient;
 
 namespace BookBLL {
 
-    public class StuInfoManager {
+    public class ReaderManager {
 
         // 插入学生信息
-        public static OperationResult<int> InsertStuInfo(UserTable user) {
+        public static OperationResult<int> InsertStuInfo(Reader user) {
             // 参数校验
             if (string.IsNullOrWhiteSpace(user.UserName) ||
                 string.IsNullOrWhiteSpace(user.StudentId) ||
@@ -19,7 +19,7 @@ namespace BookBLL {
                 return OperationResult<int>.Fail(ErrorCode.InvalidParameter);
             }
 
-            var res = ResultWrapper.Wrap(() => StuInfService.InsertStuInfo(user));
+            var res = ResultWrapper.Wrap(() => ReaderService.InsertStuInfo(user));
 
             return res.Success
                 ? res
@@ -27,13 +27,13 @@ namespace BookBLL {
         }
 
         // 根据卡号查询学生信息
-        public static OperationResult<UserTable> GetStuInfo(string cardNum) {
+        public static OperationResult<Reader> GetStuInfo(string cardNum) {
             var result = ResultWrapper.Wrap(() => {
-                using (SqlDataReader r = StuInfService.GetStuInfo(cardNum)) {
+                using (SqlDataReader r = ReaderService.GetStuInfo(cardNum)) {
                     if (!r.Read())
                         return default;
 
-                    return new UserTable {
+                    return new Reader {
                         CardNum = r["CardNum"].ToString(),
                         UserName = r["UserName"].ToString(),
                         StudentId = r["StudentID"].ToString(),
@@ -48,7 +48,7 @@ namespace BookBLL {
 
             return result.Data != default
                 ? result
-                : OperationResult<UserTable>.Fail(ErrorCode.InvalidCard);
+                : OperationResult<Reader>.Fail(ErrorCode.InvalidCard);
         }
     }
 }

@@ -6,7 +6,7 @@ using static BookModels.Errors.ErrorMessages;
 
 namespace BookBLL {
 
-    public class UserManager {
+    public class AdminManager {
 
         // TODO: 将返回类型改为Admin
         public static OperationResult<int> Login(string name, string pwd) {
@@ -15,7 +15,7 @@ namespace BookBLL {
                     ErrorCode.InvalidParameter,
                     GetMessage(ErrorCode.InvalidParameter, "用户名不能为空"));
 
-            var res = ResultWrapper.Wrap(() => UserService.CountByNamePwd(name, pwd));
+            var res = ResultWrapper.Wrap(() => AdminService.CountByNamePwd(name, pwd));
 
             return res.Success
                 ? res.Data <= 0 ? OperationResult<int>.Fail(ErrorCode.LoginFailed, GetMessage(ErrorCode.LoginFailed)) : res
@@ -23,7 +23,7 @@ namespace BookBLL {
         }
 
         public static OperationResult<int> CountUserNum() {
-            return ResultWrapper.Wrap(() => UserService.CountUserNum());
+            return ResultWrapper.Wrap(() => AdminService.CountUserNum());
         }
 
         public static OperationResult<int> UsersInsert(Admin admin) {
@@ -33,7 +33,7 @@ namespace BookBLL {
                     ErrorCode.InvalidParameter,
                     GetMessage(ErrorCode.InvalidParameter, "用户名密码类型和电话不能为空或空字符串"));
             }
-            var res = ResultWrapper.Wrap(() => UserService.UsersInsert(admin));
+            var res = ResultWrapper.Wrap(() => AdminService.UsersInsert(admin));
 
             return res.Success
                 ? res

@@ -18,7 +18,7 @@ namespace BookLiber {
         }
 
         private void submit_button_Click(object sender, EventArgs e) {
-            UserTable user = new UserTable {
+            Reader user = new Reader {
                 CardNum = carnumtxt.Text.Trim(),
                 UserName = usernametxt.Text.Trim(),
                 StudentId = stuIDtxt.Text.Trim(),
@@ -30,7 +30,7 @@ namespace BookLiber {
             user.StartTime = dateTimePicker1.Value;
             user.EndTime = dateTimePicker2.Value;
 
-            var res = StuInfoManager.InsertStuInfo(user);
+            var res = ReaderManager.InsertStuInfo(user);
 
             if (!res.Success) {
                 MessageBox.Show(res.Message);

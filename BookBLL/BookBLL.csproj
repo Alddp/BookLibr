@@ -44,8 +44,8 @@
     <Compile Include="BookManager.cs" />
     <Compile Include="CardManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StuInfoManager.cs" />
-    <Compile Include="UserManager.cs" />
+    <Compile Include="ReaderManager.cs" />
+    <Compile Include="AdminManager.cs" />
     <Compile Include="Utils\ResultWrapper.cs" />
   </ItemGroup>
   <ItemGroup>

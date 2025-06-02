@@ -14,7 +14,7 @@ namespace BookLiber {
         }
 
         private void Login_bt_Click(object sender, EventArgs e) {
-            var result = UserManager.Login(UserName_tb.Text.ToString(), Pwd_tb.Text.ToString());
+            var result = AdminManager.Login(UserName_tb.Text.ToString(), Pwd_tb.Text.ToString());
             if (!result.Success) {
                 MessageBox.Show(result.Message);
 

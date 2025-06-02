@@ -1,6 +1,6 @@
 ﻿namespace BookModels.Constants {
 
-    public static class UserTableFields {
+    public static class ReaderTableFields {
         public const string TableName = "UserTable";
 
         public const string CardNum = "CardNum";

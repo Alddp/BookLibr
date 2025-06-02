@@ -21,7 +21,7 @@ namespace BookLiber {
             }
 
             // 根据卡号查询用户信息
-            var res = StuInfoManager.GetStuInfo(cardNum);
+            var res = ReaderManager.GetStuInfo(cardNum);
 
             if (!res.Success) {
                 MessageBox.Show("查询失败：" + res.Message);

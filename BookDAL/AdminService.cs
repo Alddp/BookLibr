@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace BookDAL {
 
-    public class UserService {
+    public class AdminService {
 
         //用于验证登录
         public static int CountByNamePwd(string name, string pwd) {
@@ -26,7 +26,7 @@ namespace BookDAL {
         /// </summary>
         /// <returns></returns>
         public static int CountUserNum() {
-            string tableName = UserTableFields.TableName;
+            string tableName = ReaderTableFields.TableName;
             // 建议添加表名合法性校验
             string sql = $"SELECT COUNT(*) FROM {tableName}";
             return DBHelper.ExScalar(sql);
@@ -63,14 +63,14 @@ namespace BookDAL {
         /// <param name="icdev">卡号</param>
         /// <param name="user">用户信息</param>
         /// <returns></returns>
-        public static int UsersInsert(string icdev, UserTable user) {
-            string tableName = UserTableFields.TableName;
-            string cardNumColumn = UserTableFields.CardNum;
-            string usernameColumn = UserTableFields.UserName;
-            string stuidColumn = UserTableFields.StudentID;
-            string photoColumn = UserTableFields.Photo;
-            string classColumn = UserTableFields.Class;
-            string teleColumn = UserTableFields.Phone;
+        public static int UsersInsert(string icdev, Reader user) {
+            string tableName = ReaderTableFields.TableName;
+            string cardNumColumn = ReaderTableFields.CardNum;
+            string usernameColumn = ReaderTableFields.UserName;
+            string stuidColumn = ReaderTableFields.StudentID;
+            string photoColumn = ReaderTableFields.Photo;
+            string classColumn = ReaderTableFields.Class;
+            string teleColumn = ReaderTableFields.Phone;
 
             string sql = $"INSERT INTO " +
                 $"{tableName} ({cardNumColumn}, {usernameColumn}, {stuidColumn}, {classColumn}, {teleColumn}, {photoColumn}) " +

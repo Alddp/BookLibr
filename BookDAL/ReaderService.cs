@@ -4,19 +4,19 @@ using System.Data.SqlClient;
 
 namespace BookDAL {
 
-    public class StuInfService {
+    public class ReaderService {
 
         // 发卡, 插入学生信息到数据库
-        public static int InsertStuInfo(UserTable user) {
-            string sql = $"INSERT INTO [{UserTableFields.TableName}] (" +
-                $"[{UserTableFields.CardNum}], " +
-                $"[{UserTableFields.UserName}], " +
-                $"[{UserTableFields.StudentID}], " +
-                $"[{UserTableFields.Phone}], " +
-                $"[{UserTableFields.Class}], " +
-                $"[{UserTableFields.Photo}], " +
-                $"[{UserTableFields.Start_Time}], " +
-                $"[{UserTableFields.Ending_Time}]) " +
+        public static int InsertStuInfo(Reader user) {
+            string sql = $"INSERT INTO [{ReaderTableFields.TableName}] (" +
+                $"[{ReaderTableFields.CardNum}], " +
+                $"[{ReaderTableFields.UserName}], " +
+                $"[{ReaderTableFields.StudentID}], " +
+                $"[{ReaderTableFields.Phone}], " +
+                $"[{ReaderTableFields.Class}], " +
+                $"[{ReaderTableFields.Photo}], " +
+                $"[{ReaderTableFields.Start_Time}], " +
+                $"[{ReaderTableFields.Ending_Time}]) " +
                 $"VALUES (@cardNum, @userName, @studentId, @phone, @className, @photo, @startTime, @endTime)";
 
             SqlParameter[] parameters = new SqlParameter[]
@@ -39,7 +39,7 @@ namespace BookDAL {
         /// <param name="cardNum">卡号</param>
         /// <returns>SqlDataReader</returns>
         public static SqlDataReader GetStuInfo(string cardNum) {
-            string sql = $"SELECT * FROM [{UserTableFields.TableName}] WHERE [{UserTableFields.CardNum}] = @cardNum";
+            string sql = $"SELECT * FROM [{ReaderTableFields.TableName}] WHERE [{ReaderTableFields.CardNum}] = @cardNum";
             SqlParameter[] parameters = new SqlParameter[] {
                 new SqlParameter("@cardNum", cardNum),
             };
