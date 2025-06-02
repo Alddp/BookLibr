@@ -11,6 +11,8 @@ namespace BookModels.Errors {
         None,
 
         _error,
+        DatabaseError,
+        DuplicateKey,
 
         InvalidParameter,
         NoDataFound,

@@ -12,22 +12,39 @@ namespace BookBLL {
 
     public class UserManager {
 
+        // TODO: 将返回类型改为Admin
         public static OperationResult<int, ErrorCode> Login(string name, string pwd) {
             if (string.IsNullOrWhiteSpace(name))
                 return OperationResult<int, ErrorCode>.Fail(ErrorCode.Login_Failed, "用户名为空");
 
-            int res = UserService.CountByNamePwd(name, pwd);
+            try {
+                int res = UserService.CountByNamePwd(name, pwd);
 
-            return res > 0 ?
-                OperationResult<int, ErrorCode>.Ok(res) :
-                OperationResult<int, ErrorCode>.Fail(ErrorCode.Login_Failed, ErrorMessages.GetMessage(ErrorCode.Login_Failed));
+                return res > 0 ?
+                    OperationResult<int, ErrorCode>.Ok(res) :
+                    OperationResult<int, ErrorCode>.Fail(ErrorCode.Login_Failed, ErrorMessages.GetMessage(ErrorCode.Login_Failed));
+            }
+            catch (SqlException ex) {
+                return OperationResult<int, ErrorCode>.Fail(ErrorCode.DatabaseError, "数据库异常：" + ex.Message);
+            }
+            catch (Exception ex) {
+                return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, "未知异常：" + ex.Message);
+            }
         }
 
         public static OperationResult<int, ErrorCode> CountUserNum() {
-            int res = UserService.CountUserNum();
-            return res > 0 ?
-                OperationResult<int, ErrorCode>.Ok(res) :
-                OperationResult<int, ErrorCode>.Fail(ErrorCode._error, ErrorMessages.GetMessage(ErrorCode._error));
+            try {
+                int res = UserService.CountUserNum();
+                return res > 0 ?
+                    OperationResult<int, ErrorCode>.Ok(res) :
+                    OperationResult<int, ErrorCode>.Fail(ErrorCode._error, ErrorMessages.GetMessage(ErrorCode._error));
+            }
+            catch (SqlException ex) {
+                return OperationResult<int, ErrorCode>.Fail(ErrorCode.DatabaseError, "数据库异常：" + ex.Message);
+            }
+            catch (Exception ex) {
+                return OperationResult<int, ErrorCode>.Fail(ErrorCode._error, "未知异常：" + ex.Message);
+            }
         }
 
         public static OperationResult<int, ErrorCode> UsersInsert(Admin admin) {
