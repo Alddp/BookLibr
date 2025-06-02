@@ -19,7 +19,7 @@ namespace BookLiber {
 
         private void submit_button_Click(object sender, EventArgs e) {
             UserTable user = new UserTable {
-                CardNum = carnumtxt.ToString().Trim(),
+                CardNum = carnumtxt.Text.Trim(),
                 UserName = usernametxt.Text.Trim(),
                 StudentId = stuIDtxt.Text.Trim(),
                 Phone = phonetxt.Text.Trim(),
@@ -32,8 +32,11 @@ namespace BookLiber {
 
             var res = StuInfoManager.InsertStuInfo(user);
 
-            if (!res.Success)
+            if (!res.Success) {
                 MessageBox.Show(res.Message);
+                return;
+            }
+            MessageBox.Show("开卡成功");
         }
 
         private void picture_button_Click(object sender, EventArgs e) {
