@@ -1,35 +1,22 @@
 ﻿using BookBLL;
 using BookModels;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BookLiber.Forms
-{
-    public partial class RegisterForm : Form
-    {
+namespace BookLiber.Forms {
 
+    public partial class RegisterForm : Form {
         public string returnName;
         public string returnPwd;
 
-
-        public RegisterForm()
-        {
+        public RegisterForm() {
             InitializeComponent();
             UserName_tb.Focus();
             radioButton1.Checked = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Admin admin = new Admin
-            {
+        private void button1_Click(object sender, EventArgs e) {
+            Admin admin = new Admin {
                 Username = UserName_tb.Text.Trim(),
                 Pwd = Pwd_tb.Text.Trim(),
                 Phone = Phone_tb.Text.Trim(),

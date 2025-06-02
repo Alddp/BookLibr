@@ -1,20 +1,13 @@
 ﻿using BookModels;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using BookModels.Constants;
+using System.Data.SqlClient;
 
-namespace BookDAL
-{
-    public class StuInfService
-    {
+namespace BookDAL {
+
+    public class StuInfService {
+
         // 发卡, 插入学生信息到数据库
-        public static int InsertStuInfo(UserTable user)
-        {
+        public static int InsertStuInfo(UserTable user) {
             string sql = $"INSERT INTO [{UserTableFields.TableName}] (" +
                 $"[{UserTableFields.CardNum}], " +
                 $"[{UserTableFields.UserName}], " +
@@ -45,8 +38,7 @@ namespace BookDAL
         /// </summary>
         /// <param name="cardNum">卡号</param>
         /// <returns>SqlDataReader</returns>
-        public static SqlDataReader GetStuInfo(string cardNum)
-        {
+        public static SqlDataReader GetStuInfo(string cardNum) {
             string sql = $"SELECT * FROM [{UserTableFields.TableName}] WHERE [{UserTableFields.CardNum}] = @cardNum";
             SqlParameter[] parameters = new SqlParameter[] {
                 new SqlParameter("@cardNum", cardNum),

@@ -1,21 +1,13 @@
 ﻿using BookModels;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using BookModels.Constants;
+using System.Data.SqlClient;
 
+namespace BookDAL {
 
-namespace BookDAL
-{
-    public class UserService
-    {
+    public class UserService {
+
         //用于验证登录
-        public static int CountByNamePwd(string name, string pwd)
-        {
+        public static int CountByNamePwd(string name, string pwd) {
             string tableName = AdminTableFields.TableName;
             string usernameColumn = AdminTableFields.Username;
             string passwordColumn = AdminTableFields.Pwd;
@@ -33,8 +25,7 @@ namespace BookDAL
         /// 用于统计用于Reader数量
         /// </summary>
         /// <returns></returns>
-        public static int CountUserNum()
-        {
+        public static int CountUserNum() {
             string tableName = UserTableFields.TableName;
             // 建议添加表名合法性校验
             string sql = $"SELECT COUNT(*) FROM {tableName}";
@@ -46,8 +37,7 @@ namespace BookDAL
         /// </summary>
         /// <param name="admin"></param>
         /// <returns></returns>
-        public static int UsersInsert(Admin admin)
-        {
+        public static int UsersInsert(Admin admin) {
             string tableName = AdminTableFields.TableName;
             string usernameColumn = AdminTableFields.Username;
             string passwordColumn = AdminTableFields.Pwd;
@@ -72,9 +62,8 @@ namespace BookDAL
         /// </summary>
         /// <param name="icdev">卡号</param>
         /// <param name="user">用户信息</param>
-        /// <returns></returns>        
-        public static int UsersInsert(string icdev, UserTable user)
-        {
+        /// <returns></returns>
+        public static int UsersInsert(string icdev, UserTable user) {
             string tableName = UserTableFields.TableName;
             string cardNumColumn = UserTableFields.CardNum;
             string usernameColumn = UserTableFields.UserName;

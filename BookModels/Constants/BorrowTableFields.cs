@@ -1,7 +1,6 @@
-﻿namespace BookModels.Constants
-{
-    public static class BorrowTableFields
-    {
+﻿namespace BookModels.Constants {
+
+    public static class BorrowTableFields {
         public const string TableName = "BorrowTable";
 
         public const string BookId = "BookId";

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BookModels.Errors {
+﻿namespace BookModels.Errors {
 
     public class OperationResult<TData, TError> {
         public bool Success { get; private set; }

@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace BookModels {
 
-namespace BookModels
-{
-    public class Admin
-    {
+    public class Admin {
         public int AdminId { get; set; }
         public string Username { get; set; }
         public string Pwd { get; set; }

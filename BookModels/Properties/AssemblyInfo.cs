@@ -1,10 +1,7 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// 有关程序集的一般信息由以下
-// 控制。更改这些特性值可修改
-// 与程序集关联的信息。
+// 有关程序集的一般信息由以下 控制。更改这些特性值可修改 与程序集关联的信息。
 [assembly: AssemblyTitle("BookModels")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
@@ -22,12 +19,8 @@ using System.Runtime.InteropServices;
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
 [assembly: Guid("db0512b5-2b5d-4a8c-90eb-cfb4073e456d")]
 
-// 程序集的版本信息由下列四个值组成: 
+// 程序集的版本信息由下列四个值组成:
 //
-//      主版本
-//      次版本
-//      生成号
-//      修订号
-//
+// 主版本 次版本 生成号 修订号
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]

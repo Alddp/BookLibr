@@ -1,20 +1,13 @@
 ﻿using BookModels;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 using BookModels.Constants;
+using System.Data.SqlClient;
 
-namespace BookDAL
-{
-    public class OperService
-    {
+namespace BookDAL {
+
+    public class OperService {
+
         // 还书 书库数量增加1
-        public static int IncreaseInventory(string bookId)
-        {
+        public static int IncreaseInventory(string bookId) {
             string tableName = BookTableFields.TableName;
             string bookINventoryColumn = BookTableFields.Inventory;
             string bookIdColumn = BookTableFields.BookId;
@@ -27,8 +20,7 @@ namespace BookDAL
         }
 
         // 借出书本 书库数量减少1
-        public static int DecreaseInventory(string bookId)
-        {
+        public static int DecreaseInventory(string bookId) {
             string tableName = BookTableFields.TableName;
             string bookINventoryColumn = BookTableFields.Inventory;
             string bookIdColumn = BookTableFields.BookId;
@@ -42,8 +34,7 @@ namespace BookDAL
         }
 
         //借书操作  添加到借书表
-        public static int Borrowbook(Borrow borrow)
-        {
+        public static int Borrowbook(Borrow borrow) {
             string tableName = BorrowTableFields.TableName;
             string userIdColumn = BorrowTableFields.UserId;
             string bookIdColumn = BorrowTableFields.BookId;
@@ -64,8 +55,7 @@ namespace BookDAL
         }
 
         // TODO:续借操作
-        public static int RenewBook(Borrow borrow)
-        {
+        public static int RenewBook(Borrow borrow) {
             string sql = $"";
             SqlParameter[] parameters = new SqlParameter[]
                {
@@ -74,8 +64,7 @@ namespace BookDAL
         }
 
         //还书  添加到还书表
-        public static int Returnbook(Borrow borrow)
-        {
+        public static int Returnbook(Borrow borrow) {
             string tableName = BorrowTableFields.TableName;
             string userIdColumn = BorrowTableFields.UserId;
             string bookIdColumn = BorrowTableFields.BookId;
@@ -95,8 +84,7 @@ namespace BookDAL
         }
 
         // 查询借书记录
-        public static SqlDataReader QueryBorrowRecord(string userId)
-        {
+        public static SqlDataReader QueryBorrowRecord(string userId) {
             string tableName = BorrowTableFields.TableName;
             string userIdColumn = BorrowTableFields.UserId;
 

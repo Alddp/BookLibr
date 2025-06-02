@@ -1,7 +1,6 @@
-﻿namespace BookModels.Constants
-{
-    public static class AdminTableFields
-    {
+﻿namespace BookModels.Constants {
+
+    public static class AdminTableFields {
         public const string TableName = "Admin";
 
         public const string AdminId = "AdminId";

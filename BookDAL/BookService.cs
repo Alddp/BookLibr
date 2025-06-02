@@ -1,27 +1,17 @@
 ﻿using BookModels;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data.SqlTypes;
-using System.IO;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using BookModels.Constants;
+using System.Data.SqlClient;
 
-namespace BookDAL
-{
-    public class BookService
-    {
+namespace BookDAL {
+
+    public class BookService {
+
         /// <summary>
         /// 新增图书信息（书名、作者、ISBN、封面等）
         /// </summary>
         /// <param name="book"></param>
         /// <returns></returns>
-        public static int BookInsert(Book book)
-        {
+        public static int BookInsert(Book book) {
             string tableName = BookTableFields.TableName;
             string bookNameColumn = BookTableFields.BookName;
             string authorColumn = BookTableFields.Author;
@@ -30,9 +20,9 @@ namespace BookDAL
             string priceColumn = BookTableFields.Price;
             string shelfIdColumn = BookTableFields.ShelfId;
 
-            string sql = $@"INSERT INTO {tableName} 
-           ({bookNameColumn}, {authorColumn}, {ISBNColumn}, 
-            {pictureColumn}, {priceColumn}, {shelfIdColumn}) 
+            string sql = $@"INSERT INTO {tableName}
+           ({bookNameColumn}, {authorColumn}, {ISBNColumn},
+            {pictureColumn}, {priceColumn}, {shelfIdColumn})
            VALUES (@BookName, @Author, @ISBN, @Picture, @Price, @ShelfId)";
 
             SqlParameter[] parameters = new SqlParameter[]
@@ -52,8 +42,7 @@ namespace BookDAL
         /// </summary>
         /// <param name="bookId"></param>
         /// <returns></returns>
-        public static int CountBookNum(string bookId)
-        {
+        public static int CountBookNum(string bookId) {
             string tableName = BookTableFields.TableName;
             string bookIdColumn = BookTableFields.BookId;
 
@@ -71,7 +60,7 @@ namespace BookDAL
         /// <param name="info">关键字（书名、作者、ISBN）</param>
         /// <returns></returns>
         public static SqlDataReader SearchBook(string info) {
-            string sql = $@" SELECT * 
+            string sql = $@" SELECT *
                 FROM {BookTableFields.TableName}
                 WHERE {BookTableFields.BookName} LIKE @Keyword
                 OR {BookTableFields.Author} LIKE @Keyword
@@ -90,8 +79,7 @@ namespace BookDAL
         /// <param name="bookId"></param>
         /// <param name="inventory"></param>
         /// <returns></returns>
-        public static int UpdateInventory(string bookId, int inventory)
-        {
+        public static int UpdateInventory(string bookId, int inventory) {
             string tableName = BookTableFields.TableName;
             string bookIdColumn = BookTableFields.BookId;
             string inventoryColumn = BookTableFields.Inventory;
