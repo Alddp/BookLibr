@@ -47,5 +47,14 @@ namespace BookBLL {
                 ? res.Data.Count >= 0 ? res : OperationResult<List<Book>>.Fail(ErrorCode.BookNotFound)
                 : res;
         }
+
+        public static OperationResult<int> InsertBook(Book book) {
+            var res = ResultWrapper.Wrap(() => {
+                return BookService.BookInsert(book);
+            });
+            return res.Success
+                ? res
+                : res;
+        }
     }
 }

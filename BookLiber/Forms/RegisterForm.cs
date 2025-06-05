@@ -27,6 +27,7 @@ namespace BookLiber.Forms {
             else admin.Type = "admin";
 
             var res = AdminManager.UsersInsert(admin);
+
             if (!res.Success) {
                 MessageBox.Show(res.Message);
                 return;

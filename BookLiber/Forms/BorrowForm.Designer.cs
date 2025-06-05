@@ -28,39 +28,195 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.card_button = new System.Windows.Forms.Button();
-            this.classtxt = new System.Windows.Forms.TextBox();
-            this.phoentxt = new System.Windows.Forms.TextBox();
-            this.stuIDtxt = new System.Windows.Forms.TextBox();
-            this.nametxt = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BorrowForm));
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.select_button = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.search_button = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.ISBNtxt = new System.Windows.Forms.Label();
-            this.authortxt = new System.Windows.Forms.Label();
-            this.Bnametxt = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.cart_button = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.borrow_button = new System.Windows.Forms.Button();
-            this.cardNumtxt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.nametxt = new System.Windows.Forms.TextBox();
+            this.stuIDtxt = new System.Windows.Forms.TextBox();
+            this.cardNumtxt = new System.Windows.Forms.TextBox();
+            this.phoentxt = new System.Windows.Forms.TextBox();
+            this.classtxt = new System.Windows.Forms.TextBox();
+            this.card_button = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // search_button
+            // 
+            this.search_button.Location = new System.Drawing.Point(735, 54);
+            this.search_button.Margin = new System.Windows.Forms.Padding(2);
+            this.search_button.Name = "search_button";
+            this.search_button.Size = new System.Drawing.Size(84, 31);
+            this.search_button.TabIndex = 6;
+            this.search_button.Text = "查询";
+            this.search_button.UseVisualStyleBackColor = true;
+            this.search_button.Click += new System.EventHandler(this.search_button_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(564, 54);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(149, 25);
+            this.textBox1.TabIndex = 3;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Location = new System.Drawing.Point(378, 103);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Size = new System.Drawing.Size(633, 514);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "书库";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(26, 36);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 27;
+            this.dataGridView1.Size = new System.Drawing.Size(582, 457);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // borrow_button
+            // 
+            this.borrow_button.Location = new System.Drawing.Point(612, 658);
+            this.borrow_button.Margin = new System.Windows.Forms.Padding(2);
+            this.borrow_button.Name = "borrow_button";
+            this.borrow_button.Size = new System.Drawing.Size(155, 29);
+            this.borrow_button.TabIndex = 3;
+            this.borrow_button.Text = "借出";
+            this.borrow_button.UseVisualStyleBackColor = true;
+            this.borrow_button.Click += new System.EventHandler(this.borrow_button_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(29, 311);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(37, 15);
+            this.label5.TabIndex = 5;
+            this.label5.Text = "卡号";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 369);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(37, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "姓名";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(29, 434);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(37, 15);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "学号";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(29, 499);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 15);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "电话";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(29, 562);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(37, 15);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "班级";
+            // 
+            // nametxt
+            // 
+            this.nametxt.Location = new System.Drawing.Point(105, 369);
+            this.nametxt.Margin = new System.Windows.Forms.Padding(2);
+            this.nametxt.Name = "nametxt";
+            this.nametxt.Size = new System.Drawing.Size(158, 25);
+            this.nametxt.TabIndex = 4;
+            // 
+            // stuIDtxt
+            // 
+            this.stuIDtxt.Location = new System.Drawing.Point(105, 432);
+            this.stuIDtxt.Margin = new System.Windows.Forms.Padding(2);
+            this.stuIDtxt.Name = "stuIDtxt";
+            this.stuIDtxt.Size = new System.Drawing.Size(158, 25);
+            this.stuIDtxt.TabIndex = 5;
+            // 
+            // cardNumtxt
+            // 
+            this.cardNumtxt.Location = new System.Drawing.Point(110, 308);
+            this.cardNumtxt.Margin = new System.Windows.Forms.Padding(2);
+            this.cardNumtxt.Name = "cardNumtxt";
+            this.cardNumtxt.ReadOnly = true;
+            this.cardNumtxt.Size = new System.Drawing.Size(153, 25);
+            this.cardNumtxt.TabIndex = 4;
+            // 
+            // phoentxt
+            // 
+            this.phoentxt.Location = new System.Drawing.Point(105, 499);
+            this.phoentxt.Margin = new System.Windows.Forms.Padding(2);
+            this.phoentxt.Name = "phoentxt";
+            this.phoentxt.Size = new System.Drawing.Size(158, 25);
+            this.phoentxt.TabIndex = 6;
+            // 
+            // classtxt
+            // 
+            this.classtxt.Location = new System.Drawing.Point(105, 560);
+            this.classtxt.Margin = new System.Windows.Forms.Padding(2);
+            this.classtxt.Name = "classtxt";
+            this.classtxt.Size = new System.Drawing.Size(158, 25);
+            this.classtxt.TabIndex = 7;
+            // 
+            // card_button
+            // 
+            this.card_button.Location = new System.Drawing.Point(93, 612);
+            this.card_button.Margin = new System.Windows.Forms.Padding(2);
+            this.card_button.Name = "card_button";
+            this.card_button.Size = new System.Drawing.Size(96, 26);
+            this.card_button.TabIndex = 8;
+            this.card_button.Text = "读卡";
+            this.card_button.UseVisualStyleBackColor = true;
+            this.card_button.Click += new System.EventHandler(this.card_button_Click);
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.card_button);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.classtxt);
+            this.groupBox1.Controls.Add(this.cardNumtxt);
             this.groupBox1.Controls.Add(this.phoentxt);
             this.groupBox1.Controls.Add(this.stuIDtxt);
             this.groupBox1.Controls.Add(this.nametxt);
@@ -68,253 +224,73 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(42, 59);
+            this.groupBox1.Location = new System.Drawing.Point(28, 37);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(443, 527);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(295, 662);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "个人资料";
             // 
-            // card_button
+            // pictureBox1
             // 
-            this.card_button.Location = new System.Drawing.Point(133, 454);
-            this.card_button.Name = "card_button";
-            this.card_button.Size = new System.Drawing.Size(144, 42);
-            this.card_button.TabIndex = 8;
-            this.card_button.Text = "读卡";
-            this.card_button.UseVisualStyleBackColor = true;
-            this.card_button.Click += new System.EventHandler(this.card_button_Click);
+            this.pictureBox1.Location = new System.Drawing.Point(42, 71);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(192, 178);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 9;
+            this.pictureBox1.TabStop = false;
             // 
-            // classtxt
+            // imageList1
             // 
-            this.classtxt.Location = new System.Drawing.Point(151, 372);
-            this.classtxt.Name = "classtxt";
-            this.classtxt.Size = new System.Drawing.Size(235, 35);
-            this.classtxt.TabIndex = 7;
-            // 
-            // phoentxt
-            // 
-            this.phoentxt.Location = new System.Drawing.Point(151, 274);
-            this.phoentxt.Name = "phoentxt";
-            this.phoentxt.Size = new System.Drawing.Size(235, 35);
-            this.phoentxt.TabIndex = 6;
-            // 
-            // stuIDtxt
-            // 
-            this.stuIDtxt.Location = new System.Drawing.Point(151, 166);
-            this.stuIDtxt.Name = "stuIDtxt";
-            this.stuIDtxt.Size = new System.Drawing.Size(235, 35);
-            this.stuIDtxt.TabIndex = 5;
-            // 
-            // nametxt
-            // 
-            this.nametxt.Location = new System.Drawing.Point(151, 65);
-            this.nametxt.Name = "nametxt";
-            this.nametxt.Size = new System.Drawing.Size(235, 35);
-            this.nametxt.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(37, 375);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 25);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "班级";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(37, 274);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 25);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "电话";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(37, 169);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 25);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "学号";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 65);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "姓名";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.select_button);
-            this.groupBox2.Controls.Add(this.textBox3);
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.ISBNtxt);
-            this.groupBox2.Controls.Add(this.authortxt);
-            this.groupBox2.Controls.Add(this.Bnametxt);
-            this.groupBox2.Location = new System.Drawing.Point(42, 675);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(443, 355);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "便捷查询";
-            // 
-            // select_button
-            // 
-            this.select_button.Location = new System.Drawing.Point(133, 281);
-            this.select_button.Name = "select_button";
-            this.select_button.Size = new System.Drawing.Size(126, 49);
-            this.select_button.TabIndex = 6;
-            this.select_button.Text = "查询";
-            this.select_button.UseVisualStyleBackColor = true;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(151, 193);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(222, 35);
-            this.textBox3.TabIndex = 5;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(151, 125);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(222, 35);
-            this.textBox2.TabIndex = 4;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(151, 53);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(222, 35);
-            this.textBox1.TabIndex = 3;
-            // 
-            // ISBNtxt
-            // 
-            this.ISBNtxt.AutoSize = true;
-            this.ISBNtxt.Location = new System.Drawing.Point(28, 204);
-            this.ISBNtxt.Name = "ISBNtxt";
-            this.ISBNtxt.Size = new System.Drawing.Size(112, 25);
-            this.ISBNtxt.TabIndex = 2;
-            this.ISBNtxt.Text = "图书编号";
-            // 
-            // authortxt
-            // 
-            this.authortxt.AutoSize = true;
-            this.authortxt.Location = new System.Drawing.Point(28, 136);
-            this.authortxt.Name = "authortxt";
-            this.authortxt.Size = new System.Drawing.Size(62, 25);
-            this.authortxt.TabIndex = 1;
-            this.authortxt.Text = "作者";
-            // 
-            // Bnametxt
-            // 
-            this.Bnametxt.AutoSize = true;
-            this.Bnametxt.Location = new System.Drawing.Point(28, 64);
-            this.Bnametxt.Name = "Bnametxt";
-            this.Bnametxt.Size = new System.Drawing.Size(62, 25);
-            this.Bnametxt.TabIndex = 0;
-            this.Bnametxt.Text = "书名";
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.cart_button);
-            this.groupBox3.Location = new System.Drawing.Point(606, 81);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(950, 822);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "书库";
-            // 
-            // cart_button
-            // 
-            this.cart_button.Location = new System.Drawing.Point(630, 704);
-            this.cart_button.Name = "cart_button";
-            this.cart_button.Size = new System.Drawing.Size(220, 50);
-            this.cart_button.TabIndex = 0;
-            this.cart_button.Text = "购物车";
-            this.cart_button.UseVisualStyleBackColor = true;
-            // 
-            // borrow_button
-            // 
-            this.borrow_button.Location = new System.Drawing.Point(1003, 988);
-            this.borrow_button.Name = "borrow_button";
-            this.borrow_button.Size = new System.Drawing.Size(233, 46);
-            this.borrow_button.TabIndex = 3;
-            this.borrow_button.Text = "借出";
-            this.borrow_button.UseVisualStyleBackColor = true;
-            // 
-            // cardNumtxt
-            // 
-            this.cardNumtxt.Location = new System.Drawing.Point(201, 15);
-            this.cardNumtxt.Name = "cardNumtxt";
-            this.cardNumtxt.ReadOnly = true;
-            this.cardNumtxt.Size = new System.Drawing.Size(227, 35);
-            this.cardNumtxt.TabIndex = 4;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(132, 18);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 25);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "卡号";
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "3-241022114Q8.jpg");
             // 
             // BorrowForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1604, 1189);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.cardNumtxt);
+            this.ClientSize = new System.Drawing.Size(1069, 743);
+            this.Controls.Add(this.search_button);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.borrow_button);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "BorrowForm";
             this.Text = "BorrowForm";
+            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox classtxt;
-        private System.Windows.Forms.TextBox phoentxt;
-        private System.Windows.Forms.TextBox stuIDtxt;
-        private System.Windows.Forms.TextBox nametxt;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Button card_button;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label ISBNtxt;
-        private System.Windows.Forms.Label authortxt;
-        private System.Windows.Forms.Label Bnametxt;
-        private System.Windows.Forms.Button select_button;
+        private System.Windows.Forms.Button search_button;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button cart_button;
         private System.Windows.Forms.Button borrow_button;
-        private System.Windows.Forms.TextBox cardNumtxt;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox nametxt;
+        private System.Windows.Forms.TextBox stuIDtxt;
+        private System.Windows.Forms.TextBox cardNumtxt;
+        private System.Windows.Forms.TextBox phoentxt;
+        private System.Windows.Forms.TextBox classtxt;
+        private System.Windows.Forms.Button card_button;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

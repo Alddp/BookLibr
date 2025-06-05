@@ -36,38 +36,42 @@
             // 借书记录
             // 
             this.借书记录.FormattingEnabled = true;
-            this.借书记录.ItemHeight = 24;
-            this.借书记录.Location = new System.Drawing.Point(76, 157);
+            this.借书记录.ItemHeight = 15;
+            this.借书记录.Location = new System.Drawing.Point(51, 98);
+            this.借书记录.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.借书记录.Name = "借书记录";
-            this.借书记录.Size = new System.Drawing.Size(480, 676);
+            this.借书记录.Size = new System.Drawing.Size(321, 424);
             this.借书记录.TabIndex = 0;
             // 
             // 还书记录
             // 
             this.还书记录.FormattingEnabled = true;
-            this.还书记录.ItemHeight = 24;
-            this.还书记录.Location = new System.Drawing.Point(704, 157);
+            this.还书记录.ItemHeight = 15;
+            this.还书记录.Location = new System.Drawing.Point(469, 98);
+            this.还书记录.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.还书记录.Name = "还书记录";
-            this.还书记录.Size = new System.Drawing.Size(480, 676);
+            this.还书记录.Size = new System.Drawing.Size(321, 424);
             this.还书记录.TabIndex = 1;
             // 
             // return_button
             // 
-            this.return_button.Location = new System.Drawing.Point(843, 895);
+            this.return_button.Location = new System.Drawing.Point(562, 559);
+            this.return_button.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.return_button.Name = "return_button";
-            this.return_button.Size = new System.Drawing.Size(203, 51);
+            this.return_button.Size = new System.Drawing.Size(135, 32);
             this.return_button.TabIndex = 2;
             this.return_button.Text = "确认归还";
             this.return_button.UseVisualStyleBackColor = true;
             // 
             // ReturnForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1287, 1105);
+            this.ClientSize = new System.Drawing.Size(858, 691);
             this.Controls.Add(this.return_button);
             this.Controls.Add(this.还书记录);
             this.Controls.Add(this.借书记录);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ReturnForm";
             this.Text = "ReturnForm";
             this.ResumeLayout(false);

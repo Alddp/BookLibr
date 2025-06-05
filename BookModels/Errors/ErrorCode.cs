@@ -34,7 +34,7 @@ namespace BookModels.Errors {
         OutOfStock,
         AlreadyBorrowed,
         BookAlreadyExists,
-        BookCreationFailed,
+        BookInsertFailed,
 
         // 借阅相关（Borrow）
         BookUnavailable,
@@ -94,7 +94,7 @@ namespace BookModels.Errors {
             { ErrorCode.OutOfStock, "图书库存不足" },
             { ErrorCode.AlreadyBorrowed, "用户已借阅该图书" },
             { ErrorCode.BookAlreadyExists, "图书已存在" },
-            { ErrorCode.BookCreationFailed, "图书创建失败" },
+            { ErrorCode.BookInsertFailed, "图书插入失败" },
 
             // 借阅相关
             { ErrorCode.BookUnavailable, "图书不可用" },
