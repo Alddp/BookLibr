@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B178AAD8-C327-4584-945F-444CA1D3966F}</ProjectGuid>
+    <ProjectGuid>{C2073589-51B4-461E-90CF-B9F0797BDD8E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BookDAL</RootNamespace>
-    <AssemblyName>BookDAL</AssemblyName>
+    <RootNamespace>BookHardWare</RootNamespace>
+    <AssemblyName>BookHardWare</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,18 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookService.cs" />
-    <Compile Include="DBHelper.cs" />
-    <Compile Include="OperService.cs" />
+    <Compile Include="DCHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReaderService.cs" />
-    <Compile Include="AdminService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BookModels\BookModels.csproj">
-      <Project>{db0512b5-2b5d-4a8c-90eb-cfb4073e456d}</Project>
-      <Name>BookModels</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace BookDAL {
+namespace BookHardWare {
 
     public class DCHelper {
 
