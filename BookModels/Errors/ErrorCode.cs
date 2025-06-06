@@ -17,6 +17,7 @@ namespace BookModels.Errors {
         Forbidden,
         Timeout,
         OperationFailed,
+        ForeignKeyViolation,
 
         // 用户相关（User）
         UserNotFound,
