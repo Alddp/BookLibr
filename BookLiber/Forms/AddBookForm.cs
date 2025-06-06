@@ -1,11 +1,14 @@
 ﻿using BookBLL;
 using BookModels;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace BookLiber {
 
     public partial class AddBookForm : Form {
+        private BindingList<Book> bookList = new BindingList<Book>();
 
         public AddBookForm() {
             InitializeComponent();
@@ -14,27 +17,46 @@ namespace BookLiber {
         private void add_button_Click(object sender, System.EventArgs e) {
             string bookName = textBox1.Text.Trim();
             string author = textBox2.Text.Trim();
-            int Inventory = Convert.ToInt32(textBox3.Text.Trim());
+
+            if (!int.TryParse(textBox3.Text, out int Inventory)) {
+                MessageBox.Show("库存输入无效，请输入有效的数字");
+                return;
+            }
+            if (!decimal.TryParse(textBox5.Text, out decimal price)) {
+                MessageBox.Show("价格输入无效，请输入有效的数字");
+                return;
+            }
+
             string ISBN = textBox4.Text.Trim();
-            decimal price = Convert.ToDecimal(textBox5.Text);
             string shelfId = textBox6.Text.Trim();
+            // TODO: 添加图片控件
             string picture = "test";
 
-            var res = BookManager.InsertBook(book: new Book {
-                BookName = bookName,
-                Author = author,
-                ISBN = ISBN,
-                Inventory = Inventory,
-                Price = price,
-                Picture = picture,
-                ShelfId = Convert.ToInt32(shelfId)
+            bookList.Add(new Book() {
+                BookName = textBox1.Text.Trim(),
+                Author = textBox2.Text.Trim(),
+                Inventory = int.Parse(textBox3.Text),
+                Price = decimal.Parse(textBox5.Text),
+                ISBN = textBox4.Text.Trim(),
+                ShelfId = int.Parse(textBox6.Text.Trim()),
+                Picture = "test"
             });
+        }
 
-            if (res.Success) {
-                MessageBox.Show("添加成功");
-            } else {
-                MessageBox.Show(res.Message);
+        private void confim_button_Click(object sender, EventArgs e) {
+            foreach (var book in bookList) {
+                var res = BookManager.InsertBook(book);
+                if (!res.Success) {
+                    MessageBox.Show(res.Message);
+                    //TODO:
+                    continue;
+                }
             }
+            MessageBox.Show("添加成功");
+        }
+
+        private void AddBookForm_Load(object sender, EventArgs e) {
+            dataGridView1.DataSource = bookList;
         }
     }
 }

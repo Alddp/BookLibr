@@ -47,11 +47,16 @@
     <Compile Include="ReaderManager.cs" />
     <Compile Include="AdminManager.cs" />
     <Compile Include="Utils\ResultWrapper.cs" />
+    <Compile Include="Utils\SqlErrorMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookDAL\BookDAL.csproj">
       <Project>{b178aad8-c327-4584-945f-444ca1d3966f}</Project>
       <Name>BookDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookHardWare\BookHardWare.csproj">
+      <Project>{c2073589-51b4-461e-90cf-b9f0797bdd8e}</Project>
+      <Name>BookHardWare</Name>
     </ProjectReference>
     <ProjectReference Include="..\BookModels\BookModels.csproj">
       <Project>{db0512b5-2b5d-4a8c-90eb-cfb4073e456d}</Project>
