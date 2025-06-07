@@ -2,21 +2,32 @@
 using BookDAL;
 using BookModels;
 using BookModels.Errors;
+using System;
 using System.Collections.Generic;
 
 namespace BookBLL {
 
     public class BookManager {
-        // 借书操作
-        //public static OperationResult<int> BorrowBook(string userId, string bookId) {
-        //    var res = ResultWrapper.Wrap(() => {
-        //        //TODO: return BookService.UpdateBookStock(bookId, -1);
-        //    });
-        //    return res;
-        //}
 
-        public static OperationResult<int> ReturnBook(string userId, string bookId) {
-            return OperationResult<int>.Ok();
+        // 借书操作
+        public static OperationResult<int> BorrowBook(string readerId, string bookId, string operId) {
+            return ResultWrapper.Wrap(() => {
+                int row = BookService.BorrowReaderBorroredBook(readerId, bookId, operId, DateTime.Now);
+                if (row != 1) return 0;
+                row = BookService.UpdateBookStock(bookId, -1);
+                if (row != 1) return 0;
+                return row;
+            });
+        }
+
+        public static OperationResult<int> ReturnBook(string userId, string bookId, string operId) {
+            return ResultWrapper.Wrap(() => {
+                int row = BookService.ReturnReaderBorroredBook(userId, bookId, operId, DateTime.Now);
+                if (row != 1) return 0;
+                row = BookService.UpdateBookStock(bookId, 1);
+                if (row != 1) return 0;
+                return row;
+            });
         }
 
         public static OperationResult<List<Book>> SearchBook(string info) {

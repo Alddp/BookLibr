@@ -1,25 +1,39 @@
 ﻿using BookBLL.Utils;
 using BookDAL;
 using BookModels;
+using BookModels.Constants;
 using BookModels.Errors;
+using System.Data.SqlClient;
 using static BookModels.Errors.ErrorMessages;
 
 namespace BookBLL {
 
     public class AdminManager {
 
-        // TODO: 将返回类型改为Admin
-        public static OperationResult<int> Login(string name, string pwd) {
+        public static OperationResult<Admin> Login(string name, string pwd) {
             if (string.IsNullOrWhiteSpace(name))
-                return OperationResult<int>.Fail(
+                return OperationResult<Admin>.Fail(
                     ErrorCode.InvalidParameter,
                     GetMessage(ErrorCode.InvalidParameter, "用户名不能为空"));
 
-            var res = ResultWrapper.Wrap(() => AdminService.CountByNamePwd(name, pwd));
+            var countRes = ResultWrapper.Wrap(() => AdminService.CountByNamePwd(name, pwd));
 
-            return res.Success
-                ? res.Data <= 0 ? OperationResult<int>.Fail(ErrorCode.LoginFailed, GetMessage(ErrorCode.LoginFailed)) : res
-                : res;
+            if (!countRes.Success || countRes.Data <= 0) return OperationResult<Admin>.Fail(ErrorCode.LoginFailed, countRes.Message);
+
+            var res = ResultWrapper.Wrap(() => {
+                using (SqlDataReader r = AdminService.GetLoginUser(name, pwd)) {
+                    if (!r.Read())
+                        return default;
+
+                    Admin.Instance.AdminId = r[AdminTableFields.AdminId].ToString();
+                    Admin.Instance.UserName = r[AdminTableFields.Username].ToString();
+                    Admin.Instance.Phone = r[AdminTableFields.Phone].ToString();
+                    Admin.Instance.Type = r[AdminTableFields.Type].ToString();
+
+                    return Admin.Instance;
+                }
+            });
+            return res;
         }
 
         public static OperationResult<int> CountUserNum() {
@@ -28,7 +42,7 @@ namespace BookBLL {
 
         public static OperationResult<int> UsersInsert(Admin admin) {
             // 参数校验 用户名密码类型和电话不能为空或空字符串
-            if (string.IsNullOrEmpty(admin.Username) || string.IsNullOrEmpty(admin.Pwd) || string.IsNullOrEmpty(admin.Type) || string.IsNullOrEmpty(admin.Phone)) {
+            if (string.IsNullOrEmpty(admin.UserName) || string.IsNullOrEmpty(admin.Pwd) || string.IsNullOrEmpty(admin.Type) || string.IsNullOrEmpty(admin.Phone)) {
                 return OperationResult<int>.Fail(
                     ErrorCode.InvalidParameter,
                     GetMessage(ErrorCode.InvalidParameter, "用户名密码类型和电话不能为空或空字符串"));

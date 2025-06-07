@@ -17,7 +17,7 @@ namespace BookLiber.Forms {
 
         private void button1_Click(object sender, EventArgs e) {
             Admin admin = new Admin {
-                Username = UserName_tb.Text.Trim(),
+                UserName = UserName_tb.Text.Trim(),
                 Pwd = Pwd_tb.Text.Trim(),
                 Phone = Phone_tb.Text.Trim(),
             };

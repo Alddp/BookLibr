@@ -21,6 +21,21 @@ namespace BookDAL {
             return DBHelper.ExScalar(sql, parameters);
         }
 
+        // 获取登录用户的信息
+        public static SqlDataReader GetLoginUser(string name, string pwd) {
+            string tableName = AdminTableFields.TableName;
+            string usernameColumn = AdminTableFields.Username;
+            string passwordColumn = AdminTableFields.Pwd;
+
+            string sql = $"SELECT * FROM {tableName} WHERE {usernameColumn} = @name AND {passwordColumn} = @pwd";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@name", name),
+                new SqlParameter("@pwd", pwd)
+            };
+            return DBHelper.ExecuteReader(sql, parameters);
+        }
+
         /// <summary>
         /// 用于统计用于Reader数量
         /// </summary>
@@ -49,7 +64,7 @@ namespace BookDAL {
                 $"VALUES (@name, @pwd, @usertype, @phone)";
             SqlParameter[] parameters = new SqlParameter[]
             {
-                new SqlParameter("@name", admin.Username),
+                new SqlParameter("@name", admin.UserName),
                 new SqlParameter("@pwd", admin.Pwd),
                 new SqlParameter("@usertype", admin.Type),
                 new SqlParameter("@phone", admin.Phone)

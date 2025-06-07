@@ -1,5 +1,7 @@
 ﻿using BookBLL;
+using BookModels;
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace BookLiber {
@@ -12,9 +14,10 @@ namespace BookLiber {
 
         private void card_button_Click(object sender, EventArgs e) {
             //测试代码
-            string cardNum = "2025060219421564";
+            string cardNum = "2025053121504189001";
 
-            ////获取卡号
+            // TODO:测试
+            //获取卡号
             //if (!CardManager.ReadCardNum(out string cardNum, out string errorMessage)) {
             //    MessageBox.Show(errorMessage);
             //    return;
@@ -27,39 +30,40 @@ namespace BookLiber {
                 MessageBox.Show("查询失败：" + res.Message);
                 return;
             }
-            var stuInfo = res.Data;
+            Reader.Instance = res.Data;
             // 显示用户信息
-            cardNumtxt.Text = stuInfo.CardNum;
-            nametxt.Text = stuInfo.UserName;
-            stuIDtxt.Text = stuInfo.StudentId;
-            phoentxt.Text = stuInfo.Phone;
-            classtxt.Text = stuInfo.ClassName;
-            pictureBox1.ImageLocation = stuInfo.Photo;
+            cardNumtxt.Text = Reader.Instance.CardNum;
+            nametxt.Text = Reader.Instance.UserName;
+            stuIDtxt.Text = Reader.Instance.StudentId;
+            phoentxt.Text = Reader.Instance.Phone;
+            classtxt.Text = Reader.Instance.ClassName;
+            pictureBox1.ImageLocation = Reader.Instance.Photo;
         }
 
         private void borrow_button_Click(object sender, EventArgs e) {
-            //var selectedBooks = new List<string>(); // 存储选中的图书ID或ISBN
+            var selectedBooks = new List<string>(); // 存储选中的图书ID
 
-            //foreach (DataGridViewRow row in dataGridView1.Rows) {
-            //    bool isSelected = Convert.ToBoolean(row.Cells["Select"].Value);
-            //    if (isSelected) {
-            //        string bookId = row.Cells["ISBN"].Value.ToString(); // 或其他主键字段
-            //        selectedBooks.Add(bookId);
-            //    }
-            //}
+            foreach (DataGridViewRow row in dataGridView1.Rows) {
+                if (row.Cells["Select"].Value == null)
+                    continue;
 
-            //if (selectedBooks.Count == 0) {
-            //    MessageBox.Show("请至少选择一本图书。");
-            //    return;
-            //}
+                bool isSelected = Convert.ToBoolean(row.Cells["Select"].Value);
+                if (isSelected) {
+                    string bookId = row.Cells["BookId"].Value.ToString(); // 或其他主键字段
+                    selectedBooks.Add(bookId);
+                }
+            }
 
-            //// 传给 BLL 层执行批量借书逻辑
-            //var result = BookManager.BorrowBooks(userId, selectedBooks);
-            //if (result.IsSuccess) {
-            //    MessageBox.Show("借书成功！");
-            //} else {
-            //    MessageBox.Show($"借书失败：{result.ErrorMessage}");
-            //}
+            if (selectedBooks.Count == 0) {
+                MessageBox.Show("请至少选择一本图书。");
+                return;
+            }
+            foreach (var item in selectedBooks) {
+                var result = BookManager.BorrowBook(Reader.Instance.UserId, item, Admin.Instance.AdminId);
+                if (!result.Success)
+                    MessageBox.Show($"借书失败：{result.Message}");
+            }
+            MessageBox.Show("借书成功！");
         }
 
         private void search_button_Click(object sender, EventArgs e) {
