@@ -1,5 +1,6 @@
 ﻿using BookBLL;
 using BookModels;
+using BookModels.Errors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,15 +45,16 @@ namespace BookLiber {
         }
 
         private void confim_button_Click(object sender, EventArgs e) {
+            List<OperationResult<Book>> errorBooks = new List<OperationResult<Book>>();
+
             foreach (var book in bookList) {
                 var res = BookManager.InsertBook(book);
                 if (!res.Success) {
+                    errorBooks.Add(OperationResult<Book>.Fail(ErrorCode.AdminNotFound));
                     MessageBox.Show(res.Message);
-                    //TODO:
                     continue;
                 }
             }
-            MessageBox.Show("添加成功");
         }
 
         private void AddBookForm_Load(object sender, EventArgs e) {

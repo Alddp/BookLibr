@@ -36,6 +36,12 @@ namespace BookLiber {
                 MessageBox.Show(res.Message);
                 return;
             }
+            res = CardManager.WriteCardNum(user.CardNum);
+
+            if (!res.Success) {
+                MessageBox.Show(res.Message);
+                return;
+            }
             MessageBox.Show("开卡成功");
         }
 

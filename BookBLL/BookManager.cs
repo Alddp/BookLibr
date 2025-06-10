@@ -4,6 +4,7 @@ using BookModels;
 using BookModels.Errors;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace BookBLL {
 
@@ -66,6 +67,28 @@ namespace BookBLL {
             return res.Success
                 ? res
                 : res;
+        }
+
+        // 查询借阅记录
+        public static OperationResult<BindingList<Book>> QueryBorrowRecord(string userId) {
+            return ResultWrapper.Wrap(() => {
+                var books = new BindingList<Book>();
+                using (var reader = OperService.QueryBorrowRecord(userId)) {
+                    while (reader.Read()) {
+                        books.Add(new Book {
+                            BookId = (int)reader["BookId"],
+                            BookName = reader["BookName"].ToString(),
+                            Author = reader["Author"].ToString(),
+                            ISBN = reader["ISBN"].ToString(),
+                            Price = (decimal)reader["Price"],
+                            Inventory = (int)reader["Inventory"],
+                            Picture = reader["Picture"].ToString(),
+                            ShelfId = (int)reader["ShelfId"]
+                        });
+                    }
+                }
+                return books;
+            });
         }
     }
 }
