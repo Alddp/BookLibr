@@ -46,29 +46,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddBookForm.cs">
+    <Compile Include="SubForm\AddBookForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddBookForm.Designer.cs">
+    <Compile Include="SubForm\AddBookForm.Designer.cs">
       <DependentUpon>AddBookForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BorrowForm.cs">
+    <Compile Include="SubForm\CardForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BorrowForm.Designer.cs">
-      <DependentUpon>BorrowForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CardForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CardForm.Designer.cs">
+    <Compile Include="SubForm\CardForm.Designer.cs">
       <DependentUpon>CardForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="BorrowForm1.cs">
+    <Compile Include="SubForm\BorrowForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BorrowForm1.Designer.cs">
-      <DependentUpon>BorrowForm1.cs</DependentUpon>
+    <Compile Include="SubForm\BorrowForm.Designer.cs">
+      <DependentUpon>BorrowForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubForm\ReadCardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubForm\ReadCardForm.Designer.cs">
+      <DependentUpon>ReadCardForm.cs</DependentUpon>
     </Compile>
     <Compile Include="RegisterForm.cs">
       <SubType>Form</SubType>
@@ -90,26 +90,26 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReturnForm.cs">
+    <Compile Include="SubForm\ReturnForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReturnForm.Designer.cs">
+    <Compile Include="SubForm\ReturnForm.Designer.cs">
       <DependentUpon>ReturnForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddBookForm.resx">
+    <EmbeddedResource Include="SubForm\AddBookForm.resx">
       <DependentUpon>AddBookForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BorrowForm.resx">
+    <EmbeddedResource Include="SubForm\CardForm.resx">
+      <DependentUpon>CardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForm\CardForm.zu-ZA.resx">
+      <DependentUpon>CardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubForm\BorrowForm.resx">
       <DependentUpon>BorrowForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CardForm.resx">
-      <DependentUpon>CardForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CardForm.zu-ZA.resx">
-      <DependentUpon>CardForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BorrowForm1.resx">
-      <DependentUpon>BorrowForm1.cs</DependentUpon>
+    <EmbeddedResource Include="SubForm\ReadCardForm.resx">
+      <DependentUpon>ReadCardForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
@@ -129,7 +129,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ReturnForm.resx">
+    <EmbeddedResource Include="SubForm\ReturnForm.resx">
       <DependentUpon>ReturnForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

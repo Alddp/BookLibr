@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BookLiber {
+namespace BookLiber.MainWindow {
 
     public partial class BorrowForm : Form {
 
@@ -13,7 +13,7 @@ namespace BookLiber {
             InitializeComponent();
         }
 
-        private void card_button_Click(object sender, EventArgs e) {
+        private void button2_Click(object sender, EventArgs e) {
             //测试代码
             string cardNum = "2025053121504189000";
 
@@ -35,15 +35,12 @@ namespace BookLiber {
             }
             Reader.Instance = sutInfoRes.Data;
             // 显示用户信息
-            cardNumtxt.Text = Reader.Instance.CardNum;
-            nametxt.Text = Reader.Instance.UserName;
-            stuIDtxt.Text = Reader.Instance.StudentId;
-            phoentxt.Text = Reader.Instance.Phone;
-            classtxt.Text = Reader.Instance.ClassName;
+            textBox1.Text = Reader.Instance.CardNum;
+            textBox2.Text = Reader.Instance.UserName;
             pictureBox1.ImageLocation = Reader.Instance.Photo;
         }
 
-        private void borrow_button_Click(object sender, EventArgs e) {
+        private void button1_Click(object sender, EventArgs e) {
             var selectedBooks = new List<string>(); // 存储选中的图书ID
 
             foreach (DataGridViewRow row in dataGridView1.Rows) {
@@ -69,8 +66,8 @@ namespace BookLiber {
             MessageBox.Show("借书成功！");
         }
 
-        private void search_button_Click(object sender, EventArgs e) {
-            string info = textBox1.Text;
+        private void button4_Click(object sender, EventArgs e) {
+            string info = textBox3.Text;
 
             var res = BookManager.SearchBook(info);
 
