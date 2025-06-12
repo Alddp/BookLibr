@@ -58,10 +58,9 @@
             // 
             // search_button
             // 
-            this.search_button.Location = new System.Drawing.Point(735, 54);
-            this.search_button.Margin = new System.Windows.Forms.Padding(2);
+            this.search_button.Location = new System.Drawing.Point(1102, 86);
             this.search_button.Name = "search_button";
-            this.search_button.Size = new System.Drawing.Size(84, 31);
+            this.search_button.Size = new System.Drawing.Size(126, 50);
             this.search_button.TabIndex = 6;
             this.search_button.Text = "查询";
             this.search_button.UseVisualStyleBackColor = true;
@@ -69,20 +68,17 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(564, 54);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox1.Location = new System.Drawing.Point(846, 86);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(149, 25);
+            this.textBox1.Size = new System.Drawing.Size(222, 35);
             this.textBox1.TabIndex = 3;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dataGridView1);
-            this.groupBox3.Location = new System.Drawing.Point(378, 103);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox3.Location = new System.Drawing.Point(567, 165);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox3.Size = new System.Drawing.Size(633, 514);
+            this.groupBox3.Size = new System.Drawing.Size(950, 822);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "书库";
@@ -90,19 +86,19 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(26, 36);
+            this.dataGridView1.Location = new System.Drawing.Point(39, 58);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 27;
-            this.dataGridView1.Size = new System.Drawing.Size(582, 457);
+            this.dataGridView1.Size = new System.Drawing.Size(873, 731);
             this.dataGridView1.TabIndex = 2;
             // 
             // borrow_button
             // 
-            this.borrow_button.Location = new System.Drawing.Point(612, 658);
-            this.borrow_button.Margin = new System.Windows.Forms.Padding(2);
+            this.borrow_button.Location = new System.Drawing.Point(918, 1053);
             this.borrow_button.Name = "borrow_button";
-            this.borrow_button.Size = new System.Drawing.Size(155, 29);
+            this.borrow_button.Size = new System.Drawing.Size(232, 46);
             this.borrow_button.TabIndex = 3;
             this.borrow_button.Text = "借出";
             this.borrow_button.UseVisualStyleBackColor = true;
@@ -111,100 +107,89 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 311);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Location = new System.Drawing.Point(44, 498);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(37, 15);
+            this.label5.Size = new System.Drawing.Size(58, 24);
             this.label5.TabIndex = 5;
             this.label5.Text = "卡号";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 369);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(44, 590);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 15);
+            this.label1.Size = new System.Drawing.Size(58, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "姓名";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 434);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(44, 694);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 15);
+            this.label2.Size = new System.Drawing.Size(58, 24);
             this.label2.TabIndex = 1;
             this.label2.Text = "学号";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(29, 499);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(44, 798);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 15);
+            this.label3.Size = new System.Drawing.Size(58, 24);
             this.label3.TabIndex = 2;
             this.label3.Text = "电话";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(29, 562);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(44, 899);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 15);
+            this.label4.Size = new System.Drawing.Size(58, 24);
             this.label4.TabIndex = 3;
             this.label4.Text = "班级";
             // 
             // nametxt
             // 
-            this.nametxt.Location = new System.Drawing.Point(105, 369);
-            this.nametxt.Margin = new System.Windows.Forms.Padding(2);
+            this.nametxt.Location = new System.Drawing.Point(158, 590);
             this.nametxt.Name = "nametxt";
-            this.nametxt.Size = new System.Drawing.Size(158, 25);
+            this.nametxt.Size = new System.Drawing.Size(235, 35);
             this.nametxt.TabIndex = 4;
             // 
             // stuIDtxt
             // 
-            this.stuIDtxt.Location = new System.Drawing.Point(105, 432);
-            this.stuIDtxt.Margin = new System.Windows.Forms.Padding(2);
+            this.stuIDtxt.Location = new System.Drawing.Point(158, 691);
             this.stuIDtxt.Name = "stuIDtxt";
-            this.stuIDtxt.Size = new System.Drawing.Size(158, 25);
+            this.stuIDtxt.Size = new System.Drawing.Size(235, 35);
             this.stuIDtxt.TabIndex = 5;
             // 
             // cardNumtxt
             // 
-            this.cardNumtxt.Location = new System.Drawing.Point(110, 308);
-            this.cardNumtxt.Margin = new System.Windows.Forms.Padding(2);
+            this.cardNumtxt.Location = new System.Drawing.Point(165, 493);
             this.cardNumtxt.Name = "cardNumtxt";
             this.cardNumtxt.ReadOnly = true;
-            this.cardNumtxt.Size = new System.Drawing.Size(153, 25);
+            this.cardNumtxt.Size = new System.Drawing.Size(228, 35);
             this.cardNumtxt.TabIndex = 4;
             // 
             // phoentxt
             // 
-            this.phoentxt.Location = new System.Drawing.Point(105, 499);
-            this.phoentxt.Margin = new System.Windows.Forms.Padding(2);
+            this.phoentxt.Location = new System.Drawing.Point(158, 798);
             this.phoentxt.Name = "phoentxt";
-            this.phoentxt.Size = new System.Drawing.Size(158, 25);
+            this.phoentxt.Size = new System.Drawing.Size(235, 35);
             this.phoentxt.TabIndex = 6;
             // 
             // classtxt
             // 
-            this.classtxt.Location = new System.Drawing.Point(105, 560);
-            this.classtxt.Margin = new System.Windows.Forms.Padding(2);
+            this.classtxt.Location = new System.Drawing.Point(158, 896);
             this.classtxt.Name = "classtxt";
-            this.classtxt.Size = new System.Drawing.Size(158, 25);
+            this.classtxt.Size = new System.Drawing.Size(235, 35);
             this.classtxt.TabIndex = 7;
             // 
             // card_button
             // 
-            this.card_button.Location = new System.Drawing.Point(93, 612);
-            this.card_button.Margin = new System.Windows.Forms.Padding(2);
+            this.card_button.Location = new System.Drawing.Point(140, 979);
             this.card_button.Name = "card_button";
-            this.card_button.Size = new System.Drawing.Size(96, 26);
+            this.card_button.Size = new System.Drawing.Size(144, 42);
             this.card_button.TabIndex = 8;
             this.card_button.Text = "读卡";
             this.card_button.UseVisualStyleBackColor = true;
@@ -224,20 +209,19 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(28, 37);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Location = new System.Drawing.Point(42, 59);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(295, 662);
+            this.groupBox1.Size = new System.Drawing.Size(442, 1059);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "个人资料";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(42, 71);
+            this.pictureBox1.Location = new System.Drawing.Point(63, 114);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(192, 178);
+            this.pictureBox1.Size = new System.Drawing.Size(288, 285);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
@@ -250,15 +234,15 @@
             // 
             // BorrowForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1069, 743);
+            this.ClientSize = new System.Drawing.Size(1604, 1189);
             this.Controls.Add(this.search_button);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.borrow_button);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "BorrowForm";
             this.Text = "BorrowForm";
             this.groupBox3.ResumeLayout(false);

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using BookLiber.MainWindow;
+using System;
 using System.Linq;
 using System.Windows.Forms;
+
 
 namespace BookLiber.Forms {
 
@@ -28,12 +30,23 @@ namespace BookLiber.Forms {
                 return;
             }
 
-            // 创建新窗体前关闭其他窗体
-            CloseOtherMdiChildren(null);
-
             CardForm cardForm = new CardForm();
-            cardForm.MdiParent = this;
-            cardForm.Show();
+            cardForm.Visible = true;
+            // 2. 设置子窗体为非顶级窗体（不独立显示）
+            cardForm.TopLevel = false;
+            // 4. 设置子窗体填充 Panel
+            cardForm.Dock = DockStyle.Fill;
+            // 5. 清空 Panel 的现有控件（可选，防止多个子窗体叠加）
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(cardForm);
+
+
+            // 创建新窗体前关闭其他窗体
+            //CloseOtherMdiChildren(null);
+
+            //CardForm cardForm = new CardForm();
+            //cardForm.MdiParent = this;
+            //cardForm.Show();
         }
 
         // 书籍入库菜单
@@ -47,8 +60,14 @@ namespace BookLiber.Forms {
             CloseOtherMdiChildren(null);
 
             AddBookForm addBookForm = new AddBookForm();
-            addBookForm.MdiParent = this;
-            addBookForm.Show();
+            addBookForm.Visible = true;
+            // 2. 设置子窗体为非顶级窗体（不独立显示）
+            addBookForm.TopLevel = false;
+            // 4. 设置子窗体填充 Panel
+            addBookForm.Dock = DockStyle.Fill;
+            // 5. 清空 Panel 的现有控件（可选，防止多个子窗体叠加）
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(addBookForm);
         }
 
         // 还书记录菜单
@@ -62,8 +81,14 @@ namespace BookLiber.Forms {
             CloseOtherMdiChildren(null);
 
             ReturnForm returnForm = new ReturnForm();
-            returnForm.MdiParent = this;
-            returnForm.Show();
+            returnForm.Visible = true;
+            // 2. 设置子窗体为非顶级窗体（不独立显示）
+            returnForm.TopLevel = false;
+            // 4. 设置子窗体填充 Panel
+            returnForm.Dock = DockStyle.Fill;
+            // 5. 清空 Panel 的现有控件（可选，防止多个子窗体叠加）
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(returnForm);
         }
 
         // 借书记录菜单
@@ -76,9 +101,27 @@ namespace BookLiber.Forms {
 
             CloseOtherMdiChildren(null);
 
-            BorrowForm borrowForm = new BorrowForm();
-            borrowForm.MdiParent = this;
-            borrowForm.Show();
+            BorrowForm1 borrowForm = new BorrowForm1();
+            borrowForm.Visible = true;
+            // 2. 设置子窗体为非顶级窗体（不独立显示）
+            borrowForm.TopLevel = false;
+            // 4. 设置子窗体填充 Panel
+            borrowForm.Dock = DockStyle.Fill;
+            // 5. 清空 Panel 的现有控件（可选，防止多个子窗体叠加）
+            mainPanel.Controls.Clear();
+            mainPanel.Controls.Add(borrowForm);
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+           
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e) {
+
+        }
+
+        private void read_button_Click(object sender, EventArgs e) {
+
         }
     }
 }

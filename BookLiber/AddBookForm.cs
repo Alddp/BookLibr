@@ -60,5 +60,9 @@ namespace BookLiber {
         private void AddBookForm_Load(object sender, EventArgs e) {
             dataGridView1.DataSource = bookList;
         }
+
+        private void label7_Click(object sender, EventArgs e) {
+
+        }
     }
 }
