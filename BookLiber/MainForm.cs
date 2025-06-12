@@ -3,7 +3,6 @@ using System;
 using System.Linq;
 using System.Windows.Forms;
 
-
 namespace BookLiber.Forms {
 
     public partial class MainForm : Form {
@@ -37,9 +36,8 @@ namespace BookLiber.Forms {
             // 4. 设置子窗体填充 Panel
             cardForm.Dock = DockStyle.Fill;
             // 5. 清空 Panel 的现有控件（可选，防止多个子窗体叠加）
-            mainPanel.Controls.Clear();
-            mainPanel.Controls.Add(cardForm);
-
+            tableLayoutPanel1.Controls.Clear();
+            tableLayoutPanel1.Controls.Add(cardForm);
 
             // 创建新窗体前关闭其他窗体
             //CloseOtherMdiChildren(null);
@@ -66,8 +64,8 @@ namespace BookLiber.Forms {
             // 4. 设置子窗体填充 Panel
             addBookForm.Dock = DockStyle.Fill;
             // 5. 清空 Panel 的现有控件（可选，防止多个子窗体叠加）
-            mainPanel.Controls.Clear();
-            mainPanel.Controls.Add(addBookForm);
+            tableLayoutPanel1.Controls.Clear();
+            tableLayoutPanel1.Controls.Add(addBookForm);
         }
 
         // 还书记录菜单
@@ -87,8 +85,8 @@ namespace BookLiber.Forms {
             // 4. 设置子窗体填充 Panel
             returnForm.Dock = DockStyle.Fill;
             // 5. 清空 Panel 的现有控件（可选，防止多个子窗体叠加）
-            mainPanel.Controls.Clear();
-            mainPanel.Controls.Add(returnForm);
+            tableLayoutPanel1.Controls.Clear();
+            tableLayoutPanel1.Controls.Add(returnForm);
         }
 
         // 借书记录菜单
@@ -108,20 +106,17 @@ namespace BookLiber.Forms {
             // 4. 设置子窗体填充 Panel
             borrowForm.Dock = DockStyle.Fill;
             // 5. 清空 Panel 的现有控件（可选，防止多个子窗体叠加）
-            mainPanel.Controls.Clear();
-            mainPanel.Controls.Add(borrowForm);
+            tableLayoutPanel1.Controls.Clear();
+            tableLayoutPanel1.Controls.Add(borrowForm);
         }
 
         private void button1_Click(object sender, EventArgs e) {
-           
         }
 
         private void pictureBox1_Click(object sender, EventArgs e) {
-
         }
 
         private void read_button_Click(object sender, EventArgs e) {
-
         }
     }
 }
