@@ -18,7 +18,7 @@ namespace BookBLL {
 
             var countRes = ResultWrapper.Wrap(() => AdminService.CountByNamePwd(name, pwd));
 
-            if (!countRes.Success || countRes.Data <= 0) return OperationResult<Admin>.Fail(ErrorCode.LoginFailed, countRes.Message);
+            if (!countRes.Success || countRes.Data <= 0) return OperationResult<Admin>.Fail(ErrorCode.LoginFailed);
 
             var res = ResultWrapper.Wrap(() => {
                 using (SqlDataReader r = AdminService.GetLoginUser(name, pwd)) {

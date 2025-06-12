@@ -1,10 +1,12 @@
 ﻿using BookBLL.Utils;
 using BookDAL;
 using BookModels;
+using BookModels.Constants;
 using BookModels.Errors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using static BookModels.Errors.ErrorMessages;
 
 namespace BookBLL {
 
@@ -12,23 +14,35 @@ namespace BookBLL {
 
         // 借书操作
         public static OperationResult<int> BorrowBook(string readerId, string bookId, string operId) {
-            return ResultWrapper.Wrap(() => {
+            var res = ResultWrapper.Wrap(() => {
                 int row = BookService.BorrowReaderBorroredBook(readerId, bookId, operId, DateTime.Now);
                 if (row != 1) return 0;
                 row = BookService.UpdateBookStock(bookId, -1);
                 if (row != 1) return 0;
                 return row;
             });
+
+            return res.Success
+                ? OperationResult<int>.Ok()
+                : OperationResult<int>.Fail(
+                    ErrorCode.BorrowFailed,
+                    GetMessage(ErrorCode.BorrowFailed, res.Message));
         }
 
         public static OperationResult<int> ReturnBook(string userId, string bookId, string operId) {
-            return ResultWrapper.Wrap(() => {
+            var res = ResultWrapper.Wrap(() => {
                 int row = BookService.ReturnReaderBorroredBook(userId, bookId, operId, DateTime.Now);
                 if (row != 1) return 0;
                 row = BookService.UpdateBookStock(bookId, 1);
                 if (row != 1) return 0;
                 return row;
             });
+
+            return res.Success
+                ? OperationResult<int>.Ok()
+                : OperationResult<int>.Fail(
+                    ErrorCode.ReturnFailed,
+                    GetMessage(ErrorCode.ReturnFailed, res.Message));
         }
 
         public static OperationResult<List<Book>> SearchBook(string info) {
@@ -64,31 +78,40 @@ namespace BookBLL {
             var res = ResultWrapper.Wrap(() => {
                 return BookService.BookInsert(book);
             });
+
             return res.Success
                 ? res
-                : res;
+                : OperationResult<int>.Fail(
+                    ErrorCode.BookInsertFailed,
+                    GetMessage(ErrorCode.BookInsertFailed, res.Message));
         }
 
         // 查询借阅记录
-        public static OperationResult<BindingList<Book>> QueryBorrowRecord(string userId) {
-            return ResultWrapper.Wrap(() => {
-                var books = new BindingList<Book>();
+        public static OperationResult<BindingList<Borrow>> QueryBorrowRecord(string userId) {
+            var res = ResultWrapper.Wrap(() => {
+                var books = new BindingList<Borrow>();
                 using (var reader = OperService.QueryBorrowRecord(userId)) {
                     while (reader.Read()) {
-                        books.Add(new Book {
-                            BookId = (int)reader["BookId"],
-                            BookName = reader["BookName"].ToString(),
-                            Author = reader["Author"].ToString(),
-                            ISBN = reader["ISBN"].ToString(),
-                            Price = (decimal)reader["Price"],
-                            Inventory = (int)reader["Inventory"],
-                            Picture = reader["Picture"].ToString(),
-                            ShelfId = (int)reader["ShelfId"]
+                        books.Add(new Borrow {
+                            BorrowId = reader[BorrowTableFields.BorrowId].ToString(),
+                            BookId = reader[BorrowTableFields.BookId].ToString(),
+                            UserId = reader[BorrowTableFields.UserId].ToString(),
+                            BorrowAdminId = reader[BorrowTableFields.BorrowAdminId].ToString(),
+                            ReturnAdminId = reader[BorrowTableFields.ReturnAdminId].ToString(),
+                            BorrowDate = reader[BorrowTableFields.BorrowDate] == DBNull.Value
+                                ? (DateTime?)null
+                                : (DateTime)reader[BorrowTableFields.BorrowDate],
+                            ReturnDate = reader[BorrowTableFields.ReturnDate] == DBNull.Value
+                                ? (DateTime?)null
+                                : (DateTime)reader[BorrowTableFields.ReturnDate]
                         });
                     }
                 }
                 return books;
             });
+            return res.Success
+                ? res.Data.Count >= 0 ? res : OperationResult<BindingList<Borrow>>.Fail(ErrorCode.BorrowRecordNotFound)
+                : res;
         }
     }
 }

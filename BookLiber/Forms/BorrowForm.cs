@@ -1,5 +1,6 @@
 ﻿using BookBLL;
 using BookModels;
+using BookModels.Constants;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -14,16 +15,16 @@ namespace BookLiber {
 
         private void card_button_Click(object sender, EventArgs e) {
             //测试代码
-            //string cardNum = "2025053121504189001";
+            string cardNum = "2025053121504189000";
 
             // TODO:测试
             //获取卡号
-            var cardNumRes = CardManager.ReadCardNum();
-            if (!cardNumRes.Success) {
-                MessageBox.Show(cardNumRes.Message);
-                return;
-            }
-            string cardNum = cardNumRes.Data;
+            //var cardNumRes = CardManager.ReadCardNum();
+            //if (!cardNumRes.Success) {
+            //    MessageBox.Show(cardNumRes.Message);
+            //    return;
+            //}
+            //string cardNum = cardNumRes.Data;
 
             // 根据卡号查询用户信息
             var sutInfoRes = ReaderManager.GetStuInfo(cardNum);
@@ -51,7 +52,7 @@ namespace BookLiber {
 
                 bool isSelected = Convert.ToBoolean(row.Cells["Select"].Value);
                 if (isSelected) {
-                    string bookId = row.Cells["BookId"].Value.ToString(); // 或其他主键字段
+                    string bookId = row.Cells[BookTableFields.BookId].Value.ToString(); // 或其他主键字段
                     selectedBooks.Add(bookId);
                 }
             }

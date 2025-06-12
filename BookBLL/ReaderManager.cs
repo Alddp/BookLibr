@@ -34,6 +34,7 @@ namespace BookBLL {
                         return default;
 
                     return new Reader {
+                        UserId = r["UserId"].ToString(),
                         CardNum = r["CardNum"].ToString(),
                         UserName = r["UserName"].ToString(),
                         StudentId = r["StudentID"].ToString(),

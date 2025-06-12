@@ -30,16 +30,15 @@
         {
             this.return_button = new System.Windows.Forms.Button();
             this.BorrowView = new System.Windows.Forms.DataGridView();
-            this.ReturnView = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.BorrowView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReturnView)).BeginInit();
             this.SuspendLayout();
             // 
             // return_button
             // 
-            this.return_button.Location = new System.Drawing.Point(843, 894);
+            this.return_button.Location = new System.Drawing.Point(562, 559);
+            this.return_button.Margin = new System.Windows.Forms.Padding(2);
             this.return_button.Name = "return_button";
-            this.return_button.Size = new System.Drawing.Size(202, 51);
+            this.return_button.Size = new System.Drawing.Size(135, 32);
             this.return_button.TabIndex = 2;
             this.return_button.Text = "确认归还";
             this.return_button.UseVisualStyleBackColor = true;
@@ -48,35 +47,26 @@
             // BorrowView
             // 
             this.BorrowView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.BorrowView.Location = new System.Drawing.Point(116, 168);
+            this.BorrowView.Location = new System.Drawing.Point(77, 105);
+            this.BorrowView.Margin = new System.Windows.Forms.Padding(2);
             this.BorrowView.Name = "BorrowView";
             this.BorrowView.RowHeadersWidth = 82;
             this.BorrowView.RowTemplate.Height = 37;
-            this.BorrowView.Size = new System.Drawing.Size(446, 667);
+            this.BorrowView.Size = new System.Drawing.Size(736, 431);
             this.BorrowView.TabIndex = 3;
-            // 
-            // ReturnView
-            // 
-            this.ReturnView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.ReturnView.Location = new System.Drawing.Point(732, 168);
-            this.ReturnView.Name = "ReturnView";
-            this.ReturnView.RowHeadersWidth = 82;
-            this.ReturnView.RowTemplate.Height = 37;
-            this.ReturnView.Size = new System.Drawing.Size(441, 667);
-            this.ReturnView.TabIndex = 4;
             // 
             // ReturnForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1287, 1106);
-            this.Controls.Add(this.ReturnView);
+            this.ClientSize = new System.Drawing.Size(858, 691);
             this.Controls.Add(this.BorrowView);
             this.Controls.Add(this.return_button);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ReturnForm";
             this.Text = "ReturnForm";
+            this.Load += new System.EventHandler(this.ReturnForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.BorrowView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ReturnView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -84,6 +74,5 @@
         #endregion
         private System.Windows.Forms.Button return_button;
         private System.Windows.Forms.DataGridView BorrowView;
-        private System.Windows.Forms.DataGridView ReturnView;
     }
 }

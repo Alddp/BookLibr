@@ -88,7 +88,14 @@ namespace BookDAL {
             string tableName = BorrowTableFields.TableName;
             string userIdColumn = BorrowTableFields.UserId;
 
-            string sql = $@" SELECT * FROM {tableName} WHERE {userIdColumn} = @UserId";
+            // 查询用户借书记录, 将returnDate为null的排在前面, 另外根据借书日期降序排序
+            string sql = $@"SELECT * FROM {tableName} WHERE {userIdColumn} = @UserId AND {BorrowTableFields.ReturnDate} IS NULL
+                            UNION
+                            SELECT * FROM {tableName} WHERE {userIdColumn} = @UserId AND {BorrowTableFields.ReturnDate} IS NOT NULL
+                            ORDER BY {BorrowTableFields.ReturnDate} ASC, {BorrowTableFields.BorrowDate} DESC";
+
+            //string sql = $@"SELECT * FROM {tableName} WHERE {userIdColumn} = @UserId";
+
             SqlParameter[] parameters = new SqlParameter[]
                {
                    new SqlParameter("@UserId", userId)
