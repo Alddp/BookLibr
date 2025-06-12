@@ -145,5 +145,27 @@ namespace BookDAL {
             };
             return DBHelper.ExNonQuery(sql, parameters);
         }
+
+        // 查询图书借阅占比, 排行
+
+        public static SqlDataReader SearchHotBook(string bookId) {
+            string bookTable = BookTableFields.TableName;
+            string borrowTable = BorrowTableFields.TableName;
+            string bookIdFiledId = BorrowTableFields.BookId;
+            string bookNameFieldId = BookTableFields.BookName;
+
+            string sql = $@"SELECT {bookIdFiledId}, {bookNameFieldId},
+                COUNT({bookIdFiledId}) AS BorrowCount,
+                FORMAT(
+                    COUNT({bookIdFiledId}) * 1.0 / (SELECT COUNT(*) FROM {borrowTable}), 
+                    'P2'  -- 保留2位百分比的百分比格式
+                ) AS BorrowPercentage
+                FROM {bookTable}
+                LEFT JOIN Borrow ON {bookIdFiledId} = {bookIdFiledId}
+                GROUP BY {bookIdFiledId}, {bookNameFieldId}
+                ORDER BY BorrowCount DESC;";
+
+            return DBHelper.ExecuteReader(sql);
+        }
     }
 }
