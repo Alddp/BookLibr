@@ -49,28 +49,28 @@
             // 借书ToolStripMenuItem
             // 
             this.借书ToolStripMenuItem.Name = "借书ToolStripMenuItem";
-            this.借书ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.借书ToolStripMenuItem.Size = new System.Drawing.Size(53, 28);
             this.借书ToolStripMenuItem.Text = "借书";
             this.借书ToolStripMenuItem.Click += new System.EventHandler(this.借书记录ToolStripMenuItem_Click);
             // 
             // 还书SToolStripMenuItem
             // 
             this.还书SToolStripMenuItem.Name = "还书SToolStripMenuItem";
-            this.还书SToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.还书SToolStripMenuItem.Size = new System.Drawing.Size(53, 28);
             this.还书SToolStripMenuItem.Text = "还书";
             this.还书SToolStripMenuItem.Click += new System.EventHandler(this.还书记录ToolStripMenuItem_Click);
             // 
             // 开卡ToolStripMenuItem
             // 
             this.开卡ToolStripMenuItem.Name = "开卡ToolStripMenuItem";
-            this.开卡ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.开卡ToolStripMenuItem.Size = new System.Drawing.Size(53, 28);
             this.开卡ToolStripMenuItem.Text = "开卡";
             this.开卡ToolStripMenuItem.Click += new System.EventHandler(this.开卡ToolStripMenuItem_Click);
             // 
             // 书籍入库ToolStripMenuItem
             // 
             this.书籍入库ToolStripMenuItem.Name = "书籍入库ToolStripMenuItem";
-            this.书籍入库ToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.书籍入库ToolStripMenuItem.Size = new System.Drawing.Size(83, 28);
             this.书籍入库ToolStripMenuItem.Text = "书籍入库";
             this.书籍入库ToolStripMenuItem.Click += new System.EventHandler(this.书籍入库ToolStripMenuItem_Click);
             // 
@@ -86,14 +86,14 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(1057, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(1057, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // 读卡ToolStripMenuItem
             // 
             this.读卡ToolStripMenuItem.Name = "读卡ToolStripMenuItem";
-            this.读卡ToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
+            this.读卡ToolStripMenuItem.Size = new System.Drawing.Size(53, 28);
             this.读卡ToolStripMenuItem.Text = "读卡";
             this.读卡ToolStripMenuItem.Click += new System.EventHandler(this.读卡ToolStripMenuItem_Click);
             // 
@@ -102,12 +102,12 @@
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 96.69604F));
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 26);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 30);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84.88701F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1057, 708);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1057, 704);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
             // MainForm

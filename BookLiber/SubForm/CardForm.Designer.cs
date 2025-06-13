@@ -31,18 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CardForm));
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.carnumtxt = new System.Windows.Forms.TextBox();
-            this.usernametxt = new System.Windows.Forms.TextBox();
-            this.stuIDtxt = new System.Windows.Forms.TextBox();
-            this.phonetxt = new System.Windows.Forms.TextBox();
-            this.classtxt = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.carNum_txb = new System.Windows.Forms.TextBox();
+            this.userName_tbx = new System.Windows.Forms.TextBox();
+            this.phone_tbx = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -53,34 +46,27 @@
             this.openFile = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.calssName_tbx = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.stuId_tbx = new System.Windows.Forms.TextBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.Name = "label5";
             // 
             // label6
             // 
@@ -92,36 +78,21 @@
             resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
             // 
-            // carnumtxt
+            // carNum_txb
             // 
-            resources.ApplyResources(this.carnumtxt, "carnumtxt");
-            this.carnumtxt.Name = "carnumtxt";
-            this.carnumtxt.ReadOnly = true;
+            resources.ApplyResources(this.carNum_txb, "carNum_txb");
+            this.carNum_txb.Name = "carNum_txb";
+            this.carNum_txb.ReadOnly = true;
             // 
-            // usernametxt
+            // userName_tbx
             // 
-            resources.ApplyResources(this.usernametxt, "usernametxt");
-            this.usernametxt.Name = "usernametxt";
+            resources.ApplyResources(this.userName_tbx, "userName_tbx");
+            this.userName_tbx.Name = "userName_tbx";
             // 
-            // stuIDtxt
+            // phone_tbx
             // 
-            resources.ApplyResources(this.stuIDtxt, "stuIDtxt");
-            this.stuIDtxt.Name = "stuIDtxt";
-            // 
-            // phonetxt
-            // 
-            resources.ApplyResources(this.phonetxt, "phonetxt");
-            this.phonetxt.Name = "phonetxt";
-            // 
-            // classtxt
-            // 
-            resources.ApplyResources(this.classtxt, "classtxt");
-            this.classtxt.Name = "classtxt";
-            // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
+            resources.ApplyResources(this.phone_tbx, "phone_tbx");
+            this.phone_tbx.Name = "phone_tbx";
             // 
             // dateTimePicker1
             // 
@@ -176,54 +147,107 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             resources.ApplyResources(this.contextMenuStrip1, "contextMenuStrip1");
             // 
+            // calssName_tbx
+            // 
+            resources.ApplyResources(this.calssName_tbx, "calssName_tbx");
+            this.calssName_tbx.Name = "calssName_tbx";
+            // 
+            // tableLayoutPanel1
+            // 
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker2, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.picture_button, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.dateTimePicker1, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label6, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.submit_button, 4, 3);
+            this.tableLayoutPanel1.Controls.Add(this.close_button, 4, 4);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.carNum_txb);
+            this.flowLayoutPanel2.Controls.Add(this.userName_tbx);
+            this.flowLayoutPanel2.Controls.Add(this.stuId_tbx);
+            this.flowLayoutPanel2.Controls.Add(this.phone_tbx);
+            this.flowLayoutPanel2.Controls.Add(this.calssName_tbx);
+            resources.ApplyResources(this.flowLayoutPanel2, "flowLayoutPanel2");
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.tableLayoutPanel1.SetRowSpan(this.flowLayoutPanel2, 2);
+            // 
+            // stuId_tbx
+            // 
+            resources.ApplyResources(this.stuId_tbx, "stuId_tbx");
+            this.stuId_tbx.Name = "stuId_tbx";
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.label1);
+            this.flowLayoutPanel1.Controls.Add(this.label2);
+            this.flowLayoutPanel1.Controls.Add(this.label3);
+            this.flowLayoutPanel1.Controls.Add(this.label4);
+            this.flowLayoutPanel1.Controls.Add(this.label5);
+            this.flowLayoutPanel1.Controls.Add(this.label8);
+            resources.ApplyResources(this.flowLayoutPanel1, "flowLayoutPanel1");
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.tableLayoutPanel1.SetRowSpan(this.flowLayoutPanel1, 2);
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
             // CardForm
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.close_button);
-            this.Controls.Add(this.submit_button);
-            this.Controls.Add(this.picture_button);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.dateTimePicker2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.classtxt);
-            this.Controls.Add(this.phonetxt);
-            this.Controls.Add(this.stuIDtxt);
-            this.Controls.Add(this.usernametxt);
-            this.Controls.Add(this.carnumtxt);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CardForm";
             this.Load += new System.EventHandler(this.CardForm_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox carnumtxt;
-        private System.Windows.Forms.TextBox usernametxt;
-        private System.Windows.Forms.TextBox stuIDtxt;
-        private System.Windows.Forms.TextBox phonetxt;
-        private System.Windows.Forms.TextBox classtxt;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox carNum_txb;
+        private System.Windows.Forms.TextBox userName_tbx;
+        private System.Windows.Forms.TextBox phone_tbx;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -234,5 +258,15 @@
         private System.Windows.Forms.OpenFileDialog openFile;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.TextBox calssName_tbx;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.TextBox stuId_tbx;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
     }
 }

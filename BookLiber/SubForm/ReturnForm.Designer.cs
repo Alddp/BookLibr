@@ -80,7 +80,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1063, 165);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1063, 169);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
             // groupBox1
@@ -91,7 +91,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(179, 161);
+            this.groupBox1.Size = new System.Drawing.Size(179, 165);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "用户照片";
@@ -102,7 +102,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(2, 20);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(175, 139);
+            this.pictureBox1.Size = new System.Drawing.Size(175, 143);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -115,7 +115,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(320, 2);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(86, 161);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(86, 165);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // label1
@@ -149,22 +149,22 @@
             this.flowLayoutPanel2.Location = new System.Drawing.Point(410, 2);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(268, 161);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(268, 165);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
-            // textBox1
+            // stuName_tbx
             // 
             this.textBox1.Location = new System.Drawing.Point(2, 34);
             this.textBox1.Margin = new System.Windows.Forms.Padding(2, 34, 2, 2);
-            this.textBox1.Name = "textBox1";
+            this.textBox1.Name = "stuName_tbx";
             this.textBox1.Size = new System.Drawing.Size(208, 25);
             this.textBox1.TabIndex = 3;
             // 
-            // textBox2
+            // calssName_tbx
             // 
             this.textBox2.Location = new System.Drawing.Point(2, 95);
             this.textBox2.Margin = new System.Windows.Forms.Padding(2, 34, 2, 2);
-            this.textBox2.Name = "textBox2";
+            this.textBox2.Name = "calssName_tbx";
             this.textBox2.Size = new System.Drawing.Size(208, 25);
             this.textBox2.TabIndex = 4;
             // 
@@ -177,7 +177,7 @@
             this.flowLayoutPanel3.Location = new System.Drawing.Point(682, 2);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(100, 161);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(100, 165);
             this.flowLayoutPanel3.TabIndex = 3;
             // 
             // label4
@@ -212,7 +212,7 @@
             this.flowLayoutPanel4.Location = new System.Drawing.Point(786, 2);
             this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(275, 161);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(275, 165);
             this.flowLayoutPanel4.TabIndex = 4;
             // 
             // textBox4
@@ -233,7 +233,7 @@
             // 
             // return_button
             // 
-            this.return_button.Location = new System.Drawing.Point(533, 533);
+            this.return_button.Location = new System.Drawing.Point(533, 529);
             this.return_button.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.return_button.Name = "return_button";
             this.return_button.Size = new System.Drawing.Size(135, 38);
@@ -252,7 +252,7 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 169F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 173F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1067, 748);
             this.tableLayoutPanel1.TabIndex = 11;
@@ -265,13 +265,13 @@
             this.tableLayoutPanel3.Controls.Add(this.return_button, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.BorrowView, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 172);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 176);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1061, 573);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(1061, 569);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // BorrowView
@@ -283,7 +283,7 @@
             this.BorrowView.Name = "BorrowView";
             this.BorrowView.RowHeadersWidth = 51;
             this.BorrowView.RowTemplate.Height = 27;
-            this.BorrowView.Size = new System.Drawing.Size(1055, 525);
+            this.BorrowView.Size = new System.Drawing.Size(1055, 521);
             this.BorrowView.TabIndex = 3;
             // 
             // ReturnForm

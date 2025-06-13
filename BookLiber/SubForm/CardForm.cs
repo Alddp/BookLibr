@@ -14,16 +14,16 @@ namespace BookLiber {
         }
 
         private void CardForm_Load(object sender, EventArgs e) {
-            carnumtxt.Text = DateTime.Now.ToString("yyyyMMddHHmmssff");
+            carNum_txb.Text = DateTime.Now.ToString("yyyyMMddHHmmssff");
         }
 
         private void submit_button_Click(object sender, EventArgs e) {
             Reader user = new Reader {
-                CardNum = carnumtxt.Text.Trim(),
-                UserName = usernametxt.Text.Trim(),
-                StudentId = stuIDtxt.Text.Trim(),
-                Phone = phonetxt.Text.Trim(),
-                ClassName = classtxt.Text.Trim(),
+                CardNum = carNum_txb.Text.Trim(),
+                UserName = userName_tbx.Text.Trim(),
+                StudentId = stuId_tbx.Text.Trim(),
+                Phone = phone_tbx.Text.Trim(),
+                ClassName = calssName_tbx.Text.Trim(),
             };
             // 如果图片不存在则为空字符串, 如果图片存在则为图片路径
             user.Photo = File.Exists($".\\Images\\{user.CardNum}.jpg") ? $".\\Images\\{user.CardNum}.jpg" : "";
@@ -55,7 +55,7 @@ namespace BookLiber {
                 }
 
                 pictureBox1.Image = Image.FromFile(openFile.FileName);
-                File.Copy(openFile.FileName, ".\\Images\\" + carnumtxt.Text + ".jpg", true);
+                File.Copy(openFile.FileName, ".\\Images\\" + carNum_txb.Text + ".jpg", true);
             } else
                 return;
         }
