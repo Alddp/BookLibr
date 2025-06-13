@@ -146,24 +146,39 @@ namespace BookDAL {
             return DBHelper.ExNonQuery(sql, parameters);
         }
 
-        // 查询图书借阅占比, 排行
-
-        public static SqlDataReader SearchHotBook(string bookId) {
+        /// <summary>
+        /// 查询图书借阅占比, 排行
+        /// </summary>
+        /// <returns>
+        /// reader[bookIdFiledId]
+        /// reader[bookNameFieldId]
+        /// reader["BorrowCount"]
+        /// </returns>
+        public static SqlDataReader SearchHotBook() {
             string bookTable = BookTableFields.TableName;
             string borrowTable = BorrowTableFields.TableName;
-            string bookIdFiledId = BorrowTableFields.BookId;
-            string bookNameFieldId = BookTableFields.BookName;
+            //string bookIdFiledId = BorrowTableFields.BookId;
+            //string bookNameFieldId = BookTableFields.BookName;
 
-            string sql = $@"SELECT {bookIdFiledId}, {bookNameFieldId},
-                COUNT({bookIdFiledId}) AS BorrowCount,
-                FORMAT(
-                    COUNT({bookIdFiledId}) * 1.0 / (SELECT COUNT(*) FROM {borrowTable}), 
-                    'P2'  -- 保留2位百分比的百分比格式
-                ) AS BorrowPercentage
-                FROM {bookTable}
-                LEFT JOIN Borrow ON {bookIdFiledId} = {bookIdFiledId}
-                GROUP BY {bookIdFiledId}, {bookNameFieldId}
-                ORDER BY BorrowCount DESC;";
+            //string sql = $@"SELECT {bookTable}.{bookIdFiledId}, {bookTable}.{bookNameFieldId},
+            //    COUNT({borrowTable}.{bookIdFiledId}) AS BorrowCount,
+            //    FORMAT(
+            //        COUNT({borrowTable}.{bookIdFiledId}) * 1.0 / (SELECT COUNT(*) FROM {borrowTable}), 
+            //        'P2'  -- 保留2位百分比的百分比格式
+            //    ) AS BorrowPercentage
+            //    FROM {bookTable}
+            //    LEFT JOIN {borrowTable} ON {bookTable}.{bookIdFiledId} = {borrowTable}.{bookIdFiledId}
+            //    GROUP BY {bookTable}.{bookIdFiledId}, {bookTable}.{bookNameFieldId}
+            //    ORDER BY BorrowCount DESC;";
+            // TODO: 添加Book相关信息列
+            string sql = $@"SELECT b.{BookTableFields.BookId} AS BookId, b.{BookTableFields.BookName} AS BookName,
+                    COUNT(br.{BorrowTableFields.BookId}) AS BorrowCount,
+                    FORMAT(COUNT(*) * 1.0 / total.total_count, 'P2') AS BorrowPercentage
+                FROM {bookTable} b
+                LEFT JOIN {borrowTable} br ON b.{BookTableFields.BookId} = br.{BorrowTableFields.BookId}
+                CROSS JOIN (SELECT COUNT(*) AS total_count FROM {borrowTable}) AS total
+                GROUP BY b.{BookTableFields.BookId}, b.{BookTableFields.BookName}, total.total_count
+                ORDER BY BorrowCount DESC";
 
             return DBHelper.ExecuteReader(sql);
         }

@@ -36,8 +36,8 @@ namespace BookLiber {
             bookList.Add(new Book() {
                 BookName = bookName_tbx.Text.Trim(),
                 Author = author_tbx.Text.Trim(),
-                Inventory = int.Parse(inventory_tbx.Text),
-                Price = decimal.Parse(price_tbx.Text),
+                Inventory = inventory_tbx.Text,
+                Price = price_tbx.Text,
                 ISBN = ISBN_tbx.Text.Trim(),
                 ShelfId = int.Parse(shelfId_tbx.Text.Trim()),
                 Picture = "test"

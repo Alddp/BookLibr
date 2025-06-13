@@ -1,13 +1,14 @@
 ﻿namespace BookModels {
 
     public class Book {
-        public int BookId { get; set; }
+        public string BookId { get; set; }
         public string BookName { get; set; }
         public string Author { get; set; }
         public string ISBN { get; set; }
-        public decimal Price { get; set; }
-        public int Inventory { get; set; }
+        public string Price { get; set; }
+        public string Inventory { get; set; }
         public string Picture { get; set; }
         public int ShelfId { get; set; }
+        public string PopulerPercent { get; set; }
     }
 }

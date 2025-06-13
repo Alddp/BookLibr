@@ -14,6 +14,9 @@ namespace BookLiber {
         }
 
         private void ReturnForm_Load(object sender, System.EventArgs e) {
+            textBox1.Text = Reader.Instance.UserId;
+            textBox2.Text = Reader.Instance.UserName;
+
             // 准备表格
             BorrowView.Columns.Clear();
 

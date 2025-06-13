@@ -35,8 +35,8 @@ namespace BookLiber.MainWindow {
             }
             Reader.Instance = sutInfoRes.Data;
             // 显示用户信息
-            cardNum_tbx.Text = Reader.Instance.CardNum;
-            userName_tbx.Text = Reader.Instance.UserName;
+            cardNum_lb.Text= Reader.Instance.CardNum;
+            userName_lb.Text = Reader.Instance.UserName;
             pictureBox1.ImageLocation = Reader.Instance.Photo;
         }
 
@@ -99,9 +99,33 @@ namespace BookLiber.MainWindow {
         }
 
         private void BorrowForm_Load(object sender, EventArgs e) {
-            cardNum_tbx.Text = Reader.Instance.CardNum;
-            userName_tbx.Text = Reader.Instance.UserName;
+            cardNum_lb.Text = Reader.Instance.CardNum;
+            userName_lb.Text = Reader.Instance.UserName;
             pictureBox1.ImageLocation = Reader.Instance.Photo;
+            var hotBooks = BookManager.GetPopulerBooks();
+            
+            if (!hotBooks.Success) {
+                MessageBox.Show(hotBooks.Message);
+                return;
+            }
+            // 设置视图为Details
+            listView1.View = View.Details;
+            listView1.Columns.Add("书名", 100);
+            listView1.Columns.Add("热度", 100);
+
+            foreach (var book in hotBooks.Data) {
+                ListViewItem item = new ListViewItem(book.BookName.ToString());
+                item.SubItems.Add(book.PopulerPercent.ToString());
+                listView1.Items.Add(item);
+            }
+        }
+
+        private void listView1_Click(object sender, EventArgs e) {
+            if (listView1.SelectedItems.Count > 0) {
+                // 获取第一个选中的项目
+                ListViewItem selectedItem = listView1.SelectedItems[0];
+                search_tbx.Text = selectedItem.Text; 
+            }
         }
     }
 }

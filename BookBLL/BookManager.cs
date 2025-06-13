@@ -55,12 +55,12 @@ namespace BookBLL {
                 using (var reader = BookService.SearchBook(info)) {
                     while (reader.Read()) {
                         books.Add(new Book {
-                            BookId = (int)reader["BookId"],
+                            BookId = reader["BookId"].ToString(),
                             BookName = reader["BookName"].ToString(),
                             Author = reader["Author"].ToString(),
                             ISBN = reader["ISBN"].ToString(),
-                            Price = (decimal)reader["Price"],
-                            Inventory = (int)reader["Inventory"],
+                            Price = reader["Price"].ToString(),
+                            Inventory = reader["Inventory"].ToString(),
                             Picture = reader["Picture"].ToString(),
                             ShelfId = (int)reader["ShelfId"]
                         });
@@ -112,6 +112,29 @@ namespace BookBLL {
             return res.Success
                 ? res.Data.Count >= 0 ? res : OperationResult<BindingList<Borrow>>.Fail(ErrorCode.BorrowRecordNotFound)
                 : res;
+        }
+
+        public static OperationResult<List<Book>> GetPopulerBooks() {
+            var res = ResultWrapper.Wrap(() => {
+                var books = new List<Book>();
+                using (var reader = BookService.SearchHotBook()) {
+                    string bookIdFiledId = BorrowTableFields.BookId;
+                    string bookNameFieldId = BookTableFields.BookName;
+                    string authorFieldId = BookTableFields.Author;
+                    string ISBNFieldId = BookTableFields.ISBN;
+                    while (reader.Read()) {
+                        books.Add(new Book {
+                            BookName = reader[bookNameFieldId].ToString(),
+                            BookId = reader[bookIdFiledId].ToString(),
+                            //Author = reader[authorFieldId].ToString(),
+                            //ISBN = reader[ISBNFieldId].ToString(),
+                            PopulerPercent = reader["BorrowPercentage"].ToString(),
+                        });
+                    }
+                }
+                return books;
+            });
+            return res;
         }
     }
 }
