@@ -35,8 +35,8 @@ namespace BookLiber.MainWindow {
             }
             Reader.Instance = sutInfoRes.Data;
             // 显示用户信息
-            textBox1.Text = Reader.Instance.CardNum;
-            textBox2.Text = Reader.Instance.UserName;
+            cardNum_tbx.Text = Reader.Instance.CardNum;
+            userName_tbx.Text = Reader.Instance.UserName;
             pictureBox1.ImageLocation = Reader.Instance.Photo;
         }
 
@@ -67,7 +67,7 @@ namespace BookLiber.MainWindow {
         }
 
         private void button4_Click(object sender, EventArgs e) {
-            string info = textBox3.Text;
+            string info = search_tbx.Text;
 
             var res = BookManager.SearchBook(info);
 
@@ -96,6 +96,12 @@ namespace BookLiber.MainWindow {
             //dataGridView1.Columns["Title"].HeaderText = "书名";
             //dataGridView1.Columns["Author"].HeaderText = "作者";
             //dataGridView1.Columns["Stock"].HeaderText = "库存";
+        }
+
+        private void BorrowForm_Load(object sender, EventArgs e) {
+            cardNum_tbx.Text = Reader.Instance.CardNum;
+            userName_tbx.Text = Reader.Instance.UserName;
+            pictureBox1.ImageLocation = Reader.Instance.Photo;
         }
     }
 }
