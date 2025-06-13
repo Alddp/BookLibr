@@ -16,30 +16,30 @@ namespace BookLiber {
         }
 
         private void add_button_Click(object sender, System.EventArgs e) {
-            string bookName = textBox1.Text.Trim();
-            string author = textBox2.Text.Trim();
+            string bookName = ISBN_tbx.Text.Trim();
+            string author = bookName_tbx.Text.Trim();
 
-            if (!int.TryParse(textBox3.Text, out int Inventory)) {
+            if (!int.TryParse(author_tbx.Text, out int Inventory)) {
                 MessageBox.Show("库存输入无效，请输入有效的数字");
                 return;
             }
-            if (!decimal.TryParse(textBox5.Text, out decimal price)) {
+            if (!decimal.TryParse(price_tbx.Text, out decimal price)) {
                 MessageBox.Show("价格输入无效，请输入有效的数字");
                 return;
             }
 
-            string ISBN = textBox4.Text.Trim();
-            string shelfId = textBox6.Text.Trim();
+            string ISBN = inventory_tbx.Text.Trim();
+            string shelfId = shelfId_tbx.Text.Trim();
             // TODO: 添加图片控件
             string picture = "test";
 
             bookList.Add(new Book() {
-                BookName = textBox1.Text.Trim(),
-                Author = textBox2.Text.Trim(),
-                Inventory = int.Parse(textBox3.Text),
-                Price = decimal.Parse(textBox5.Text),
-                ISBN = textBox4.Text.Trim(),
-                ShelfId = int.Parse(textBox6.Text.Trim()),
+                BookName = bookName_tbx.Text.Trim(),
+                Author = author_tbx.Text.Trim(),
+                Inventory = int.Parse(inventory_tbx.Text),
+                Price = decimal.Parse(price_tbx.Text),
+                ISBN = ISBN_tbx.Text.Trim(),
+                ShelfId = int.Parse(shelfId_tbx.Text.Trim()),
                 Picture = "test"
             });
         }
@@ -59,6 +59,9 @@ namespace BookLiber {
 
         private void AddBookForm_Load(object sender, EventArgs e) {
             dataGridView1.DataSource = bookList;
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
         }
     }
 }
