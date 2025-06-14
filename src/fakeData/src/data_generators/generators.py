@@ -149,7 +149,13 @@ def generate_admins(n=5):
     """
     admins = []
     # 预生成管理员数据
-    usernames = [fake.user_name()[:50] for _ in range(n)]  # 限制长度在50以内
+    usernames = set()  # 使用集合来存储已生成的用户名
+    while len(usernames) < n:
+        username = fake.user_name()[:50]  # 限制长度在50以内
+        if username not in usernames:  # 确保用户名唯一
+            usernames.add(username)
+
+    usernames = list(usernames)  # 转换回列表
     passwords = [fake.password(length=10)[:255] for _ in range(n)]  # 限制长度在255以内
     phones = [fake.phone_number()[:20] for _ in range(n)]  # 限制长度在20以内
 
