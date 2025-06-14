@@ -1,14 +1,51 @@
 import pandas as pd
+import os
 
 
-def save_to_excel(data_dict, filename="library_data.xlsx"):
+def save_to_excel(data, filename):
     """
-    将数据保存到Excel文件中
+    将数据保存到Excel文件
+    如果文件已存在，则追加数据到相应的sheet中，保留其他sheet
     """
-    with pd.ExcelWriter(filename) as writer:
-        for sheet_name, data in data_dict.items():
-            df = pd.DataFrame(data)
-            df.to_excel(writer, sheet_name=sheet_name, index=False)
+    try:
+        # 检查文件是否存在
+        if os.path.exists(filename):
+            # 读取现有的Excel文件
+            existing_data = pd.read_excel(filename, sheet_name=None)
+
+            # 更新数据
+            for sheet_name, df in data.items():
+                if sheet_name in existing_data:
+                    # 如果sheet已存在，追加数据
+                    existing_df = existing_data[sheet_name]
+                    new_df = pd.DataFrame(df)
+                    # 合并数据并去重
+                    combined_df = pd.concat([existing_df, new_df], ignore_index=True)
+                    combined_df = combined_df.drop_duplicates()
+                    data[sheet_name] = combined_df
+                else:
+                    # 如果sheet不存在，直接使用新数据
+                    data[sheet_name] = pd.DataFrame(df)
+
+            # 将现有的其他sheet添加到data中
+            for sheet_name, df in existing_data.items():
+                if sheet_name not in data:
+                    data[sheet_name] = df
+        else:
+            # 如果文件不存在，将所有数据转换为DataFrame
+            for sheet_name, df in data.items():
+                data[sheet_name] = pd.DataFrame(df)
+
+        # 保存到Excel
+        with pd.ExcelWriter(filename, engine="openpyxl") as writer:
+            for sheet_name, df in data.items():
+                df.to_excel(writer, sheet_name=sheet_name, index=False)
+
+        print(f"数据已保存到Excel文件: {filename}")
+
+    except Exception as e:
+        print(f"保存到Excel时发生错误: {str(e)}")
+        raise
 
 
 def import_from_excel(filename, conn_str):

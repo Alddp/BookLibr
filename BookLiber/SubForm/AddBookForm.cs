@@ -62,6 +62,24 @@ namespace BookLiber {
         }
 
         private void button1_Click(object sender, EventArgs e) {
+            string filePath = string.Empty;
+            using (OpenFileDialog openFileDialog = new OpenFileDialog()) {
+                openFileDialog.Filter = "Excel Files|*.xlsx";
+                openFileDialog.Title = "选择Excel文件";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK) {
+                    filePath = openFileDialog.FileName;
+                }
+            }
+            if (filePath == string.Empty) {
+                MessageBox.Show("未选择文件");
+                return;
+            }
+            var result = BookManager.ImportBooksFromExcel(filePath);
+
+            if (result.Success) {
+                MessageBox.Show(result.Message, "执行完成", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

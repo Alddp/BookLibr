@@ -55,6 +55,9 @@ def parse_args(args=None):
     generate_parser.add_argument(
         "--db", action="store_true", help="生成数据时同时插入数据库"
     )
+    generate_parser.add_argument(
+        "--new", action="store_true", help="如果输出文件已存在，则删除它并创建新文件"
+    )
 
     # 导入数据命令
     import_parser = subparsers.add_parser("import", help="从Excel导入数据")
@@ -85,6 +88,15 @@ def main(args=None):
     )
 
     if args.command == "generate":
+        # 如果指定了 --new 选项且文件存在，则删除文件
+        if args.new and os.path.exists(args.output):
+            try:
+                os.remove(args.output)
+                print(f"已删除现有文件: {args.output}")
+            except Exception as e:
+                print(f"删除文件时发生错误: {str(e)}")
+                return
+
         # 生成数据
         data = {}
 
@@ -93,25 +105,24 @@ def main(args=None):
 
         if args.table == "all" or args.table == "book":
             shelves = data.get("Bookshelf", generate_bookshelves(args.count))
-            data["Book"] = generate_books(shelves, args.count * 5)
+            data["Book"] = generate_books(shelves, args.count)
 
         if args.table == "all" or args.table == "user":
             data["UserTable"] = generate_users(args.count)
 
         if args.table == "all" or args.table == "admin":
-            data["Admin"] = generate_admins(args.count // 2)
+            data["Admin"] = generate_admins(args.count)
 
         if args.table == "all" or args.table == "borrow":
             users = data.get("UserTable", generate_users(args.count))
             books = data.get(
-                "Book", generate_books(generate_bookshelves(args.count), args.count * 5)
+                "Book", generate_books(generate_bookshelves(args.count), args.count)
             )
-            admins = data.get("Admin", generate_admins(args.count // 2))
-            data["Borrow"] = generate_borrows(users, books, admins, args.count * 10)
+            admins = data.get("Admin", generate_admins(args.count))
+            data["Borrow"] = generate_borrows(users, books, admins, args.count)
 
         # 保存到Excel
         save_to_excel(data, args.output)
-        print(f"数据已保存到Excel文件: {args.output}")
 
         # 根据参数决定是否插入数据库
         if args.db:
