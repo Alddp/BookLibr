@@ -1,130 +1,92 @@
-﻿using BookLiber.MainWindow;
-using System;
+﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using BookLiber.MainWindow;
+using MaterialSkin.Controls;
 
 namespace BookLiber.Forms {
 
-    public partial class MainForm : Form {
+    public partial class MainForm : MaterialForm {
+        private ReadCardForm readCardForm;
+        private BorrowForm borrowForm;
+        private ReturnForm returnForm;
+        private CardForm cardForm;
+        private AddBookForm addBookForm;
 
         public MainForm() {
             InitializeComponent();
-            this.IsMdiContainer = true; // 必须添加：启用MDI容器
+            InitializeForms();
         }
 
-        // 通用方法：关闭所有其他MDI子窗体
-        private void CloseOtherMdiChildren(Form currentForm) {
-            foreach (Form childForm in this.MdiChildren) {
-                if (childForm != currentForm && !childForm.IsDisposed) {
-                    childForm.Close(); // 关闭其他窗体
+        private void InitializeForms() {
+            // 初始化所有窗体
+            readCardForm = new ReadCardForm();
+            borrowForm = new BorrowForm();
+            returnForm = new ReturnForm();
+            cardForm = new CardForm();
+            addBookForm = new AddBookForm();
+
+            // 设置窗体属性
+            foreach (
+                var form in new Form[]
+                {
+                    readCardForm,
+                    borrowForm,
+                    returnForm,
+                    cardForm,
+                    addBookForm,
                 }
+            ) {
+                form.TopLevel = false;
+                form.FormBorderStyle = FormBorderStyle.None;
+                form.Dock = DockStyle.Fill;
             }
+
+            // 将窗体添加到对应的标签页
+            tabPage1.Controls.Add(readCardForm);
+            tabPage2.Controls.Add(borrowForm);
+            tabPage3.Controls.Add(returnForm);
+            tabPage4.Controls.Add(cardForm);
+            tabPage5.Controls.Add(addBookForm);
+
+            // 显示第一个窗体
+            readCardForm.Show();
         }
 
         private void MainForm_Load(object sender, EventArgs e) {
-            读卡ToolStripMenuItem_Click(sender, e);
+            materialTabControl1.SelectedIndex = 0;
         }
 
-        private void 读卡ToolStripMenuItem_Click(object sender, EventArgs e) {
-            var existingForm = this.MdiChildren.FirstOrDefault(f => f is BorrowForm);
-            if (existingForm != null) {
-                existingForm.Activate();
-                return;
+        private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e) {
+            // 隐藏所有窗体
+            readCardForm.Hide();
+            borrowForm.Hide();
+            returnForm.Hide();
+            cardForm.Hide();
+            addBookForm.Hide();
+
+            // 显示选中的窗体
+            switch (materialTabControl1.SelectedIndex) {
+                case 0:
+                    readCardForm.Show();
+                    break;
+
+                case 1:
+                    borrowForm.Show();
+                    break;
+
+                case 2:
+                    returnForm.Show();
+                    break;
+
+                case 3:
+                    cardForm.Show();
+                    break;
+
+                case 4:
+                    addBookForm.Show();
+                    break;
             }
-
-            CloseOtherMdiChildren(null);
-
-            ReadCardForm readCardForm = new ReadCardForm();
-            readCardForm.Visible = true;
-            // 2. 设置子窗体为非顶级窗体（不独立显示）
-            readCardForm.TopLevel = false;
-            // 4. 设置子窗体填充 Panel
-            readCardForm.Dock = DockStyle.Fill;
-            // 5. 清空 Panel 的现有控件（可选，防止多个子窗体叠加）
-            tableLayoutPanel1.Controls.Clear();
-            tableLayoutPanel1.Controls.Add(readCardForm);
-        }
-
-        // 还书记录菜单
-        private void 还书记录ToolStripMenuItem_Click(object sender, EventArgs e) {
-            var existingForm = this.MdiChildren.FirstOrDefault(f => f is ReturnForm);
-            if (existingForm != null) {
-                existingForm.Activate();
-                return;
-            }
-
-            CloseOtherMdiChildren(null);
-
-            ReturnForm returnForm = new ReturnForm();
-            returnForm.Visible = true;
-            // 2. 设置子窗体为非顶级窗体（不独立显示）
-            returnForm.TopLevel = false;
-            // 4. 设置子窗体填充 Panel
-            returnForm.Dock = DockStyle.Fill;
-            // 5. 清空 Panel 的现有控件（可选，防止多个子窗体叠加）
-            tableLayoutPanel1.Controls.Clear();
-            tableLayoutPanel1.Controls.Add(returnForm);
-        }
-
-        // 借书记录菜单
-        private void 借书记录ToolStripMenuItem_Click(object sender, EventArgs e) {
-            var existingForm = this.MdiChildren.FirstOrDefault(f => f is BorrowForm);
-            if (existingForm != null) {
-                existingForm.Activate();
-                return;
-            }
-
-            CloseOtherMdiChildren(null);
-
-            BorrowForm borrowForm = new BorrowForm();
-            borrowForm.Visible = true;
-            // 2. 设置子窗体为非顶级窗体（不独立显示）
-            borrowForm.TopLevel = false;
-            // 4. 设置子窗体填充 Panel
-            borrowForm.Dock = DockStyle.Fill;
-            // 5. 清空 Panel 的现有控件（可选，防止多个子窗体叠加）
-            tableLayoutPanel1.Controls.Clear();
-            tableLayoutPanel1.Controls.Add(borrowForm);
-        }
-
-        // 开卡菜单
-        private void 开卡ToolStripMenuItem_Click(object sender, EventArgs e) {
-            var existingForm = this.MdiChildren.FirstOrDefault(f => f is CardForm);
-            if (existingForm != null) {
-                existingForm.Activate();
-                return;
-            }
-
-            CardForm cardForm = new CardForm();
-            cardForm.Visible = true;
-            // 2. 设置子窗体为非顶级窗体（不独立显示）
-            cardForm.TopLevel = false;
-            // 4. 设置子窗体填充 Panel
-            cardForm.Dock = DockStyle.Fill;
-            // 5. 清空 Panel 的现有控件（可选，防止多个子窗体叠加）
-            tableLayoutPanel1.Controls.Clear();
-            tableLayoutPanel1.Controls.Add(cardForm);
-        }
-
-        // 书籍入库菜单
-        private void 书籍入库ToolStripMenuItem_Click(object sender, EventArgs e) {
-            var existingForm = this.MdiChildren.FirstOrDefault(f => f is AddBookForm);
-            if (existingForm != null) {
-                existingForm.Activate();
-                return;
-            }
-
-            CloseOtherMdiChildren(null);
-
-            AddBookForm addBookForm = new AddBookForm();
-            addBookForm.Visible = true;
-            // 2. 设置子窗体为非顶级窗体（不独立显示）
-            addBookForm.TopLevel = false;
-            // 4. 设置子窗体填充 Panel
-            addBookForm.Dock = DockStyle.Fill;
-            // 5. 清空 Panel 的现有控件（可选，防止多个子窗体叠加）
-            tableLayoutPanel1.Controls.Clear();
-            tableLayoutPanel1.Controls.Add(addBookForm);
         }
     }
 }

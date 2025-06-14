@@ -1,7 +1,6 @@
-﻿namespace BookLiber.Forms
-{
-    partial class MainForm
-    {
+﻿namespace BookLiber.Forms {
+    partial class MainForm {
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -11,10 +10,8 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
+        protected override void Dispose(bool disposing) {
+            if (disposing && (components != null)) {
                 components.Dispose();
             }
             base.Dispose(disposing);
@@ -26,120 +23,129 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
-            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.借书ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.还书SToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.开卡ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.书籍入库ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.读卡ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
-            this.menuStrip1.SuspendLayout();
+        private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.materialTabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // fileSystemWatcher1
+            // imageList1
             // 
-            this.fileSystemWatcher1.EnableRaisingEvents = true;
-            this.fileSystemWatcher1.SynchronizingObject = this;
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "借书.png");
+            this.imageList1.Images.SetKeyName(1, "name-card.png");
+            this.imageList1.Images.SetKeyName(2, "实物借阅.png");
+            this.imageList1.Images.SetKeyName(3, "入库管理.png");
+            this.imageList1.Images.SetKeyName(4, "认证a.png");
             // 
-            // 借书ToolStripMenuItem
+            // materialTabControl1
             // 
-            this.借书ToolStripMenuItem.Name = "借书ToolStripMenuItem";
-            this.借书ToolStripMenuItem.Size = new System.Drawing.Size(53, 28);
-            this.借书ToolStripMenuItem.Text = "借书";
-            this.借书ToolStripMenuItem.Click += new System.EventHandler(this.借书记录ToolStripMenuItem_Click);
+            this.materialTabControl1.Controls.Add(this.tabPage1);
+            this.materialTabControl1.Controls.Add(this.tabPage2);
+            this.materialTabControl1.Controls.Add(this.tabPage3);
+            this.materialTabControl1.Controls.Add(this.tabPage4);
+            this.materialTabControl1.Controls.Add(this.tabPage5);
+            this.materialTabControl1.Depth = 0;
+            this.materialTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialTabControl1.ImageList = this.imageList1;
+            this.materialTabControl1.Location = new System.Drawing.Point(3, 64);
+            this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialTabControl1.Multiline = true;
+            this.materialTabControl1.Name = "materialTabControl1";
+            this.materialTabControl1.SelectedIndex = 0;
+            this.materialTabControl1.Size = new System.Drawing.Size(1069, 714);
+            this.materialTabControl1.TabIndex = 10;
+            this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.materialTabControl1_SelectedIndexChanged);
             // 
-            // 还书SToolStripMenuItem
+            // tabPage1
             // 
-            this.还书SToolStripMenuItem.Name = "还书SToolStripMenuItem";
-            this.还书SToolStripMenuItem.Size = new System.Drawing.Size(53, 28);
-            this.还书SToolStripMenuItem.Text = "还书";
-            this.还书SToolStripMenuItem.Click += new System.EventHandler(this.还书记录ToolStripMenuItem_Click);
+            this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.ImageKey = "name-card.png";
+            this.tabPage1.Location = new System.Drawing.Point(4, 27);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1061, 683);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "读卡";
             // 
-            // 开卡ToolStripMenuItem
+            // tabPage2
             // 
-            this.开卡ToolStripMenuItem.Name = "开卡ToolStripMenuItem";
-            this.开卡ToolStripMenuItem.Size = new System.Drawing.Size(53, 28);
-            this.开卡ToolStripMenuItem.Text = "开卡";
-            this.开卡ToolStripMenuItem.Click += new System.EventHandler(this.开卡ToolStripMenuItem_Click);
+            this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.ImageKey = "借书.png";
+            this.tabPage2.Location = new System.Drawing.Point(4, 27);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1061, 683);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "借书";
             // 
-            // 书籍入库ToolStripMenuItem
+            // tabPage3
             // 
-            this.书籍入库ToolStripMenuItem.Name = "书籍入库ToolStripMenuItem";
-            this.书籍入库ToolStripMenuItem.Size = new System.Drawing.Size(83, 28);
-            this.书籍入库ToolStripMenuItem.Text = "书籍入库";
-            this.书籍入库ToolStripMenuItem.Click += new System.EventHandler(this.书籍入库ToolStripMenuItem_Click);
+            this.tabPage3.BackColor = System.Drawing.Color.White;
+            this.tabPage3.ImageKey = "实物借阅.png";
+            this.tabPage3.Location = new System.Drawing.Point(4, 27);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1061, 683);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "还书";
             // 
-            // menuStrip1
+            // tabPage4
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.读卡ToolStripMenuItem,
-            this.借书ToolStripMenuItem,
-            this.还书SToolStripMenuItem,
-            this.开卡ToolStripMenuItem,
-            this.书籍入库ToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(1057, 30);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.tabPage4.BackColor = System.Drawing.Color.White;
+            this.tabPage4.ImageKey = "认证a.png";
+            this.tabPage4.Location = new System.Drawing.Point(4, 27);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1061, 683);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "开卡";
             // 
-            // 读卡ToolStripMenuItem
+            // tabPage5
             // 
-            this.读卡ToolStripMenuItem.Name = "读卡ToolStripMenuItem";
-            this.读卡ToolStripMenuItem.Size = new System.Drawing.Size(53, 28);
-            this.读卡ToolStripMenuItem.Text = "读卡";
-            this.读卡ToolStripMenuItem.Click += new System.EventHandler(this.读卡ToolStripMenuItem_Click);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 96.69604F));
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 30);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84.88701F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1057, 704);
-            this.tableLayoutPanel1.TabIndex = 7;
+            this.tabPage5.BackColor = System.Drawing.Color.White;
+            this.tabPage5.ImageKey = "入库管理.png";
+            this.tabPage5.Location = new System.Drawing.Point(4, 27);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(1061, 683);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "书籍入库";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1057, 734);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.menuStrip1);
+            this.ClientSize = new System.Drawing.Size(1075, 781);
+            this.Controls.Add(this.materialTabControl1);
+            this.DrawerShowIconsWhenHidden = true;
+            this.DrawerTabControl = this.materialTabControl1;
             this.IsMdiContainer = true;
-            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(1075, 781);
             this.Name = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.materialTabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.IO.FileSystemWatcher fileSystemWatcher1;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem 借书ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 还书SToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 开卡ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 书籍入库ToolStripMenuItem;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.ToolStripMenuItem 读卡ToolStripMenuItem;
+
+        private System.Windows.Forms.ImageList imageList1;
+        private MaterialSkin.Controls.MaterialTabControl materialTabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabPage5;
     }
 }
