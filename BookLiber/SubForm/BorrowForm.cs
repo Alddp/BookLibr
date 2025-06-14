@@ -35,7 +35,7 @@ namespace BookLiber.MainWindow {
             }
             Reader.Instance = sutInfoRes.Data;
             // 显示用户信息
-            cardNum_lb.Text= Reader.Instance.CardNum;
+            cardNum_lb.Text = Reader.Instance.CardNum;
             userName_lb.Text = Reader.Instance.UserName;
             pictureBox1.ImageLocation = Reader.Instance.Photo;
         }
@@ -103,7 +103,7 @@ namespace BookLiber.MainWindow {
             userName_lb.Text = Reader.Instance.UserName;
             pictureBox1.ImageLocation = Reader.Instance.Photo;
             var hotBooks = BookManager.GetPopulerBooks();
-            
+
             if (!hotBooks.Success) {
                 MessageBox.Show(hotBooks.Message);
                 return;
@@ -124,7 +124,7 @@ namespace BookLiber.MainWindow {
             if (listView1.SelectedItems.Count > 0) {
                 // 获取第一个选中的项目
                 ListViewItem selectedItem = listView1.SelectedItems[0];
-                search_tbx.Text = selectedItem.Text; 
+                search_tbx.Text = selectedItem.Text;
             }
         }
     }

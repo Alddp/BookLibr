@@ -6,6 +6,7 @@ using BookModels.Errors;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using static BookModels.Errors.ErrorMessages;
 
 namespace BookBLL {
@@ -133,6 +134,32 @@ namespace BookBLL {
                     }
                 }
                 return books;
+            });
+            return res;
+        }
+
+        // 批量从Excel导入书籍
+        public static OperationResult<int> ImportBooksFromExcel(string filePath) {
+            var res = ResultWrapper.Wrap(() => {
+                string exePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tools", "library_tool.exe");
+                string toolsDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "tools");
+
+                if (!File.Exists(exePath)) {
+                    throw new Exception("未找到数据生成工具，请确保tools/library_tool.exe文件存在");
+                }
+
+                var startInfo = new System.Diagnostics.ProcessStartInfo {
+                    FileName = "cmd.exe",
+                    Arguments = $"/k {exePath} import --table book --excel {filePath} --db",
+                    UseShellExecute = true,
+                    CreateNoWindow = false,
+                    WorkingDirectory = toolsDir
+                };
+
+                using (var process = System.Diagnostics.Process.Start(startInfo)) {
+                    process.WaitForExit();
+                    return 0;
+                }
             });
             return res;
         }

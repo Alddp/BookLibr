@@ -103,7 +103,6 @@ namespace BookDAL {
             return DBHelper.ExNonQuery(sql, parameters);
         }
 
-
         // 借书,添加操作员ID和借书时间
         public static int BorrowReaderBorroredBook(string userId, string bookId, string borrowOperId, DateTime borrowDate) {
             string tableName = BorrowTableFields.TableName;
@@ -149,29 +148,12 @@ namespace BookDAL {
         /// <summary>
         /// 查询图书借阅占比, 排行
         /// </summary>
-        /// <returns>
-        /// reader[bookIdFiledId]
-        /// reader[bookNameFieldId]
-        /// reader["BorrowCount"]
-        /// </returns>
+        /// <returns>reader[bookIdFiledId] reader[bookNameFieldId] reader["BorrowCount"]</returns>
         public static SqlDataReader SearchHotBook() {
             string bookTable = BookTableFields.TableName;
             string borrowTable = BorrowTableFields.TableName;
-            //string bookIdFiledId = BorrowTableFields.BookId;
-            //string bookNameFieldId = BookTableFields.BookName;
 
-            //string sql = $@"SELECT {bookTable}.{bookIdFiledId}, {bookTable}.{bookNameFieldId},
-            //    COUNT({borrowTable}.{bookIdFiledId}) AS BorrowCount,
-            //    FORMAT(
-            //        COUNT({borrowTable}.{bookIdFiledId}) * 1.0 / (SELECT COUNT(*) FROM {borrowTable}), 
-            //        'P2'  -- 保留2位百分比的百分比格式
-            //    ) AS BorrowPercentage
-            //    FROM {bookTable}
-            //    LEFT JOIN {borrowTable} ON {bookTable}.{bookIdFiledId} = {borrowTable}.{bookIdFiledId}
-            //    GROUP BY {bookTable}.{bookIdFiledId}, {bookTable}.{bookNameFieldId}
-            //    ORDER BY BorrowCount DESC;";
-            // TODO: 添加Book相关信息列
-            string sql = $@"SELECT b.{BookTableFields.BookId} AS BookId, b.{BookTableFields.BookName} AS BookName,
+            string sql = $@"SELECT TOP 30 b.{BookTableFields.BookId} AS BookId, b.{BookTableFields.BookName} AS BookName,
                     COUNT(br.{BorrowTableFields.BookId}) AS BorrowCount,
                     FORMAT(COUNT(*) * 1.0 / total.total_count, 'P2') AS BorrowPercentage
                 FROM {bookTable} b
