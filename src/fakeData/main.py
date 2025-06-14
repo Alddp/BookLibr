@@ -1,257 +1,154 @@
-import pandas as pd
-from faker import Faker
-import random
-from datetime import datetime, timedelta
-import pyodbc
+import os
+import sys
+import argparse
 
-import random
+# 添加项目根目录到系统路径
+current_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(current_dir)
 
-fake = Faker("zh_CN")
+from src.data_generators.generators import (
+    generate_bookshelves,
+    generate_books,
+    generate_users,
+    generate_admins,
+    generate_borrows,
+)
+from src.database.db_operations import insert_into_sqlserver
+from src.utils.excel_utils import save_to_excel, import_from_excel
+from src.utils.book_importer import import_books_from_file, validate_books
 
-
-def generate_bookshelves(n=10):
-    shelves = []
-    used_codes = set()
-    while len(shelves) < n:
-        shelf_code = f"{random.choice(['A', 'B', 'C', 'D'])}{random.randint(1,20)}"
-        if shelf_code in used_codes:
-            continue  # 已存在，跳过，重新生成
-        used_codes.add(shelf_code)
-        location = fake.address()
-        shelves.append({"ShelfCode": shelf_code, "Location": location})
-    return shelves
-
-
-def generate_books(shelves, n=50):
-    books = []
-    shelf_ids = list(range(1, len(shelves) + 1))
-    for _ in range(n):
-        book_name = fake.sentence(nb_words=4).rstrip(".")
-        author = fake.name()
-        isbn = fake.isbn13(separator="")
-        price = round(random.uniform(10, 200), 2)
-        inventory = random.randint(0, 20)
-        picture = f"/images/{book_name+author}.jpg"
-        shelf_id = random.choice(shelf_ids)
-        books.append(
-            {
-                "BookName": book_name,
-                "Author": author,
-                "ISBN": isbn,
-                "Price": price,
-                "Inventory": inventory,
-                "Picture": picture,
-                "ShelfId": shelf_id,
-            }
-        )
-    return books
+# 定义所有可用的表名
+AVAILABLE_TABLES = {
+    "bookshelf": "书架表",
+    "book": "图书表",
+    "user": "用户表",
+    "admin": "管理员表",
+    "borrow": "借阅记录表",
+    "all": "所有表",
+}
 
 
-def generate_users(n=10):
-    base_time_str = datetime.now().strftime("%Y%m%d%H%M%S%f")[:16]
-    users = []
-    for i in range(n):
-        card_num = f"{base_time_str}{i:03d}"  # 保证唯一
-        user_name = fake.name()
-        student_id = fake.bothify(text="???#####")  # 例如：ABC12345
-        phone = fake.phone_number()
-        user_class = fake.word().capitalize() + "班"
-        photo = f"photos/{card_num.replace(' ', '_')}.jpg"
-        start_time = datetime.now() - timedelta(days=fake.random_int(0, 365))
-        ending_time = start_time + timedelta(days=365)
-        users.append(
-            {
-                "CardNum": card_num,
-                "UserName": user_name,
-                "StudentID": student_id,
-                "Phone": phone,
-                "Class": user_class,
-                "Photo": photo,
-                "Start_Time": start_time.strftime("%Y-%m-%d %H:%M:%S"),
-                "Ending_Time": ending_time.strftime("%Y-%m-%d %H:%M:%S"),
-            }
-        )
-    return users
+def parse_args(args=None):
+    parser = argparse.ArgumentParser(description="图书管理系统数据生成和导入工具")
 
+    # 添加子命令
+    subparsers = parser.add_subparsers(dest="command", help="选择操作模式")
 
-def generate_admins(n=5):
-    admins = []
-    roles = ["超级管理员", "图书管理员"]
-    for _ in range(n):
-        username = fake.user_name()
-        pwd = fake.password(length=10)  # 实际项目中密码需加密存储
-        phone = fake.phone_number()
-        role = random.choice(roles)
-        admins.append({"Username": username, "Pwd": pwd, "Phone": phone, "Type": role})
-    return admins
-
-
-def generate_borrows(users, books, admins, n=100):
-    borrows = []
-    user_ids = list(range(1, len(users) + 1))
-    book_ids = list(range(1, len(books) + 1))
-    admin_ids = list(range(1, len(admins) + 1))
-    for _ in range(n):
-        user_id = random.choice(user_ids)
-        book_id = random.choice(book_ids)
-        borrow_admin_id = random.choice(admin_ids)
-        return_admin_id = random.choice(admin_ids)
-        borrow_date = fake.date_time_between(start_date="-1y", end_date="now")
-        if random.random() < 0.7:
-            return_date = borrow_date + timedelta(days=random.randint(1, 60))
-            if return_date > datetime.now():
-                return_date = None
-        else:
-            return_date = None
-        borrows.append(
-            {
-                "UserId": user_id,
-                "BookId": book_id,
-                "BorrowAdminId": borrow_admin_id,
-                "ReturnAdminId": return_admin_id,
-                "BorrowDate": borrow_date,
-                "ReturnDate": return_date,
-            }
-        )
-    return borrows
-
-
-def save_to_excel(data_dict, filename="library_data.xlsx"):
-    # data_dict = {"Bookshelf": [...], "Book": [...], "UserTable": [...], ...}
-    with pd.ExcelWriter(filename) as writer:
-        for sheet_name, data in data_dict.items():
-            df = pd.DataFrame(data)
-            df.to_excel(writer, sheet_name=sheet_name, index=False)
-    print(f"数据已保存到 Excel 文件: {filename}")
-
-
-def insert_into_sqlserver(data_dict, conn_str):
-    conn = pyodbc.connect(conn_str)
-    cursor = conn.cursor()
-
-    # 先插入Bookshelf，获取生成的ShelfId（identity自增）
-    cursor.fast_executemany = True
-
-    # Bookshelf
-    bookshelf_data = data_dict["Bookshelf"]
-    cursor.executemany(
-        "INSERT INTO Bookshelf (ShelfCode, Location) VALUES (?, ?)",
-        [(x["ShelfCode"], x["Location"]) for x in bookshelf_data],
+    # 生成数据命令
+    generate_parser = subparsers.add_parser("generate", help="生成假数据")
+    generate_parser.add_argument(
+        "--table",
+        type=str,
+        choices=list(AVAILABLE_TABLES.keys()),
+        default="all",
+        help="指定要生成数据的表（默认：all）",
     )
-    conn.commit()
-
-    # 取出ShelfId和对应的ShelfCode，方便后续Book关联
-    cursor.execute("SELECT ShelfId, ShelfCode FROM Bookshelf")
-    shelf_map = {row.ShelfCode: row.ShelfId for row in cursor.fetchall()}
-
-    # Book
-    book_data = data_dict["Book"]
-    # 替换ShelfId为数据库实际ID
-    books_to_insert = []
-    for book in book_data:
-        shelf_id = book["ShelfId"]
-        if isinstance(shelf_id, int):
-            real_shelf_id = shelf_id
-        else:
-            real_shelf_id = shelf_map.get(shelf_id, None)
-        books_to_insert.append(
-            (
-                book["BookName"],
-                book["Author"],
-                book["ISBN"],
-                book["Price"],
-                book["Inventory"],
-                book["Picture"],
-                real_shelf_id,
-            )
-        )
-    cursor.executemany(
-        """INSERT INTO Book (BookName, Author, ISBN, Price, Inventory, Picture, ShelfId)
-           VALUES (?, ?, ?, ?, ?, ?, ?)""",
-        books_to_insert,
+    generate_parser.add_argument(
+        "--count", type=int, default=10, help="生成数据的数量（默认：10）"
     )
-    conn.commit()
-
-    # UserTable
-    user_data = data_dict["UserTable"]
-    cursor.executemany(
-        """INSERT INTO UserTable 
-        (CardNum, UserName, StudentID, Phone, Class, Photo, Start_Time, Ending_Time)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
-        [
-            (
-                u["CardNum"],
-                u["UserName"],
-                u["StudentID"],
-                u["Phone"],
-                u["Class"],
-                u["Photo"],
-                u["Start_Time"],
-                u["Ending_Time"],
-            )
-            for u in user_data
-        ],
+    generate_parser.add_argument(
+        "--output",
+        type=str,
+        default="library_data.xlsx",
+        help="输出Excel文件名（默认：library_data.xlsx）",
     )
-    conn.commit()
-
-    # Admin
-    admin_data = data_dict["Admin"]
-    cursor.executemany(
-        "INSERT INTO Admin (Username, Pwd, Phone, Type) VALUES (?, ?, ?, ?)",
-        [(a["Username"], a["Pwd"], a["Phone"], a["Type"]) for a in admin_data],
+    generate_parser.add_argument(
+        "--db", action="store_true", help="生成数据时同时插入数据库"
     )
-    conn.commit()
 
-    # Borrow
-    borrow_data = data_dict["Borrow"]
-
-    # 这里假设UserId, BookId, AdminId就是插入时自增的顺序（先后顺序）
-    cursor.executemany(
-        """INSERT INTO Borrow
-        (UserId, BookId, BorrowAdminId, ReturnAdminId, BorrowDate, ReturnDate)
-        VALUES (?, ?, ?, ?, ?, ?)""",
-        [
-            (
-                b["UserId"],
-                b["BookId"],
-                b["BorrowAdminId"],
-                b["ReturnAdminId"],
-                b["BorrowDate"],
-                b["ReturnDate"],
-            )
-            for b in borrow_data
-        ],
+    # 导入数据命令
+    import_parser = subparsers.add_parser("import", help="从Excel导入数据")
+    import_parser.add_argument(
+        "--table",
+        type=str,
+        choices=list(AVAILABLE_TABLES.keys()),
+        default="all",
+        help="指定要导入数据的表（默认：all）",
     )
-    conn.commit()
+    import_parser.add_argument("--excel", type=str, required=True, help="Excel文件路径")
+    import_parser.add_argument(
+        "--db", action="store_true", help="导入数据时同时插入数据库"
+    )
 
-    cursor.close()
-    conn.close()
-    print("数据已成功插入 SQL Server 数据库。")
+    return parser.parse_args(args)
 
 
-if __name__ == "__main__":
-    shelves = generate_bookshelves()
-    books = generate_books(shelves)
-    users = generate_users()
-    admins = generate_admins()
-    borrows = generate_borrows(users, books, admins)
+def main(args=None):
+    args = parse_args(args)
 
-    data = {
-        "Bookshelf": shelves,
-        "Book": books,
-        "UserTable": users,
-        "Admin": admins,
-        "Borrow": borrows,
-    }
-
-    # save_to_excel(data, "library_data.xlsx")
-
-    # 请改成你自己的SQL Server连接字符串
+    # 数据库连接字符串
     conn_str = (
         "Driver={ODBC Driver 17 for SQL Server};"
-        "Server=.\SQLEXPRESS;"
+        r"Server=.\SQLEXPRESS;"
         "Database=LibrBook;"
         "Trusted_Connection=yes;"
     )
 
-    insert_into_sqlserver(data, conn_str)
+    if args.command == "generate":
+        # 生成数据
+        data = {}
+
+        if args.table == "all" or args.table == "bookshelf":
+            data["Bookshelf"] = generate_bookshelves(args.count)
+
+        if args.table == "all" or args.table == "book":
+            shelves = data.get("Bookshelf", generate_bookshelves(args.count))
+            data["Book"] = generate_books(shelves, args.count * 5)
+
+        if args.table == "all" or args.table == "user":
+            data["UserTable"] = generate_users(args.count)
+
+        if args.table == "all" or args.table == "admin":
+            data["Admin"] = generate_admins(args.count // 2)
+
+        if args.table == "all" or args.table == "borrow":
+            users = data.get("UserTable", generate_users(args.count))
+            books = data.get(
+                "Book", generate_books(generate_bookshelves(args.count), args.count * 5)
+            )
+            admins = data.get("Admin", generate_admins(args.count // 2))
+            data["Borrow"] = generate_borrows(users, books, admins, args.count * 10)
+
+        # 保存到Excel
+        save_to_excel(data, args.output)
+        print(f"数据已保存到Excel文件: {args.output}")
+
+        # 根据参数决定是否插入数据库
+        if args.db:
+            insert_into_sqlserver(data, conn_str)
+            print("数据已同时插入数据库")
+        else:
+            print("数据仅保存到Excel，未插入数据库")
+
+    elif args.command == "import":
+        if not args.excel:
+            raise ValueError("import模式需要指定--excel参数")
+
+        try:
+            # 导入数据
+            if args.table == "all":
+                # 导入所有表
+                import_from_excel(args.excel, conn_str if args.db else None)
+            else:
+                # 导入指定表
+                data = import_from_excel(args.excel, None)  # 先不插入数据库
+                if args.table in data:
+                    if args.db:
+                        # 只插入指定表的数据
+                        table_data = {args.table: data[args.table]}
+                        insert_into_sqlserver(table_data, conn_str)
+                        print(f"{AVAILABLE_TABLES[args.table]}数据已导入数据库")
+                    else:
+                        print(f"{AVAILABLE_TABLES[args.table]}数据已从Excel读取")
+                else:
+                    print(f"Excel文件中未找到{AVAILABLE_TABLES[args.table]}的数据")
+
+        except Exception as e:
+            print(f"导入数据时发生错误: {str(e)}")
+
+    else:
+        parse_args(["--help"])
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,5 @@
+pandas>=1.5.0
+Faker>=18.0.0
+pyodbc>=4.0.39
+openpyxl>=3.1.0  # 用于Excel文件操作
+pyinstaller>=6.0.0  # 用于打包可执行文件 
