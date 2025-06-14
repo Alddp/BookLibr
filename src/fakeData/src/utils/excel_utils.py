@@ -22,12 +22,28 @@ def import_from_excel(filename, conn_str):
 
         # 将每个sheet转换为字典列表
         for sheet_name, df in excel_data.items():
+            # 确保所有列都被转换为字符串类型
+            for col in df.columns:
+                if col in ["ISBN", "CardNum", "Phone", "StudentID", "ShelfCode"]:
+                    df[col] = df[col].astype(str)
+                elif col in ["Price", "Inventory"]:
+                    df[col] = pd.to_numeric(df[col], errors="coerce")
+                elif col in ["Start_Time", "Ending_Time", "BorrowDate", "ReturnDate"]:
+                    df[col] = pd.to_datetime(df[col], errors="coerce")
+
+            # 将 NaN 值替换为 None
+            df = df.replace({pd.NA: None, pd.NaT: None})
+
             data_dict[sheet_name] = df.to_dict("records")
 
-        # 使用数据库操作函数插入数据
-        from src.database.db_operations import insert_into_sqlserver
+        # 如果提供了数据库连接字符串，则插入数据
+        if conn_str:
+            from src.database.db_operations import insert_into_sqlserver
 
-        insert_into_sqlserver(data_dict, conn_str)
+            insert_into_sqlserver(data_dict, conn_str)
+            print(f"成功从 {filename} 导入数据到数据库")
+
+        return data_dict
 
     except Exception as e:
         print(f"从Excel导入数据时发生错误: {str(e)}")

@@ -132,10 +132,18 @@ def main(args=None):
             else:
                 # 导入指定表
                 data = import_from_excel(args.excel, None)  # 先不插入数据库
-                if args.table in data:
+
+                # 不区分大小写查找表名
+                found_table = None
+                for key in data.keys():
+                    if key.lower() == args.table.lower():
+                        found_table = key
+                        break
+
+                if found_table:
                     if args.db:
                         # 只插入指定表的数据
-                        table_data = {args.table: data[args.table]}
+                        table_data = {found_table: data[found_table]}
                         insert_into_sqlserver(table_data, conn_str)
                         print(f"{AVAILABLE_TABLES[args.table]}数据已导入数据库")
                     else:
