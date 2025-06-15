@@ -1,10 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Windows.Forms;
-using BookLiber.MainWindow;
+﻿using BookLiber.SubForm;
 using MaterialSkin.Controls;
+using System;
+using System.Windows.Forms;
 
-namespace BookLiber.Forms {
+namespace BookLiber {
 
     public partial class MainForm : MaterialForm {
         private ReadCardForm readCardForm;
@@ -27,16 +26,12 @@ namespace BookLiber.Forms {
             addBookForm = new AddBookForm();
 
             // 设置窗体属性
-            foreach (
-                var form in new Form[]
-                {
+            foreach (var form in new Form[] {
                     readCardForm,
                     borrowForm,
                     returnForm,
                     cardForm,
-                    addBookForm,
-                }
-            ) {
+                    addBookForm }) {
                 form.TopLevel = false;
                 form.FormBorderStyle = FormBorderStyle.None;
                 form.Dock = DockStyle.Fill;

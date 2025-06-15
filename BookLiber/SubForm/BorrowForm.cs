@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BookLiber.MainWindow {
+namespace BookLiber.SubForm {
 
     public partial class BorrowForm : Form {
 

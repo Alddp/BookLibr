@@ -1,18 +1,20 @@
 ﻿using BookBLL;
 using BookModels;
+using MaterialSkin.Controls;
 using System;
 using System.Windows.Forms;
 
-namespace BookLiber.Forms {
+namespace BookLiber {
 
-    public partial class RegisterForm : Form {
+    public partial class RegisterForm : MaterialForm {
         public string returnName;
         public string returnPwd;
 
         public RegisterForm() {
             InitializeComponent();
+
+            StartPosition = FormStartPosition.CenterScreen;
             UserName_tb.Focus();
-            radioButton1.Checked = true;
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -22,9 +24,15 @@ namespace BookLiber.Forms {
                 Phone = Phone_tb.Text.Trim(),
             };
 
-            if (radioButton1.Checked)
-                admin.Type = "operator";
-            else admin.Type = "admin";
+            switch (materialComboBox1.SelectedIndex) {
+                case 0:
+                    admin.Type = "operator";
+                    break;
+
+                case 1:
+                    admin.Type = "admin";
+                    break;
+            }
 
             var res = AdminManager.UsersInsert(admin);
 

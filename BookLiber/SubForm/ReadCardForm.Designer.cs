@@ -1,4 +1,4 @@
-﻿namespace BookLiber {
+﻿namespace BookLiber.SubForm {
     partial class ReadCardForm {
         /// <summary>
         /// Required designer variable.
@@ -146,7 +146,7 @@
             this.tableLayoutPanel2.SetRowSpan(this.flowLayoutPanel1, 2);
             this.flowLayoutPanel1.Size = new System.Drawing.Size(115, 586);
             this.flowLayoutPanel1.TabIndex = 1;
-            
+
             // 
             // label1
             // 

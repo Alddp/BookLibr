@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace BookLiber {
+namespace BookLiber.SubForm {
 
     public partial class AddBookForm : Form {
         private BindingList<Book> bookList = new BindingList<Book>();

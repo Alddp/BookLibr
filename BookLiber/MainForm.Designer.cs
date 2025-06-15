@@ -1,4 +1,4 @@
-﻿namespace BookLiber.Forms {
+﻿namespace BookLiber {
     partial class MainForm {
 
         /// <summary>

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BookLiber {
+namespace BookLiber.SubForm {
 
     public partial class ReturnForm : Form {
 

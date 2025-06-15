@@ -2,7 +2,7 @@
 using BookModels;
 using System.Windows.Forms;
 
-namespace BookLiber {
+namespace BookLiber.SubForm {
 
     public partial class ReadCardForm : Form {
 
