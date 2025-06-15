@@ -64,7 +64,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.57462F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.57373F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.88561F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel2.Controls.Add(this.groupBox1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel1, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel2, 4, 0);
@@ -111,7 +111,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(301, 2);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(83, 164);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(82, 164);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // label1
@@ -142,10 +142,10 @@
             this.flowLayoutPanel2.Controls.Add(this.textBox2);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(390, 2);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(389, 2);
             this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(263, 164);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(262, 164);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
             // textBox1
@@ -170,10 +170,10 @@
             this.flowLayoutPanel3.Controls.Add(this.label3);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(659, 2);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(657, 2);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(97, 164);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(96, 164);
             this.flowLayoutPanel3.TabIndex = 3;
             // 
             // label4
@@ -205,10 +205,10 @@
             this.flowLayoutPanel4.Controls.Add(this.textBox3);
             this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(762, 2);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(759, 2);
             this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(266, 164);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(265, 164);
             this.flowLayoutPanel4.TabIndex = 4;
             // 
             // textBox4
@@ -307,7 +307,6 @@
             this.Name = "ReturnForm";
             this.Padding = new System.Windows.Forms.Padding(3, 0, 4, 4);
             this.Text = "ReturnForm";
-            this.Load += new System.EventHandler(this.ReturnForm_Load);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
