@@ -1,13 +1,14 @@
 ﻿using BookBLL;
 using BookModels;
 using BookModels.Constants;
+using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace BookLiber.SubForm {
 
-    public partial class BorrowForm : Form {
+    public partial class BorrowForm : MaterialForm {
 
         public BorrowForm() {
             InitializeComponent();

@@ -27,8 +27,11 @@ namespace BookLiber.SubForm {
             };
             // 如果图片不存在则为空字符串, 如果图片存在则为图片路径
             user.Photo = File.Exists($".\\Images\\{user.CardNum}.jpg") ? $".\\Images\\{user.CardNum}.jpg" : "";
-            user.StartTime = dateTimePicker1.Value;
-            user.EndTime = dateTimePicker2.Value;
+
+            //user.StartTime = dateTimePicker1.Value;
+            //user.EndTime = dateTimePicker2.Value;
+            user.StartTime = datePickerRange1.Value[0];
+            user.EndTime = datePickerRange1.Value[1];
 
             var res = ReaderManager.InsertStuInfo(user);
 

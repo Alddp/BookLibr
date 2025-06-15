@@ -1,6 +1,7 @@
 ﻿using BookBLL;
 using BookModels;
 using BookModels.Errors;
+using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,7 @@ using System.Windows.Forms;
 
 namespace BookLiber.SubForm {
 
-    public partial class AddBookForm : Form {
+    public partial class AddBookForm : MaterialForm {
         private BindingList<Book> bookList = new BindingList<Book>();
 
         public AddBookForm() {

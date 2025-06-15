@@ -1,10 +1,11 @@
 ﻿using BookBLL;
 using BookModels;
+using MaterialSkin.Controls;
 using System.Windows.Forms;
 
 namespace BookLiber.SubForm {
 
-    public partial class ReadCardForm : Form {
+    public partial class ReadCardForm : MaterialForm {
 
         public ReadCardForm() {
             InitializeComponent();
@@ -12,7 +13,7 @@ namespace BookLiber.SubForm {
 
         private void read_button_Click(object sender, System.EventArgs e) {
             //测试代码
-            string cardNum = "2025053121504189000";
+            string cardNum = "2025061422534128000";
 
             // TODO:测试
             //获取卡号
