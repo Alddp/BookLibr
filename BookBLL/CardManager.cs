@@ -1,6 +1,7 @@
 ﻿using BookBLL.Utils;
 using BookHardWare;
 using BookModels.Errors;
+using System.Text;
 using System.Threading;
 
 namespace BookBLL {
@@ -19,7 +20,7 @@ namespace BookBLL {
                 return OperationResult<int>.Fail(ErrorCode.UnknownError, "读卡器初始化失败!");
 
             long snr = 0;
-            if (0 == DCHelper.dc_card(icdev, 0, ref snr)) // 寻卡 != 0) {
+            if (0 != DCHelper.dc_card(icdev, 0, ref snr)) // 寻卡 != 0) {
                 return OperationResult<int>.Fail(ErrorCode.UnknownError, "请正确放置卡");
 
             // 验证密码
@@ -63,12 +64,12 @@ namespace BookBLL {
 
         // 读卡成功提示音
         public static OperationResult<int> ReadSuccessBeep(int icdev) {
-            return SuccessBeep(icdev, 50, 100);
+            return SuccessBeep(icdev, 10, 10);
         }
 
         // 写卡成功提示音
         public static OperationResult<int> WriteSuccessBeep(int icdev) {
-            return SuccessBeep(icdev, 100, 50);
+            return SuccessBeep(icdev, 20, 20);
         }
 
         /// <summary>
@@ -95,21 +96,23 @@ namespace BookBLL {
         /// </summary>
         /// <returns>TData 为 string 卡号</returns>
         public static OperationResult<string> ReadCardNum() {
-            string cardNum = string.Empty; // 初始化cardNum
-            int icdev = 0; // 初始化读卡器设备ID
+
+            StringBuilder buffer = new StringBuilder(256);
+
             var checkCard = CheckIcdev();
+            int icdev = checkCard.Data;// 初始化读卡器设备ID
             if (!checkCard.Success)
                 return OperationResult<string>.Fail(
                     ErrorCode.UnknownError,
                     ErrorMessages.GetMessage(ErrorCode.UnknownError, "卡片检查失败")); // 卡片检查失败
 
-            int res = DCHelper.dc_read(icdev, data_mem, cardNum);
-            DCHelper.dc_exit(icdev); //关闭读卡器
-            if (res == 0) {
-                cardNum = cardNum.TrimEnd('\0'); // 去除末尾的空字符
+            if (0 == DCHelper.dc_read(icdev, data_mem, buffer)) {
+                string cardNum = buffer.ToString().TrimEnd('\0');
                 ReadSuccessBeep(icdev);
+                DCHelper.dc_exit(icdev); //关闭读卡器
                 return OperationResult<string>.Ok(cardNum);
             } else {
+                DCHelper.dc_exit(icdev); //关闭读卡器
                 return OperationResult<string>.Fail(ErrorCode.UnknownError, "读取卡号失败");
             }
         }

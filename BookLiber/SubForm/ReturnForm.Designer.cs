@@ -42,6 +42,7 @@
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.BorrowView = new System.Windows.Forms.DataGridView();
             this.return_button = new MaterialSkin.Controls.MaterialButton();
+            this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -57,7 +58,7 @@
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.ColumnCount = 8;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 57F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.52012F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.323502F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.122429F));
@@ -71,23 +72,23 @@
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel3, 5, 0);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel4, 6, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 2);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 2);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1054, 168);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(791, 134);
             this.tableLayoutPanel2.TabIndex = 10;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(60, 2);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Location = new System.Drawing.Point(45, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(174, 164);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Size = new System.Drawing.Size(130, 130);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "用户照片";
@@ -95,10 +96,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 20);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(2, 16);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(168, 142);
+            this.pictureBox1.Size = new System.Drawing.Size(126, 112);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -108,20 +109,20 @@
             this.flowLayoutPanel1.Controls.Add(this.label2);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(301, 2);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(224, 2);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(82, 164);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(62, 130);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(3, 38);
-            this.label1.Margin = new System.Windows.Forms.Padding(3, 38, 3, 0);
+            this.label1.Location = new System.Drawing.Point(2, 30);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 30, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 18);
+            this.label1.Size = new System.Drawing.Size(49, 14);
             this.label1.TabIndex = 1;
             this.label1.Text = "用户id";
             // 
@@ -129,10 +130,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(3, 94);
-            this.label2.Margin = new System.Windows.Forms.Padding(3, 38, 3, 0);
+            this.label2.Location = new System.Drawing.Point(2, 74);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 30, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 18);
+            this.label2.Size = new System.Drawing.Size(49, 14);
             this.label2.TabIndex = 2;
             this.label2.Text = "用户名";
             // 
@@ -142,26 +143,26 @@
             this.flowLayoutPanel2.Controls.Add(this.textBox2);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(389, 2);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(290, 2);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(262, 164);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(195, 130);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(3, 34);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 34, 3, 2);
+            this.textBox1.Location = new System.Drawing.Point(2, 27);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 27, 2, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(208, 25);
+            this.textBox1.Size = new System.Drawing.Size(157, 21);
             this.textBox1.TabIndex = 3;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(3, 95);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(3, 34, 3, 2);
+            this.textBox2.Location = new System.Drawing.Point(2, 77);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(2, 27, 2, 2);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(208, 25);
+            this.textBox2.Size = new System.Drawing.Size(157, 21);
             this.textBox2.TabIndex = 4;
             // 
             // flowLayoutPanel3
@@ -170,20 +171,20 @@
             this.flowLayoutPanel3.Controls.Add(this.label3);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(657, 2);
-            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(489, 2);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(96, 164);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(72, 130);
             this.flowLayoutPanel3.TabIndex = 3;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(3, 41);
-            this.label4.Margin = new System.Windows.Forms.Padding(3, 41, 3, 0);
+            this.label4.Location = new System.Drawing.Point(2, 33);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 33, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 18);
+            this.label4.Size = new System.Drawing.Size(63, 14);
             this.label4.TabIndex = 5;
             this.label4.Text = "借阅时间";
             // 
@@ -191,10 +192,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(3, 100);
-            this.label3.Margin = new System.Windows.Forms.Padding(3, 41, 3, 0);
+            this.label3.Location = new System.Drawing.Point(2, 80);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 33, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 18);
+            this.label3.Size = new System.Drawing.Size(63, 14);
             this.label3.TabIndex = 6;
             this.label3.Text = "归还时间";
             // 
@@ -205,26 +206,26 @@
             this.flowLayoutPanel4.Controls.Add(this.textBox3);
             this.flowLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(759, 2);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(565, 2);
+            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(265, 164);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(198, 130);
             this.flowLayoutPanel4.TabIndex = 4;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(3, 34);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(3, 34, 3, 2);
+            this.textBox4.Location = new System.Drawing.Point(2, 27);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(2, 27, 2, 2);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(215, 25);
+            this.textBox4.Size = new System.Drawing.Size(162, 21);
             this.textBox4.TabIndex = 7;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(3, 95);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(3, 34, 3, 2);
+            this.textBox3.Location = new System.Drawing.Point(2, 77);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(2, 27, 2, 2);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(215, 25);
+            this.textBox3.Size = new System.Drawing.Size(162, 21);
             this.textBox3.TabIndex = 8;
             // 
             // tableLayoutPanel1
@@ -234,13 +235,13 @@
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 172F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 138F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1060, 744);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(795, 595);
             this.tableLayoutPanel1.TabIndex = 11;
             // 
             // tableLayoutPanel3
@@ -250,15 +251,16 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Controls.Add(this.BorrowView, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.return_button, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.materialButton1, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 174);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(2, 140);
+            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(1054, 568);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 34F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 16F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(791, 453);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // BorrowView
@@ -266,12 +268,12 @@
             this.BorrowView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tableLayoutPanel3.SetColumnSpan(this.BorrowView, 2);
             this.BorrowView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BorrowView.Location = new System.Drawing.Point(3, 2);
-            this.BorrowView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BorrowView.Location = new System.Drawing.Point(2, 2);
+            this.BorrowView.Margin = new System.Windows.Forms.Padding(2);
             this.BorrowView.Name = "BorrowView";
             this.BorrowView.RowHeadersWidth = 51;
             this.BorrowView.RowTemplate.Height = 27;
-            this.BorrowView.Size = new System.Drawing.Size(1048, 522);
+            this.BorrowView.Size = new System.Drawing.Size(787, 415);
             this.BorrowView.TabIndex = 3;
             // 
             // return_button
@@ -282,12 +284,12 @@
             this.return_button.Dock = System.Windows.Forms.DockStyle.Left;
             this.return_button.HighEmphasis = true;
             this.return_button.Icon = null;
-            this.return_button.Location = new System.Drawing.Point(531, 532);
-            this.return_button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.return_button.Location = new System.Drawing.Point(398, 424);
+            this.return_button.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.return_button.MouseState = MaterialSkin.MouseState.HOVER;
             this.return_button.Name = "return_button";
             this.return_button.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.return_button.Size = new System.Drawing.Size(79, 30);
+            this.return_button.Size = new System.Drawing.Size(79, 24);
             this.return_button.TabIndex = 4;
             this.return_button.Text = "确认归还";
             this.return_button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -295,17 +297,40 @@
             this.return_button.UseVisualStyleBackColor = true;
             this.return_button.Click += new System.EventHandler(this.return_button_Click);
             // 
+            // materialButton1
+            // 
+            this.materialButton1.AutoSize = false;
+            this.materialButton1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialButton1.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialButton1.Depth = 0;
+            this.materialButton1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.materialButton1.HighEmphasis = true;
+            this.materialButton1.Icon = null;
+            this.materialButton1.Location = new System.Drawing.Point(316, 425);
+            this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialButton1.Name = "materialButton1";
+            this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialButton1.Size = new System.Drawing.Size(75, 22);
+            this.materialButton1.TabIndex = 5;
+            this.materialButton1.Text = "刷新";
+            this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialButton1.UseAccentColor = false;
+            this.materialButton1.UseVisualStyleBackColor = true;
+            this.materialButton1.Click += new System.EventHandler(this.query_button_Click);
+            // 
             // ReturnForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 748);
+            this.ClientSize = new System.Drawing.Size(800, 598);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ReturnForm";
-            this.Padding = new System.Windows.Forms.Padding(3, 0, 4, 4);
+            this.Padding = new System.Windows.Forms.Padding(2, 0, 3, 3);
+            this.Sizable = false;
             this.Text = "ReturnForm";
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -348,5 +373,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.DataGridView BorrowView;
         private MaterialSkin.Controls.MaterialButton return_button;
+        private MaterialSkin.Controls.MaterialButton materialButton1;
     }
 }

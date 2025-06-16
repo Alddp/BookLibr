@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace BookHardWare {
 
@@ -27,6 +28,6 @@ namespace BookHardWare {
         public static extern int dc_write(int icdev, int Adr, string Data);  // 写卡操作
 
         [DllImport("dcrf32.dll")]
-        public static extern int dc_read(int icdev, int Adr, string Data);  // 读卡操作
+        public static extern int dc_read(int icdev, int Adr, StringBuilder Data);  // 读卡操作
     }
 }

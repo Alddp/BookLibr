@@ -18,6 +18,10 @@ namespace BookLiber {
         }
 
         private void button1_Click(object sender, EventArgs e) {
+            if (Pwd_tb.Text.Trim() != ConfirmPwd_tb.Text.Trim()) {
+                MessageBox.Show("密码不一致");
+                return;
+            }
             Admin admin = new Admin {
                 UserName = UserName_tb.Text.Trim(),
                 Pwd = Pwd_tb.Text.Trim(),

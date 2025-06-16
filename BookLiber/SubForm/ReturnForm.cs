@@ -14,21 +14,25 @@ namespace BookLiber.SubForm {
             InitializeComponent();
         }
 
-        //private void query_button_Click(object sender, System.EventArgs e) {
-        //    textBox1.Text = Reader.Instance.UserId;
-        //    textBox2.Text = Reader.Instance.UserName;
+        private void query_button_Click(object sender, System.EventArgs e) {
+            textBox1.Text = Reader.Instance.UserId;
+            textBox2.Text = Reader.Instance.UserName;
 
-        // // 准备表格 BorrowView.Columns.Clear();
+            //准备表格
+            BorrowView.Columns.Clear();
 
-        // if (!BorrowView.Columns.Contains("Select")) { var checkBoxColumn = new
-        // DataGridViewCheckBoxColumn { Name = "Select", HeaderText = "选择", Width = 50 };
-        // BorrowView.Columns.Insert(0, checkBoxColumn); }
+            if (!BorrowView.Columns.Contains("Select")) {
+                var checkBoxColumn = new
+            DataGridViewCheckBoxColumn { Name = "Select", HeaderText = "选择", Width = 50 };
+                BorrowView.Columns.Insert(0, checkBoxColumn);
+            }
 
-        // var res = BookManager.QueryBorrowRecord(Reader.Instance.UserId); if (!res.Success) {
-        // MessageBox.Show(res.Message); return; }
+            var res = BookManager.QueryBorrowRecord(Reader.Instance.UserId); if (!res.Success) {
+                MessageBox.Show(res.Message); return;
+            }
 
-        //    BorrowView.DataSource = res.Data;
-        //}
+            BorrowView.DataSource = res.Data;
+        }
         private void return_button_Click(object sender, System.EventArgs e) {
             var selectedBooks = new List<string>(); // 存储选中的图书ID
 

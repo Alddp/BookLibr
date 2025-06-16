@@ -31,10 +31,10 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.submit_button = new MaterialSkin.Controls.MaterialButton();
             this.picture_button = new MaterialSkin.Controls.MaterialButton();
             this.datePickerRange1 = new AntdUI.DatePickerRange();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.flowPanel1 = new AntdUI.FlowPanel();
             this.carNum_txb = new MaterialSkin.Controls.MaterialTextBox2();
             this.userName_tbx = new MaterialSkin.Controls.MaterialTextBox2();
@@ -81,13 +81,6 @@
             this.tableLayoutPanel1.Controls.Add(this.flowPanel1, 1, 1);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
-            // materialLabel1
-            // 
-            resources.ApplyResources(this.materialLabel1, "materialLabel1");
-            this.materialLabel1.Depth = 0;
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel1.Name = "materialLabel1";
-            // 
             // submit_button
             // 
             resources.ApplyResources(this.submit_button, "submit_button");
@@ -122,6 +115,13 @@
             // 
             resources.ApplyResources(this.datePickerRange1, "datePickerRange1");
             this.datePickerRange1.Name = "datePickerRange1";
+            // 
+            // materialLabel1
+            // 
+            resources.ApplyResources(this.materialLabel1, "materialLabel1");
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
             // 
             // flowPanel1
             // 
@@ -259,8 +259,9 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
             this.Name = "CardForm";
+            this.Sizable = false;
             this.Load += new System.EventHandler(this.CardForm_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

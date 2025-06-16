@@ -4,10 +4,11 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
 
 namespace BookLiber.SubForm {
 
-    public partial class CardForm : Form {
+    public partial class CardForm : MaterialForm {
 
         public CardForm() {
             InitializeComponent();

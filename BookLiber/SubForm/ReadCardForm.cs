@@ -12,17 +12,17 @@ namespace BookLiber.SubForm {
         }
 
         private void read_button_Click(object sender, System.EventArgs e) {
-            //测试代码
-            string cardNum = "2025061422534128000";
+            ////测试代码
+            //string cardNum = "2025061422534128000";
 
             // TODO:测试
             //获取卡号
-            //var cardNumRes = CardManager.ReadCardNum();
-            //if (!cardNumRes.Success) {
-            //    MessageBox.Show(cardNumRes.Message);
-            //    return;
-            //}
-            //string cardNum = cardNumRes.Data;
+            var cardNumRes = CardManager.ReadCardNum();
+            if (!cardNumRes.Success) {
+                MessageBox.Show(cardNumRes.Message);
+                return;
+            }
+            string cardNum = cardNumRes.Data;
 
             // 根据卡号查询用户信息
             var sutInfoRes = ReaderManager.GetStuInfo(cardNum);
