@@ -137,8 +137,7 @@
             // carNum_txb
             // 
             this.carNum_txb.AnimateReadOnly = false;
-            this.carNum_txb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.carNum_txb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+      
             resources.ApplyResources(this.carNum_txb, "carNum_txb");
             this.carNum_txb.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.carNum_txb.Depth = 0;
@@ -161,8 +160,7 @@
             // userName_tbx
             // 
             this.userName_tbx.AnimateReadOnly = false;
-            this.userName_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.userName_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+     
             resources.ApplyResources(this.userName_tbx, "userName_tbx");
             this.userName_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.userName_tbx.Depth = 0;
@@ -185,8 +183,7 @@
             // stuId_tbx
             // 
             this.stuId_tbx.AnimateReadOnly = false;
-            this.stuId_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.stuId_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+     
             resources.ApplyResources(this.stuId_tbx, "stuId_tbx");
             this.stuId_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.stuId_tbx.Depth = 0;
@@ -209,8 +206,7 @@
             // phone_tbx
             // 
             this.phone_tbx.AnimateReadOnly = false;
-            this.phone_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.phone_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+      
             resources.ApplyResources(this.phone_tbx, "phone_tbx");
             this.phone_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.phone_tbx.Depth = 0;
@@ -233,8 +229,7 @@
             // calssName_tbx
             // 
             this.calssName_tbx.AnimateReadOnly = false;
-            this.calssName_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.calssName_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+       
             resources.ApplyResources(this.calssName_tbx, "calssName_tbx");
             this.calssName_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.calssName_tbx.Depth = 0;

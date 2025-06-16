@@ -60,8 +60,7 @@
             // Phone_tb
             // 
             this.Phone_tb.AnimateReadOnly = false;
-            this.Phone_tb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.Phone_tb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+         
             this.Phone_tb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.Phone_tb.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.Phone_tb.Depth = 0;
@@ -92,8 +91,7 @@
             // Pwd_tb
             // 
             this.Pwd_tb.AnimateReadOnly = false;
-            this.Pwd_tb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.Pwd_tb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+        
             this.Pwd_tb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.Pwd_tb.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.Pwd_tb.Depth = 0;
@@ -124,8 +122,7 @@
             // UserName_tb
             // 
             this.UserName_tb.AnimateReadOnly = false;
-            this.UserName_tb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.UserName_tb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+     
             this.UserName_tb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.UserName_tb.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.UserName_tb.Depth = 0;
@@ -183,8 +180,7 @@
             // ConfirmPwd_tb
             // 
             this.ConfirmPwd_tb.AnimateReadOnly = false;
-            this.ConfirmPwd_tb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.ConfirmPwd_tb.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+           
             this.ConfirmPwd_tb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ConfirmPwd_tb.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.ConfirmPwd_tb.Depth = 0;

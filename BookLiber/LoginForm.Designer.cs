@@ -47,8 +47,7 @@
             // txtUsername
             // 
             this.txtUsername.AnimateReadOnly = false;
-            this.txtUsername.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtUsername.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+
             this.txtUsername.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.txtUsername.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.txtUsername.Depth = 0;
@@ -79,8 +78,7 @@
             // txtPassword
             // 
             this.txtPassword.AnimateReadOnly = false;
-            this.txtPassword.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.txtPassword.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+      
             this.txtPassword.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.txtPassword.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.txtPassword.Depth = 0;

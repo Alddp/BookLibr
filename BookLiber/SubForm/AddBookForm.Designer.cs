@@ -103,8 +103,7 @@
             // ISBN_tbx
             // 
             this.ISBN_tbx.AnimateReadOnly = false;
-            this.ISBN_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.ISBN_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+       
             this.ISBN_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ISBN_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.ISBN_tbx.Depth = 0;
@@ -135,8 +134,7 @@
             // shelfId_tbx
             // 
             this.shelfId_tbx.AnimateReadOnly = false;
-            this.shelfId_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.shelfId_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+ 
             this.shelfId_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.shelfId_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.shelfId_tbx.Depth = 0;
@@ -167,8 +165,7 @@
             // price_tbx
             // 
             this.price_tbx.AnimateReadOnly = false;
-            this.price_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.price_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+ 
             this.price_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.price_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.price_tbx.Depth = 0;
@@ -199,8 +196,8 @@
             // inventory_tbx
             // 
             this.inventory_tbx.AnimateReadOnly = false;
-            this.inventory_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.inventory_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+            
+  
             this.inventory_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.inventory_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.inventory_tbx.Depth = 0;
@@ -231,8 +228,7 @@
             // author_tbx
             // 
             this.author_tbx.AnimateReadOnly = false;
-            this.author_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.author_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+       
             this.author_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.author_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.author_tbx.Depth = 0;
@@ -263,8 +259,7 @@
             // bookName_tbx
             // 
             this.bookName_tbx.AnimateReadOnly = false;
-            this.bookName_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.bookName_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+      
             this.bookName_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.bookName_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.bookName_tbx.Depth = 0;

@@ -110,8 +110,7 @@
             // cardNum_tbx
             // 
             this.cardNum_tbx.AnimateReadOnly = false;
-            this.cardNum_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.cardNum_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+           
             this.cardNum_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.cardNum_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cardNum_tbx.Depth = 0;
@@ -142,8 +141,7 @@
             // readerName_tbx
             // 
             this.readerName_tbx.AnimateReadOnly = false;
-            this.readerName_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.readerName_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+    
             this.readerName_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.readerName_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.readerName_tbx.Depth = 0;
@@ -174,8 +172,7 @@
             // stuID_tbx
             // 
             this.stuID_tbx.AnimateReadOnly = false;
-            this.stuID_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.stuID_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+         
             this.stuID_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.stuID_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.stuID_tbx.Depth = 0;
@@ -206,8 +203,7 @@
             // phone_tbx
             // 
             this.phone_tbx.AnimateReadOnly = false;
-            this.phone_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.phone_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+     
             this.phone_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.phone_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.phone_tbx.Depth = 0;
@@ -238,8 +234,7 @@
             // class_tbx
             // 
             this.class_tbx.AnimateReadOnly = false;
-            this.class_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.class_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+        
             this.class_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.class_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.class_tbx.Depth = 0;
@@ -270,8 +265,7 @@
             // startTime_tbx
             // 
             this.startTime_tbx.AnimateReadOnly = false;
-            this.startTime_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.startTime_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+           
             this.startTime_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.startTime_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.startTime_tbx.Depth = 0;
@@ -302,8 +296,7 @@
             // endTime_tbx
             // 
             this.endTime_tbx.AnimateReadOnly = false;
-            this.endTime_tbx.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
-            this.endTime_tbx.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.None;
+    
             this.endTime_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.endTime_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.endTime_tbx.Depth = 0;
