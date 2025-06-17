@@ -96,7 +96,6 @@ namespace BookBLL {
         /// </summary>
         /// <returns>TData 为 string 卡号</returns>
         public static OperationResult<string> ReadCardNum() {
-
             StringBuilder buffer = new StringBuilder(256);
 
             var checkCard = CheckIcdev();

@@ -102,5 +102,18 @@ namespace BookDAL {
                };
             return DBHelper.ExecuteReader(sql, parameters);
         }
+
+        // 销卡
+        public static int DestroyCard(string cardNum) {
+            string tableName = ReaderTableFields.TableName;
+            string cardNumColumn = ReaderTableFields.CardNum;
+            string sql = $@"UPDATE {tableName} SET {ReaderTableFields.Status} = 0 WHERE {cardNumColumn} = @CardNum";
+
+            SqlParameter[] parameters = new SqlParameter[]
+                {
+                new SqlParameter("@CardNum", cardNum)
+                };
+            return DBHelper.ExNonQuery(sql, parameters);
+        }
     }
 }

@@ -12,5 +12,7 @@
         public const string StudentID = "StudentID";
         public const string UserId = "UserId";
         public const string UserName = "UserName";
+
+        public const string Status = "IsActive";
     }
 }

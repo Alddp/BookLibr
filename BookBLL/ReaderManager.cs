@@ -1,6 +1,7 @@
 ﻿using BookBLL.Utils;
 using BookDAL;
 using BookModels;
+using BookModels.Constants;
 using BookModels.Errors;
 using System;
 using System.Data.SqlClient;
@@ -34,15 +35,16 @@ namespace BookBLL {
                         return default;
 
                     return new Reader {
-                        UserId = r["UserId"].ToString(),
-                        CardNum = r["CardNum"].ToString(),
-                        UserName = r["UserName"].ToString(),
-                        StudentId = r["StudentID"].ToString(),
-                        Phone = r["Phone"].ToString(),
-                        ClassName = r["Class"].ToString(),
-                        Photo = r["Photo"].ToString(),
-                        StartTime = Convert.ToDateTime(r["Start_Time"]),
-                        EndTime = Convert.ToDateTime(r["Ending_Time"])
+                        UserId = r[ReaderTableFields.UserId].ToString(),
+                        CardNum = r[ReaderTableFields.CardNum].ToString(),
+                        UserName = r[ReaderTableFields.UserName].ToString(),
+                        StudentId = r[ReaderTableFields.StudentID].ToString(),
+                        Phone = r[ReaderTableFields.Phone].ToString(),
+                        ClassName = r[ReaderTableFields.Class].ToString(),
+                        Photo = r[ReaderTableFields.Photo].ToString(),
+                        StartTime = Convert.ToDateTime(r[ReaderTableFields.Start_Time]),
+                        EndTime = Convert.ToDateTime(r[ReaderTableFields.Ending_Time]),
+                        IsValid = Convert.ToBoolean(r[ReaderTableFields.Status])
                     };
                 }
             });
@@ -50,6 +52,16 @@ namespace BookBLL {
             return result.Data != default
                 ? result
                 : OperationResult<Reader>.Fail(ErrorCode.InvalidCard);
+        }
+
+        // 销卡
+        public static OperationResult<int> DestroyCard(string cardNum) {
+            // 执行销卡操作
+            var result = ResultWrapper.Wrap(() => OperService.DestroyCard(cardNum));
+
+            return result.Success
+                ? result
+                : OperationResult<int>.Fail(ErrorCode.OperationFailed);
         }
     }
 }

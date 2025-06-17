@@ -1,4 +1,6 @@
-﻿using BookLiber.SubForm;
+﻿using BookBLL;
+using BookLiber.SubForm;
+using BookModels;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
@@ -8,11 +10,36 @@ namespace BookLiber {
 
     public partial class MainForm : MaterialForm {
         private Dictionary<string, Form> forms;
-        private Dictionary<int, ToolStrip> toolStrips;
+        private string currentForm = "readCard"; // 记录当前显示的窗体
 
         public MainForm() {
             InitializeComponent();
             InitializeForms();
+        }
+
+        private void MaterialTabControl1_SelectedIndexChanged
+            (object sender, EventArgs e) {
+            // 根据当前选中的标签页确定要显示的窗体
+            string formToShow = currentForm;
+            switch (materialTabControl1.SelectedIndex) {
+                case 0: // 卡管理
+                    formToShow = "readCard";
+                    break;
+
+                case 1: // 借还管理
+                    formToShow = "borrow";
+                    break;
+
+                case 2: // 图书管理
+                    formToShow = "addBook";
+                    break;
+            }
+
+            // 如果窗体发生变化，则刷新显示
+            if (formToShow != currentForm) {
+                currentForm = formToShow;
+                ShowForm(formToShow);
+            }
         }
 
         private void InitializeForms() {
@@ -23,13 +50,6 @@ namespace BookLiber {
                 { "return", new ReturnForm() },
                 { "card", new CardForm() },
                 { "addBook", new AddBookForm() }
-            };
-
-            // 初始化ToolStrip字典
-            toolStrips = new Dictionary<int, ToolStrip> {
-                { 0, toolStrip1 },
-                { 1, toolStrip2 },
-                { 2, toolStrip3 }
             };
 
             // 设置窗体属性
@@ -50,38 +70,92 @@ namespace BookLiber {
             ShowForm("readCard");
         }
 
+        private void ShowForm(string formName) {
+            // 隐藏所有窗体
+            foreach (var form in forms.Values) {
+                form.Hide();
+            }
+
+            // 显示指定的窗体
+            if (forms.ContainsKey(formName)) {
+                // 重新创建窗体实例以触发 Load 事件
+                Form oldForm = forms[formName];
+                Form newForm = null;
+                Control parent = null;
+
+                // 保存父控件引用
+                if (oldForm != null && oldForm.Parent != null) {
+                    parent = oldForm.Parent;
+                } else {
+                    // 根据窗体名称确定父控件
+                    switch (formName) {
+                        case "readCard":
+                        case "card":
+                            parent = cardManage;
+                            break;
+
+                        case "borrow":
+                        case "return":
+                            parent = operManage;
+                            break;
+
+                        case "addBook":
+                            parent = bookManage;
+                            break;
+                    }
+                }
+
+                // 创建新窗体
+                switch (formName) {
+                    case "readCard":
+                        newForm = new ReadCardForm();
+                        break;
+
+                    case "borrow":
+                        newForm = new BorrowForm();
+                        break;
+
+                    case "return":
+                        newForm = new ReturnForm();
+                        break;
+
+                    case "card":
+                        newForm = new CardForm();
+                        break;
+
+                    case "addBook":
+                        newForm = new AddBookForm();
+                        break;
+                }
+
+                if (newForm != null && parent != null) {
+                    newForm.TopLevel = false;
+                    newForm.FormBorderStyle = FormBorderStyle.None;
+                    newForm.Dock = DockStyle.Fill;
+
+                    // 从父控件中移除旧窗体
+                    if (oldForm != null && oldForm.Parent != null) {
+                        oldForm.Parent.Controls.Remove(oldForm);
+                    }
+
+                    // 添加新窗体
+                    parent.Controls.Add(newForm);
+                    // 更新字典中的窗体引用
+                    forms[formName] = newForm;
+                    // 显示新窗体
+                    newForm.Show();
+                }
+            }
+        }
+
         private void MainForm_Load(object sender, EventArgs e) {
             materialTabControl1.SelectedIndex = 0;
             toolStrip1.Focus();
         }
 
-        private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e) {
-            HideAllForms();
-            switch (materialTabControl1.SelectedIndex) {
-                case 0:  // 卡管理标签页
-                    ShowForm("readCard");
-                    break;
-                case 1:  // 借阅管理标签页
-                    ShowForm("borrow");
-                    break;
-                case 2:  // 图书管理标签页
-                    ShowForm("addBook");
-                    break;
-            }
-        }
-
         private void HideAllForms() {
             foreach (var form in forms.Values) {
                 form.Hide();
-            }
-        }
-
-        private void ShowForm(string formKey) {
-            if (forms.ContainsKey(formKey)) {
-                forms[formKey].Show();
-                if (toolStrips.ContainsKey(materialTabControl1.SelectedIndex)) {
-                    toolStrips[materialTabControl1.SelectedIndex].Focus();
-                }
             }
         }
 
@@ -100,6 +174,23 @@ namespace BookLiber {
         }
 
         private void DistoryCardScirp_Click(object sender, EventArgs e) {
+            var infRes = ReaderManager.GetStuInfo(Reader.Instance.CardNum);
+            if (infRes.Success) {
+                var result = MessageBox.Show($"卡号为{Reader.Instance.CardNum}是否删除?", "提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes) {
+                    var destroyRes = ReaderManager.DestroyCard(Reader.Instance.CardNum);
+                    if (destroyRes.Success) {
+                        MessageBox.Show("销卡成功!", "提示");
+                        Reader.Instance = new Reader(); // 重置用户信息
+                        HideAllForms();
+                        ShowForm("readCard");
+                    } else {
+                        MessageBox.Show("销卡失败!", "提示");
+                    }
+                }
+            } else {
+                MessageBox.Show("未找到该卡信息!", "提示");
+            }
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e) {

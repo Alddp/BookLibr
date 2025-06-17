@@ -49,31 +49,31 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.20591F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.57867F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.4F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 51F));
             this.tableLayoutPanel2.Controls.Add(this.groupBox1, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.flowLayoutPanel2, 4, 1);
             this.tableLayoutPanel2.Controls.Add(this.read_button, 1, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 0);
-            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 0);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.497623F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 44.53249F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.96989F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 136F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(746, 558);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 170F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(994, 698);
             this.tableLayoutPanel2.TabIndex = 4;
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(46, 29);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox1.Location = new System.Drawing.Point(62, 36);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(190, 183);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(253, 231);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "用户照片";
@@ -81,10 +81,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(2, 16);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 20);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(186, 165);
+            this.pictureBox1.Size = new System.Drawing.Size(247, 209);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -100,17 +100,16 @@
             this.flowLayoutPanel2.Controls.Add(this.endTime_tbx);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(464, 29);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(2);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(620, 36);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.tableLayoutPanel2.SetRowSpan(this.flowLayoutPanel2, 3);
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(239, 527);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(318, 660);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
             // cardNum_tbx
             // 
             this.cardNum_tbx.AnimateReadOnly = false;
-           
             this.cardNum_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.cardNum_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cardNum_tbx.Depth = 0;
@@ -118,8 +117,8 @@
             this.cardNum_tbx.HideSelection = true;
             this.cardNum_tbx.Hint = "卡号";
             this.cardNum_tbx.LeadingIcon = null;
-            this.cardNum_tbx.Location = new System.Drawing.Point(5, 6);
-            this.cardNum_tbx.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.cardNum_tbx.Location = new System.Drawing.Point(7, 8);
+            this.cardNum_tbx.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.cardNum_tbx.MaxLength = 32767;
             this.cardNum_tbx.MouseState = MaterialSkin.MouseState.OUT;
             this.cardNum_tbx.Name = "cardNum_tbx";
@@ -131,7 +130,7 @@
             this.cardNum_tbx.SelectionLength = 0;
             this.cardNum_tbx.SelectionStart = 0;
             this.cardNum_tbx.ShortcutsEnabled = true;
-            this.cardNum_tbx.Size = new System.Drawing.Size(188, 48);
+            this.cardNum_tbx.Size = new System.Drawing.Size(251, 48);
             this.cardNum_tbx.TabIndex = 7;
             this.cardNum_tbx.TabStop = false;
             this.cardNum_tbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -141,7 +140,6 @@
             // readerName_tbx
             // 
             this.readerName_tbx.AnimateReadOnly = false;
-    
             this.readerName_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.readerName_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.readerName_tbx.Depth = 0;
@@ -149,8 +147,8 @@
             this.readerName_tbx.HideSelection = true;
             this.readerName_tbx.Hint = "姓名";
             this.readerName_tbx.LeadingIcon = null;
-            this.readerName_tbx.Location = new System.Drawing.Point(5, 66);
-            this.readerName_tbx.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.readerName_tbx.Location = new System.Drawing.Point(7, 72);
+            this.readerName_tbx.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.readerName_tbx.MaxLength = 32767;
             this.readerName_tbx.MouseState = MaterialSkin.MouseState.OUT;
             this.readerName_tbx.Name = "readerName_tbx";
@@ -162,7 +160,7 @@
             this.readerName_tbx.SelectionLength = 0;
             this.readerName_tbx.SelectionStart = 0;
             this.readerName_tbx.ShortcutsEnabled = true;
-            this.readerName_tbx.Size = new System.Drawing.Size(188, 48);
+            this.readerName_tbx.Size = new System.Drawing.Size(251, 48);
             this.readerName_tbx.TabIndex = 9;
             this.readerName_tbx.TabStop = false;
             this.readerName_tbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -172,7 +170,6 @@
             // stuID_tbx
             // 
             this.stuID_tbx.AnimateReadOnly = false;
-         
             this.stuID_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.stuID_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.stuID_tbx.Depth = 0;
@@ -180,8 +177,8 @@
             this.stuID_tbx.HideSelection = true;
             this.stuID_tbx.Hint = "学号";
             this.stuID_tbx.LeadingIcon = null;
-            this.stuID_tbx.Location = new System.Drawing.Point(5, 126);
-            this.stuID_tbx.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.stuID_tbx.Location = new System.Drawing.Point(7, 136);
+            this.stuID_tbx.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.stuID_tbx.MaxLength = 32767;
             this.stuID_tbx.MouseState = MaterialSkin.MouseState.OUT;
             this.stuID_tbx.Name = "stuID_tbx";
@@ -193,7 +190,7 @@
             this.stuID_tbx.SelectionLength = 0;
             this.stuID_tbx.SelectionStart = 0;
             this.stuID_tbx.ShortcutsEnabled = true;
-            this.stuID_tbx.Size = new System.Drawing.Size(188, 48);
+            this.stuID_tbx.Size = new System.Drawing.Size(251, 48);
             this.stuID_tbx.TabIndex = 10;
             this.stuID_tbx.TabStop = false;
             this.stuID_tbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -203,7 +200,6 @@
             // phone_tbx
             // 
             this.phone_tbx.AnimateReadOnly = false;
-     
             this.phone_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.phone_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.phone_tbx.Depth = 0;
@@ -211,8 +207,8 @@
             this.phone_tbx.HideSelection = true;
             this.phone_tbx.Hint = "电话";
             this.phone_tbx.LeadingIcon = null;
-            this.phone_tbx.Location = new System.Drawing.Point(5, 186);
-            this.phone_tbx.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.phone_tbx.Location = new System.Drawing.Point(7, 200);
+            this.phone_tbx.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.phone_tbx.MaxLength = 32767;
             this.phone_tbx.MouseState = MaterialSkin.MouseState.OUT;
             this.phone_tbx.Name = "phone_tbx";
@@ -224,7 +220,7 @@
             this.phone_tbx.SelectionLength = 0;
             this.phone_tbx.SelectionStart = 0;
             this.phone_tbx.ShortcutsEnabled = true;
-            this.phone_tbx.Size = new System.Drawing.Size(188, 48);
+            this.phone_tbx.Size = new System.Drawing.Size(251, 48);
             this.phone_tbx.TabIndex = 8;
             this.phone_tbx.TabStop = false;
             this.phone_tbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -234,7 +230,6 @@
             // class_tbx
             // 
             this.class_tbx.AnimateReadOnly = false;
-        
             this.class_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.class_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.class_tbx.Depth = 0;
@@ -242,8 +237,8 @@
             this.class_tbx.HideSelection = true;
             this.class_tbx.Hint = "班级";
             this.class_tbx.LeadingIcon = null;
-            this.class_tbx.Location = new System.Drawing.Point(5, 246);
-            this.class_tbx.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.class_tbx.Location = new System.Drawing.Point(7, 264);
+            this.class_tbx.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.class_tbx.MaxLength = 32767;
             this.class_tbx.MouseState = MaterialSkin.MouseState.OUT;
             this.class_tbx.Name = "class_tbx";
@@ -255,7 +250,7 @@
             this.class_tbx.SelectionLength = 0;
             this.class_tbx.SelectionStart = 0;
             this.class_tbx.ShortcutsEnabled = true;
-            this.class_tbx.Size = new System.Drawing.Size(188, 48);
+            this.class_tbx.Size = new System.Drawing.Size(251, 48);
             this.class_tbx.TabIndex = 11;
             this.class_tbx.TabStop = false;
             this.class_tbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -265,7 +260,6 @@
             // startTime_tbx
             // 
             this.startTime_tbx.AnimateReadOnly = false;
-           
             this.startTime_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.startTime_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.startTime_tbx.Depth = 0;
@@ -273,8 +267,8 @@
             this.startTime_tbx.HideSelection = true;
             this.startTime_tbx.Hint = "开卡时间";
             this.startTime_tbx.LeadingIcon = null;
-            this.startTime_tbx.Location = new System.Drawing.Point(5, 306);
-            this.startTime_tbx.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.startTime_tbx.Location = new System.Drawing.Point(7, 328);
+            this.startTime_tbx.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.startTime_tbx.MaxLength = 32767;
             this.startTime_tbx.MouseState = MaterialSkin.MouseState.OUT;
             this.startTime_tbx.Name = "startTime_tbx";
@@ -286,7 +280,7 @@
             this.startTime_tbx.SelectionLength = 0;
             this.startTime_tbx.SelectionStart = 0;
             this.startTime_tbx.ShortcutsEnabled = true;
-            this.startTime_tbx.Size = new System.Drawing.Size(188, 48);
+            this.startTime_tbx.Size = new System.Drawing.Size(251, 48);
             this.startTime_tbx.TabIndex = 12;
             this.startTime_tbx.TabStop = false;
             this.startTime_tbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -296,7 +290,6 @@
             // endTime_tbx
             // 
             this.endTime_tbx.AnimateReadOnly = false;
-    
             this.endTime_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.endTime_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.endTime_tbx.Depth = 0;
@@ -304,8 +297,8 @@
             this.endTime_tbx.HideSelection = true;
             this.endTime_tbx.Hint = "到期时间";
             this.endTime_tbx.LeadingIcon = null;
-            this.endTime_tbx.Location = new System.Drawing.Point(5, 366);
-            this.endTime_tbx.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.endTime_tbx.Location = new System.Drawing.Point(7, 392);
+            this.endTime_tbx.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.endTime_tbx.MaxLength = 32767;
             this.endTime_tbx.MouseState = MaterialSkin.MouseState.OUT;
             this.endTime_tbx.Name = "endTime_tbx";
@@ -317,7 +310,7 @@
             this.endTime_tbx.SelectionLength = 0;
             this.endTime_tbx.SelectionStart = 0;
             this.endTime_tbx.ShortcutsEnabled = true;
-            this.endTime_tbx.Size = new System.Drawing.Size(188, 48);
+            this.endTime_tbx.Size = new System.Drawing.Size(251, 48);
             this.endTime_tbx.TabIndex = 13;
             this.endTime_tbx.TabStop = false;
             this.endTime_tbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -332,12 +325,12 @@
             this.read_button.Depth = 0;
             this.read_button.HighEmphasis = true;
             this.read_button.Icon = null;
-            this.read_button.Location = new System.Drawing.Point(47, 425);
-            this.read_button.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.read_button.Location = new System.Drawing.Point(63, 533);
+            this.read_button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.read_button.MouseState = MaterialSkin.MouseState.HOVER;
             this.read_button.Name = "read_button";
             this.read_button.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.read_button.Size = new System.Drawing.Size(87, 36);
+            this.read_button.Size = new System.Drawing.Size(116, 45);
             this.read_button.TabIndex = 5;
             this.read_button.Text = "读卡";
             this.read_button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -347,15 +340,16 @@
             // 
             // ReadCardForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(750, 560);
+            this.ClientSize = new System.Drawing.Size(1000, 700);
             this.Controls.Add(this.tableLayoutPanel2);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ReadCardForm";
-            this.Padding = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.Padding = new System.Windows.Forms.Padding(3, 0, 3, 2);
             this.Sizable = false;
             this.Text = "ReadCardForm";
+            
             this.tableLayoutPanel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

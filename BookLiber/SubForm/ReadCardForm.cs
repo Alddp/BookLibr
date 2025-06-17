@@ -13,22 +13,26 @@ namespace BookLiber.SubForm {
 
         private void read_button_Click(object sender, System.EventArgs e) {
             ////测试代码
-            //string cardNum = "2025061422534128000";
+            string cardNum = "2025061802164987006";
 
             // TODO:测试
             //获取卡号
-            var cardNumRes = CardManager.ReadCardNum();
-            if (!cardNumRes.Success) {
-                MessageBox.Show(cardNumRes.Message);
-                return;
-            }
-            string cardNum = cardNumRes.Data;
+            //var cardNumRes = CardManager.ReadCardNum();
+            //if (!cardNumRes.Success) {
+            //    MessageBox.Show(cardNumRes.Message);
+            //    return;
+            //}
+            //string cardNum = cardNumRes.Data;
 
             // 根据卡号查询用户信息
             var sutInfoRes = ReaderManager.GetStuInfo(cardNum);
 
             if (!sutInfoRes.Success) {
                 MessageBox.Show("查询失败：" + sutInfoRes.Message);
+                return;
+            }
+            if (sutInfoRes.Data.IsValid == false) {
+                MessageBox.Show("此卡已注销");
                 return;
             }
             Reader.Instance = sutInfoRes.Data;

@@ -13,6 +13,7 @@ namespace BookModels {
         public string Photo { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime? EndTime { get; set; }
+        public bool IsValid { get; set; }
 
         // 私有静态字段存储实例
         private static Reader _instance;

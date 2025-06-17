@@ -6,64 +6,64 @@ namespace BookModels.Errors {
     public enum ErrorCode {
 
         // 通用
-        None = 0,
+        None = 0,                    // 操作成功，无错误
 
-        UnknownError,
-        InvalidParameter,
-        DatabaseError,
-        DuplicateKey,
-        NotFound,
-        Unauthorized,
-        Forbidden,
-        Timeout,
-        OperationFailed,
-        ForeignKeyViolation,
+        UnknownError,                // 系统发生未知错误
+        InvalidParameter,            // 参数格式无效
+        DatabaseError,               // 数据库操作异常
+        DuplicateKey,                // 数据重复违反唯一约束
+        NotFound,                    // 未找到相关数据
+        Unauthorized,                // 用户未授权
+        Forbidden,                   // 禁止访问此资源
+        Timeout,                     // 操作超时，请重试
+        OperationFailed,             // 操作执行失败
+        ForeignKeyViolation,         // 外键约束违反
 
         // 用户相关（User）
-        UserNotFound,
+        UserNotFound,                // 用户不存在
 
-        InvalidCard,
-        LoginFailed,
-        ExpiredAccount,
-        UserAlreadyExists,
-        UserCreationFailed,
+        InvalidCard,                 // 卡号无效
+        LoginFailed,                 // 账号或密码错误
+        ExpiredAccount,              // 账户已过期
+        UserAlreadyExists,           // 用户已存在
+        UserCreationFailed,          // 用户创建失败
 
         // 图书相关（Book）
-        BookNotFound,
+        BookNotFound,                // 图书不存在
 
-        InvalidISBN,
-        OutOfStock,
-        AlreadyBorrowed,
-        BookAlreadyExists,
-        BookInsertFailed,
+        InvalidISBN,                 // ISBN格式无效
+        OutOfStock,                  // 图书库存不足
+        AlreadyBorrowed,             // 用户已借阅该图书
+        BookAlreadyExists,           // 图书已存在
+        BookInsertFailed,            // 图书插入失败
 
         // 借阅相关（Borrow）
-        BookUnavailable,
+        BookUnavailable,             // 图书不可用
 
-        UserNotAllowedToBorrow,
-        ExceededBorrowLimit,
-        BorrowFailed,
-        BorrowRecordNotFound,
-        ReturnFailed,
+        UserNotAllowedToBorrow,      // 用户无借阅权限
+        ExceededBorrowLimit,         // 超出借阅数量限制
+        BorrowFailed,                // 借阅操作失败
+        BorrowRecordNotFound,        // 借阅记录不存在
+        ReturnFailed,                // 还书操作失败
 
         // 还书/续借相关（Return / Renew）
-        RenewFailed,
+        RenewFailed,                 // 续借操作失败
 
-        AlreadyReturned,
-        ReturnRecordNotFound,
+        AlreadyReturned,             // 图书已归还
+        ReturnRecordNotFound,        // 归还记录不存在
 
         // 管理员 / 权限
-        AdminNotFound,
+        AdminNotFound,               // 管理员不存在
 
-        PermissionDenied,
-        RoleAssignmentFailed,
+        PermissionDenied,            // 权限不足
+        RoleAssignmentFailed,        // 角色分配失败
 
         // 网络 / 系统
-        NetworkError,
+        NetworkError,                // 网络连接错误
 
-        ServerUnavailable,
-        ServiceUnavailable,
-        ConfigurationError
+        ServerUnavailable,           // 服务器不可用
+        ServiceUnavailable,          // 服务不可用
+        ConfigurationError           // 配置错误
     }
 
     public static class ErrorMessages {
