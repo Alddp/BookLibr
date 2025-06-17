@@ -12,6 +12,7 @@ namespace BookLiber.SubForm {
 
         public BorrowForm() {
             InitializeComponent();
+            ThemeManager.Initialize(this);
         }
 
         private void button2_Click(object sender, EventArgs e) {

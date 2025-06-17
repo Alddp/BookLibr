@@ -14,6 +14,7 @@ namespace BookLiber.SubForm {
 
         public AddBookForm() {
             InitializeComponent();
+            ThemeManager.Initialize(this);
         }
 
         private void add_button_Click(object sender, System.EventArgs e) {

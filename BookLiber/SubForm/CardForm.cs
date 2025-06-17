@@ -12,6 +12,7 @@ namespace BookLiber.SubForm {
 
         public CardForm() {
             InitializeComponent();
+            ThemeManager.Initialize(this);
         }
 
         private void CardForm_Load(object sender, EventArgs e) {

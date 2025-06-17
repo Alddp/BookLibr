@@ -12,6 +12,7 @@ namespace BookLiber.SubForm {
 
         public ReturnForm() {
             InitializeComponent();
+            ThemeManager.Initialize(this);
         }
 
         private void query_button_Click(object sender, System.EventArgs e) {

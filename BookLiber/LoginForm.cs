@@ -12,22 +12,6 @@ namespace BookLiber {
         public LoginForm() {
             InitializeComponent();
 
-            // 初始化 MaterialSkinManager
-            materialSkinManager = MaterialSkinManager.Instance;
-
-            // 强制改所有组件的背景色
-            materialSkinManager.EnforceBackcolorOnAllComponents = true;
-
-            // 将窗口添加到 MaterialSkinManager ，并设置主题
-            materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(
-                      Primary.Green600,
-                      Primary.Green700,
-                      Primary.Green200,
-                      Accent.Red100,
-                      TextShade.WHITE);
-            StartPosition = FormStartPosition.CenterScreen;
             txtUsername.Focus();
         }
 

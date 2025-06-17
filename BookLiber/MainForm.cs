@@ -5,6 +5,7 @@ using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using BookLiber;
 
 namespace BookLiber {
 
@@ -15,6 +16,7 @@ namespace BookLiber {
         public MainForm() {
             InitializeComponent();
             InitializeForms();
+            ThemeManager.Initialize(this);
         }
 
         private void MaterialTabControl1_SelectedIndexChanged
@@ -33,6 +35,10 @@ namespace BookLiber {
                 case 2: // 图书管理
                     formToShow = "addBook";
                     break;
+
+                case 3: // 设置
+                    formToShow = "settings";
+                    break;
             }
 
             // 如果窗体发生变化，则刷新显示
@@ -49,7 +55,8 @@ namespace BookLiber {
                 { "borrow", new BorrowForm() },
                 { "return", new ReturnForm() },
                 { "card", new CardForm() },
-                { "addBook", new AddBookForm() }
+                { "addBook", new AddBookForm() },
+                { "settings", new SettingForm() }
             };
 
             // 设置窗体属性
@@ -65,6 +72,7 @@ namespace BookLiber {
             operManage.Controls.Add(forms["borrow"]);
             operManage.Controls.Add(forms["return"]);
             bookManage.Controls.Add(forms["addBook"]);
+            settings.Controls.Add(forms["settings"]);
 
             // 默认显示读卡窗体
             ShowForm("readCard");
@@ -102,6 +110,10 @@ namespace BookLiber {
                         case "addBook":
                             parent = bookManage;
                             break;
+
+                        case "settings":
+                            parent = settings;
+                            break;
                     }
                 }
 
@@ -126,6 +138,10 @@ namespace BookLiber {
                     case "addBook":
                         newForm = new AddBookForm();
                         break;
+
+                    case "settings":
+                        newForm = new SettingForm();
+                        break;
                 }
 
                 if (newForm != null && parent != null) {
@@ -142,8 +158,13 @@ namespace BookLiber {
                     parent.Controls.Add(newForm);
                     // 更新字典中的窗体引用
                     forms[formName] = newForm;
+                    // 初始化主题
+                    if (newForm is MaterialForm materialForm) {
+                        ThemeManager.Initialize(materialForm);
+                    }
                     // 显示新窗体
                     newForm.Show();
+                    newForm.Focus();
                 }
             }
         }
@@ -208,6 +229,9 @@ namespace BookLiber {
         }
 
         private void toolStripButton6_Click(object sender, EventArgs e) {
+            ThemeManager.ToggleTheme();
+            // 重新显示当前窗体以强制更新主题
+            ShowForm(currentForm);
         }
     }
 }

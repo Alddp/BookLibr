@@ -9,6 +9,7 @@ namespace BookLiber.SubForm {
 
         public ReadCardForm() {
             InitializeComponent();
+            ThemeManager.Initialize(this);
         }
 
         private void read_button_Click(object sender, System.EventArgs e) {

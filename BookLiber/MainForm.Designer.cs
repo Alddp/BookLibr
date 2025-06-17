@@ -50,6 +50,7 @@
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.settings = new System.Windows.Forms.TabPage();
             this.materialTabControl1.SuspendLayout();
             this.cardManage.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -74,6 +75,7 @@
             this.materialTabControl1.Controls.Add(this.cardManage);
             this.materialTabControl1.Controls.Add(this.operManage);
             this.materialTabControl1.Controls.Add(this.bookManage);
+            this.materialTabControl1.Controls.Add(this.settings);
             this.materialTabControl1.Depth = 0;
             this.materialTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialTabControl1.ImageList = this.imageList1;
@@ -284,6 +286,15 @@
             this.toolStripButton6.Text = "toolStripButton6";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
+            // settings
+            // 
+            this.settings.Location = new System.Drawing.Point(4, 27);
+            this.settings.Name = "settings";
+            this.settings.Size = new System.Drawing.Size(1064, 683);
+            this.settings.TabIndex = 3;
+            this.settings.Text = "设置";
+            this.settings.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -341,5 +352,6 @@
         private System.Windows.Forms.ToolStrip toolStrip3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel6;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
+        private System.Windows.Forms.TabPage settings;
     }
 }
