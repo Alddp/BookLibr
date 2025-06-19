@@ -19,7 +19,7 @@ from src.utils.book_importer import import_books_from_file, validate_books
 
 # 定义所有可用的表名
 AVAILABLE_TABLES = {
-    "bookshelf": "书架表",
+    "bookshelfslot": "书架格子表",
     "book": "图书表",
     "user": "用户表",
     "admin": "管理员表",
@@ -100,12 +100,19 @@ def main(args=None):
         # 生成数据
         data = {}
 
-        if args.table == "all" or args.table == "bookshelf":
-            data["Bookshelf"] = generate_bookshelves(args.count)
+        if args.table == "all" or args.table == "bookshelfslot":
+            from src.data_generators.generators import generate_bookshelfslots
+
+            data["BookShelfSlot"] = generate_bookshelfslots(args.count)
 
         if args.table == "all" or args.table == "book":
-            shelves = data.get("Bookshelf", generate_bookshelves(args.count))
-            data["Book"] = generate_books(shelves, args.count)
+            bookshelfslots = data.get("BookShelfSlot")
+            if not bookshelfslots:
+                from src.data_generators.generators import generate_bookshelfslots
+
+                bookshelfslots = generate_bookshelfslots(args.count)
+                data["BookShelfSlot"] = bookshelfslots
+            data["Book"] = generate_books(bookshelfslots, args.count)
 
         if args.table == "all" or args.table == "user":
             data["UserTable"] = generate_users(args.count)
@@ -116,7 +123,7 @@ def main(args=None):
         if args.table == "all" or args.table == "borrow":
             users = data.get("UserTable", generate_users(args.count))
             books = data.get(
-                "Book", generate_books(generate_bookshelves(args.count), args.count)
+                "Book", generate_books(data.get("BookShelfSlot", []), args.count)
             )
             admins = data.get("Admin", generate_admins(args.count))
             data["Borrow"] = generate_borrows(users, books, admins, args.count)
