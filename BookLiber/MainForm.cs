@@ -5,7 +5,6 @@ using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using BookLiber;
 
 namespace BookLiber {
 
@@ -56,7 +55,7 @@ namespace BookLiber {
                 { "return", new ReturnForm() },
                 { "card", new CardForm() },
                 { "addBook", new AddBookForm() },
-                { "settings", new SettingForm() }
+                { "settings", new SettingForm() },
             };
 
             // 设置窗体属性
@@ -104,6 +103,7 @@ namespace BookLiber {
 
                         case "borrow":
                         case "return":
+                        case "borrowInfo":
                             parent = operManage;
                             break;
 

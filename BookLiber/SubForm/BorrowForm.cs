@@ -90,14 +90,32 @@ namespace BookLiber.SubForm {
                 dataGridView1.Columns.Insert(0, checkBoxColumn);
             }
 
-            // 自动绑定列
-            dataGridView1.DataSource = res.Data;
+            // 添加列
+            dataGridView1.Columns.Add("BookId", "图书编号");
+            dataGridView1.Columns.Add("BookName", "图书名称");
+            dataGridView1.Columns.Add("Author", "作者");
+            dataGridView1.Columns.Add("ISBN", "ISBN");
+            dataGridView1.Columns.Add("Price", "价格");
+            dataGridView1.Columns.Add("Inventory", "库存");
+            dataGridView1.Columns.Add("ShelfId", "书架编号");
 
-            //// 设置显示列名（可选）
-            //dataGridView1.Columns["ISBN"].HeaderText = "ISBN";
-            //dataGridView1.Columns["Title"].HeaderText = "书名";
-            //dataGridView1.Columns["Author"].HeaderText = "作者";
-            //dataGridView1.Columns["Stock"].HeaderText = "库存";
+            // 自动调整列宽度
+            dataGridView1.AutoResizeColumns();
+
+            // 填充数据
+            dataGridView1.Rows.Clear();
+            foreach (var book in res.Data) {
+                dataGridView1.Rows.Add(
+                    false, // Select column
+                    book.BookId,
+                    book.BookName,
+                    book.Author,
+                    book.ISBN,
+                    book.Price,
+                    book.Inventory,
+                    book.ShelfId
+                );
+            }
         }
 
         private void BorrowForm_Load(object sender, EventArgs e) {

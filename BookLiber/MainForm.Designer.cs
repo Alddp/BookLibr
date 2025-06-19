@@ -45,6 +45,7 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.bookManage = new System.Windows.Forms.TabPage();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
@@ -95,11 +96,11 @@
             this.cardManage.BackColor = System.Drawing.Color.White;
             this.cardManage.Controls.Add(this.toolStrip1);
             this.cardManage.ImageKey = "name-card.png";
-            this.cardManage.Location = new System.Drawing.Point(8, 30);
+            this.cardManage.Location = new System.Drawing.Point(8, 39);
             this.cardManage.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.cardManage.Name = "cardManage";
             this.cardManage.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.cardManage.Size = new System.Drawing.Size(1699, 1105);
+            this.cardManage.Size = new System.Drawing.Size(1699, 1096);
             this.cardManage.TabIndex = 0;
             this.cardManage.Text = "卡操作";
             // 
@@ -185,11 +186,11 @@
             this.operManage.BackColor = System.Drawing.Color.White;
             this.operManage.Controls.Add(this.toolStrip2);
             this.operManage.ImageKey = "借书.png";
-            this.operManage.Location = new System.Drawing.Point(8, 30);
+            this.operManage.Location = new System.Drawing.Point(8, 39);
             this.operManage.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.operManage.Name = "operManage";
             this.operManage.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.operManage.Size = new System.Drawing.Size(1699, 1105);
+            this.operManage.Size = new System.Drawing.Size(1699, 1096);
             this.operManage.TabIndex = 1;
             this.operManage.Text = "借阅";
             // 
@@ -202,6 +203,7 @@
             this.toolStripSeparator3,
             this.toolStripLabel5,
             this.toolStripButton5,
+            this.toolStripSeparator5,
             this.toolStripSeparator4});
             this.toolStrip2.Location = new System.Drawing.Point(5, 5);
             this.toolStrip2.Name = "toolStrip2";
@@ -213,7 +215,7 @@
             // toolStripLabel4
             // 
             this.toolStripLabel4.Name = "toolStripLabel4";
-            this.toolStripLabel4.Size = new System.Drawing.Size(62, 31);
+            this.toolStripLabel4.Size = new System.Drawing.Size(62, 32);
             this.toolStripLabel4.Text = "借书";
             // 
             // toolStripButton4
@@ -222,19 +224,19 @@
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(46, 31);
+            this.toolStripButton4.Size = new System.Drawing.Size(46, 32);
             this.toolStripButton4.Text = "toolStripButton4";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 37);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 38);
             // 
             // toolStripLabel5
             // 
             this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(62, 31);
+            this.toolStripLabel5.Size = new System.Drawing.Size(62, 32);
             this.toolStripLabel5.Text = "还书";
             // 
             // toolStripButton5
@@ -243,25 +245,30 @@
             this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(46, 31);
+            this.toolStripButton5.Size = new System.Drawing.Size(46, 32);
             this.toolStripButton5.Text = "toolStripButton5";
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 38);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 37);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 38);
             // 
             // bookManage
             // 
             this.bookManage.BackColor = System.Drawing.Color.White;
             this.bookManage.Controls.Add(this.toolStrip3);
             this.bookManage.ImageKey = "实物借阅.png";
-            this.bookManage.Location = new System.Drawing.Point(8, 30);
+            this.bookManage.Location = new System.Drawing.Point(8, 39);
             this.bookManage.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.bookManage.Name = "bookManage";
             this.bookManage.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.bookManage.Size = new System.Drawing.Size(1699, 1105);
+            this.bookManage.Size = new System.Drawing.Size(1699, 1095);
             this.bookManage.TabIndex = 2;
             this.bookManage.Text = "图书操作";
             // 
@@ -297,10 +304,10 @@
             // settings
             // 
             this.settings.ImageKey = "设置.png";
-            this.settings.Location = new System.Drawing.Point(8, 30);
+            this.settings.Location = new System.Drawing.Point(8, 39);
             this.settings.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.settings.Name = "settings";
-            this.settings.Size = new System.Drawing.Size(1699, 1105);
+            this.settings.Size = new System.Drawing.Size(1699, 1095);
             this.settings.TabIndex = 3;
             this.settings.Text = "设置";
             this.settings.UseVisualStyleBackColor = true;
@@ -363,5 +370,6 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel6;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.TabPage settings;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }
