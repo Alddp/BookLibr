@@ -1,4 +1,4 @@
-﻿namespace BookLiber.SubForm {
+﻿namespace BookLiber.OperForm {
     partial class CardForm {
         /// <summary>
         /// Required designer variable.

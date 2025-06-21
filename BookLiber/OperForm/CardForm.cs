@@ -6,7 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace BookLiber.SubForm {
+namespace BookLiber.OperForm {
 
     public partial class CardForm : MaterialForm {
 

@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BookLiber.SubForm {
+namespace BookLiber.OperForm {
 
     public partial class BorrowForm : MaterialForm {
 

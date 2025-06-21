@@ -1,4 +1,4 @@
-﻿namespace BookLiber.SubForm {
+﻿namespace BookLiber.AdminForm {
     partial class AddBookForm {
         /// <summary>
         /// Required designer variable.

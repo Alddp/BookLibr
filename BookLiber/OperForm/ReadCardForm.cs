@@ -3,7 +3,7 @@ using BookModels;
 using MaterialSkin.Controls;
 using System.Windows.Forms;
 
-namespace BookLiber.SubForm {
+namespace BookLiber.OperForm {
 
     public partial class ReadCardForm : MaterialForm {
 

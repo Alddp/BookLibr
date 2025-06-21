@@ -4,13 +4,11 @@ using MaterialSkin.Controls;
 using System;
 using System.Windows.Forms;
 
-namespace BookLiber {
+namespace BookLiber.AdminForm {
 
-    public partial class RegisterForm : MaterialForm {
-        public string returnName;
-        public string returnPwd;
+    public partial class AddUserForm : MaterialForm {
 
-        public RegisterForm() {
+        public AddUserForm() {
             InitializeComponent();
 
             StartPosition = FormStartPosition.CenterScreen;
@@ -30,11 +28,11 @@ namespace BookLiber {
 
             switch (materialComboBox1.SelectedIndex) {
                 case 0:
-                    admin.Type = "operator";
+                    admin.Type = "操作员";
                     break;
 
                 case 1:
-                    admin.Type = "admin";
+                    admin.Type = "管理员";
                     break;
             }
 
@@ -45,9 +43,6 @@ namespace BookLiber {
                 return;
             }
             MessageBox.Show("注册成功", "提示");
-            returnName = UserName_tb.Text.Trim();
-            returnPwd = Pwd_tb.Text.Trim();
-            Close();
         }
     }
 }

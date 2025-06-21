@@ -3,7 +3,7 @@ using MaterialSkin.Controls;
 using System;
 using System.Windows.Forms;
 
-namespace BookLiber.SubForm {
+namespace BookLiber.OperForm {
 
     public partial class SettingForm : MaterialForm {
         private readonly MaterialSkinManager materialSkinManager;
