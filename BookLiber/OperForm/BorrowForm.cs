@@ -15,6 +15,15 @@ namespace BookLiber.OperForm {
         public BorrowForm() {
             InitializeComponent();
             ThemeManager.Initialize(this);
+            InitializeDataGridView();
+        }
+
+        private void InitializeDataGridView() {
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.MultiSelect = true;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.ReadOnly = true;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void button2_Click(object sender, EventArgs e) {
@@ -47,15 +56,9 @@ namespace BookLiber.OperForm {
         private void button1_Click(object sender, EventArgs e) {
             var selectedBooks = new List<string>(); // 存储选中的图书ID
 
-            foreach (DataGridViewRow row in dataGridView1.Rows) {
-                if (row.Cells["Select"].Value == null)
-                    continue;
-
-                bool isSelected = Convert.ToBoolean(row.Cells["Select"].Value);
-                if (isSelected) {
-                    string bookId = row.Cells[BookTableFields.BookId].Value.ToString();
-                    selectedBooks.Add(bookId);
-                }
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows) {
+                string bookId = row.Cells[BookTableFields.BookId].Value.ToString();
+                selectedBooks.Add(bookId);
             }
 
             if (selectedBooks.Count == 0) {
@@ -84,15 +87,7 @@ namespace BookLiber.OperForm {
 
             // 准备表格
             dataGridView1.Columns.Clear();
-
-            if (!dataGridView1.Columns.Contains("Select")) {
-                var checkBoxColumn = new DataGridViewCheckBoxColumn {
-                    Name = "Select",
-                    HeaderText = "选择",
-                    Width = 50
-                };
-                dataGridView1.Columns.Insert(0, checkBoxColumn);
-            }
+            dataGridView1.Rows.Clear();
 
             // 添加列
             dataGridView1.Columns.Add(BookTableFields.BookId, "图书编号");
@@ -110,7 +105,6 @@ namespace BookLiber.OperForm {
             dataGridView1.Rows.Clear();
             foreach (var book in _searchedBooks) {
                 dataGridView1.Rows.Add(
-                    false, // Select column
                     book.BookId,
                     book.BookName,
                     book.Author,

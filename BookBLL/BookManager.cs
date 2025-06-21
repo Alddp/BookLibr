@@ -96,6 +96,7 @@ namespace BookBLL {
                         books.Add(new Borrow {
                             BorrowId = reader[BorrowTableFields.BorrowId].ToString(),
                             BookId = reader[BorrowTableFields.BookId].ToString(),
+                            BookName = reader[BookTableFields.BookName].ToString(),
                             UserId = reader[BorrowTableFields.UserId].ToString(),
                             BorrowAdminId = reader[BorrowTableFields.BorrowAdminId].ToString(),
                             ReturnAdminId = reader[BorrowTableFields.ReturnAdminId].ToString(),

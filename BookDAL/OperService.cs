@@ -85,16 +85,22 @@ namespace BookDAL {
 
         // 查询借书记录
         public static SqlDataReader QueryBorrowRecord(string userId) {
-            string tableName = BorrowTableFields.TableName;
+            string borrowTable = BorrowTableFields.TableName;
+            string bookTable = BookTableFields.TableName;
             string userIdColumn = BorrowTableFields.UserId;
 
-            // 查询用户借书记录, 将returnDate为null的排在前面, 另外根据借书日期降序排序
-            string sql = $@"SELECT * FROM {tableName} WHERE {userIdColumn} = @UserId AND {BorrowTableFields.ReturnDate} IS NULL
-                            UNION
-                            SELECT * FROM {tableName} WHERE {userIdColumn} = @UserId AND {BorrowTableFields.ReturnDate} IS NOT NULL
-                            ORDER BY {BorrowTableFields.ReturnDate} ASC, {BorrowTableFields.BorrowDate} DESC";
-
-            //string sql = $@"SELECT * FROM {tableName} WHERE {userIdColumn} = @UserId";
+            // 查询用户借书记录, 并通过JOIN获取书名
+            string sql = $@"
+                SELECT b.*, bk.{BookTableFields.BookName}
+                FROM {borrowTable} b
+                JOIN {bookTable} bk ON b.{BorrowTableFields.BookId} = bk.{BookTableFields.BookId}
+                WHERE b.{userIdColumn} = @UserId AND b.{BorrowTableFields.ReturnDate} IS NULL
+                UNION
+                SELECT b.*, bk.{BookTableFields.BookName}
+                FROM {borrowTable} b
+                JOIN {bookTable} bk ON b.{BorrowTableFields.BookId} = bk.{BookTableFields.BookId}
+                WHERE b.{userIdColumn} = @UserId AND b.{BorrowTableFields.ReturnDate} IS NOT NULL
+                ORDER BY b.{BorrowTableFields.ReturnDate} ASC, b.{BorrowTableFields.BorrowDate} DESC";
 
             SqlParameter[] parameters = new SqlParameter[]
                {
