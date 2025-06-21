@@ -1,366 +1,154 @@
 # BookLiber 图书管理系统
 
-BookLiber 是一个基于 C# WinForms 开发的图书管理系统，采用三层架构设计，提供完整的图书管理功能。
+欢迎了解 BookLiber，一个基于 C# WinForms 和 .NET Framework 开发的现代化、高效的桌面图书管理系统。它采用分层架构，集成了 RFID 硬件，为中小型图书馆、学校或个人收藏家提供了一套完整的管理解决方案。
 
 ## 目录
 
-1. [系统架构](#系统架构)
-2. [功能模块](#功能模块)
-3. [技术实现](#技术实现)
-4. [数据库设计](#数据库设计)
-5. [开发环境](#开发环境)
-6. [使用说明](#使用说明)
-7. [开发进度](#开发进度)
-8. [注意事项](#注意事项)
-9. [许可证](#许可证)
+- [BookLiber 图书管理系统](#bookliber-图书管理系统)
+  - [目录](#目录)
+  - [🧭 项目愿景](#-项目愿景)
+  - [✨ 功能模块](#-功能模块)
+  - [🎨 技术亮点](#-技术亮点)
+  - [🖼️ 系统截图](#️-系统截图)
+  - [🛠️ 系统架构](#️-系统架构)
+    - [1. 架构分层](#1-架构分层)
+    - [2. 项目结构](#2-项目结构)
+  - [🚀 快速上手](#-快速上手)
+  - [📅 后续计划](#-后续计划)
+  - [🤝 如何贡献](#-如何贡献)
+  - [📜 许可证](#-许可证)
 
-## 系统架构
+## 🧭 项目愿景
 
-### 1. 整体架构
+BookLiber 旨在提供一套易于部署和使用的图书管理解决方案。我们致力于通过现代化的用户界面和智能化的硬件集成（如 RFID），简化图书管理员的日常工作，同时提升读者的借阅体验。
 
-- 采用经典三层架构：表现层(UI)、业务逻辑层(BLL)、数据访问层(DAL)
-- 使用实体层(Models)进行数据封装和业务规则定义
-- 采用 SQL Server 数据库存储数据
-- 使用 ADO.NET 进行数据访问
+**目标用户**:
+
+- 中小型社区图书馆
+- 学校、学院的图书室
+- 企业的内部资料中心
+- 拥有大量书籍的个人收藏家
+
+## ✨ 功能模块
+
+| 类别           | 功能点                                       | 状态      |
+| :------------- | :------------------------------------------- | :-------- |
+| **用户管理**   | 添加/修改/删除读者信息                       | ✅ 已完成 |
+|                | 绑定/更新 RFID 卡号                          | ✅ 已完成 |
+|                | 查看个人借阅记录                             | ✅ 已完成 |
+|                | 设置用户有效期（如毕业时间）                 | ✅ 已完成 |
+|                | 照片上传（用于身份确认）                     | ✅ 已完成 |
+| **图书管理**   | 新增图书信息（书名、作者、ISBN、封面等）     | ✅ 已完成 |
+|                | 图书图片上传与展示                           | ✅ 已完成 |
+|                | 模糊查询（书名、作者、ISBN）                 | ✅ 已完成 |
+|                | 设置书架位置（与 BookShelfSlot 表关联）      | ✅ 已完成 |
+|                | 修改库存数量                                 | 🚧 开发中 |
+| **借阅管理**   | 读卡识别 → 自动加载读者信息                  | ✅ 已完成 |
+|                | 还书操作（自动识别图书 → 归还）              | ✅ 已完成 |
+|                | 扫描图书（RFID 或手动）→ 自动借书            | 🚧 开发中 |
+|                | 续借操作                                     | 🚧 开发中 |
+|                | 超期提醒与处理                               | 🚧 开发中 |
+| **RFID 功能**  | 读卡器串口通信                               | ✅ 已完成 |
+|                | 读者卡识别（借阅人）                         | ✅ 已完成 |
+|                | 图书标签识别（借阅图书）                     | 🚧 开发中 |
+| **管理员功能** | 管理员登录                                   | ✅ 已完成 |
+|                | 不同权限等级（如"图书管理员"、"系统管理员"） | ✅ 已完成 |
+|                | 管理员借书/还书记录归档                      | ✅ 已完成 |
+| **统计报表**   | 热门借阅图书排行                             | ✅ 已完成 |
+|                | 借阅频次统计（按日/月/年）                   | 🚧 开发中 |
+|                | 超期图书列表                                 | 🚧 开发中 |
+|                | 图书库存一览                                 | 🚧 开发中 |
+| **系统设置**   | RFID 参数设置（串口、波特率）                | ✅ 已完成 |
+|                | 界面主题设置（黑/白模式）                    | ✅ 已完成 |
+|                | 图书批量导入（Excel）                        | ✅ 已完成 |
+
+## 🎨 技术亮点
+
+- **现代化的用户界面**: 采用 `MaterialSkin` for WinForms 框架，提供美观、流畅的 Material Design 风格界面，告别传统 WinForms 应用的陈旧感。
+- **清晰的分层架构**: 基于五层架构构建，职责分明，确保了代码的**高内聚、低耦合**，易于维护和扩展。
+- **硬件无缝集成**: 内置 RFID 读卡器支持，实现了自动化的借阅流程。
+- **健壮的数据操作**: 通过统一的返回结构和错误处理机制，保证了系统在各种场景下的稳定运行。
+- **便捷的开发模式**: 应用单例、工厂等设计模式简化开发；通过 `ResultWrapper`包装器统一处理数据库异常。
+
+_想了解更多关于设计模式、统一返回结构、错误处理等技术细节？请参阅 [`设计文档.md`](./设计文档.md)。_
+
+## 🖼️ 系统截图
+
+_(此处为占位符，建议添加一些关键界面的截图，如登录页、主界面、借还书界面等)_
+
+- **登录界面**
+  ![登录界面](link-to-your-screenshot.png)
+- **主操作界面**
+  ![主操作界面](link-to-your-screenshot.png)
+
+## 🛠️ 系统架构
+
+### 1. 架构分层
+
+系统在经典的三层架构（UI、BLL、DAL）基础上进行了扩展，增加**模型层 (Models)** 和 **硬件接口层 (HardWare)**，形成了职责更清晰的五层架构。
+
+- **表现层 (UI - BookLiber)**: WinForms 窗体，负责用户交互。
+- **业务逻辑层 (BLL - BookBLL)**: 处理核心业务逻辑。
+- **数据访问层 (DAL - BookDAL)**: 使用 ADO.NET 和 SQL Server 进行数据持久化。
+- **模型层 (Models - BookModels)**: 定义业务实体、常量、和统一的操作结果。
+- **硬件接口层 (HardWare - BookHardWare)**: 封装对 RFID 读卡器的串口通信操作。
 
 ### 2. 项目结构
 
 ```
 BookLiber/
-├── BookLiber/              # 主项目
-│   ├── MainForm.cs        # 主窗体
-│   ├── LoginForm.cs       # 登录窗体
-│   ├── RegisterForm.cs    # 注册窗体
-│   └── SubForm/           # 子窗体目录
-├── BookModels/            # 领域模型层
-│   ├── Entities/          # 实体类
-│   ├── Constants/         # 常量定义
-│   └── Errors/           # 错误处理
-├── BookBLL/              # 业务逻辑层
-│   ├── CardManager.cs    # 卡管理
-│   ├── ReaderManager.cs  # 读者管理
-│   └── BookManager.cs    # 图书管理
-├── BookDAL/              # 数据访问层
-└── BookHardWare/         # 硬件接口层
+├── BookLiber/              # 表现层 (UI)
+│   ├── AdminForm/
+│   ├── OperForm/
+│   └── SharedForm/
+├── BookModels/             # 领域模型层
+│   ├── Entities/
+│   ├── Constants/
+│   └── Errors/
+├── BookBLL/                # 业务逻辑层
+├── BookDAL/                # 数据访问层
+└── BookHardWare/           # 硬件接口层
 ```
 
-## 功能模块
+## 🚀 快速上手
 
-### 1. 用户管理
+1. **数据库配置**:
 
-- [x] 添加/修改/删除读者信息
-- [x] 绑定/更新 RFID 卡号
-- [x] 查看借阅记录
-- [x] 设置有效期（如毕业时间）
-- [x] 照片上传（用于身份确认）
+   - 使用 `LibrBook.mdf` 和 `LibrBook_log.ldf` 附加数据库到您的 SQL Server 实例。
+   - 或者运行 `SQLQuery1.sql` 和 `SQLQuery2.sql` 来创建数据库和表结构。
+   - 修改 `BookDAL/DBHelper.cs` 中的数据库连接字符串。
 
-### 2. 图书管理
+2. **启动项目**:
 
-- [x] 新增图书信息（书名、作者、ISBN、封面等）
-- [x] 图书图片上传与展示
-- [ ] 设置书架位置（与 Bookshelf 表关联）
-- [ ] 修改库存数量
-- [x] 模糊查询（书名、作者、ISBN）
+   - 在 Visual Studio 中打开 `BookLiber.sln` 解决方案。
+   - 将 `BookLiber` 项目设置为启动项目并运行。
 
-### 3. 借阅管理
+3. **默认凭证**:
 
-- [x] 读卡识别 → 自动加载读者信息
-- [ ] 扫描图书（RFID 或手动）→ 自动借书
-- [x] 还书操作（自动识别图书 → 归还）
-- [ ] 续借操作
-- [ ] 超期提醒与处理
-- [ ] 借阅次数、未还书数量统计
+   - **管理员**: `admin` / `123456`
+   - （请在首次登录后及时修改密码）
 
-### 4. RFID 功能
+## 📅 后续计划
 
-- [x] 读卡器串口通信
-- [x] 读者卡识别（借阅人）
-- [ ] 图书标签识别（借阅图书）
+- [ ] **完善统计报表**：实现热门借阅排行、借阅频次、超期图书等可视化报表。
+- [ ] **全自动借还**：实现图书 RFID 标签的读写，完成从借到还的全流程自动化。
+- [ ] **高级借阅功能**：增加图书续借、超期罚款等实用功能。
+- [ ] **提升健壮性**：编写单元测试和集成测试，保障代码质量。
 
-### 5. 管理员功能
+## 🤝 如何贡献
 
-- [x] 管理员登录
-- [x] 不同权限等级（如"图书管理员"、"系统管理员"）
-- [x] 管理员借书/还书记录归档
+我们欢迎任何形式的贡献！如果您对改进此项目感兴趣，可以通过以下方式参与：
 
-### 6. 统计报表
+1. **报告问题 (Issues)**: 如果您发现任何错误或有功能建议，请随时在 Issues 区提交。
+2. **发起拉取请求 (Pull Requests)**:
+   - Fork 本仓库到您的账户下。
+   - 创建一个新的分支 (`git checkout -b feature/your-feature-name`)。
+   - 提交您的代码修改 (`git commit -m 'Add some feature'`)。
+   - 将分支推送到您的仓库 (`git push origin feature/your-feature-name`)。
+   - 创建并提交一个 Pull Request。
 
-- [x] 热门借阅图书排行
-- [ ] 借阅频次统计（按日/月/年）
-- [ ] 超期图书列表
-- [ ] 图书库存一览（可按类别、书架分组）
+_我们同样感谢那些帮助改进文档的用户！_
 
-### 7. 系统设置
+## 📜 许可证
 
-- [x] RFID 参数设置（串口、波特率）
-- [ ] 界面主题设置（黑/白模式）
-- [x] 图书批量导入（Excel）
-
-## 技术实现
-
-### 1. 分层架构
-
-系统采用五层架构设计，在传统三层架构的基础上增加了模型层和硬件接口层：
-
-#### 1.1 表现层 (BookLiber)
-
-- 基于 WinForms 开发
-- 使用 MaterialSkin 实现现代化 UI
-- 实现用户界面交互
-- 提供数据展示和操作界面
-- 实现用户输入验证
-
-#### 1.2 业务逻辑层 (BookBLL)
-
-- 实现核心业务逻辑
-- 提供业务规则验证
-- 处理业务异常
-- 管理事务处理
-- 调用硬件接口层进行 RFID 操作
-
-#### 1.3 数据访问层 (BookDAL)
-
-- 使用 ADO.NET 实现数据访问
-- 采用存储过程进行数据操作
-- 实现数据访问接口隔离
-- 提供统一的数据访问接口
-
-#### 1.4 模型层 (BookModels)
-
-- 定义业务实体类
-- 提供数据验证规则
-- 定义业务常量
-- 实现错误处理机制
-- 提供统一的返回结构
-
-#### 1.5 硬件接口层 (BookHardWare)
-
-- 封装 RFID 读卡器操作
-- 提供串口通信接口
-- 实现硬件设备管理
-- 处理硬件异常
-
-### 2. 设计模式应用
-
-#### 2.1 单例模式
-
-```csharp
-// MaterialSkinManager 单例
-materialSkinManager = MaterialSkinManager.Instance;
-
-// Reader 单例
-Reader.Instance = sutInfoRes.Data;
-```
-
-#### 2.2 工厂模式
-
-```csharp
-// 窗体创建工厂
-private void InitializeForms() {
-    forms = new Dictionary<string, Form> {
-        { "readCard", new ReadCardForm() },
-        { "borrow", new BorrowForm() },
-        { "return", new ReturnForm() },
-        { "card", new CardForm() },
-        { "addBook", new AddBookForm() }
-    };
-}
-```
-
-#### 2.3 观察者模式
-
-```csharp
-// 窗体切换观察者
-private void materialTabControl1_SelectedIndexChanged(object sender, EventArgs e) {
-    HideAllForms();
-    switch (materialTabControl1.SelectedIndex) {
-        case 0:  // 卡管理标签页
-            ShowForm("readCard");
-            break;
-        case 1:  // 借阅管理标签页
-            ShowForm("borrow");
-            break;
-        case 2:  // 图书管理标签页
-            ShowForm("addBook");
-            break;
-    }
-}
-```
-
-#### 2.4 依赖注入
-
-```csharp
-public class ReadCardForm : MaterialForm {
-    private readonly MaterialSkinManager materialSkinManager;
-
-    public ReadCardForm() {
-        InitializeComponent();
-        materialSkinManager = MaterialSkinManager.Instance;
-    }
-}
-```
-
-### 3. 统一返回结构
-
-系统使用统一的返回结构 `OperationResult<T>` 处理所有操作结果：
-
-```csharp
-public class OperationResult<T> {
-    public bool Success { get; set; }
-    public string Message { get; set; }
-    public T Data { get; set; }
-    public int ErrorCode { get; set; }
-}
-```
-
-使用示例：
-
-```csharp
-// 成功返回
-return new OperationResult<Reader> {
-    Success = true,
-    Message = "获取读者信息成功",
-    Data = reader
-};
-
-// 错误返回
-return new OperationResult<Reader> {
-    Success = false,
-    Message = "未找到读者信息",
-    ErrorCode = ErrorCodes.READER_NOT_FOUND
-};
-```
-
-### 4. 包装器模式
-
-系统使用包装器模式封装底层操作：
-
-#### 4.1 数据库操作包装器
-
-```csharp
-public class DbWrapper {
-    public static OperationResult<T> ExecuteQuery<T>(string sql, params SqlParameter[] parameters) {
-        // 执行数据库查询
-    }
-
-    public static OperationResult<int> ExecuteNonQuery(string sql, params SqlParameter[] parameters) {
-        // 执行数据库更新
-    }
-}
-```
-
-#### 4.2 RFID 操作包装器
-
-```csharp
-public class RfidWrapper {
-    public static OperationResult<string> ReadCard() {
-        // 读取 RFID 卡
-    }
-
-    public static OperationResult<bool> WriteCard(string data) {
-        // 写入 RFID 卡
-    }
-}
-```
-
-### 5. 工具类 (Utils)
-
-系统提供了多个工具类来简化开发：
-
-#### 5.1 结果包装器 (ResultWrapper)
-
-```csharp
-public static class ResultWrapper {
-    // 封装带返回值的操作（如查询、登录等）
-    public static OperationResult<TData> Wrap<TData>(Func<TData> func) {
-        try {
-            TData result = func();
-            return OperationResult<TData>.Ok(result);
-        }
-        catch (SqlException ex) {
-            if (IsConflictError(ex))
-                return OperationResult<TData>.Fail(
-                    ErrorCode.DuplicateKey,
-                    GetMessage(ErrorCode.DuplicateKey, ex.Message));
-            return OperationResult<TData>.Fail(
-                ErrorCode.DatabaseError,
-                GetMessage(ErrorCode.DatabaseError, ex.Message));
-        }
-        catch (Exception ex) {
-            return OperationResult<TData>.Fail(
-                ErrorCode.UnknownError,
-                GetMessage(ErrorCode.UnknownError, ex.Message));
-        }
-    }
-}
-```
-
-#### 5.2 SQL 错误映射器 (SqlErrorMapper)
-
-```csharp
-public static class SqlErrorMapper {
-    public static ErrorCode Map(SqlException ex) {
-        switch (ex.Number) {
-            case 2627:
-                return ErrorCode.DuplicateKey; // 主键/唯一键冲突
-            case 2601:
-                return ErrorCode.DuplicateKey; // 唯一索引冲突
-            case 547:
-                return ErrorCode.ForeignKeyViolation; //外键冲突
-        }
-        return ErrorCode.DatabaseError; // 数据库错误
-    }
-}
-```
-
-### 6. 错误处理机制
-
-系统实现了统一的错误处理机制：
-
-```csharp
-public enum ErrorCode {
-    // 通用
-    None = 0,                    // 操作成功，无错误
-    UnknownError,                // 系统发生未知错误
-    InvalidParameter,            // 参数格式无效
-    DatabaseError,               // 数据库操作异常
-    DuplicateKey,                // 数据重复违反唯一约束
-    NotFound,                    // 未找到相关数据
-    Unauthorized,                // 用户未授权
-    Forbidden,                   // 禁止访问此资源
-    Timeout,                     // 操作超时，请重试
-    OperationFailed,             // 操作执行失败
-    ForeignKeyViolation,         // 外键约束违反
-    ...
-}
-
-
-private static readonly Dictionary<ErrorCode, string> _messages = new Dictionary<ErrorCode, string>(){
-    // 通用错误
-    { ErrorCode.None, "操作成功" },
-    { ErrorCode.UnknownError, "系统发生未知错误" },
-    { ErrorCode.InvalidParameter, "参数格式无效" },
-    { ErrorCode.DatabaseError, "数据库操作异常" },
-    { ErrorCode.DuplicateKey, "数据重复违反唯一约束" },
-    { ErrorCode.NotFound, "未找到相关数据" },
-    { ErrorCode.Unauthorized, "用户未授权" },
-    { ErrorCode.Forbidden, "禁止访问此资源" },
-    { ErrorCode.Timeout, "操作超时，请重试" },
-    { ErrorCode.OperationFailed, "操作执行失败" },
-    ...
-}
-
-
- public static string GetMessage(ErrorCode code, string errorMessage = default) {
-            // 判断errorMessage是否为null
-            var res = _messages.TryGetValue(code, out var msg);
-
-            msg = errorMessage != default
-                ? msg + ":\n" + errorMessage
-                : msg;
-
-            return res
-                ? msg
-                : "未定义的错误";
- }
-```
+本项目采用 [MIT 许可证](LICENSE)。
