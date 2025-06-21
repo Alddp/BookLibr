@@ -26,8 +26,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.materialTextBox21 = new MaterialSkin.Controls.MaterialTextBox2();
-            this.materialTextBox25 = new MaterialSkin.Controls.MaterialTextBox2();
-            this.materialTextBox24 = new MaterialSkin.Controls.MaterialTextBox2();
             this.materialTextBox23 = new MaterialSkin.Controls.MaterialTextBox2();
             this.materialTextBox22 = new MaterialSkin.Controls.MaterialTextBox2();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -43,6 +41,8 @@
             this.materialButtonR1C1 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.materialComboBox2 = new MaterialSkin.Controls.MaterialComboBox();
+            this.materialComboBox3 = new MaterialSkin.Controls.MaterialComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -72,10 +72,10 @@
             this.tableLayoutPanel2.ColumnCount = 1;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Controls.Add(this.materialTextBox21, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.materialTextBox25, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.materialTextBox24, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.materialTextBox23, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.materialTextBox22, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.materialComboBox2, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.materialComboBox3, 0, 4);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 23);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -117,68 +117,6 @@
             this.materialTextBox21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.materialTextBox21.TrailingIcon = null;
             this.materialTextBox21.UseSystemPasswordChar = false;
-            // 
-            // materialTextBox25
-            // 
-            this.materialTextBox25.AnimateReadOnly = false;
-            this.materialTextBox25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.materialTextBox25.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.materialTextBox25.Depth = 0;
-            this.materialTextBox25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialTextBox25.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTextBox25.HideSelection = true;
-            this.materialTextBox25.Hint = "层";
-            this.materialTextBox25.LeadingIcon = null;
-            this.materialTextBox25.Location = new System.Drawing.Point(2, 426);
-            this.materialTextBox25.Margin = new System.Windows.Forms.Padding(2);
-            this.materialTextBox25.MaxLength = 32767;
-            this.materialTextBox25.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialTextBox25.Name = "materialTextBox25";
-            this.materialTextBox25.PasswordChar = '\0';
-            this.materialTextBox25.PrefixSuffixText = null;
-            this.materialTextBox25.ReadOnly = false;
-            this.materialTextBox25.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.materialTextBox25.SelectedText = "";
-            this.materialTextBox25.SelectionLength = 0;
-            this.materialTextBox25.SelectionStart = 0;
-            this.materialTextBox25.ShortcutsEnabled = true;
-            this.materialTextBox25.Size = new System.Drawing.Size(210, 48);
-            this.materialTextBox25.TabIndex = 4;
-            this.materialTextBox25.TabStop = false;
-            this.materialTextBox25.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.materialTextBox25.TrailingIcon = null;
-            this.materialTextBox25.UseSystemPasswordChar = false;
-            // 
-            // materialTextBox24
-            // 
-            this.materialTextBox24.AnimateReadOnly = false;
-            this.materialTextBox24.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.materialTextBox24.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.materialTextBox24.Depth = 0;
-            this.materialTextBox24.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.materialTextBox24.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialTextBox24.HideSelection = true;
-            this.materialTextBox24.Hint = "面";
-            this.materialTextBox24.LeadingIcon = null;
-            this.materialTextBox24.Location = new System.Drawing.Point(2, 320);
-            this.materialTextBox24.Margin = new System.Windows.Forms.Padding(2);
-            this.materialTextBox24.MaxLength = 32767;
-            this.materialTextBox24.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialTextBox24.Name = "materialTextBox24";
-            this.materialTextBox24.PasswordChar = '\0';
-            this.materialTextBox24.PrefixSuffixText = null;
-            this.materialTextBox24.ReadOnly = false;
-            this.materialTextBox24.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.materialTextBox24.SelectedText = "";
-            this.materialTextBox24.SelectionLength = 0;
-            this.materialTextBox24.SelectionStart = 0;
-            this.materialTextBox24.ShortcutsEnabled = true;
-            this.materialTextBox24.Size = new System.Drawing.Size(210, 48);
-            this.materialTextBox24.TabIndex = 3;
-            this.materialTextBox24.TabStop = false;
-            this.materialTextBox24.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.materialTextBox24.TrailingIcon = null;
-            this.materialTextBox24.UseSystemPasswordChar = false;
             // 
             // materialTextBox23
             // 
@@ -489,9 +427,11 @@
             this.materialButton2.NoAccentTextColor = System.Drawing.Color.Empty;
             this.materialButton2.Size = new System.Drawing.Size(226, 38);
             this.materialButton2.TabIndex = 1;
+            this.materialButton2.Text = "确认选择";
             this.materialButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton2.UseAccentColor = false;
             this.materialButton2.UseVisualStyleBackColor = true;
+            this.materialButton2.Click += new System.EventHandler(this.ConfirmButton_Click);
             // 
             // pictureBox1
             // 
@@ -502,6 +442,64 @@
             this.pictureBox1.Size = new System.Drawing.Size(238, 189);
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
+            // 
+            // materialComboBox2
+            // 
+            this.materialComboBox2.AutoResize = false;
+            this.materialComboBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialComboBox2.Depth = 0;
+            this.materialComboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.materialComboBox2.DropDownHeight = 174;
+            this.materialComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.materialComboBox2.DropDownWidth = 121;
+            this.materialComboBox2.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialComboBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialComboBox2.FormattingEnabled = true;
+            this.materialComboBox2.Hint = "面";
+            this.materialComboBox2.IntegralHeight = false;
+            this.materialComboBox2.ItemHeight = 43;
+            this.materialComboBox2.Items.AddRange(new object[] {
+            "A",
+            "B"});
+            this.materialComboBox2.Location = new System.Drawing.Point(3, 321);
+            this.materialComboBox2.MaxDropDownItems = 4;
+            this.materialComboBox2.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialComboBox2.Name = "materialComboBox2";
+            this.materialComboBox2.Size = new System.Drawing.Size(208, 49);
+            this.materialComboBox2.StartIndex = 0;
+            this.materialComboBox2.TabIndex = 5;
+            // 
+            // materialComboBox3
+            // 
+            this.materialComboBox3.AutoResize = false;
+            this.materialComboBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialComboBox3.Depth = 0;
+            this.materialComboBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialComboBox3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.materialComboBox3.DropDownHeight = 174;
+            this.materialComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.materialComboBox3.DropDownWidth = 121;
+            this.materialComboBox3.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.materialComboBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialComboBox3.FormattingEnabled = true;
+            this.materialComboBox3.Hint = "层";
+            this.materialComboBox3.IntegralHeight = false;
+            this.materialComboBox3.ItemHeight = 43;
+            this.materialComboBox3.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"});
+            this.materialComboBox3.Location = new System.Drawing.Point(3, 427);
+            this.materialComboBox3.MaxDropDownItems = 4;
+            this.materialComboBox3.MouseState = MaterialSkin.MouseState.OUT;
+            this.materialComboBox3.Name = "materialComboBox3";
+            this.materialComboBox3.Size = new System.Drawing.Size(208, 49);
+            this.materialComboBox3.StartIndex = 0;
+            this.materialComboBox3.TabIndex = 6;
             // 
             // ShelfForm
             // 
@@ -530,8 +528,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private MaterialSkin.Controls.MaterialTextBox2 materialTextBox21;
-        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox25;
-        private MaterialSkin.Controls.MaterialTextBox2 materialTextBox24;
         private MaterialSkin.Controls.MaterialTextBox2 materialTextBox23;
         private MaterialSkin.Controls.MaterialTextBox2 materialTextBox22;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
@@ -547,5 +543,7 @@
         private MaterialSkin.Controls.MaterialButton materialButtonR1C1;
         private MaterialSkin.Controls.MaterialButton materialButton2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private MaterialSkin.Controls.MaterialComboBox materialComboBox2;
+        private MaterialSkin.Controls.MaterialComboBox materialComboBox3;
     }
 }

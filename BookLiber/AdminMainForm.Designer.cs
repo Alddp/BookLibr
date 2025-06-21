@@ -40,9 +40,6 @@
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel6 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.settings = new System.Windows.Forms.TabPage();
             this.materialTabControl1.SuspendLayout();
             this.cardManage.SuspendLayout();
@@ -75,7 +72,7 @@
             this.materialTabControl1.Multiline = true;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(1072, 714);
+            this.materialTabControl1.Size = new System.Drawing.Size(1237, 814);
             this.materialTabControl1.TabIndex = 2;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.MaterialTabControl1_SelectedIndexChanged);
             // 
@@ -87,7 +84,7 @@
             this.cardManage.Location = new System.Drawing.Point(4, 27);
             this.cardManage.Name = "cardManage";
             this.cardManage.Padding = new System.Windows.Forms.Padding(3);
-            this.cardManage.Size = new System.Drawing.Size(1064, 683);
+            this.cardManage.Size = new System.Drawing.Size(1134, 783);
             this.cardManage.TabIndex = 0;
             this.cardManage.Text = "用户操作";
             // 
@@ -104,7 +101,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStrip1.Size = new System.Drawing.Size(1058, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1128, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -158,7 +155,7 @@
             this.bookManage.Location = new System.Drawing.Point(4, 27);
             this.bookManage.Name = "bookManage";
             this.bookManage.Padding = new System.Windows.Forms.Padding(3);
-            this.bookManage.Size = new System.Drawing.Size(1064, 683);
+            this.bookManage.Size = new System.Drawing.Size(1229, 783);
             this.bookManage.TabIndex = 2;
             this.bookManage.Text = "图书操作";
             // 
@@ -167,14 +164,11 @@
             this.toolStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel6,
-            this.toolStripButton6,
-            this.toolStripSeparator3,
-            this.toolStripLabel3,
-            this.toolStripButton3});
+            this.toolStripButton6});
             this.toolStrip3.Location = new System.Drawing.Point(3, 3);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStrip3.Size = new System.Drawing.Size(1058, 27);
+            this.toolStrip3.Size = new System.Drawing.Size(1223, 27);
             this.toolStrip3.TabIndex = 0;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -194,27 +188,6 @@
             this.toolStripButton6.Text = "toolStripButton6";
             this.toolStripButton6.Click += new System.EventHandler(this.ImportBookStripButton_Click);
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
-            // 
-            // toolStripLabel3
-            // 
-            this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(69, 24);
-            this.toolStripLabel3.Text = "书籍位置";
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(29, 24);
-            this.toolStripButton3.Text = "toolStripButton3";
-            this.toolStripButton3.Click += new System.EventHandler(this.SetShelfStripButton_Click);
-            // 
             // settings
             // 
             this.settings.ImageKey = "设置.png";
@@ -229,7 +202,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1075, 781);
+            this.ClientSize = new System.Drawing.Size(1240, 881);
             this.Controls.Add(this.materialTabControl1);
             this.DrawerTabControl = this.materialTabControl1;
             this.IsMdiContainer = true;
@@ -267,9 +240,6 @@
         private System.Windows.Forms.ToolStrip toolStrip3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel6;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.TabPage settings;
     }
 }

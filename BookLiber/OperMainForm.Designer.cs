@@ -44,9 +44,6 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel5 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.settings = new System.Windows.Forms.TabPage();
             this.materialTabControl1.SuspendLayout();
             this.cardManage.SuspendLayout();
@@ -78,10 +75,9 @@
             this.materialTabControl1.Multiline = true;
             this.materialTabControl1.Name = "materialTabControl1";
             this.materialTabControl1.SelectedIndex = 0;
-            this.materialTabControl1.Size = new System.Drawing.Size(1142, 715);
+            this.materialTabControl1.Size = new System.Drawing.Size(1235, 815);
             this.materialTabControl1.TabIndex = 4;
             this.materialTabControl1.SelectedIndexChanged += new System.EventHandler(this.MaterialTabControl1_SelectedIndexChanged);
-            
             // 
             // cardManage
             // 
@@ -180,7 +176,7 @@
             this.bookManage.Location = new System.Drawing.Point(4, 25);
             this.bookManage.Name = "bookManage";
             this.bookManage.Padding = new System.Windows.Forms.Padding(3);
-            this.bookManage.Size = new System.Drawing.Size(1134, 686);
+            this.bookManage.Size = new System.Drawing.Size(1227, 786);
             this.bookManage.TabIndex = 2;
             this.bookManage.Text = "借阅操作";
             // 
@@ -192,14 +188,11 @@
             this.toolStripButton6,
             this.toolStripSeparator3,
             this.toolStripLabel3,
-            this.toolStripButton3,
-            this.toolStripSeparator4,
-            this.toolStripLabel5,
-            this.toolStripButton5});
+            this.toolStripButton3});
             this.toolStrip3.Location = new System.Drawing.Point(3, 3);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStrip3.Size = new System.Drawing.Size(1128, 27);
+            this.toolStrip3.Size = new System.Drawing.Size(1221, 27);
             this.toolStrip3.TabIndex = 0;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -240,27 +233,6 @@
             this.toolStripButton3.Text = "toolStripButton3";
             this.toolStripButton3.Click += new System.EventHandler(this.ReturnStripButton_Click);
             // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 27);
-            // 
-            // toolStripLabel5
-            // 
-            this.toolStripLabel5.Name = "toolStripLabel5";
-            this.toolStripLabel5.Size = new System.Drawing.Size(69, 24);
-            this.toolStripLabel5.Text = "书架查询";
-            // 
-            // toolStripButton5
-            // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(29, 24);
-            this.toolStripButton5.Text = "toolStripButton5";
-            this.toolStripButton5.Click += new System.EventHandler(this.SearchStripButton_Click);
-            // 
             // settings
             // 
             this.settings.ImageKey = "设置.png";
@@ -275,7 +247,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1147, 781);
+            this.ClientSize = new System.Drawing.Size(1240, 881);
             this.Controls.Add(this.materialTabControl1);
             this.DrawerTabControl = this.materialTabControl1;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -317,8 +289,5 @@
         private System.Windows.Forms.TabPage settings;
         private System.Windows.Forms.ToolStripLabel toolStripLabel4;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel5;
-        private System.Windows.Forms.ToolStripButton toolStripButton5;
     }
 }

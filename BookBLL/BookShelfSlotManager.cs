@@ -10,11 +10,7 @@ namespace BookBLL {
 
     public class BookShelfSlotManager {
 
-        /// <summary>
-        /// 根据SlotId获取书架格子信息
-        /// </summary>
-        /// <param name="slotId">格子ID</param>
-        /// <returns>书架格子信息</returns>
+        // 根据SlotId获取书架格子信息
         public static OperationResult<BookShelfSlot> GetSlotById(int slotId) {
             var res = ResultWrapper.Wrap(() => {
                 using (var reader = BookShelfSlotService.GetSlotById(slotId)) {
@@ -41,11 +37,7 @@ namespace BookBLL {
                     GetMessage(ErrorCode.SlotQueryFailed, res.Message));
         }
 
-        /// <summary>
-        /// 根据SlotCode获取书架格子信息
-        /// </summary>
-        /// <param name="slotCode">格子编码</param>
-        /// <returns>书架格子信息</returns>
+        //根据SlotCode获取书架格子信息
         public static OperationResult<BookShelfSlot> GetSlotByCode(string slotCode) {
             if (string.IsNullOrWhiteSpace(slotCode)) {
                 return OperationResult<BookShelfSlot>.Fail(ErrorCode.InvalidParameter, "格子编码不能为空");
@@ -76,10 +68,7 @@ namespace BookBLL {
                     GetMessage(ErrorCode.SlotQueryFailed, res.Message));
         }
 
-        /// <summary>
-        /// 获取所有书架格子信息
-        /// </summary>
-        /// <returns>所有书架格子信息</returns>
+        // 获取所有书架格子信息
         public static OperationResult<List<BookShelfSlot>> GetAllSlots() {
             var res = ResultWrapper.Wrap(() => {
                 var slots = new List<BookShelfSlot>();

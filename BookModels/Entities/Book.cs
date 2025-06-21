@@ -8,7 +8,7 @@
         public string Price { get; set; }
         public string Inventory { get; set; }
         public string Picture { get; set; }
-        public int ShelfId { get; set; }
+        public int SlotId { get; set; }
         public string PopulerPercent { get; set; }
     }
 }

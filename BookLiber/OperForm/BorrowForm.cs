@@ -101,7 +101,7 @@ namespace BookLiber.OperForm {
             dataGridView1.Columns.Add(BookTableFields.ISBN, "ISBN");
             dataGridView1.Columns.Add(BookTableFields.Price, "价格");
             dataGridView1.Columns.Add(BookTableFields.Inventory, "库存");
-            dataGridView1.Columns.Add(BookTableFields.ShelfId, "书架编号");
+            dataGridView1.Columns.Add(BookTableFields.SlotId, "书架编号");
 
             // 自动调整列宽度
             dataGridView1.AutoResizeColumns();
@@ -117,7 +117,7 @@ namespace BookLiber.OperForm {
                     book.ISBN,
                     book.Price,
                     book.Inventory,
-                    book.ShelfId
+                    book.SlotId
                 );
             }
         }
@@ -157,7 +157,7 @@ namespace BookLiber.OperForm {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0) {
                 // 获取双击的图书信息
                 var bookId = dataGridView1.Rows[e.RowIndex].Cells[BookTableFields.BookId].Value?.ToString();
-                var shelfId = dataGridView1.Rows[e.RowIndex].Cells[BookTableFields.ShelfId].Value?.ToString();
+                var shelfId = dataGridView1.Rows[e.RowIndex].Cells[BookTableFields.SlotId].Value?.ToString();
 
                 if (!string.IsNullOrEmpty(bookId) && _searchedBooks != null) {
                     var book = _searchedBooks.FirstOrDefault(b => b.BookId == bookId);

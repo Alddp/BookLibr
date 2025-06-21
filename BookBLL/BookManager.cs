@@ -63,7 +63,7 @@ namespace BookBLL {
                             Price = reader[BookTableFields.Price].ToString(),
                             Inventory = reader[BookTableFields.Inventory].ToString(),
                             Picture = reader[BookTableFields.Picture].ToString(),
-                            ShelfId = (int)reader[BookTableFields.ShelfId]
+                            SlotId = (int)reader[BookTableFields.SlotId]
                         });
                     }
                 }
