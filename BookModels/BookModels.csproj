@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\AdminTableFields.cs" />
-    <Compile Include="Constants\BookshelfTableFields.cs" />
+    <Compile Include="Constants\BookShelfSlotTableFields.cs" />
     <Compile Include="Constants\BookTableFields.cs" />
     <Compile Include="Constants\BorrowTableFields.cs" />
     <Compile Include="Constants\ReaderTableFields.cs" />
