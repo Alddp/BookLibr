@@ -23,7 +23,7 @@ def import_books_from_file(file_path: str) -> List[Dict[str, Any]]:
         raise ValueError("不支持的文件格式，请使用CSV或Excel文件")
 
     # 检查必要的列是否存在
-    required_columns = ["BookName", "Author", "ISBN", "Price", "Inventory", "ShelfCode"]
+    required_columns = ["BookName", "Author", "ISBN", "Price", "Inventory", "SlotCode"]
     missing_columns = [col for col in required_columns if col not in df.columns]
     if missing_columns:
         raise ValueError(f"文件缺少必要的列: {', '.join(missing_columns)}")
@@ -38,14 +38,16 @@ def import_books_from_file(file_path: str) -> List[Dict[str, Any]]:
             "Price": float(row["Price"]),
             "Inventory": int(row["Inventory"]),
             "Picture": f"/images/{row['BookName']}{row['Author']}.jpg",
-            "ShelfCode": str(row["ShelfCode"]).strip(),
+            "SlotCode": str(row["SlotCode"]).strip(),
         }
         books.append(book)
 
     return books
 
 
-def validate_books(books: List[Dict[str, Any]]) -> List[str]:
+def validate_books(
+    books: List[Dict[str, Any]], valid_slotcodes: List[str] = None
+) -> List[str]:
     """
     验证书籍数据的有效性
     返回错误信息列表
@@ -72,8 +74,12 @@ def validate_books(books: List[Dict[str, Any]]) -> List[str]:
         if book["Inventory"] < 0:
             errors.append(f"第{i}行: 库存不能为负数")
 
-        # 检查书架编号
-        if not book["ShelfCode"]:
-            errors.append(f"第{i}行: 书架编号为空")
+        # 检查格子编号
+        if not book["SlotCode"]:
+            errors.append(f"第{i}行: 格子编号为空")
+        elif valid_slotcodes is not None and book["SlotCode"] not in valid_slotcodes:
+            errors.append(
+                f"第{i}行: 格子编号 {book['SlotCode']} 不存在于 BookShelfSlot"
+            )
 
     return errors

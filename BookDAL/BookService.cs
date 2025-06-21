@@ -7,11 +7,7 @@ namespace BookDAL {
 
     public class BookService {
 
-        /// <summary>
-        /// 新增图书信息（书名、作者、ISBN、封面等）
-        /// </summary>
-        /// <param name="book"></param>
-        /// <returns></returns>
+        // 新增图书信息（书名、作者、ISBN、封面等）
         public static int BookInsert(Book book) {
             string tableName = BookTableFields.TableName;
             string bookNameColumn = BookTableFields.BookName;
@@ -19,12 +15,12 @@ namespace BookDAL {
             string ISBNColumn = BookTableFields.ISBN;
             string pictureColumn = BookTableFields.Picture;
             string priceColumn = BookTableFields.Price;
-            string shelfIdColumn = BookTableFields.ShelfId;
+            string shelfIdColumn = BookTableFields.SlotId;
 
             string sql = $@"INSERT INTO {tableName}
            ({bookNameColumn}, {authorColumn}, {ISBNColumn},
             {pictureColumn}, {priceColumn}, {shelfIdColumn})
-           VALUES (@BookName, @Author, @ISBN, @Picture, @Price, @ShelfId)";
+           VALUES (@BookName, @Author, @ISBN, @Picture, @Price, @SlotId)";
 
             SqlParameter[] parameters = new SqlParameter[]
             {
@@ -33,16 +29,12 @@ namespace BookDAL {
                 new SqlParameter("@ISBN", book.ISBN),
                 new SqlParameter("@Picture", book.Picture),
                 new SqlParameter("@Price", book.Price),
-                new SqlParameter("@ShelfId", book.ShelfId)
+                new SqlParameter("@SlotId", book.SlotId)
             };
             return DBHelper.ExNonQuery(sql, parameters);
         }
 
-        /// <summary>
-        /// 用于统计图书表数量
-        /// </summary>
-        /// <param name="bookId"></param>
-        /// <returns></returns>
+        // 用于统计图书表数量
         public static int CountBookNum(string bookId) {
             string tableName = BookTableFields.TableName;
             string bookIdColumn = BookTableFields.BookId;
@@ -55,11 +47,7 @@ namespace BookDAL {
             return DBHelper.ExScalar(sql, parameters);
         }
 
-        /// <summary>
-        /// 模糊查询（书名、作者、ISBN）
-        /// </summary>
-        /// <param name="info">关键字（书名、作者、ISBN）</param>
-        /// <returns></returns>
+        // 模糊查询（书名、作者、ISBN）
         public static SqlDataReader SearchBook(string info) {
             string sql = $@" SELECT *
                 FROM {BookTableFields.TableName}

@@ -56,14 +56,14 @@ namespace BookBLL {
                 using (var reader = BookService.SearchBook(info)) {
                     while (reader.Read()) {
                         books.Add(new Book {
-                            BookId = reader["BookId"].ToString(),
-                            BookName = reader["BookName"].ToString(),
-                            Author = reader["Author"].ToString(),
-                            ISBN = reader["ISBN"].ToString(),
-                            Price = reader["Price"].ToString(),
-                            Inventory = reader["Inventory"].ToString(),
-                            Picture = reader["Picture"].ToString(),
-                            ShelfId = (int)reader["ShelfId"]
+                            BookId = reader[BookTableFields.BookId].ToString(),
+                            BookName = reader[BookTableFields.BookName].ToString(),
+                            Author = reader[BookTableFields.Author].ToString(),
+                            ISBN = reader[BookTableFields.ISBN].ToString(),
+                            Price = reader[BookTableFields.Price].ToString(),
+                            Inventory = reader[BookTableFields.Inventory].ToString(),
+                            Picture = reader[BookTableFields.Picture].ToString(),
+                            SlotId = (int)reader[BookTableFields.SlotId]
                         });
                     }
                 }
@@ -96,6 +96,7 @@ namespace BookBLL {
                         books.Add(new Borrow {
                             BorrowId = reader[BorrowTableFields.BorrowId].ToString(),
                             BookId = reader[BorrowTableFields.BookId].ToString(),
+                            BookName = reader[BookTableFields.BookName].ToString(),
                             UserId = reader[BorrowTableFields.UserId].ToString(),
                             BorrowAdminId = reader[BorrowTableFields.BorrowAdminId].ToString(),
                             ReturnAdminId = reader[BorrowTableFields.ReturnAdminId].ToString(),

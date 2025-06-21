@@ -102,5 +102,21 @@ namespace BookDAL {
 
             return DBHelper.ExNonQuery(sql, parameters);
         }
+
+        public static SqlDataReader GetAllAdmins() {
+            string tableName = AdminTableFields.TableName;
+            string sql = $"SELECT * FROM {tableName}";
+            return DBHelper.ExecuteReader(sql, null);
+        }
+
+        public static int DeleteAdminById(string adminId) {
+            string tableName = AdminTableFields.TableName;
+            string adminIdColumn = AdminTableFields.AdminId;
+            string sql = $"DELETE FROM {tableName} WHERE {adminIdColumn} = @adminId";
+            SqlParameter[] parameters = new SqlParameter[] {
+                new SqlParameter("@adminId", adminId)
+            };
+            return DBHelper.ExNonQuery(sql, parameters);
+        }
     }
 }

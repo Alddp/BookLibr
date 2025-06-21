@@ -1,4 +1,7 @@
 import pyodbc
+import pandas as pd
+from datetime import datetime, timedelta
+import random
 
 
 def insert_into_sqlserver(data_dict, conn_str):
@@ -15,55 +18,84 @@ def insert_into_sqlserver(data_dict, conn_str):
 
         # 用于统计实际插入的数量
         inserted_counts = {
-            "Bookshelf": 0,
+            "BookShelfSlot": 0,
             "Book": 0,
             "UserTable": 0,
             "Admin": 0,
             "Borrow": 0,
         }
 
-        # 插入书架数据
-        if "Bookshelf" in data_dict:
-            shelves = data_dict["Bookshelf"]
-            for shelf in shelves:
+        # 插入书架格子数据
+        if "BookShelfSlot" in data_dict:
+            slots = data_dict["BookShelfSlot"]
+
+            # 如果是DataFrame，转换为字典列表
+            if isinstance(slots, pd.DataFrame):
+                slots = slots.to_dict("records")
+
+            print(f"Debug: BookShelfSlot data type: {type(slots)}")
+            print(f"Debug: Number of slots: {len(slots) if slots else 0}")
+            if slots:
+                print(f"Debug: First slot type: {type(slots[0])}")
+                print(f"Debug: First slot: {slots[0]}")
+
+            for slot in slots:
                 try:
+                    print(f"Debug: Processing slot: {slot}")
+                    print(f"Debug: Slot type: {type(slot)}")
+                    if isinstance(slot, str):
+                        print(f"Debug: Slot is a string: {slot}")
+                        continue
+
                     cursor.execute(
                         """
-                        INSERT INTO Bookshelf (ShelfCode, Location)
-                        VALUES (?, ?)
+                        INSERT INTO BookShelfSlot (Floor, RowNumber, ColumnNumber, Face, Level, SlotCode, Location)
+                        VALUES (?, ?, ?, ?, ?, ?, ?)
                         """,
-                        shelf["ShelfCode"],
-                        shelf["Location"],
+                        slot["Floor"],
+                        slot["RowNumber"],
+                        slot["ColumnNumber"],
+                        slot["Face"],
+                        slot["Level"],
+                        slot["SlotCode"],
+                        slot["Location"],
                     )
-                    inserted_counts["Bookshelf"] += 1
+                    inserted_counts["BookShelfSlot"] += 1
                 except pyodbc.IntegrityError:
-                    print(f"警告: 书架代码 {shelf['ShelfCode']} 已存在，跳过插入")
+                    print(f"警告: 格子编码 {slot['SlotCode']} 已存在，跳过插入")
                     continue
+                except Exception as e:
+                    print(f"插入书架格子时发生错误: {str(e)}")
+                    print(f"Slot data: {slot}")
+                    raise
 
-        # 获取所有书架ID映射
-        cursor.execute("SELECT ShelfId, ShelfCode FROM Bookshelf")
-        shelf_map = {row.ShelfCode: row.ShelfId for row in cursor.fetchall()}
+        # 获取所有格子ID映射
+        cursor.execute("SELECT SlotId, SlotCode FROM BookShelfSlot")
+        slot_map = {row.SlotCode: row.SlotId for row in cursor.fetchall()}
+        valid_slot_ids = set(slot_map.values())
 
         # 插入图书数据
         if "Book" in data_dict:
             books = data_dict["Book"]
+
+            # 如果是DataFrame，转换为字典列表
+            if isinstance(books, pd.DataFrame):
+                books = books.to_dict("records")
+
             for book in books:
                 try:
-                    # 检查 ShelfId 是否存在
-                    shelf_id = book["ShelfId"]
-                    if isinstance(shelf_id, int):
-                        real_shelf_id = shelf_id
-                    else:
-                        real_shelf_id = shelf_map.get(shelf_id)
-                        if real_shelf_id is None:
-                            print(
-                                f"警告: 图书 {book['BookName']} 的书架ID {shelf_id} 不存在，设置为NULL"
-                            )
-                            real_shelf_id = None
-
+                    # 检查 SlotId 是否存在
+                    slot_id = book["SlotId"]
+                    if not isinstance(slot_id, int):
+                        slot_id = slot_map.get(slot_id)
+                    if slot_id not in valid_slot_ids:
+                        print(
+                            f"警告: 图书 {book['BookName']} 的格子ID {slot_id} 不存在，设置为NULL"
+                        )
+                        slot_id = None
                     cursor.execute(
                         """
-                        INSERT INTO Book (BookName, Author, ISBN, Price, Inventory, Picture, ShelfId)
+                        INSERT INTO Book (BookName, Author, ISBN, Price, Inventory, Picture, SlotId)
                         VALUES (?, ?, ?, ?, ?, ?, ?)
                         """,
                         book["BookName"],
@@ -72,7 +104,7 @@ def insert_into_sqlserver(data_dict, conn_str):
                         book["Price"],
                         book["Inventory"],
                         book["Picture"],
-                        real_shelf_id,
+                        slot_id,
                     )
                     inserted_counts["Book"] += 1
                 except pyodbc.IntegrityError:
@@ -82,6 +114,11 @@ def insert_into_sqlserver(data_dict, conn_str):
         # 插入用户数据
         if "UserTable" in data_dict:
             users = data_dict["UserTable"]
+
+            # 如果是DataFrame，转换为字典列表
+            if isinstance(users, pd.DataFrame):
+                users = users.to_dict("records")
+
             for user in users:
                 try:
                     cursor.execute(
@@ -106,6 +143,11 @@ def insert_into_sqlserver(data_dict, conn_str):
         # 插入管理员数据
         if "Admin" in data_dict:
             admins = data_dict["Admin"]
+
+            # 如果是DataFrame，转换为字典列表
+            if isinstance(admins, pd.DataFrame):
+                admins = admins.to_dict("records")
+
             for admin in admins:
                 try:
                     cursor.execute(
@@ -136,6 +178,11 @@ def insert_into_sqlserver(data_dict, conn_str):
         # 插入借阅记录数据
         if "Borrow" in data_dict:
             borrows = data_dict["Borrow"]
+
+            # 如果是DataFrame，转换为字典列表
+            if isinstance(borrows, pd.DataFrame):
+                borrows = borrows.to_dict("records")
+
             for borrow in borrows:
                 try:
                     # 检查外键约束

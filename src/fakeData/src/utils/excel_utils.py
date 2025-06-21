@@ -61,9 +61,17 @@ def import_from_excel(filename, conn_str):
         for sheet_name, df in excel_data.items():
             # 确保所有列都被转换为字符串类型
             for col in df.columns:
-                if col in ["ISBN", "CardNum", "Phone", "StudentID", "ShelfCode"]:
+                if col in ["ISBN", "CardNum", "Phone", "StudentID", "SlotCode"]:
                     df[col] = df[col].astype(str)
-                elif col in ["Price", "Inventory"]:
+                elif col in [
+                    "Price",
+                    "Inventory",
+                    "SlotId",
+                    "Floor",
+                    "RowNumber",
+                    "ColumnNumber",
+                    "Level",
+                ]:
                     df[col] = pd.to_numeric(df[col], errors="coerce")
                 elif col in ["Start_Time", "Ending_Time", "BorrowDate", "ReturnDate"]:
                     df[col] = pd.to_datetime(df[col], errors="coerce")

@@ -1,165 +1,154 @@
-## 🧭 系统模块功能总览
+# BookLiber 图书管理系统
 
-**功能模块说明**
+欢迎了解 BookLiber，一个基于 C# WinForms 和 .NET Framework 开发的现代化、高效的桌面图书管理系统。它采用分层架构，集成了 RFID 硬件，为中小型图书馆、学校或个人收藏家提供了一套完整的管理解决方案。
 
-1. 用户管理 管理读者的注册、信息维护、RFID 绑定等
-2. 图书管理 图书信息增删改查、库存维护、书架定位等
-3. 借阅管理 借书、还书、续借、超期管理等
-4. RFID 接口 实时识别 RFID 卡或标签，自动完成借还
-5. 管理员系统 登录、权限管理
-6. 统计报表 借阅排行、超期统计、图书库存分析
-7. 系统设置 数据备份、参数设置、导入导出
-8. UI 美化 WPF 动效、图形报表、图书封面展示等
+## 目录
 
-## 窗口进度
+- [BookLiber 图书管理系统](#bookliber-图书管理系统)
+  - [目录](#目录)
+  - [🧭 项目愿景](#-项目愿景)
+  - [✨ 功能模块](#-功能模块)
+  - [🎨 技术亮点](#-技术亮点)
+  - [🖼️ 系统截图](#️-系统截图)
+  - [🛠️ 系统架构](#️-系统架构)
+    - [1. 架构分层](#1-架构分层)
+    - [2. 项目结构](#2-项目结构)
+  - [🚀 快速上手](#-快速上手)
+  - [📅 后续计划](#-后续计划)
+  - [🤝 如何贡献](#-如何贡献)
+  - [📜 许可证](#-许可证)
 
-- [X] 登录窗口
-- [X] 注册窗口
-- [X] 开卡窗口
-- [X] 借书窗口
-- [X] 还书窗口
-- [X] 书本入库窗口
+## 🧭 项目愿景
 
-## 🔍 各模块详细功能进度
+BookLiber 旨在提供一套易于部署和使用的图书管理解决方案。我们致力于通过现代化的用户界面和智能化的硬件集成（如 RFID），简化图书管理员的日常工作，同时提升读者的借阅体验。
 
-### 1️⃣ 用户（读者）管理
+**目标用户**:
 
-- [X] 添加/修改/删除读者信息
-- [X] 绑定/更新 RFID 卡号
-- [X] 查看借阅记录
-- [X] 设置有效期（如毕业时间）
-- [X] 照片上传（用于身份确认）
+- 中小型社区图书馆
+- 学校、学院的图书室
+- 企业的内部资料中心
+- 拥有大量书籍的个人收藏家
 
-### 2️⃣ 图书管理
+## ✨ 功能模块
 
-- [X] 新增图书信息（书名、作者、ISBN、封面等）
-- [ ] 图书图片上传与展示
-- [ ] 设置书架位置（与 Bookshelf 表关联）
-- [ ] 修改库存数量
-- [X] 模糊查询（书名、作者、ISBN）
+| 类别           | 功能点                                       | 状态      |
+| :------------- | :------------------------------------------- | :-------- |
+| **用户管理**   | 添加/修改/删除读者信息                       | ✅ 已完成 |
+|                | 绑定/更新 RFID 卡号                          | ✅ 已完成 |
+|                | 查看个人借阅记录                             | ✅ 已完成 |
+|                | 设置用户有效期（如毕业时间）                 | ✅ 已完成 |
+|                | 照片上传（用于身份确认）                     | ✅ 已完成 |
+| **图书管理**   | 新增图书信息（书名、作者、ISBN、封面等）     | ✅ 已完成 |
+|                | 图书图片上传与展示                           | ✅ 已完成 |
+|                | 模糊查询（书名、作者、ISBN）                 | ✅ 已完成 |
+|                | 设置书架位置（与 BookShelfSlot 表关联）      | ✅ 已完成 |
+|                | 修改库存数量                                 | 🚧 开发中 |
+| **借阅管理**   | 读卡识别 → 自动加载读者信息                  | ✅ 已完成 |
+|                | 还书操作（自动识别图书 → 归还）              | ✅ 已完成 |
+|                | 扫描图书（RFID 或手动）→ 自动借书            | 🚧 开发中 |
+|                | 续借操作                                     | 🚧 开发中 |
+|                | 超期提醒与处理                               | 🚧 开发中 |
+| **RFID 功能**  | 读卡器串口通信                               | ✅ 已完成 |
+|                | 读者卡识别（借阅人）                         | ✅ 已完成 |
+|                | 图书标签识别（借阅图书）                     | 🚧 开发中 |
+| **管理员功能** | 管理员登录                                   | ✅ 已完成 |
+|                | 不同权限等级（如"图书管理员"、"系统管理员"） | ✅ 已完成 |
+|                | 管理员借书/还书记录归档                      | ✅ 已完成 |
+| **统计报表**   | 热门借阅图书排行                             | ✅ 已完成 |
+|                | 借阅频次统计（按日/月/年）                   | 🚧 开发中 |
+|                | 超期图书列表                                 | 🚧 开发中 |
+|                | 图书库存一览                                 | 🚧 开发中 |
+| **系统设置**   | RFID 参数设置（串口、波特率）                | ✅ 已完成 |
+|                | 界面主题设置（黑/白模式）                    | ✅ 已完成 |
+|                | 图书批量导入（Excel）                        | ✅ 已完成 |
 
-### 3️⃣ 借阅管理
+## 🎨 技术亮点
 
-- [X] 读卡识别 → 自动加载读者信息
-- [ ] 扫描图书（RFID 或手动）→ 自动借书
-- [X] 还书操作（自动识别图书 → 归还）
-- [ ] 续借操作
-- [ ] 超期提醒与处理
-- [ ] 借阅次数、未还书数量统计
+- **现代化的用户界面**: 采用 `MaterialSkin` for WinForms 框架，提供美观、流畅的 Material Design 风格界面，告别传统 WinForms 应用的陈旧感。
+- **清晰的分层架构**: 基于五层架构构建，职责分明，确保了代码的**高内聚、低耦合**，易于维护和扩展。
+- **硬件无缝集成**: 内置 RFID 读卡器支持，实现了自动化的借阅流程。
+- **健壮的数据操作**: 通过统一的返回结构和错误处理机制，保证了系统在各种场景下的稳定运行。
+- **便捷的开发模式**: 应用单例、工厂等设计模式简化开发；通过 `ResultWrapper`包装器统一处理数据库异常。
 
-### 4️⃣ RFID 功能支持
+_想了解更多关于设计模式、统一返回结构、错误处理等技术细节？请参阅 [`设计文档.md`](./设计文档.md)。_
 
-- [X] 读卡器串口
-- [X] 读者卡识别（借阅人）
-- [ ] 图书标签识别（借阅图书）
+## 🖼️ 系统截图
 
-### 5️⃣ 管理员功能
+_(此处为占位符，建议添加一些关键界面的截图，如登录页、主界面、借还书界面等)_
 
-- [X] 管理员登录
-- [X] 不同权限等级（如“图书管理员”、“系统管理员”）
-- [ ] 管理员借书/还书记录归档
+- **登录界面**
+  ![登录界面](link-to-your-screenshot.png)
+- **主操作界面**
+  ![主操作界面](link-to-your-screenshot.png)
 
-### 6️⃣ 统计与报表（可视化）
+## 🛠️ 系统架构
 
-- [ ] 热门借阅图书排行（柱状图）
-- [ ] 借阅频次统计（按日/月/年）
-- [ ] 超期图书列表
-- [ ] 图书库存一览（可按类别、书架分组）
+### 1. 架构分层
 
-### 7️⃣ 系统设置
+系统在经典的三层架构（UI、BLL、DAL）基础上进行了扩展，增加**模型层 (Models)** 和 **硬件接口层 (HardWare)**，形成了职责更清晰的五层架构。
 
-- [X] RFID 参数设置（串口、波特率）
-- [ ] 界面主题设置（黑/白模式）
-- [ ] 图书批量导入（Excel）
+- **表现层 (UI - BookLiber)**: WinForms 窗体，负责用户交互。
+- **业务逻辑层 (BLL - BookBLL)**: 处理核心业务逻辑。
+- **数据访问层 (DAL - BookDAL)**: 使用 ADO.NET 和 SQL Server 进行数据持久化。
+- **模型层 (Models - BookModels)**: 定义业务实体、常量、和统一的操作结果。
+- **硬件接口层 (HardWare - BookHardWare)**: 封装对 RFID 读卡器的串口通信操作。
 
-### 8️⃣ UI 展示与体验（WPF 特有）
+### 2. 项目结构
 
-- [ ] 现代化界面（MVVM 结构）
-- [ ] 动画按钮 / 滑动面板
-- [ ] 书籍封面缩略图展示
-- [ ] 实时时钟、欢迎语等交互元素
-
-## 数据库结构
-
-### 📚 `Book` 图书表：记录图书的基本信息及存放位置
-
-```sql
-CREATE TABLE Book (
-    BookId INT IDENTITY(1,1) PRIMARY KEY,                   -- 图书ID，主键
-    BookName NVARCHAR(100) NOT NULL,                        -- 图书名称
-    Author NVARCHAR(100),                                   -- 作者
-    ISBN VARCHAR(20) UNIQUE,                                -- 国际标准书号
-    Price DECIMAL(10,2),                                    -- 单价
-    Inventory INT NOT NULL DEFAULT 0,                       -- 当前库存数量
-    Picture NVARCHAR(255),                                  -- 图书封面图片路径（相对路径或 URL）
-    ShelfId INT,                                            -- 外键，所在书架编号
-    CONSTRAINT FK_Book_Shelf FOREIGN KEY (ShelfId)
-        REFERENCES Bookshelf(ShelfId)                       -- 外键约束：关联书架表
-);
+```
+BookLiber/
+├── BookLiber/              # 表现层 (UI)
+│   ├── AdminForm/
+│   ├── OperForm/
+│   └── SharedForm/
+├── BookModels/             # 领域模型层
+│   ├── Entities/
+│   ├── Constants/
+│   └── Errors/
+├── BookBLL/                # 业务逻辑层
+├── BookDAL/                # 数据访问层
+└── BookHardWare/           # 硬件接口层
 ```
 
----
+## 🚀 快速上手
 
-### 🗄️ `Bookshelf` 书架表：记录图书所在物理位置
+1. **数据库配置**:
 
-```sql
-CREATE TABLE Bookshelf (
-    ShelfId INT IDENTITY(1,1) PRIMARY KEY,                  -- 书架ID，主键
-    ShelfCode VARCHAR(20) NOT NULL UNIQUE,                  -- 书架编号，如 A1、B2
-    Location NVARCHAR(100)                                  -- 位置描述，例如“二楼右侧”
-);
-```
+   - 使用 `LibrBook.mdf` 和 `LibrBook_log.ldf` 附加数据库到您的 SQL Server 实例。
+   - 或者运行 `SQLQuery1.sql` 和 `SQLQuery2.sql` 来创建数据库和表结构。
+   - 修改 `BookDAL/DBHelper.cs` 中的数据库连接字符串。
 
----
+2. **启动项目**:
 
-### 👤 `User` 读者表：记录读者基本信息及 RFID 卡
+   - 在 Visual Studio 中打开 `BookLiber.sln` 解决方案。
+   - 将 `BookLiber` 项目设置为启动项目并运行。
 
-```sql
-CREATE TABLE UserTable (
-    UserId INT IDENTITY(1,1) PRIMARY KEY,                   -- 读者ID，主键
-    CardNum VARCHAR(50) NOT NULL UNIQUE,                    -- RFID 卡号，唯一识别读者
-    UserName NVARCHAR(50) NOT NULL,                         -- 姓名
-    StudentID VARCHAR(20),                                  -- 学号（可选）
-    Phone VARCHAR(20),                                      -- 电话号码
-    Class NVARCHAR(50),                                     -- 班级/单位
-    Photo NVARCHAR(255),                                    -- 照片路径（头像）
-    Start_Time DATETIME NOT NULL,                           -- 注册时间
-    Ending_Time DATETIME                                    -- 有效截止时间（可用于控制借阅权限）
-);
-```
+3. **默认凭证**:
 
----
+   - **管理员**: `admin` / `123456`
+   - （请在首次登录后及时修改密码）
 
-### 🛠 `Admin` 管理员表：用于登录管理系统
+## 📅 后续计划
 
-```sql
-CREATE TABLE Admin (
-    AdminId INT IDENTITY(1,1) PRIMARY KEY,                  -- 管理员ID，主键
-    Username NVARCHAR(50) NOT NULL UNIQUE,                  -- 登录账号（唯一）
-    Pwd NVARCHAR(255) NOT NULL,                             -- 登录密码（建议加密存储）
-    Phone VARCHAR(20),                                      -- 联系方式
-    Type NVARCHAR(20)                                       -- 角色类型，例如“超级管理员”、“图书管理员”
-);
-```
+- [ ] **完善统计报表**：实现热门借阅排行、借阅频次、超期图书等可视化报表。
+- [ ] **全自动借还**：实现图书 RFID 标签的读写，完成从借到还的全流程自动化。
+- [ ] **高级借阅功能**：增加图书续借、超期罚款等实用功能。
+- [ ] **提升健壮性**：编写单元测试和集成测试，保障代码质量。
 
----
+## 🤝 如何贡献
 
-### 📄 `Borrow` 借阅记录表：记录图书借还情况
+我们欢迎任何形式的贡献！如果您对改进此项目感兴趣，可以通过以下方式参与：
 
-```sql
-CREATE TABLE Borrow (
-    BorrowId INT IDENTITY(1,1) PRIMARY KEY,                 -- 借阅记录ID，主键
-    UserId INT NOT NULL,                                    -- 外键：借书人ID
-    BookId INT NOT NULL,                                    -- 外键：图书ID
-    BorrowAdminId INT,                                      -- 外键：办理借书的管理员ID
-    ReturnAdminId INT,                                      -- 外键：办理还书的管理员ID
-    BorrowDate DATETIME NOT NULL,                           -- 借出时间
-    ReturnDate DATETIME,                                    -- 归还时间（未归还为 NULL）
-    FOREIGN KEY (UserId) REFERENCES UserTable(UserId),         -- 与读者表关联
-    FOREIGN KEY (BookId) REFERENCES Book(BookId),           -- 与图书表关联
-    FOREIGN KEY (BorrowAdminId) REFERENCES Admin(AdminId),  -- 与管理员表关联
-    FOREIGN KEY (ReturnAdminId) REFERENCES Admin(AdminId)   -- 与管理员表关联
-);
-```
+1. **报告问题 (Issues)**: 如果您发现任何错误或有功能建议，请随时在 Issues 区提交。
+2. **发起拉取请求 (Pull Requests)**:
+   - Fork 本仓库到您的账户下。
+   - 创建一个新的分支 (`git checkout -b feature/your-feature-name`)。
+   - 提交您的代码修改 (`git commit -m 'Add some feature'`)。
+   - 将分支推送到您的仓库 (`git push origin feature/your-feature-name`)。
+   - 创建并提交一个 Pull Request。
 
----
+_我们同样感谢那些帮助改进文档的用户！_
+
+## 📜 许可证
+
+本项目采用 [MIT 许可证](LICENSE)。
