@@ -4,6 +4,7 @@ using BookModels;
 using BookModels.Constants;
 using BookModels.Errors;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace BookBLL {
@@ -62,6 +63,29 @@ namespace BookBLL {
             return result.Success
                 ? result
                 : OperationResult<int>.Fail(ErrorCode.OperationFailed);
+        }
+
+        public static OperationResult<List<Reader>> GetAllReaders() {
+            return ResultWrapper.Wrap(() => {
+                var readers = new List<Reader>();
+                using (var reader = ReaderService.GetAllReaders()) {
+                    while (reader.Read()) {
+                        readers.Add(new Reader {
+                            UserId = reader[ReaderTableFields.UserId].ToString(),
+                            CardNum = reader[ReaderTableFields.CardNum].ToString(),
+                            UserName = reader[ReaderTableFields.UserName].ToString(),
+                            StudentId = reader[ReaderTableFields.StudentID].ToString(),
+                            Phone = reader[ReaderTableFields.Phone].ToString(),
+                            ClassName = reader[ReaderTableFields.Class].ToString(),
+                            Photo = reader[ReaderTableFields.Photo].ToString(),
+                            StartTime = Convert.ToDateTime(reader[ReaderTableFields.Start_Time]),
+                            EndTime = reader[ReaderTableFields.Ending_Time] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader[ReaderTableFields.Ending_Time]),
+                            IsValid = Convert.ToBoolean(reader[ReaderTableFields.Status])
+                        });
+                    }
+                }
+                return readers;
+            });
         }
     }
 }

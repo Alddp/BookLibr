@@ -84,7 +84,7 @@
             this.cardManage.Location = new System.Drawing.Point(4, 27);
             this.cardManage.Name = "cardManage";
             this.cardManage.Padding = new System.Windows.Forms.Padding(3);
-            this.cardManage.Size = new System.Drawing.Size(1134, 783);
+            this.cardManage.Size = new System.Drawing.Size(1229, 783);
             this.cardManage.TabIndex = 0;
             this.cardManage.Text = "用户操作";
             // 
@@ -101,15 +101,15 @@
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStrip1.Size = new System.Drawing.Size(1128, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1223, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(84, 24);
-            this.toolStripLabel1.Text = "添加操作员";
+            this.toolStripLabel1.Size = new System.Drawing.Size(69, 24);
+            this.toolStripLabel1.Text = "添加用户";
             // 
             // toolStripButton1
             // 
@@ -129,8 +129,8 @@
             // toolStripLabel2
             // 
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(84, 24);
-            this.toolStripLabel2.Text = "删除操作员";
+            this.toolStripLabel2.Size = new System.Drawing.Size(69, 24);
+            this.toolStripLabel2.Text = "删除用户";
             // 
             // toolStripButton2
             // 
@@ -193,7 +193,7 @@
             this.settings.ImageKey = "设置.png";
             this.settings.Location = new System.Drawing.Point(4, 27);
             this.settings.Name = "settings";
-            this.settings.Size = new System.Drawing.Size(1064, 683);
+            this.settings.Size = new System.Drawing.Size(1229, 783);
             this.settings.TabIndex = 3;
             this.settings.Text = "设置";
             this.settings.UseVisualStyleBackColor = true;

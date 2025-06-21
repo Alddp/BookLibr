@@ -27,6 +27,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
+            this.comboBoxUserType = new MaterialSkin.Controls.MaterialComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -56,6 +57,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.91045F));
             this.tableLayoutPanel2.Controls.Add(this.dataGridView1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.materialButton1, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.comboBoxUserType, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(43, 43);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -85,17 +87,41 @@
             this.materialButton1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(609, 404);
+            this.materialButton1.Location = new System.Drawing.Point(608, 404);
             this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton1.Name = "materialButton1";
             this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton1.Size = new System.Drawing.Size(124, 34);
+            this.materialButton1.Size = new System.Drawing.Size(125, 34);
             this.materialButton1.TabIndex = 1;
             this.materialButton1.Text = "删除选中";
             this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
             this.materialButton1.UseAccentColor = false;
             this.materialButton1.UseVisualStyleBackColor = true;
+            this.materialButton1.Click += new System.EventHandler(this.materialButton1_Click);
+            // 
+            // comboBoxUserType
+            // 
+            this.comboBoxUserType.AutoResize = false;
+            this.comboBoxUserType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.comboBoxUserType.Depth = 0;
+            this.comboBoxUserType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBoxUserType.DropDownHeight = 174;
+            this.comboBoxUserType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxUserType.DropDownWidth = 121;
+            this.comboBoxUserType.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.comboBoxUserType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.comboBoxUserType.FormattingEnabled = true;
+            this.comboBoxUserType.IntegralHeight = false;
+            this.comboBoxUserType.ItemHeight = 43;
+            this.comboBoxUserType.Location = new System.Drawing.Point(3, 401);
+            this.comboBoxUserType.MaxDropDownItems = 4;
+            this.comboBoxUserType.MouseState = MaterialSkin.MouseState.OUT;
+            this.comboBoxUserType.Name = "comboBoxUserType";
+            this.comboBoxUserType.Size = new System.Drawing.Size(191, 49);
+            this.comboBoxUserType.StartIndex = 0;
+            this.comboBoxUserType.TabIndex = 2;
+            this.comboBoxUserType.SelectedIndexChanged += new System.EventHandler(this.comboBoxUserType_SelectedIndexChanged);
             // 
             // DelUserForm
             // 
@@ -121,5 +147,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private MaterialSkin.Controls.MaterialButton materialButton1;
+        private MaterialSkin.Controls.MaterialComboBox comboBoxUserType;
     }
 }

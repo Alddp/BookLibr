@@ -45,5 +45,10 @@ namespace BookDAL {
             };
             return DBHelper.ExecuteReader(sql, parameters);
         }
+
+        public static SqlDataReader GetAllReaders() {
+            string sql = $"SELECT * FROM [{ReaderTableFields.TableName}]";
+            return DBHelper.ExecuteReader(sql, null);
+        }
     }
 }

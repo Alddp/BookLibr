@@ -61,18 +61,13 @@ namespace BookLiber {
         }
 
         private void ShowForm(string formName) {
-            // 只隐藏当前TabPage下的所有窗体
-            Control parentTab = null;
-            if (cardManage.Controls.Contains(forms[formName])) parentTab = cardManage;
-            else if (bookManage.Controls.Contains(forms[formName])) parentTab = bookManage;
-            else if (settings.Controls.Contains(forms[formName])) parentTab = settings;
-            if (parentTab != null) {
-                foreach (Control ctrl in parentTab.Controls) {
-                    if (ctrl is Form f) f.Hide();
-                }
-                forms[formName].Show();
-                forms[formName].Focus();
-                if (forms[formName] is MaterialForm materialForm) {
+            foreach (var form in forms.Values) {
+                form.Hide();
+            }
+            if (forms.TryGetValue(formName, out var formToShow)) {
+                formToShow.Show();
+                formToShow.Focus();
+                if (formToShow is MaterialForm materialForm) {
                     ThemeManager.Initialize(materialForm);
                 }
             }

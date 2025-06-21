@@ -108,9 +108,5 @@ namespace BookLiber {
         private void ReturnStripButton_Click(object sender, System.EventArgs e) {
             ShowForm("return");
         }
-
-        private void SearchStripButton_Click(object sender, System.EventArgs e) {
-            ShowForm("shelfSearch");
-        }
     }
 }

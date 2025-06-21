@@ -5,6 +5,7 @@ using BookModels.Constants;
 using BookModels.Errors;
 using System.Data.SqlClient;
 using static BookModels.Errors.ErrorMessages;
+using System.Collections.Generic;
 
 namespace BookBLL {
 
@@ -52,6 +53,31 @@ namespace BookBLL {
             return res.Success
                 ? res
                 : OperationResult<int>.Fail(ErrorCode.UserAlreadyExists);
+        }
+
+        public static OperationResult<List<Admin>> GetAllAdmins() {
+            return ResultWrapper.Wrap(() => {
+                var admins = new List<Admin>();
+                using (var reader = AdminService.GetAllAdmins()) {
+                    while (reader.Read()) {
+                        admins.Add(new Admin {
+                            AdminId = reader[AdminTableFields.AdminId].ToString(),
+                            UserName = reader[AdminTableFields.Username].ToString(),
+                            Phone = reader[AdminTableFields.Phone].ToString(),
+                            Type = reader[AdminTableFields.Type].ToString(),
+                        });
+                    }
+                }
+                return admins;
+            });
+        }
+
+        public static OperationResult<int> DeleteAdminById(string adminId) {
+            if (string.IsNullOrWhiteSpace(adminId)) {
+                return OperationResult<int>.Fail(ErrorCode.InvalidParameter, "Admin ID cannot be empty.");
+            }
+
+            return ResultWrapper.Wrap(() => AdminService.DeleteAdminById(adminId));
         }
     }
 }
