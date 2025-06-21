@@ -49,6 +49,7 @@
     <Compile Include="Entities\Admin.cs" />
     <Compile Include="Entities\Book.cs" />
     <Compile Include="Entities\Bookshelf.cs" />
+    <Compile Include="Entities\BookShelfSlot.cs" />
     <Compile Include="Entities\Borrow.cs" />
     <Compile Include="Errors\ErrorCode.cs" />
     <Compile Include="Errors\OperationResult.cs" />

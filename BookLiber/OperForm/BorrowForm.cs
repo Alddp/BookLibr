@@ -4,11 +4,13 @@ using BookModels.Constants;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace BookLiber.OperForm {
 
     public partial class BorrowForm : MaterialForm {
+        private List<Book> _searchedBooks;
 
         public BorrowForm() {
             InitializeComponent();
@@ -51,7 +53,7 @@ namespace BookLiber.OperForm {
 
                 bool isSelected = Convert.ToBoolean(row.Cells["Select"].Value);
                 if (isSelected) {
-                    string bookId = row.Cells[BookTableFields.BookId].Value.ToString(); // 或其他主键字段
+                    string bookId = row.Cells[BookTableFields.BookId].Value.ToString();
                     selectedBooks.Add(bookId);
                 }
             }
@@ -78,6 +80,8 @@ namespace BookLiber.OperForm {
                 return;
             }
 
+            _searchedBooks = res.Data;
+
             // 准备表格
             dataGridView1.Columns.Clear();
 
@@ -91,20 +95,20 @@ namespace BookLiber.OperForm {
             }
 
             // 添加列
-            dataGridView1.Columns.Add("BookId", "图书编号");
-            dataGridView1.Columns.Add("BookName", "图书名称");
-            dataGridView1.Columns.Add("Author", "作者");
-            dataGridView1.Columns.Add("ISBN", "ISBN");
-            dataGridView1.Columns.Add("Price", "价格");
-            dataGridView1.Columns.Add("Inventory", "库存");
-            dataGridView1.Columns.Add("ShelfId", "书架编号");
+            dataGridView1.Columns.Add(BookTableFields.BookId, "图书编号");
+            dataGridView1.Columns.Add(BookTableFields.BookName, "图书名称");
+            dataGridView1.Columns.Add(BookTableFields.Author, "作者");
+            dataGridView1.Columns.Add(BookTableFields.ISBN, "ISBN");
+            dataGridView1.Columns.Add(BookTableFields.Price, "价格");
+            dataGridView1.Columns.Add(BookTableFields.Inventory, "库存");
+            dataGridView1.Columns.Add(BookTableFields.ShelfId, "书架编号");
 
             // 自动调整列宽度
             dataGridView1.AutoResizeColumns();
 
             // 填充数据
             dataGridView1.Rows.Clear();
-            foreach (var book in res.Data) {
+            foreach (var book in _searchedBooks) {
                 dataGridView1.Rows.Add(
                     false, // Select column
                     book.BookId,
@@ -145,6 +149,45 @@ namespace BookLiber.OperForm {
                 // 获取第一个选中的项目
                 ListViewItem selectedItem = listView1.SelectedItems[0];
                 search_tbx.Text = selectedItem.Text;
+            }
+        }
+
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
+            // 检查是否双击的是有效的行和列
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0) {
+                // 获取双击的图书信息
+                var bookId = dataGridView1.Rows[e.RowIndex].Cells[BookTableFields.BookId].Value?.ToString();
+                var shelfId = dataGridView1.Rows[e.RowIndex].Cells[BookTableFields.ShelfId].Value?.ToString();
+
+                if (!string.IsNullOrEmpty(bookId) && _searchedBooks != null) {
+                    var book = _searchedBooks.FirstOrDefault(b => b.BookId == bookId);
+                    if (book == null) {
+                        MessageBox.Show("未找到图书信息。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    if (!string.IsNullOrEmpty(shelfId)) {
+                        // 根据ShelfId获取书架格子信息
+                        if (int.TryParse(shelfId, out int slotId)) {
+                            var slotResult = BookShelfSlotManager.GetSlotById(slotId);
+
+                            if (slotResult.Success) {
+                                // 创建并显示ShelfForm
+                                var shelfForm = new SheredForm.ShelfForm(book, slotResult.Data);
+                                shelfForm.ShowDialog();
+                            } else {
+                                MessageBox.Show($"获取书架位置信息失败：{slotResult.Message}", "提示",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        } else {
+                            MessageBox.Show("书架编号格式错误", "提示",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    } else {
+                        MessageBox.Show("该图书暂无书架位置信息", "提示",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
             }
         }
     }

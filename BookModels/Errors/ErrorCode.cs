@@ -52,6 +52,14 @@ namespace BookModels.Errors {
         AlreadyReturned,             // 图书已归还
         ReturnRecordNotFound,        // 归还记录不存在
 
+        // 书架格子相关（BookShelfSlot）
+        SlotNotFound,                // 书架格子不存在
+
+        SlotQueryFailed,             // 书架格子查询失败
+        SlotInsertFailed,            // 书架格子插入失败
+        SlotUpdateFailed,            // 书架格子更新失败
+        SlotDeleteFailed,            // 书架格子删除失败
+
         // 管理员 / 权限
         AdminNotFound,               // 管理员不存在
 
@@ -109,6 +117,13 @@ namespace BookModels.Errors {
             { ErrorCode.RenewFailed, "续借操作失败" },
             { ErrorCode.AlreadyReturned, "图书已归还" },
             { ErrorCode.ReturnRecordNotFound, "归还记录不存在" },
+
+            // 书架格子相关
+            { ErrorCode.SlotNotFound, "书架格子不存在" },
+            { ErrorCode.SlotQueryFailed, "书架格子查询失败" },
+            { ErrorCode.SlotInsertFailed, "书架格子插入失败" },
+            { ErrorCode.SlotUpdateFailed, "书架格子更新失败" },
+            { ErrorCode.SlotDeleteFailed, "书架格子删除失败" },
 
             // 管理员/权限
             { ErrorCode.AdminNotFound, "管理员不存在" },
