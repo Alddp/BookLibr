@@ -151,8 +151,8 @@ def generate_books(bookshelfslots, n=50):
     return books
 
 
-def generate_users(n=10):
-    """生成用户数据
+def generate_readers(n=10):
+    """生成读者表（Reader）数据
     UserId: 自增主键，不需要生成
     CardNum: VARCHAR(50) NOT NULL UNIQUE
     UserName: NVARCHAR(50) NOT NULL
@@ -164,8 +164,8 @@ def generate_users(n=10):
     Ending_Time: DATETIME
     """
     base_time_str = datetime.now().strftime("%Y%m%d%H%M%S%f")[:16]
-    users = []
-    # 预生成一些用户数据
+    readers = []
+    # 预生成一些读者数据
     names = [fake.name()[:50] for _ in range(n)]  # 限制长度在50以内
     student_ids = [
         fake.bothify(text="???#####")[:20] for _ in range(n)
@@ -179,7 +179,7 @@ def generate_users(n=10):
         card_num = f"{base_time_str}{i:03d}"[:50]  # 限制长度在50以内
         start_time = datetime.now() - timedelta(days=fake.random_int(0, 365))
         ending_time = start_time + timedelta(days=365)
-        users.append(
+        readers.append(
             {
                 "CardNum": card_num,
                 "UserName": names[i],
@@ -193,7 +193,7 @@ def generate_users(n=10):
                 "Ending_Time": ending_time.strftime("%Y-%m-%d %H:%M:%S"),
             }
         )
-    return users
+    return readers
 
 
 def generate_admins(n=5):

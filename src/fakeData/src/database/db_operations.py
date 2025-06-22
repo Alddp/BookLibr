@@ -20,7 +20,7 @@ def insert_into_sqlserver(data_dict, conn_str):
         inserted_counts = {
             "BookShelfSlot": 0,
             "Book": 0,
-            "UserTable": 0,
+            "Reader": 0,
             "Admin": 0,
             "Borrow": 0,
         }
@@ -112,8 +112,8 @@ def insert_into_sqlserver(data_dict, conn_str):
                     continue
 
         # 插入用户数据
-        if "UserTable" in data_dict:
-            users = data_dict["UserTable"]
+        if "Reader" in data_dict:
+            users = data_dict["Reader"]
 
             # 如果是DataFrame，转换为字典列表
             if isinstance(users, pd.DataFrame):
@@ -123,7 +123,7 @@ def insert_into_sqlserver(data_dict, conn_str):
                 try:
                     cursor.execute(
                         """
-                        INSERT INTO UserTable (CardNum, UserName, StudentID, Phone, Class, Photo, Start_Time, Ending_Time)
+                        INSERT INTO Reader (CardNum, UserName, StudentID, Phone, Class, Photo, Start_Time, Ending_Time)
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                         """,
                         user["CardNum"],
@@ -135,10 +135,9 @@ def insert_into_sqlserver(data_dict, conn_str):
                         user["Start_Time"],
                         user["Ending_Time"],
                     )
-                    inserted_counts["UserTable"] += 1
-                except pyodbc.IntegrityError:
+                    inserted_counts["Reader"] += 1
+                except Exception as e:
                     print(f"警告: 卡号 {user['CardNum']} 已存在，跳过插入")
-                    continue
 
         # 插入管理员数据
         if "Admin" in data_dict:
@@ -166,7 +165,7 @@ def insert_into_sqlserver(data_dict, conn_str):
                     continue
 
         # 获取所有有效的ID
-        cursor.execute("SELECT UserId FROM UserTable")
+        cursor.execute("SELECT UserId FROM Reader")
         valid_user_ids = {row.UserId for row in cursor.fetchall()}
 
         cursor.execute("SELECT BookId FROM Book")

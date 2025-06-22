@@ -264,7 +264,6 @@
             this.MinimumSize = new System.Drawing.Size(1147, 781);
             this.Name = "OperMainForm";
             this.Padding = new System.Windows.Forms.Padding(3, 64, 2, 2);
-            this.Text = "OperMainForm";
             this.materialTabControl1.ResumeLayout(false);
             this.cardManage.ResumeLayout(false);
             this.cardManage.PerformLayout();

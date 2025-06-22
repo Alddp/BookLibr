@@ -75,9 +75,12 @@ _想了解更多关于设计模式、统一返回结构、错误处理等技术�
 ## 🖼️ 系统截图
 
 - **登录界面**
-  ![登录界面](link-to-your-screenshot.png)
+
+  <img src="./doc/操作员界面.png" alt="操作员界面" style="zoom:50%;" />
+
 - **主操作界面**
-  ![主操作界面](link-to-your-screenshot.png)
+  
+- <img src="./doc/管理员界面.png" alt="管理员界面" style="zoom:50%;" />
 
 ## 🛠️ 系统架构
 
@@ -90,6 +93,37 @@ _想了解更多关于设计模式、统一返回结构、错误处理等技术�
 - **数据访问层 (DAL - BookDAL)**: 使用 ADO.NET 和 SQL Server 进行数据持久化。
 - **模型层 (Models - BookModels)**: 定义业务实体、常量、和统一的操作结果。
 - **硬件接口层 (HardWare - BookHardWare)**: 封装对 RFID 读卡器的串口通信操作。
+
+  ```mermaid
+  flowchart TD
+      UI["表现层 (UI)\n(BookLiber)"]
+      BLL["业务逻辑层 (BLL)\n(BookBLL)"]
+      DAL["数据访问层 (DAL)\n(BookDAL)"]
+      Models["模型层 (Models)\n(BookModels)"]
+      HardWare["硬件接口层 (HardWare)\n(BookHardWare)"]
+  
+      UI --> BLL
+      BLL --> DAL
+      BLL --> Models
+      DAL --> Models
+      UI --> Models
+      UI --> HardWare
+      BLL --> HardWare
+      HardWare -.-> Models
+  
+      subgraph "主要职责"
+        UI_desc["UI: 用户交互、界面逻辑\n(WinForms)"]
+        BLL_desc["BLL: 业务规则、流程控制"]
+        DAL_desc["DAL: 数据库操作、持久化"]
+        Models_desc["Models: 实体、常量、错误码"]
+        HardWare_desc["HardWare: RFID等硬件通信"]
+      end
+      UI -.-> UI_desc
+      BLL -.-> BLL_desc
+      DAL -.-> DAL_desc
+      Models -.-> Models_desc
+      HardWare -.-> HardWare_desc
+  ```
 
 ### 2. 项目结构
 
@@ -113,7 +147,7 @@ BookLiber/
 1. **数据库配置**:
 
    - 使用 `LibrBook.mdf` 和 `LibrBook_log.ldf` 附加数据库到您的 SQL Server 实例。
-   - 或者运行 `SQLQuery1.sql` 和 `SQLQuery2.sql` 来创建数据库和表结构。
+   - 或者运行 `createTable.sql` 来创建数据库和表结构。
    - 修改 `BookDAL/DBHelper.cs` 中的数据库连接字符串。
 
 2. **启动项目**:

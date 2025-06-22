@@ -85,7 +85,7 @@ def run_tests():
                 os.path.join(test_dir, "test_all.xlsx"),
             ],
             "check_file": os.path.join(test_dir, "test_all.xlsx"),
-            "expected_tables": ["Bookshelf", "Book", "UserTable", "Admin", "Borrow"],
+            "expected_tables": ["Book", "Reader", "Admin", "Borrow"],
         },
         {
             "name": "只生成图书表数据",
@@ -111,7 +111,7 @@ def run_tests():
                 os.path.join(test_dir, "test_large.xlsx"),
             ],
             "check_file": os.path.join(test_dir, "test_large.xlsx"),
-            "expected_tables": ["Bookshelf", "Book", "UserTable", "Admin", "Borrow"],
+            "expected_tables": ["Book", "Reader", "Admin", "Borrow"],
         },
     ]
 

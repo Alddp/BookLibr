@@ -9,7 +9,7 @@ sys.path.append(current_dir)
 from src.data_generators.generators import (
     generate_bookshelves,
     generate_books,
-    generate_users,
+    generate_readers,
     generate_admins,
     generate_borrows,
 )
@@ -21,7 +21,7 @@ from src.utils.book_importer import import_books_from_file, validate_books
 AVAILABLE_TABLES = {
     "bookshelfslot": "书架格子表",
     "book": "图书表",
-    "user": "用户表",
+    "reader": "读者表",
     "admin": "管理员表",
     "borrow": "借阅记录表",
     "all": "所有表",
@@ -114,14 +114,14 @@ def main(args=None):
                 data["BookShelfSlot"] = bookshelfslots
             data["Book"] = generate_books(bookshelfslots, args.count)
 
-        if args.table == "all" or args.table == "user":
-            data["UserTable"] = generate_users(args.count)
+        if args.table == "all" or args.table == "reader":
+            data["Reader"] = generate_readers(args.count)
 
         if args.table == "all" or args.table == "admin":
             data["Admin"] = generate_admins(args.count)
 
         if args.table == "all" or args.table == "borrow":
-            users = data.get("UserTable", generate_users(args.count))
+            users = data.get("Reader", generate_readers(args.count))
             books = data.get(
                 "Book", generate_books(data.get("BookShelfSlot", []), args.count)
             )

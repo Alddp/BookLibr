@@ -1,0 +1,57 @@
+CREATE TABLE Reader (
+    UserId INT IDENTITY(1,1) PRIMARY KEY,                   -- 读者ID，主键
+    CardNum VARCHAR(50) NOT NULL UNIQUE,                    -- RFID 卡号，唯一识别读者
+    UserName NVARCHAR(50) NOT NULL,                         -- 姓名
+    StudentID VARCHAR(20),                                  -- 学号（可选）
+    Phone VARCHAR(20),                                      -- 电话号码
+    Class NVARCHAR(50),                                     -- 班级/单位
+    Photo NVARCHAR(255),                                    -- 照片路径（头像）
+    Start_Time DATETIME NOT NULL,                           -- 注册时间
+    Ending_Time DATETIME,                                   -- 有效截止时间
+    IsActive BIT NOT NULL DEFAULT 1                         -- 卡号是否有效
+);
+
+CREATE TABLE Admin (
+    AdminId INT IDENTITY(1,1) PRIMARY KEY,                  -- 管理员ID，主键
+    Username NVARCHAR(50) NOT NULL UNIQUE,                  -- 登录账号（唯一）
+    Pwd NVARCHAR(255) NOT NULL,                             -- 登录密码（建议加密存储）
+    Phone VARCHAR(20),                                      -- 联系方式
+    Type NVARCHAR(20)                                       -- 角色类型，例如"超级管理员"、"图书管理员"
+);
+
+CREATE TABLE BookShelfSlot (
+    SlotId INT IDENTITY(1,1) PRIMARY KEY,                   -- 槽位ID，主键
+    Floor INT NOT NULL,                                     -- 楼层（1~3）
+    RowNumber INT NOT NULL,                                 -- 排
+    ColumnNumber INT NOT NULL,                              -- 列
+    Face CHAR(1) NOT NULL CHECK (Face IN ('A','B')),        -- A面或B面
+    Level INT NOT NULL CHECK (Level BETWEEN 1 AND 9),       -- 第几层格子
+    SlotCode VARCHAR(30) UNIQUE NOT NULL,                   -- 书架格子编号，如 F01-R2-C3-A-05
+    Location NVARCHAR(100)                                  -- 可读位置描述
+);
+
+CREATE TABLE Book (
+    BookId INT IDENTITY(1,1) PRIMARY KEY,                   -- 图书ID，主键
+    BookName NVARCHAR(100) NOT NULL,                        -- 图书名称
+    Author NVARCHAR(100),                                   -- 作者
+    ISBN VARCHAR(20) UNIQUE,                                -- 国际标准书号
+    Price DECIMAL(10,2),                                    -- 单价
+    Inventory INT NOT NULL DEFAULT 0,                       -- 当前库存数量
+    Picture NVARCHAR(255),                                  -- 图书封面图片路径
+    SlotId INT,                                             -- 外键，所在具体槽位
+    CONSTRAINT FK_Book_Slot FOREIGN KEY (SlotId) REFERENCES BookShelfSlot(SlotId)
+);
+
+CREATE TABLE Borrow (
+    BorrowId INT IDENTITY(1,1) PRIMARY KEY,                 -- 借阅记录ID，主键
+    UserId INT NOT NULL,                                    -- 外键：借书人ID
+    BookId INT NOT NULL,                                    -- 外键：图书ID
+    BorrowAdminId INT,                                      -- 外键：办理借书的管理员ID
+    ReturnAdminId INT,                                      -- 外键：办理还书的管理员ID
+    BorrowDate DATETIME NOT NULL,                           -- 借出时间
+    ReturnDate DATETIME,                                    -- 归还时间（未归还为 NULL）
+    CONSTRAINT FK_Borrow_Reader FOREIGN KEY (UserId) REFERENCES Reader(UserId),
+    CONSTRAINT FK_Borrow_Book FOREIGN KEY (BookId) REFERENCES Book(BookId),
+    CONSTRAINT FK_Borrow_Admin_Borrow FOREIGN KEY (BorrowAdminId) REFERENCES Admin(AdminId),
+    CONSTRAINT FK_Borrow_Admin_Return FOREIGN KEY (ReturnAdminId) REFERENCES Admin(AdminId)
+);

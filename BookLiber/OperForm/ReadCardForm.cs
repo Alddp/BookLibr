@@ -14,7 +14,7 @@ namespace BookLiber.OperForm {
 
         private void read_button_Click(object sender, System.EventArgs e) {
             ////测试代码
-            string cardNum = "2025062221311779006";
+            string cardNum = "2025062301093147";
 
             // TODO:测试
             //获取卡号

@@ -164,8 +164,10 @@ namespace BookLiber.AdminForm {
                         string fileName = isbn + ext;
                         string destPath = Path.Combine(bookPictureDir, fileName);
                         File.Copy(openFileDialog.FileName, destPath, true);
-                        _imagePath = $"/BookPicture/{fileName}"; // 相对路径
-                        pictureBox1.Image = Image.FromFile(destPath);
+                        _imagePath = Path.Combine("BookPicture", fileName); // 不要加斜杠
+                        using (var fs = new FileStream(destPath, FileMode.Open, FileAccess.Read)) {
+                            pictureBox1.Image = Image.FromStream(fs);
+                        }
                     }
                     catch (Exception ex) {
                         MessageBox.Show($"图片加载或复制失败: {ex.Message}");
