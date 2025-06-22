@@ -77,7 +77,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.03712F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.83465F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.014261F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 67F));
             this.tableLayoutPanel2.Controls.Add(this.groupBox1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.cardNum_lb, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.userName_lb, 3, 1);
@@ -129,7 +129,7 @@
             this.cardNum_lb.Location = new System.Drawing.Point(293, 0);
             this.cardNum_lb.MouseState = MaterialSkin.MouseState.HOVER;
             this.cardNum_lb.Name = "cardNum_lb";
-            this.cardNum_lb.Size = new System.Drawing.Size(333, 90);
+            this.cardNum_lb.Size = new System.Drawing.Size(331, 90);
             this.cardNum_lb.TabIndex = 14;
             this.cardNum_lb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -142,7 +142,7 @@
             this.userName_lb.Location = new System.Drawing.Point(293, 90);
             this.userName_lb.MouseState = MaterialSkin.MouseState.HOVER;
             this.userName_lb.Name = "userName_lb";
-            this.userName_lb.Size = new System.Drawing.Size(333, 90);
+            this.userName_lb.Size = new System.Drawing.Size(331, 90);
             this.userName_lb.TabIndex = 15;
             this.userName_lb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -181,7 +181,7 @@
             this.materialButton1.Depth = 0;
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(856, 96);
+            this.materialButton1.Location = new System.Drawing.Point(854, 96);
             this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton1.Name = "materialButton1";
@@ -205,7 +205,7 @@
             this.search_tbx.HideSelection = true;
             this.search_tbx.Hint = "查询书籍";
             this.search_tbx.LeadingIcon = null;
-            this.search_tbx.Location = new System.Drawing.Point(658, 92);
+            this.search_tbx.Location = new System.Drawing.Point(656, 92);
             this.search_tbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.search_tbx.MaxLength = 32767;
             this.search_tbx.MouseState = MaterialSkin.MouseState.OUT;
@@ -290,9 +290,9 @@
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 3;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.913794F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80.17242F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 9.482759F));
             this.tableLayoutPanel5.Controls.Add(this.label3, 1, 0);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(4, 4);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4);
@@ -308,10 +308,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(77, 0);
+            this.label3.Location = new System.Drawing.Point(23, 0);
             this.label3.Margin = new System.Windows.Forms.Padding(0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(77, 24);
+            this.label3.Size = new System.Drawing.Size(186, 24);
             this.label3.TabIndex = 4;
             this.label3.Text = "借阅排行";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

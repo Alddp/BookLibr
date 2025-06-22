@@ -11,12 +11,14 @@ namespace BookLiber.OperForm {
 
     public partial class BorrowForm : MaterialForm {
         private List<Book> _searchedBooks;
+        private Dictionary<int, string> _slotIdToCode = new Dictionary<int, string>();
 
         public BorrowForm() {
             InitializeComponent();
             ThemeManager.Initialize(this);
             InitializeDataGridView();
             Reader.ReaderInfoUpdated += UpdateReaderInfo; // 订阅事件
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
         }
 
         private void UpdateReaderInfo() {
@@ -169,6 +171,8 @@ namespace BookLiber.OperForm {
                 item.SubItems.Add(book.PopulerPercent.ToString());
                 listView1.Items.Add(item);
             }
+
+            LoadSlotCodeMap();
         }
 
         private void listView1_Click(object sender, EventArgs e) {
@@ -214,6 +218,25 @@ namespace BookLiber.OperForm {
                         MessageBox.Show("该图书暂无书架位置信息", "提示",
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                }
+            }
+        }
+
+        private void LoadSlotCodeMap() {
+            _slotIdToCode.Clear();
+            var allSlotsResult = BookShelfSlotManager.GetAllSlots();
+            if (allSlotsResult.Success && allSlotsResult.Data != null) {
+                foreach (var slot in allSlotsResult.Data) {
+                    _slotIdToCode[slot.SlotId] = slot.SlotCode;
+                }
+            }
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == BookTableFields.SlotId && e.Value != null) {
+                if (int.TryParse(e.Value.ToString(), out int slotId) && _slotIdToCode.TryGetValue(slotId, out var code)) {
+                    e.Value = code;
+                    e.FormattingApplied = true;
                 }
             }
         }
