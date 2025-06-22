@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace BookLiber.AdminForm {
 
@@ -15,6 +16,7 @@ namespace BookLiber.AdminForm {
         private BindingList<Book> bookList = new BindingList<Book>();
         private string _imagePath = "";
         private int? _selectedSlotId;
+        private Dictionary<int, string> _slotIdToCode = new Dictionary<int, string>();
 
         public AddBookForm() {
             InitializeComponent();
@@ -34,6 +36,19 @@ namespace BookLiber.AdminForm {
             dataGridView1.Columns[BookTableFields.Inventory].HeaderText = "库存";
             dataGridView1.Columns[BookTableFields.Picture].HeaderText = "图片路径";
             dataGridView1.Columns[BookTableFields.SlotId].HeaderText = "书架位置";
+
+            LoadSlotCodeMap();
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
+        }
+
+        private void LoadSlotCodeMap() {
+            _slotIdToCode.Clear();
+            var allSlotsResult = BookShelfSlotManager.GetAllSlots();
+            if (allSlotsResult.Success && allSlotsResult.Data != null) {
+                foreach (var slot in allSlotsResult.Data) {
+                    _slotIdToCode[slot.SlotId] = slot.SlotCode;
+                }
+            }
         }
 
         private void ClearInputFields() {
@@ -172,6 +187,15 @@ namespace BookLiber.AdminForm {
                         _selectedSlotId = shelfForm.SelectedSlot.SlotId;
                         materialButton1.Text = "已选择：" + shelfForm.SelectedSlot.SlotCode;
                     }
+                }
+            }
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == BookTableFields.SlotId && e.Value != null) {
+                if (int.TryParse(e.Value.ToString(), out int slotId) && _slotIdToCode.TryGetValue(slotId, out var code)) {
+                    e.Value = code;
+                    e.FormattingApplied = true;
                 }
             }
         }
