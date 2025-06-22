@@ -27,11 +27,11 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.bookName_tbx = new MaterialSkin.Controls.MaterialTextBox2();
+            this.author_tbx = new MaterialSkin.Controls.MaterialTextBox2();
             this.ISBN_tbx = new MaterialSkin.Controls.MaterialTextBox2();
             this.price_tbx = new MaterialSkin.Controls.MaterialTextBox2();
             this.inventory_tbx = new MaterialSkin.Controls.MaterialTextBox2();
-            this.author_tbx = new MaterialSkin.Controls.MaterialTextBox2();
-            this.bookName_tbx = new MaterialSkin.Controls.MaterialTextBox2();
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.materialButton2 = new MaterialSkin.Controls.MaterialButton();
             this.AddButton3 = new MaterialSkin.Controls.MaterialButton();
@@ -77,7 +77,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 239F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 5, 3);
             this.tableLayoutPanel1.Controls.Add(this.button1, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 1, 2);
@@ -108,11 +108,71 @@
             this.flowLayoutPanel3.Controls.Add(this.AddButton3);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(721, 203);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(720, 203);
             this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
             this.flowLayoutPanel3.Size = new System.Drawing.Size(233, 406);
             this.flowLayoutPanel3.TabIndex = 0;
+            // 
+            // bookName_tbx
+            // 
+            this.bookName_tbx.AnimateReadOnly = false;
+            this.bookName_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.bookName_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.bookName_tbx.Depth = 0;
+            this.bookName_tbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.bookName_tbx.HideSelection = true;
+            this.bookName_tbx.Hint = "书名";
+            this.bookName_tbx.LeadingIcon = null;
+            this.bookName_tbx.Location = new System.Drawing.Point(3, 2);
+            this.bookName_tbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.bookName_tbx.MaxLength = 32767;
+            this.bookName_tbx.MouseState = MaterialSkin.MouseState.OUT;
+            this.bookName_tbx.Name = "bookName_tbx";
+            this.bookName_tbx.PasswordChar = '\0';
+            this.bookName_tbx.PrefixSuffixText = null;
+            this.bookName_tbx.ReadOnly = false;
+            this.bookName_tbx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.bookName_tbx.SelectedText = "";
+            this.bookName_tbx.SelectionLength = 0;
+            this.bookName_tbx.SelectionStart = 0;
+            this.bookName_tbx.ShortcutsEnabled = true;
+            this.bookName_tbx.Size = new System.Drawing.Size(231, 48);
+            this.bookName_tbx.TabIndex = 0;
+            this.bookName_tbx.TabStop = false;
+            this.bookName_tbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.bookName_tbx.TrailingIcon = null;
+            this.bookName_tbx.UseSystemPasswordChar = false;
+            // 
+            // author_tbx
+            // 
+            this.author_tbx.AnimateReadOnly = false;
+            this.author_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.author_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.author_tbx.Depth = 0;
+            this.author_tbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.author_tbx.HideSelection = true;
+            this.author_tbx.Hint = "作者";
+            this.author_tbx.LeadingIcon = null;
+            this.author_tbx.Location = new System.Drawing.Point(3, 54);
+            this.author_tbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.author_tbx.MaxLength = 32767;
+            this.author_tbx.MouseState = MaterialSkin.MouseState.OUT;
+            this.author_tbx.Name = "author_tbx";
+            this.author_tbx.PasswordChar = '\0';
+            this.author_tbx.PrefixSuffixText = null;
+            this.author_tbx.ReadOnly = false;
+            this.author_tbx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.author_tbx.SelectedText = "";
+            this.author_tbx.SelectionLength = 0;
+            this.author_tbx.SelectionStart = 0;
+            this.author_tbx.ShortcutsEnabled = true;
+            this.author_tbx.Size = new System.Drawing.Size(229, 48);
+            this.author_tbx.TabIndex = 1;
+            this.author_tbx.TabStop = false;
+            this.author_tbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.author_tbx.TrailingIcon = null;
+            this.author_tbx.UseSystemPasswordChar = false;
             // 
             // ISBN_tbx
             // 
@@ -122,7 +182,7 @@
             this.ISBN_tbx.Depth = 0;
             this.ISBN_tbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.ISBN_tbx.HideSelection = true;
-            this.ISBN_tbx.Hint = "图书编号";
+            this.ISBN_tbx.Hint = "图书ISBN";
             this.ISBN_tbx.LeadingIcon = null;
             this.ISBN_tbx.Location = new System.Drawing.Point(3, 106);
             this.ISBN_tbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -203,66 +263,6 @@
             this.inventory_tbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.inventory_tbx.TrailingIcon = null;
             this.inventory_tbx.UseSystemPasswordChar = false;
-            // 
-            // author_tbx
-            // 
-            this.author_tbx.AnimateReadOnly = false;
-            this.author_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.author_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.author_tbx.Depth = 0;
-            this.author_tbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.author_tbx.HideSelection = true;
-            this.author_tbx.Hint = "作者";
-            this.author_tbx.LeadingIcon = null;
-            this.author_tbx.Location = new System.Drawing.Point(3, 54);
-            this.author_tbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.author_tbx.MaxLength = 32767;
-            this.author_tbx.MouseState = MaterialSkin.MouseState.OUT;
-            this.author_tbx.Name = "author_tbx";
-            this.author_tbx.PasswordChar = '\0';
-            this.author_tbx.PrefixSuffixText = null;
-            this.author_tbx.ReadOnly = false;
-            this.author_tbx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.author_tbx.SelectedText = "";
-            this.author_tbx.SelectionLength = 0;
-            this.author_tbx.SelectionStart = 0;
-            this.author_tbx.ShortcutsEnabled = true;
-            this.author_tbx.Size = new System.Drawing.Size(229, 48);
-            this.author_tbx.TabIndex = 1;
-            this.author_tbx.TabStop = false;
-            this.author_tbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.author_tbx.TrailingIcon = null;
-            this.author_tbx.UseSystemPasswordChar = false;
-            // 
-            // bookName_tbx
-            // 
-            this.bookName_tbx.AnimateReadOnly = false;
-            this.bookName_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.bookName_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.bookName_tbx.Depth = 0;
-            this.bookName_tbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.bookName_tbx.HideSelection = true;
-            this.bookName_tbx.Hint = "书名";
-            this.bookName_tbx.LeadingIcon = null;
-            this.bookName_tbx.Location = new System.Drawing.Point(3, 2);
-            this.bookName_tbx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.bookName_tbx.MaxLength = 32767;
-            this.bookName_tbx.MouseState = MaterialSkin.MouseState.OUT;
-            this.bookName_tbx.Name = "bookName_tbx";
-            this.bookName_tbx.PasswordChar = '\0';
-            this.bookName_tbx.PrefixSuffixText = null;
-            this.bookName_tbx.ReadOnly = false;
-            this.bookName_tbx.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.bookName_tbx.SelectedText = "";
-            this.bookName_tbx.SelectionLength = 0;
-            this.bookName_tbx.SelectionStart = 0;
-            this.bookName_tbx.ShortcutsEnabled = true;
-            this.bookName_tbx.Size = new System.Drawing.Size(231, 48);
-            this.bookName_tbx.TabIndex = 0;
-            this.bookName_tbx.TabStop = false;
-            this.bookName_tbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.bookName_tbx.TrailingIcon = null;
-            this.bookName_tbx.UseSystemPasswordChar = false;
             // 
             // materialButton1
             // 
@@ -358,7 +358,7 @@
             this.dataGridView1.RowHeadersWidth = 82;
             this.tableLayoutPanel1.SetRowSpan(this.dataGridView1, 2);
             this.dataGridView1.RowTemplate.Height = 37;
-            this.dataGridView1.Size = new System.Drawing.Size(533, 530);
+            this.dataGridView1.Size = new System.Drawing.Size(532, 530);
             this.dataGridView1.TabIndex = 3;
             // 
             // confim_button
@@ -369,7 +369,7 @@
             this.confim_button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.confim_button.HighEmphasis = true;
             this.confim_button.Icon = null;
-            this.confim_button.Location = new System.Drawing.Point(265, 36);
+            this.confim_button.Location = new System.Drawing.Point(264, 36);
             this.confim_button.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.confim_button.MouseState = MaterialSkin.MouseState.HOVER;
             this.confim_button.Name = "confim_button";
@@ -386,7 +386,7 @@
             // 
             this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(721, 33);
+            this.groupBox1.Location = new System.Drawing.Point(720, 33);
             this.groupBox1.Name = "groupBox1";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox1, 2);
             this.groupBox1.Size = new System.Drawing.Size(233, 165);

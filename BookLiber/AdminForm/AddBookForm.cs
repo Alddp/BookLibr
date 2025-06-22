@@ -120,29 +120,12 @@ namespace BookLiber.AdminForm {
             }
 
             string finalImagePath = _imagePath;
-            // 检查是否有临时图片路径，并且ISBN不为空
-            if (!string.IsNullOrEmpty(_imagePath) && !File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _imagePath))) {
-                string isbn = ISBN_tbx.Text.Trim();
-                if (string.IsNullOrEmpty(isbn)) {
-                    MessageBox.Show("为图片命名需要ISBN号，请先填写ISBN。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            // 检查图片是否存在于BookPicture目录
+            if (!string.IsNullOrEmpty(_imagePath)) {
+                string absolutePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _imagePath);
+                if (!File.Exists(absolutePath)) {
+                    MessageBox.Show("图片未正确保存，请重新选择图片。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
-                }
-                try {
-                    // 确保Images文件夹存在
-                    string imagesDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
-                    if (!Directory.Exists(imagesDir)) {
-                        Directory.CreateDirectory(imagesDir);
-                    }
-                    // 用ISBN号命名图片
-                    string fileName = isbn + Path.GetExtension(_imagePath);
-                    string destPath = Path.Combine(imagesDir, fileName);
-
-                    File.Copy(_imagePath, destPath, true);
-                    finalImagePath = Path.Combine("Images", fileName); // 更新为相对路径
-                }
-                catch (Exception ex) {
-                    MessageBox.Show($"图片处理失败: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return; // 阻止添加
                 }
             }
 
@@ -150,7 +133,7 @@ namespace BookLiber.AdminForm {
                 BookName = bookName_tbx.Text,
                 Author = author_tbx.Text,
                 ISBN = ISBN_tbx.Text,
-                Picture = finalImagePath, // 使用处理后的最终路径
+                Picture = finalImagePath, // 使用BookPicture/xxx.jpg相对路径
                 Price = price_tbx.Text,
                 Inventory = inventory_tbx.Text,
                 SlotId = _selectedSlotId ?? 0,
@@ -167,12 +150,25 @@ namespace BookLiber.AdminForm {
                 openFileDialog.Filter = "图片文件|*.jpg;*.jpeg;*.png;*.bmp|所有文件|*.*";
                 if (openFileDialog.ShowDialog() == DialogResult.OK) {
                     try {
-                        // 暂存原始路径，并显示预览图
-                        _imagePath = openFileDialog.FileName;
-                        pictureBox1.Image = Image.FromFile(_imagePath);
+                        // 需要ISBN号来命名图片
+                        string isbn = ISBN_tbx.Text.Trim();
+                        if (string.IsNullOrEmpty(isbn)) {
+                            MessageBox.Show("请先填写ISBN号再选择图片。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+                        string bookPictureDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "BookPicture");
+                        if (!Directory.Exists(bookPictureDir)) {
+                            Directory.CreateDirectory(bookPictureDir);
+                        }
+                        string ext = Path.GetExtension(openFileDialog.FileName);
+                        string fileName = isbn + ext;
+                        string destPath = Path.Combine(bookPictureDir, fileName);
+                        File.Copy(openFileDialog.FileName, destPath, true);
+                        _imagePath = $"/BookPicture/{fileName}"; // 相对路径
+                        pictureBox1.Image = Image.FromFile(destPath);
                     }
                     catch (Exception ex) {
-                        MessageBox.Show($"图片加载失败: {ex.Message}");
+                        MessageBox.Show($"图片加载或复制失败: {ex.Message}");
                         _imagePath = null;
                         pictureBox1.Image = null;
                     }

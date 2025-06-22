@@ -73,12 +73,12 @@
             // tableLayoutPanel1
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
-            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.submit_button, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.picture_button, 3, 2);
-            this.tableLayoutPanel1.Controls.Add(this.datePickerRange1, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.materialLabel1, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.submit_button, 4, 3);
+            this.tableLayoutPanel1.Controls.Add(this.picture_button, 4, 2);
             this.tableLayoutPanel1.Controls.Add(this.flowPanel1, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.materialLabel1, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.datePickerRange1, 2, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // submit_button
@@ -113,6 +113,7 @@
             // 
             // datePickerRange1
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.datePickerRange1, 2);
             resources.ApplyResources(this.datePickerRange1, "datePickerRange1");
             this.datePickerRange1.Name = "datePickerRange1";
             // 
@@ -125,6 +126,7 @@
             // 
             // flowPanel1
             // 
+            this.tableLayoutPanel1.SetColumnSpan(this.flowPanel1, 2);
             this.flowPanel1.Controls.Add(this.carNum_txb);
             this.flowPanel1.Controls.Add(this.userName_tbx);
             this.flowPanel1.Controls.Add(this.stuId_tbx);
@@ -137,7 +139,6 @@
             // carNum_txb
             // 
             this.carNum_txb.AnimateReadOnly = false;
-      
             resources.ApplyResources(this.carNum_txb, "carNum_txb");
             this.carNum_txb.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.carNum_txb.Depth = 0;
@@ -160,7 +161,6 @@
             // userName_tbx
             // 
             this.userName_tbx.AnimateReadOnly = false;
-     
             resources.ApplyResources(this.userName_tbx, "userName_tbx");
             this.userName_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.userName_tbx.Depth = 0;
@@ -183,7 +183,6 @@
             // stuId_tbx
             // 
             this.stuId_tbx.AnimateReadOnly = false;
-     
             resources.ApplyResources(this.stuId_tbx, "stuId_tbx");
             this.stuId_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.stuId_tbx.Depth = 0;
@@ -206,7 +205,6 @@
             // phone_tbx
             // 
             this.phone_tbx.AnimateReadOnly = false;
-      
             resources.ApplyResources(this.phone_tbx, "phone_tbx");
             this.phone_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.phone_tbx.Depth = 0;
@@ -229,7 +227,6 @@
             // calssName_tbx
             // 
             this.calssName_tbx.AnimateReadOnly = false;
-       
             resources.ApplyResources(this.calssName_tbx, "calssName_tbx");
             this.calssName_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.calssName_tbx.Depth = 0;
