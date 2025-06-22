@@ -18,6 +18,8 @@ namespace BookModels {
         // 私有静态字段存储实例
         private static Reader _instance;
 
+        public static event Action ReaderInfoUpdated;
+
         // 私有构造函数，防止外部实例化
         public Reader() { }
 
@@ -30,8 +32,9 @@ namespace BookModels {
                 return _instance;
             }
             set {
-                ResetInstance();
                 _instance = value;
+                // 触发事件
+                ReaderInfoUpdated?.Invoke();
             }
         }
 

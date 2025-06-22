@@ -13,6 +13,18 @@ namespace BookLiber.OperForm {
             InitializeComponent();
             ThemeManager.Initialize(this);
             InitializeDataGridView();
+            Reader.ReaderInfoUpdated += UpdateReaderInfo; // 订阅事件
+        }
+
+        private void UpdateReaderInfo() {
+            // 确保在UI线程上更新
+            if (InvokeRequired) {
+                Invoke(new Action(UpdateReaderInfo));
+                return;
+            }
+            cardNum_tbx.Text = Reader.Instance.CardNum;
+            userName_tbx.Text = Reader.Instance.UserName;
+            pictureBox1.ImageLocation = Reader.Instance.Photo;
         }
 
         private void InitializeDataGridView() {
@@ -24,7 +36,7 @@ namespace BookLiber.OperForm {
         }
 
         private void ReturnForm_Load(object sender, EventArgs e) {
-            // 准备表格 
+            // 准备表格
             BorrowView.Columns.Clear();
 
             // 添加列
@@ -77,8 +89,8 @@ namespace BookLiber.OperForm {
             }
 
             // 更新用户信息
-            cardNum_lb.Text = Reader.Instance.CardNum;
-            userName_lb.Text = Reader.Instance.UserName;
+            cardNum_tbx.Text = Reader.Instance.CardNum;
+            userName_tbx.Text = Reader.Instance.UserName;
             pictureBox1.ImageLocation = Reader.Instance.Photo;
         }
 

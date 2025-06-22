@@ -136,5 +136,15 @@ namespace BookLiber.AdminForm {
                 }
             }
         }
+
+        private void materialRefreshButton2_Click(object sender, EventArgs e) {
+            // 刷新表格
+            string selectedType = comboBoxUserType.SelectedItem?.ToString();
+            if (selectedType == "读者") {
+                LoadReaders();
+            } else if (selectedType == "管理员") {
+                LoadAdmins();
+            }
+        }
     }
 }

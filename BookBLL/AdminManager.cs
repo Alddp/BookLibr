@@ -3,9 +3,9 @@ using BookDAL;
 using BookModels;
 using BookModels.Constants;
 using BookModels.Errors;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using static BookModels.Errors.ErrorMessages;
-using System.Collections.Generic;
 
 namespace BookBLL {
 

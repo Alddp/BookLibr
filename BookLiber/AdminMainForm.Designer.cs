@@ -204,6 +204,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1240, 881);
             this.Controls.Add(this.materialTabControl1);
+            this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.materialTabControl1;
             this.IsMdiContainer = true;
             this.Margin = new System.Windows.Forms.Padding(4);

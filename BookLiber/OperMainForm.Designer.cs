@@ -62,6 +62,13 @@
             this.imageList1.Images.SetKeyName(3, "入库管理.png");
             this.imageList1.Images.SetKeyName(4, "认证a.png");
             this.imageList1.Images.SetKeyName(5, "设置.png");
+            this.imageList1.Images.SetKeyName(6, "borrow_book.png");
+            this.imageList1.Images.SetKeyName(7, "icons8-return_book.png");
+            this.imageList1.Images.SetKeyName(8, "icon-开卡.png");
+            this.imageList1.Images.SetKeyName(9, "开卡.png");
+            this.imageList1.Images.SetKeyName(10, "设置.png");
+            this.imageList1.Images.SetKeyName(11, "销卡 (1).png");
+            this.imageList1.Images.SetKeyName(12, "book.png");
             // 
             // materialTabControl1
             // 
@@ -70,6 +77,7 @@
             this.materialTabControl1.Controls.Add(this.settings);
             this.materialTabControl1.Depth = 0;
             this.materialTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialTabControl1.ImageList = this.imageList1;
             this.materialTabControl1.Location = new System.Drawing.Point(3, 64);
             this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialTabControl1.Multiline = true;
@@ -84,10 +92,11 @@
             this.cardManage.BackColor = System.Drawing.Color.White;
             this.cardManage.Controls.Add(this.toolStrip1);
             this.cardManage.ImageKey = "name-card.png";
-            this.cardManage.Location = new System.Drawing.Point(4, 25);
+            this.cardManage.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cardManage.Location = new System.Drawing.Point(4, 27);
             this.cardManage.Name = "cardManage";
             this.cardManage.Padding = new System.Windows.Forms.Padding(3);
-            this.cardManage.Size = new System.Drawing.Size(1134, 686);
+            this.cardManage.Size = new System.Drawing.Size(1227, 784);
             this.cardManage.TabIndex = 0;
             this.cardManage.Text = "卡操作";
             // 
@@ -106,7 +115,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStrip1.Size = new System.Drawing.Size(1128, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1221, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -172,11 +181,11 @@
             // 
             this.bookManage.BackColor = System.Drawing.Color.White;
             this.bookManage.Controls.Add(this.toolStrip3);
-            this.bookManage.ImageKey = "实物借阅.png";
-            this.bookManage.Location = new System.Drawing.Point(4, 25);
+            this.bookManage.ImageKey = "book.png";
+            this.bookManage.Location = new System.Drawing.Point(4, 27);
             this.bookManage.Name = "bookManage";
             this.bookManage.Padding = new System.Windows.Forms.Padding(3);
-            this.bookManage.Size = new System.Drawing.Size(1227, 786);
+            this.bookManage.Size = new System.Drawing.Size(1227, 784);
             this.bookManage.TabIndex = 2;
             this.bookManage.Text = "借阅操作";
             // 
@@ -236,9 +245,9 @@
             // settings
             // 
             this.settings.ImageKey = "设置.png";
-            this.settings.Location = new System.Drawing.Point(4, 25);
+            this.settings.Location = new System.Drawing.Point(4, 27);
             this.settings.Name = "settings";
-            this.settings.Size = new System.Drawing.Size(1134, 686);
+            this.settings.Size = new System.Drawing.Size(1227, 784);
             this.settings.TabIndex = 3;
             this.settings.Text = "设置";
             this.settings.UseVisualStyleBackColor = true;
@@ -249,6 +258,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1240, 881);
             this.Controls.Add(this.materialTabControl1);
+            this.DrawerShowIconsWhenHidden = true;
             this.DrawerTabControl = this.materialTabControl1;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MinimumSize = new System.Drawing.Size(1147, 781);

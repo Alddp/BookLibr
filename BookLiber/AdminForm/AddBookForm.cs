@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace BookLiber.AdminForm {
 
@@ -15,6 +16,7 @@ namespace BookLiber.AdminForm {
         private BindingList<Book> bookList = new BindingList<Book>();
         private string _imagePath = "";
         private int? _selectedSlotId;
+        private Dictionary<int, string> _slotIdToCode = new Dictionary<int, string>();
 
         public AddBookForm() {
             InitializeComponent();
@@ -34,6 +36,19 @@ namespace BookLiber.AdminForm {
             dataGridView1.Columns[BookTableFields.Inventory].HeaderText = "库存";
             dataGridView1.Columns[BookTableFields.Picture].HeaderText = "图片路径";
             dataGridView1.Columns[BookTableFields.SlotId].HeaderText = "书架位置";
+
+            LoadSlotCodeMap();
+            dataGridView1.CellFormatting += dataGridView1_CellFormatting;
+        }
+
+        private void LoadSlotCodeMap() {
+            _slotIdToCode.Clear();
+            var allSlotsResult = BookShelfSlotManager.GetAllSlots();
+            if (allSlotsResult.Success && allSlotsResult.Data != null) {
+                foreach (var slot in allSlotsResult.Data) {
+                    _slotIdToCode[slot.SlotId] = slot.SlotCode;
+                }
+            }
         }
 
         private void ClearInputFields() {
@@ -50,37 +65,39 @@ namespace BookLiber.AdminForm {
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            string filePath = string.Empty;
-
-            openFileDialog1.Filter = "Excel Files|*.xlsx";
-            openFileDialog1.Title = "选择Excel文件";
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK) {
-                filePath = openFileDialog1.FileName;
-            }
-
-            if (filePath == string.Empty) {
-                MessageBox.Show("未选择文件");
-                return;
-            }
-
-            var result = BookManager.ImportBooksFromExcel(filePath);
-            if (result.Success) {
-                MessageBox.Show("导入成功");
-            } else {
-                MessageBox.Show($"导入失败：{result.Message}");
-            }
+            DataToolsForm dataToolsForm = new DataToolsForm();
+            dataToolsForm.ShowDialog();
         }
 
         private void confim_button_Click(object sender, EventArgs e) {
+            if (bookList.Count == 0) {
+                MessageBox.Show("没有需要入库的图书。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            int successCount = 0;
+            var failedBooks = new System.Text.StringBuilder();
+
             foreach (var item in bookList) {
                 var result = BookManager.InsertBook(item);
-                if (!result.Success) {
-                    MessageBox.Show($"图书《{item.BookName}》入库失败：{result.Message}");
-                    continue;
+                if (result.Success) {
+                    successCount++;
+                } else {
+                    failedBooks.AppendLine($" -《{item.BookName}》: {result.Message}");
                 }
             }
-            MessageBox.Show("完成");
+
+            var summary = new System.Text.StringBuilder();
+            summary.AppendLine($"入库操作完成。");
+            summary.AppendLine($"成功: {successCount} 本");
+            summary.AppendLine($"失败: {bookList.Count - successCount} 本");
+
+            if (failedBooks.Length > 0) {
+                summary.AppendLine("\n失败详情:");
+                summary.Append(failedBooks.ToString());
+            }
+
+            MessageBox.Show(summary.ToString(), "入库结果");
             bookList.Clear();
         }
 
@@ -102,11 +119,38 @@ namespace BookLiber.AdminForm {
                 return;
             }
 
+            string finalImagePath = _imagePath;
+            // 检查是否有临时图片路径，并且ISBN不为空
+            if (!string.IsNullOrEmpty(_imagePath) && !File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, _imagePath))) {
+                string isbn = ISBN_tbx.Text.Trim();
+                if (string.IsNullOrEmpty(isbn)) {
+                    MessageBox.Show("为图片命名需要ISBN号，请先填写ISBN。", "提示", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                try {
+                    // 确保Images文件夹存在
+                    string imagesDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
+                    if (!Directory.Exists(imagesDir)) {
+                        Directory.CreateDirectory(imagesDir);
+                    }
+                    // 用ISBN号命名图片
+                    string fileName = isbn + Path.GetExtension(_imagePath);
+                    string destPath = Path.Combine(imagesDir, fileName);
+
+                    File.Copy(_imagePath, destPath, true);
+                    finalImagePath = Path.Combine("Images", fileName); // 更新为相对路径
+                }
+                catch (Exception ex) {
+                    MessageBox.Show($"图片处理失败: {ex.Message}", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return; // 阻止添加
+                }
+            }
+
             Book book = new Book() {
                 BookName = bookName_tbx.Text,
                 Author = author_tbx.Text,
                 ISBN = ISBN_tbx.Text,
-                Picture = _imagePath,
+                Picture = finalImagePath, // 使用处理后的最终路径
                 Price = price_tbx.Text,
                 Inventory = inventory_tbx.Text,
                 SlotId = _selectedSlotId ?? 0,
@@ -122,23 +166,15 @@ namespace BookLiber.AdminForm {
                 openFileDialog.Title = "选择图书图片";
                 openFileDialog.Filter = "图片文件|*.jpg;*.jpeg;*.png;*.bmp|所有文件|*.*";
                 if (openFileDialog.ShowDialog() == DialogResult.OK) {
-                    // 确保Images文件夹存在
-                    string imagesDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
-                    if (!Directory.Exists(imagesDir)) {
-                        Directory.CreateDirectory(imagesDir);
-                    }
-                    // 用ISBN号命名图片（如无ISBN则用Guid）
-                    string isbn = ISBN_tbx.Text.Trim();
-                    string fileName = string.IsNullOrEmpty(isbn) ? Guid.NewGuid().ToString() : isbn;
-                    string destPath = Path.Combine(imagesDir, fileName + ".jpg");
                     try {
-                        File.Copy(openFileDialog.FileName, destPath, true);
-                        pictureBox1.Image = Image.FromFile(destPath);
-                        // 设置_imagePath为相对路径
-                        _imagePath = $"Images/{fileName}.jpg";
+                        // 暂存原始路径，并显示预览图
+                        _imagePath = openFileDialog.FileName;
+                        pictureBox1.Image = Image.FromFile(_imagePath);
                     }
                     catch (Exception ex) {
-                        MessageBox.Show($"图片复制失败: {ex.Message}");
+                        MessageBox.Show($"图片加载失败: {ex.Message}");
+                        _imagePath = null;
+                        pictureBox1.Image = null;
                     }
                 }
             }
@@ -151,6 +187,15 @@ namespace BookLiber.AdminForm {
                         _selectedSlotId = shelfForm.SelectedSlot.SlotId;
                         materialButton1.Text = "已选择：" + shelfForm.SelectedSlot.SlotCode;
                     }
+                }
+            }
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == BookTableFields.SlotId && e.Value != null) {
+                if (int.TryParse(e.Value.ToString(), out int slotId) && _slotIdToCode.TryGetValue(slotId, out var code)) {
+                    e.Value = code;
+                    e.FormattingApplied = true;
                 }
             }
         }
