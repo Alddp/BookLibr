@@ -25,8 +25,9 @@
         private void InitializeComponent() {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.userName_lb = new MaterialSkin.Controls.MaterialLabel();
-            this.cardNum_lb = new MaterialSkin.Controls.MaterialLabel();
+            this.userName_tbx = new MaterialSkin.Controls.MaterialTextBox2();
+            this.cardNum_tbx = new MaterialSkin.Controls.MaterialTextBox2();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.BorrowView = new System.Windows.Forms.DataGridView();
             this.return_button = new MaterialSkin.Controls.MaterialButton();
@@ -35,6 +36,7 @@
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BorrowView)).BeginInit();
             this.SuspendLayout();
@@ -52,10 +54,10 @@
             this.tableLayoutPanel1.Controls.Add(this.materialButton1, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 58F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -64,50 +66,95 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.userName_lb);
-            this.groupBox1.Controls.Add(this.cardNum_lb);
-            this.groupBox1.Controls.Add(this.pictureBox1);
+            this.groupBox1.Controls.Add(this.userName_tbx);
+            this.groupBox1.Controls.Add(this.cardNum_tbx);
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(4, 62);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(4, 48);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(310, 392);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Size = new System.Drawing.Size(310, 403);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "用户信息";
             // 
-            // userName_lb
+            // userName_tbx
             // 
-            this.userName_lb.AutoSize = true;
-            this.userName_lb.Depth = 0;
-            this.userName_lb.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.userName_lb.Location = new System.Drawing.Point(7, 281);
-            this.userName_lb.MouseState = MaterialSkin.MouseState.HOVER;
-            this.userName_lb.Name = "userName_lb";
-            this.userName_lb.Size = new System.Drawing.Size(49, 19);
-            this.userName_lb.TabIndex = 4;
-            this.userName_lb.Text = "姓名：";
+            this.userName_tbx.AnimateReadOnly = false;
+            this.userName_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.userName_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.userName_tbx.Depth = 0;
+            this.userName_tbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.userName_tbx.HideSelection = true;
+            this.userName_tbx.Hint = "姓名";
+            this.userName_tbx.LeadingIcon = null;
+            this.userName_tbx.Location = new System.Drawing.Point(11, 317);
+            this.userName_tbx.MaxLength = 32767;
+            this.userName_tbx.MouseState = MaterialSkin.MouseState.OUT;
+            this.userName_tbx.Name = "userName_tbx";
+            this.userName_tbx.PasswordChar = '\0';
+            this.userName_tbx.PrefixSuffixText = null;
+            this.userName_tbx.ReadOnly = false;
+            this.userName_tbx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.userName_tbx.SelectedText = "";
+            this.userName_tbx.SelectionLength = 0;
+            this.userName_tbx.SelectionStart = 0;
+            this.userName_tbx.ShortcutsEnabled = true;
+            this.userName_tbx.Size = new System.Drawing.Size(289, 48);
+            this.userName_tbx.TabIndex = 7;
+            this.userName_tbx.TabStop = false;
+            this.userName_tbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.userName_tbx.TrailingIcon = null;
+            this.userName_tbx.UseSystemPasswordChar = false;
             // 
-            // cardNum_lb
+            // cardNum_tbx
             // 
-            this.cardNum_lb.AutoSize = true;
-            this.cardNum_lb.Depth = 0;
-            this.cardNum_lb.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.cardNum_lb.Location = new System.Drawing.Point(7, 242);
-            this.cardNum_lb.MouseState = MaterialSkin.MouseState.HOVER;
-            this.cardNum_lb.Name = "cardNum_lb";
-            this.cardNum_lb.Size = new System.Drawing.Size(49, 19);
-            this.cardNum_lb.TabIndex = 3;
-            this.cardNum_lb.Text = "卡号：";
+            this.cardNum_tbx.AnimateReadOnly = false;
+            this.cardNum_tbx.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.cardNum_tbx.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.cardNum_tbx.Depth = 0;
+            this.cardNum_tbx.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.cardNum_tbx.HideSelection = true;
+            this.cardNum_tbx.Hint = "卡号";
+            this.cardNum_tbx.LeadingIcon = null;
+            this.cardNum_tbx.Location = new System.Drawing.Point(11, 240);
+            this.cardNum_tbx.MaxLength = 32767;
+            this.cardNum_tbx.MouseState = MaterialSkin.MouseState.OUT;
+            this.cardNum_tbx.Name = "cardNum_tbx";
+            this.cardNum_tbx.PasswordChar = '\0';
+            this.cardNum_tbx.PrefixSuffixText = null;
+            this.cardNum_tbx.ReadOnly = false;
+            this.cardNum_tbx.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.cardNum_tbx.SelectedText = "";
+            this.cardNum_tbx.SelectionLength = 0;
+            this.cardNum_tbx.SelectionStart = 0;
+            this.cardNum_tbx.ShortcutsEnabled = true;
+            this.cardNum_tbx.Size = new System.Drawing.Size(289, 48);
+            this.cardNum_tbx.TabIndex = 6;
+            this.cardNum_tbx.TabStop = false;
+            this.cardNum_tbx.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.cardNum_tbx.TrailingIcon = null;
+            this.cardNum_tbx.UseSystemPasswordChar = false;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.pictureBox1);
+            this.groupBox2.Location = new System.Drawing.Point(62, 25);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(186, 172);
+            this.groupBox2.TabIndex = 5;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "用户照片";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(8, 25);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(3, 21);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(175, 163);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.Size = new System.Drawing.Size(180, 148);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -117,12 +164,12 @@
             this.BorrowView.AllowUserToDeleteRows = false;
             this.BorrowView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.BorrowView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BorrowView.Location = new System.Drawing.Point(322, 62);
-            this.BorrowView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BorrowView.Location = new System.Drawing.Point(322, 48);
+            this.BorrowView.Margin = new System.Windows.Forms.Padding(4);
             this.BorrowView.Name = "BorrowView";
             this.BorrowView.RowHeadersWidth = 51;
             this.BorrowView.RowTemplate.Height = 23;
-            this.BorrowView.Size = new System.Drawing.Size(734, 392);
+            this.BorrowView.Size = new System.Drawing.Size(734, 403);
             this.BorrowView.TabIndex = 1;
             // 
             // return_button
@@ -133,12 +180,12 @@
             this.return_button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.return_button.HighEmphasis = true;
             this.return_button.Icon = null;
-            this.return_button.Location = new System.Drawing.Point(323, 516);
+            this.return_button.Location = new System.Drawing.Point(323, 514);
             this.return_button.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
             this.return_button.MouseState = MaterialSkin.MouseState.HOVER;
             this.return_button.Name = "return_button";
             this.return_button.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.return_button.Size = new System.Drawing.Size(732, 34);
+            this.return_button.Size = new System.Drawing.Size(732, 36);
             this.return_button.TabIndex = 2;
             this.return_button.Text = "还书";
             this.return_button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -154,12 +201,12 @@
             this.query_button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.query_button.HighEmphasis = true;
             this.query_button.Icon = null;
-            this.query_button.Location = new System.Drawing.Point(323, 466);
+            this.query_button.Location = new System.Drawing.Point(323, 463);
             this.query_button.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
             this.query_button.MouseState = MaterialSkin.MouseState.HOVER;
             this.query_button.Name = "query_button";
             this.query_button.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.query_button.Size = new System.Drawing.Size(732, 34);
+            this.query_button.Size = new System.Drawing.Size(732, 35);
             this.query_button.TabIndex = 3;
             this.query_button.Text = "刷新查询";
             this.query_button.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -176,8 +223,8 @@
             this.search_tbx.Font = new System.Drawing.Font("Roboto", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.search_tbx.Hint = "输入关键字";
             this.search_tbx.LeadingIcon = null;
-            this.search_tbx.Location = new System.Drawing.Point(4, 462);
-            this.search_tbx.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.search_tbx.Location = new System.Drawing.Point(4, 459);
+            this.search_tbx.Margin = new System.Windows.Forms.Padding(4);
             this.search_tbx.MaxLength = 50;
             this.search_tbx.MouseState = MaterialSkin.MouseState.OUT;
             this.search_tbx.Multiline = false;
@@ -195,12 +242,12 @@
             this.materialButton1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(5, 516);
+            this.materialButton1.Location = new System.Drawing.Point(5, 514);
             this.materialButton1.Margin = new System.Windows.Forms.Padding(5, 8, 5, 8);
             this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton1.Name = "materialButton1";
             this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton1.Size = new System.Drawing.Size(308, 34);
+            this.materialButton1.Size = new System.Drawing.Size(308, 36);
             this.materialButton1.TabIndex = 5;
             this.materialButton1.Text = "筛选";
             this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -215,7 +262,7 @@
             this.ClientSize = new System.Drawing.Size(1067, 562);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormStyle = MaterialSkin.Controls.MaterialForm.FormStyles.StatusAndActionBar_None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ReturnForm";
             this.Padding = new System.Windows.Forms.Padding(3, 0, 4, 4);
             this.Text = "还书";
@@ -223,7 +270,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BorrowView)).EndInit();
             this.ResumeLayout(false);
@@ -240,7 +287,8 @@
         private MaterialSkin.Controls.MaterialButton query_button;
         private MaterialSkin.Controls.MaterialTextBox search_tbx;
         private MaterialSkin.Controls.MaterialButton materialButton1;
-        private MaterialSkin.Controls.MaterialLabel userName_lb;
-        private MaterialSkin.Controls.MaterialLabel cardNum_lb;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private MaterialSkin.Controls.MaterialTextBox2 userName_tbx;
+        private MaterialSkin.Controls.MaterialTextBox2 cardNum_tbx;
     }
 }

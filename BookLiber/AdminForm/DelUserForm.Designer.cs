@@ -28,6 +28,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.materialButton1 = new MaterialSkin.Controls.MaterialButton();
             this.comboBoxUserType = new MaterialSkin.Controls.MaterialComboBox();
+            this.materialRefreshButton2 = new MaterialSkin.Controls.MaterialButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -52,12 +53,14 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82.08955F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.91045F));
+            this.tableLayoutPanel2.ColumnCount = 3;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.33379F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.81547F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 29.98643F));
             this.tableLayoutPanel2.Controls.Add(this.dataGridView1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.materialButton1, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.materialButton1, 2, 1);
             this.tableLayoutPanel2.Controls.Add(this.comboBoxUserType, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.materialRefreshButton2, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(43, 43);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -70,7 +73,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableLayoutPanel2.SetColumnSpan(this.dataGridView1, 2);
+            this.tableLayoutPanel2.SetColumnSpan(this.dataGridView1, 3);
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
@@ -87,12 +90,12 @@
             this.materialButton1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.materialButton1.HighEmphasis = true;
             this.materialButton1.Icon = null;
-            this.materialButton1.Location = new System.Drawing.Point(608, 404);
+            this.materialButton1.Location = new System.Drawing.Point(519, 404);
             this.materialButton1.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.materialButton1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialButton1.Name = "materialButton1";
             this.materialButton1.NoAccentTextColor = System.Drawing.Color.Empty;
-            this.materialButton1.Size = new System.Drawing.Size(125, 34);
+            this.materialButton1.Size = new System.Drawing.Size(214, 34);
             this.materialButton1.TabIndex = 1;
             this.materialButton1.Text = "删除选中";
             this.materialButton1.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
@@ -109,7 +112,7 @@
             this.comboBoxUserType.DropDownHeight = 174;
             this.comboBoxUserType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUserType.DropDownWidth = 121;
-            this.comboBoxUserType.Font = new System.Drawing.Font("Roboto Medium", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.comboBoxUserType.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.comboBoxUserType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.comboBoxUserType.FormattingEnabled = true;
             this.comboBoxUserType.IntegralHeight = false;
@@ -118,10 +121,31 @@
             this.comboBoxUserType.MaxDropDownItems = 4;
             this.comboBoxUserType.MouseState = MaterialSkin.MouseState.OUT;
             this.comboBoxUserType.Name = "comboBoxUserType";
-            this.comboBoxUserType.Size = new System.Drawing.Size(191, 49);
+            this.comboBoxUserType.Size = new System.Drawing.Size(201, 49);
             this.comboBoxUserType.StartIndex = 0;
             this.comboBoxUserType.TabIndex = 2;
             this.comboBoxUserType.SelectedIndexChanged += new System.EventHandler(this.comboBoxUserType_SelectedIndexChanged);
+            // 
+            // materialRefreshButton2
+            // 
+            this.materialRefreshButton2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.materialRefreshButton2.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            this.materialRefreshButton2.Depth = 0;
+            this.materialRefreshButton2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.materialRefreshButton2.HighEmphasis = true;
+            this.materialRefreshButton2.Icon = null;
+            this.materialRefreshButton2.Location = new System.Drawing.Point(315, 404);
+            this.materialRefreshButton2.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.materialRefreshButton2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialRefreshButton2.Name = "materialRefreshButton2";
+            this.materialRefreshButton2.NoAccentTextColor = System.Drawing.Color.Empty;
+            this.materialRefreshButton2.Size = new System.Drawing.Size(196, 34);
+            this.materialRefreshButton2.TabIndex = 3;
+            this.materialRefreshButton2.Text = "刷新";
+            this.materialRefreshButton2.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            this.materialRefreshButton2.UseAccentColor = false;
+            this.materialRefreshButton2.UseVisualStyleBackColor = true;
+            this.materialRefreshButton2.Click += new System.EventHandler(this.materialRefreshButton2_Click);
             // 
             // DelUserForm
             // 
@@ -148,5 +172,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private MaterialSkin.Controls.MaterialButton materialButton1;
         private MaterialSkin.Controls.MaterialComboBox comboBoxUserType;
+        private MaterialSkin.Controls.MaterialButton materialRefreshButton2;
     }
 }

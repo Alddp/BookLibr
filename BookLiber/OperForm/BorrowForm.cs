@@ -16,6 +16,18 @@ namespace BookLiber.OperForm {
             InitializeComponent();
             ThemeManager.Initialize(this);
             InitializeDataGridView();
+            Reader.ReaderInfoUpdated += UpdateReaderInfo; // 订阅事件
+        }
+
+        private void UpdateReaderInfo() {
+            // 确保在UI线程上更新
+            if (InvokeRequired) {
+                Invoke(new Action(UpdateReaderInfo));
+                return;
+            }
+            cardNum_lb.Text = Reader.Instance.CardNum;
+            userName_lb.Text = Reader.Instance.UserName;
+            pictureBox1.ImageLocation = Reader.Instance.Photo;
         }
 
         private void InitializeDataGridView() {
@@ -24,6 +36,15 @@ namespace BookLiber.OperForm {
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.ReadOnly = true;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // 添加列
+            dataGridView1.Columns.Add(BookTableFields.BookId, "图书编号");
+            dataGridView1.Columns.Add(BookTableFields.BookName, "图书名称");
+            dataGridView1.Columns.Add(BookTableFields.Author, "作者");
+            dataGridView1.Columns.Add(BookTableFields.ISBN, "ISBN");
+            dataGridView1.Columns.Add(BookTableFields.Price, "价格");
+            dataGridView1.Columns.Add(BookTableFields.Inventory, "库存");
+            dataGridView1.Columns.Add(BookTableFields.SlotId, "书架编号");
         }
 
         private void button2_Click(object sender, EventArgs e) {
@@ -47,30 +68,55 @@ namespace BookLiber.OperForm {
                 return;
             }
             Reader.Instance = sutInfoRes.Data;
-            // 显示用户信息
-            cardNum_lb.Text = Reader.Instance.CardNum;
-            userName_lb.Text = Reader.Instance.UserName;
-            pictureBox1.ImageLocation = Reader.Instance.Photo;
+            // 因为设置Reader.Instance会触发事件，所以下面的代码可以省略
+            // UpdateReaderInfo(); // 直接调用或等待事件触发
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            var selectedBooks = new List<string>(); // 存储选中的图书ID
+            var selectedBooks = new Dictionary<string, string>(); // bookId -> bookName
 
             foreach (DataGridViewRow row in dataGridView1.SelectedRows) {
                 string bookId = row.Cells[BookTableFields.BookId].Value.ToString();
-                selectedBooks.Add(bookId);
+                string bookName = row.Cells[BookTableFields.BookName].Value.ToString();
+                if (!selectedBooks.ContainsKey(bookId)) {
+                    selectedBooks.Add(bookId, bookName);
+                }
             }
 
             if (selectedBooks.Count == 0) {
                 MessageBox.Show("请至少选择一本图书。");
                 return;
             }
-            foreach (var item in selectedBooks) {
-                var result = BookManager.BorrowBook(Reader.Instance.UserId, item, Admin.Instance.AdminId);
-                if (!result.Success)
-                    MessageBox.Show($"借书失败：{result.Message}");
+
+            var failedBorrows = new List<string>();
+            var successfulBorrows = 0;
+
+            foreach (var book in selectedBooks) {
+                var result = BookManager.BorrowBook(Reader.Instance.UserId, book.Key, Admin.Instance.AdminId);
+                if (!result.Success) {
+                    failedBorrows.Add($"《{book.Value}》: {result.Message}");
+                } else {
+                    successfulBorrows++;
+                }
             }
-            MessageBox.Show("借书成功！");
+
+            if (failedBorrows.Any()) {
+                string errorMessage = "以下图书借阅失败：\n" + string.Join("\n", failedBorrows);
+                if (successfulBorrows > 0) {
+                    errorMessage += $"\n\n另外 {successfulBorrows} 本图书借阅成功。";
+                }
+                MessageBox.Show(errorMessage, "借阅结果");
+            } else {
+                MessageBox.Show("所有图书均借阅成功！", "借阅成功");
+            }
+
+            // 刷新书籍列表以显示更新的库存
+            var res = BookManager.SearchBook(search_tbx.Text);
+            if (res.Success) {
+                PopulateGrid(res.Data);
+            } else {
+                PopulateGrid(new List<Book>()); // Clear grid
+            }
         }
 
         private void button4_Click(object sender, EventArgs e) {
@@ -80,29 +126,18 @@ namespace BookLiber.OperForm {
 
             if (!res.Success) {
                 MessageBox.Show("查询失败：" + res.Message);
+                PopulateGrid(new List<Book>()); // Clear grid
                 return;
             }
+            PopulateGrid(res.Data);
+        }
 
-            _searchedBooks = res.Data;
-
-            // 准备表格
-            dataGridView1.Columns.Clear();
+        private void PopulateGrid(List<Book> books) {
+            _searchedBooks = books;
             dataGridView1.Rows.Clear();
 
-            // 添加列
-            dataGridView1.Columns.Add(BookTableFields.BookId, "图书编号");
-            dataGridView1.Columns.Add(BookTableFields.BookName, "图书名称");
-            dataGridView1.Columns.Add(BookTableFields.Author, "作者");
-            dataGridView1.Columns.Add(BookTableFields.ISBN, "ISBN");
-            dataGridView1.Columns.Add(BookTableFields.Price, "价格");
-            dataGridView1.Columns.Add(BookTableFields.Inventory, "库存");
-            dataGridView1.Columns.Add(BookTableFields.SlotId, "书架编号");
+            if (_searchedBooks == null) return;
 
-            // 自动调整列宽度
-            dataGridView1.AutoResizeColumns();
-
-            // 填充数据
-            dataGridView1.Rows.Clear();
             foreach (var book in _searchedBooks) {
                 dataGridView1.Rows.Add(
                     book.BookId,
@@ -117,9 +152,7 @@ namespace BookLiber.OperForm {
         }
 
         private void BorrowForm_Load(object sender, EventArgs e) {
-            cardNum_lb.Text = Reader.Instance.CardNum;
-            userName_lb.Text = Reader.Instance.UserName;
-            pictureBox1.ImageLocation = Reader.Instance.Photo;
+            UpdateReaderInfo(); // 初始加载时更新一次
             var hotBooks = BookManager.GetPopulerBooks();
 
             if (!hotBooks.Success) {
@@ -183,6 +216,11 @@ namespace BookLiber.OperForm {
                     }
                 }
             }
+        }
+
+        // 在窗体关闭时取消订阅，防止内存泄漏
+        private void BorrowForm_FormClosed(object sender, FormClosedEventArgs e) {
+            Reader.ReaderInfoUpdated -= UpdateReaderInfo;
         }
     }
 }
