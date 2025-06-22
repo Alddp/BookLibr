@@ -50,26 +50,8 @@ namespace BookLiber.AdminForm {
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            string filePath = string.Empty;
-
-            openFileDialog1.Filter = "Excel Files|*.xlsx";
-            openFileDialog1.Title = "选择Excel文件";
-
-            if (openFileDialog1.ShowDialog() == DialogResult.OK) {
-                filePath = openFileDialog1.FileName;
-            }
-
-            if (filePath == string.Empty) {
-                MessageBox.Show("未选择文件");
-                return;
-            }
-
-            var result = BookManager.ImportBooksFromExcel(filePath);
-            if (result.Success) {
-                MessageBox.Show("导入成功");
-            } else {
-                MessageBox.Show($"导入失败：{result.Message}");
-            }
+            DataToolsForm dataToolsForm = new DataToolsForm();
+            dataToolsForm.ShowDialog();
         }
 
         private void confim_button_Click(object sender, EventArgs e) {

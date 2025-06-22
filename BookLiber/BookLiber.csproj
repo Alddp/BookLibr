@@ -61,6 +61,18 @@
     <Compile Include="AdminForm\DelUserForm.Designer.cs">
       <DependentUpon>DelUserForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminForm\DataToolsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForm\DataToolsForm.Designer.cs">
+      <DependentUpon>DataToolsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AdminForm\OutputDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminForm\OutputDialog.Designer.cs">
+      <DependentUpon>OutputDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="OperMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +144,9 @@
     <Compile Include="ThemeManager.cs" />
     <EmbeddedResource Include="AdminForm\DelUserForm.resx">
       <DependentUpon>DelUserForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminForm\DataToolsForm.resx">
+      <DependentUpon>DataToolsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OperMainForm.resx">
       <DependentUpon>OperMainForm.cs</DependentUpon>
